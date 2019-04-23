@@ -2,7 +2,7 @@
 # 
 # update of version 1.0.1
 # - Use SkyCoord.radial_velocity_err as the err of the input array.
-from . import MCgenerator, dSph_model, coord
+from . import mcgenerator, dsph_model, coord
 from numpy import array,power,sqrt,log,exp,sin
 from scipy.special import logsumexp
 from scipy.stats import norm
@@ -14,10 +14,10 @@ import astropy.units as u
 #update likelihood
 DEBUG = False
 
-dSph_property = pd.read_csv("dSph_property.csv",index_col=0)
-prior_lim = []
-draco_prop = dSph_property.loc["Draco"]
-sculptor_prop = dSph_property.loc["Sculptor"]
+#dSph_property = pd.read_csv("dSph_property.csv",index_col=0)
+#prior_lim = []
+#draco_prop = dSph_property.loc["Draco"]
+#sculptor_prop = dSph_property.loc["Sculptor"]
 #RA0 = draco_prop.RAdeg
 #DE0 = draco_prop.DEdeg
 #DIST = draco_prop.DIST
@@ -72,15 +72,15 @@ class modKI17:
         
         #print(Rs.describe())
         #print("beta: {}".format(self.beta)) if beta != 1 else None
-        mem = dSph_model.plummer_model(re_pc=200)
-        dm = dSph_model.NFW_model(
+        mem = dsph_model.plummer_model(re_pc=200)
+        dm = dsph_model.NFW_model(
             a=2.78,b=7.78,g=0.675,
             rhos_Msunpc3=np.power(10,-2.05),rs_pc=np.power(10,3.96),
             R_trunc_pc=2000
         )
-        self.dsph = dSph_model.dSph_model(anib=-0.5,submodels_dict={"stellar_model":mem,"DM_model":dm},show_init=True)
+        self.dsph = dsph_model.dsph_model(anib=-0.5,submodels_dict={"stellar_model":mem,"DM_model":dm},show_init=True)
         
-        self.fg = dSph_model.uniform2d_model(Rmax_pc=self.R_RoI,show_init=True)
+        self.fg = dsph_model.uniform2d_model(Rmax_pc=self.R_RoI,show_init=True)
     
     @staticmethod
     def params_to_series(index,**kwargs):
@@ -321,15 +321,15 @@ class modKI17_memonly:
         self.beta = beta
         #print(Rs.describe())
         print("beta: {}".format(self.beta)) if beta != 1 else None
-        mem = dSph_model.plummer_model(re_pc=200)
-        dm = dSph_model.NFW_model(
+        mem = dsph_model.plummer_model(re_pc=200)
+        dm = dsph_model.NFW_model(
             a=2.78,b=7.78,g=0.675,
             rhos_Msunpc3=np.power(10,-2.05),rs_pc=np.power(10,3.96),
             R_trunc_pc=2000
         )
-        self.dsph = dSph_model.dSph_model(anib=-0.5,submodels_dict={"stellar_model":mem,"DM_model":dm},show_init=True)
+        self.dsph = dsph_model.dsph_model(anib=-0.5,submodels_dict={"stellar_model":mem,"DM_model":dm},show_init=True)
         
-        #self.fg = dSph_model.uniform2d_model(Rmax_pc=self.R_RoI,show_init=True)
+        #self.fg = dsph_model.uniform2d_model(Rmax_pc=self.R_RoI,show_init=True)
 
     def Rs(self,dra0,dde0,dist):
         return coord.projected_distance(
@@ -447,12 +447,12 @@ class modKI17_photometry:
         self.R_RoI = self.center0.distance.pc * sin(center0.separation(data).rad.max())
         
         if model=="Plummer":
-            self.mem = dSph_model.plummer_model(re_pc=200)
+            self.mem = dsph_model.plummer_model(re_pc=200)
         elif model=="exp2d":
-            self.mem = dSph_model.exp2d_model(re_pc=200)
+            self.mem = dsph_model.exp2d_model(re_pc=200)
         else: 
             raise TypeError("Undefined stellar model!")
-        self.fg = dSph_model.uniform2d_model(Rmax_pc=self.R_RoI)
+        self.fg = dsph_model.uniform2d_model(Rmax_pc=self.R_RoI)
         
         #df_sample = pd.read_csv(area_fname)[:nrow]
         #self.sc_sample = SkyCoord(ra=df_sample.ra*u.deg,dec=df_sample.dec*u.deg)
