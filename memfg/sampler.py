@@ -45,7 +45,7 @@ class dSphData:
             self.load_csv("spec", fname_spec, **idx_spec)
         
     def load_dsph_property(self,dsph_name,ra=None,dec=None,distance=None):
-        dsph_prop = ascii.read("../data/NearbyGalaxies.dat").to_pandas().set_index("GalaxyName").loc[dsph_name]
+        dsph_prop = ascii.read("NearbyGalaxies.dat").to_pandas().set_index("GalaxyName").loc[dsph_name]
         self.dsph_prop = dsph_prop
         _ra  = "{}h{}m{}s".format(dsph_prop.RAh,dsph_prop.RAm,dsph_prop.RAs) if (ra  is None) else ra
         _dec = "{}d{}m{}s".format(dsph_prop.DEd,dsph_prop.DEm,dsph_prop.DEs) if (dec is None) else dec
