@@ -28,20 +28,23 @@ def is_positive(*args):
     return array(args)>0
 
 class modKI17:
-    def __init__(self,sc_obsdata,dsph_name,paramlims_fname,prior_norm_fname):
+    
+    ######## initialization ########
+    def __init__(self,sc_obsdata,sc_center0,model,paramlims_fname,prior_norm_fname):
         """
-        sc_obsdata: SkyCoord of observed data
-        sc_center: SkyCoord of ad hoc center of dSph
-        paramlims_fname: filename of prior configuration
+        parameters:
+            - sc_obsdata:
+                SkyCoord of observed data
+            - sc_center0: 
+                SkyCoord of ad hoc center of dSph
+            - paramlims_fname
+                Filename of prior configuration. File format: 
+                    $   ,loc   ,scale
+                    $ p0,p0_loc,p0_scale
+                    $ p1,p1_loc,p1_scale
+                    $ ...
         """
-        # limit of parameter
-        self.prior_lim = pd.read_csv(paramlims_fname,index_col=0)
-        self.prior_lim_param_names = self.prior_lim.index
-        
-        # prior_norm of parameter
-        _df_prior_norm = pd.read_csv(prior_norm_fname,index_col=0)
-        self.prior_norm = norm(loc=_df_prior_norm["loc"],scale=_df_prior_norm["scale"])
-        self.prior_norm_param_names = _df_prior_norm.index
+        self.init_prior(paramlims_fname,prior_norm_fname)
         
         # index for the likelihood, prior and posterior
         #self.param_names = ["re_pc","odds","dra0","dde0",
@@ -53,35 +56,60 @@ class modKI17:
         #if not np.any(self.param_names == self.prior_lim.index):
         #    raise TypeError("parameter order is not matched!")
         
-        #for val in vs,dRAs,dDEs:
-        #    if isinstance(val,pd.DataFrame):
-        #        val = val.values
-        self.sc_obsdata = sc_obsdata
-        if hasattr(self.sc_obsdata,"radial_velocity_err"):
-            print("sc_obsdata has radial_velocity_err. We use the likelihood function with velocity error:\n{}".format(self.sc_obsdata.radial_velocity_err))
-        #self.sc_center0 = sc_center0
+        self.init_data(sc_obsdata)
         
-        # read property
-        RA0,DE0 = dSph_property.loc[dsph_name][["RAdeg","DEdeg"]]
-        DIST,err_DIST = dSph_property.loc[dsph_name][["DIST","err_DIST"]]
-        self.sc_center0 = SkyCoord(ra=RA0*u.deg,dec=DE0*u.deg,distance=DIST*u.pc)
-        self.sc_center0.distance_err = err_DIST
+        self.init_center0(sc_center0)
+        
         self.R_RoI = np.max(self.Rs(0,0,DIST)) # use Rs.max as the RoI
         
         self.beta = 1/np.log(len(self.sc_obsdata))
         
         #print(Rs.describe())
         #print("beta: {}".format(self.beta)) if beta != 1 else None
-        mem = dsph_model.plummer_model(re_pc=200)
+        
+        self.init_model(model)
+    
+    def init_prior(self,paramlims_fname,prior_norm_fname):
+        # set the support of parameter
+        self.prior_lim = pd.read_csv(paramlims_fname,index_col=0)
+        self.prior_lim_param_names = self.prior_lim.index
+        
+        # set prior_norm of parameter
+        _df_prior_norm = pd.read_csv(prior_norm_fname,index_col=0)
+        self.prior_norm = norm(loc=_df_prior_norm["loc"],scale=_df_prior_norm["scale"])
+        self.prior_norm_param_names = _df_prior_norm.index
+    
+    def init_data(self,sc_obsdata):
+        self.sc_obsdata = sc_obsdata
+        if hasattr(self.sc_obsdata,"radial_velocity_err"):
+            print("sc_obsdata has radial_velocity_err. Likelihood function is defined with velocity error:\n{}".format(self.sc_obsdata.radial_velocity_err))
+        #self.sc_center0 = sc_center0
+    
+    def init_model(self,model):
+        if model == "Plummer":
+            mem = dsph_model.plummer_model(re_pc=200)
+        elif model == "exp2d":
+            mem = dsph_model.exp2d_model(re_pc=200)
+        else: 
+            raise TypeError("Undefined stellar model!")
         dm = dsph_model.NFW_model(
             a=2.78,b=7.78,g=0.675,
             rhos_Msunpc3=np.power(10,-2.05),rs_pc=np.power(10,3.96),
             R_trunc_pc=2000
         )
         self.dsph = dsph_model.dsph_model(anib=-0.5,submodels_dict={"stellar_model":mem,"DM_model":dm},show_init=True)
-        
         self.fg = dsph_model.uniform2d_model(Rmax_pc=self.R_RoI,show_init=True)
     
+    def init_center0(self,center0)
+        self.sc_center0 = center0
+        try:
+            getattr(self.sc_center0,"distance_err")
+        except AttrbuteError as e: 
+            print(e)
+            raise e
+        
+
+    ######## utils ########
     @staticmethod
     def params_to_series(index,**kwargs):
         """
@@ -110,13 +138,14 @@ class modKI17:
         ret = pd.Series(params,index=index)
         display("array_to_ser",ret) if DEBUG else None
         return ret
-    
+
+    ######## mathematics ########
     def sc_center(self,dra0,dde0,dist):
         return SkyCoord(
             ra=self.sc_center0.ra+dra0*u.deg,
             dec=self.sc_center0.dec+dde0*u.deg,
             distance=dist*u.pc)
-        
+
     def Rs(self,dra0,dde0,dist):
         c = self.sc_center(dra0,dde0,dist)
         return c.distance.value*np.sin(self.sc_obsdata.separation(c).rad)

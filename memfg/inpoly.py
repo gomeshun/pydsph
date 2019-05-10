@@ -1,4 +1,5 @@
 import numpy as np
+from pandas import read_csv
 
 def inpolygon(sx, sy, x, y):
     ''' 
@@ -40,3 +41,8 @@ def inpoly(sx,sy,x,y,verbose=False):
     #print(numofsepbelowpoint)
     #print(isoddnumbersepabovepoint)
     return isoddnumbersepabovepoint
+
+def cut(data_fname,poly_fname,x_data,y_data,x_poly,y_poly,kwargs_data=None,kwargs_poly=None):
+    data = read_csv(data_fname,**kwargs_data)
+    poly = read_csv(poly_fname,**kwargs_poly)
+    return inpoly(data[x_data],data[y_data],poly[x_poly],data[x_poly])
