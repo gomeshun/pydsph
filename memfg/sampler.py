@@ -87,8 +87,8 @@ class Sampler:
                 self.sampler.reset()
             return pos
     
-    def run_mcmc(self,output_fname,n_burnin,n_run=5000,to_csv=True,mode="w",header=True):
-        self.init_sampler()
+    def run_mcmc(self,output_fname,n_burnin,n_run=5000,nwalkers=16,to_csv=True,mode="w",header=True):
+        self.init_sampler(nwalkers)
         self.prepare_csv(output_fname)
         pos = self.sample(self.pos0,n_burnin,desc="Burn in: ")
         self.sampler.reset()
@@ -98,8 +98,8 @@ class Sampler:
             self.to_csv(output_fname,mode,header)
         return pos
     
-    def run_mcmc_epoch(self,output_fname,n_burnin=1000,n_run=500,n_epoch=12):
-        self.init_sampler()
+    def run_mcmc_epoch(self,output_fname,n_burnin=1000,n_run=500,n_epoch=12,nwalkers=16):
+        self.init_sampler(nwalkers)
         self.prepare_csv(output_fname)
         pos = self.sample(self.pos0,n_burnin,desc="Burn in: ")
         self.sampler.reset()
@@ -121,8 +121,8 @@ class Sampler:
                 self.wbic_sampler.reset()
             return pos
     
-    def wbic_run_mcmc(self,output_fname,n_burnin,n_run=5000,to_csv=True,mode="w",header=True):
-        self.wbic_init_sampler()
+    def wbic_run_mcmc(self,output_fname,n_burnin,n_run=5000,to_csv=True,mode="w",header=True,nwalkers=16):
+        self.wbic_init_sampler(nwalkers)
         self.wbic_prepare_csv(output_fname)
         pos = self.wbic_sample(self.wbic_pos0,n_burnin,desc="WBIC Burn in: ")
         self.wbic_sampler.reset()
@@ -132,8 +132,8 @@ class Sampler:
             self.wbic_to_csv(output_fname,mode,header)
         return pos
     
-    def wbic_run_mcmc_epoch(self,output_fname,n_burnin=1000,n_run=500,n_epoch=12):
-        self.wbic_init_sampler()
+    def wbic_run_mcmc_epoch(self,output_fname,n_burnin=1000,n_run=500,n_epoch=12,nwalkers=16):
+        self.wbic_init_sampler(nwalkers)
         self.wbic_prepare_csv(output_fname)
         pos = self.wbic_sample(self.wbic_pos0,n_burnin,desc="WBIC Burn in: ")
         self.wbic_sampler.reset()

@@ -44,7 +44,7 @@ class dSphData:
     
     '''
     idx_photo_default = dict(index_col=0,cut="in_cmdcut",ra_idx="raMean",dec_idx="decMean")
-    idx_spec_default  = dict(index_col=0,cut="in_cmdcut",ra_idx="ra",    dec_idx="dec"    )
+    idx_spec_default  = dict(index_col=0,cut="in_cmdcut",ra_idx="ra",    dec_idx="dec",radial_velocity_idx="v_helio",radial_velocity_err_idx="err_v_helio")
     
     def __init__(self,
                  fname_photo=None,fname_spec=None,
@@ -66,10 +66,19 @@ class dSphData:
         if not  fname_spec is None:
             self.load_csv("spec", fname_spec, **idx_spec)
         
-    def load_csv(self,name,fname,index_col=None,cut=None,ra_idx="ra",dec_idx="dec"):
+    def load_csv(self,name,fname,index_col=None,cut=None,
+                 ra_idx="ra",dec_idx="dec",
+                 radial_velocity_idx=None,radial_velocity_err_idx=None
+                ):
         df_tot = pd.read_csv(fname,index_col=index_col)
         df = df_tot if (cut is None) else df_tot[df_tot[cut]].reset_index(drop=True)
-        sc = SkyCoord(ra = df[ra_idx].values*u.deg, dec = df[dec_idx].values*u.deg)
+        sc_kwargs = dict(ra=df[ra_idx].values*u.deg, dec=df[dec_idx].values*u.deg)
+        if not radial_velocity_idx is None:
+            sc_kwargs["radial_velocity"] = df[radial_velocity_idx].values*u.km/u.s
+        sc = SkyCoord(**sc_kwargs)
+        if not radial_velocity_err_idx is None:
+            sc.radial_velocity_err = df[radial_velocity_err_idx].values*u.km/u.s
+            print("radial velocity err loaded.")
         setattr(self,"df_"+name,df)
         setattr(self,"sc_"+name,sc)
         #setattr(self,"sep_"+name,self.dsph_prop_sc.separation(sc))
