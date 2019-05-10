@@ -23,7 +23,7 @@ class Sampler:
         elif mode == "spec":
             self.model = modki17.modKI17(
                 dsphdata.to_sc("spec"),dsphprop.to_sc(),
-                paramlims_fname,prior_norm_fname
+                model,paramlims_fname,prior_norm_fname,
             )
         
         if not (len(param_names)==len(init_low) and len(param_names)==len(init_high)):
