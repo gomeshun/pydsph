@@ -113,12 +113,12 @@ class modKI17:
     ######## utils ########
     @property
     def n_components(self):
-        if "sfg1" in self.prior_lim_params_name:
+        if "sfg1" in self.prior_lim_param_names:
+            return 3
+        elif "sfg0" in self.prior_lim_param_names:
             return 2
-        elif "sfg0" in self.prior_lim_params_name:
-            return 1
         else:
-            return 0
+            return 1
     
     @staticmethod
     def params_to_series(index,**kwargs):
