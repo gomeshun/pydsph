@@ -111,6 +111,15 @@ class modKI17:
         
 
     ######## utils ########
+    @property
+    def n_components(self):
+        if "sfg1" in self.prior_lim_params_name:
+            return 2
+        elif "sfg0" in self.prior_lim_params_name:
+            return 1
+        else:
+            return 0
+    
     @staticmethod
     def params_to_series(index,**kwargs):
         """
@@ -204,15 +213,15 @@ class modKI17:
         display(prms_df) if DEBUG else None
         is_in_minmax = np.all((prms_df.prms_min < prms_df.inprms) & (prms_df.inprms < prms_df.prms_max))
         #is_ordered = prms_df.inprms.vfg0 < prms_df.inprms.vfg1
-        if hasattr(prms_df,"sfg1"):
+        if self.n_components == 3:
             sfg0,sfg1 = prms_df.inprms.sfg0,prms_df.inprms.sfg1
             sfg2 = 1-sfg0-sfg1
             is_ordered = (sfg0 > sfg1) & (sfg1 > sfg2) & (sfg2 > 0)
-        elif hasattr(prms_df,"sfg0"):
+        elif self.n_components == 2:
             sfg0 = prms_df.inprms.sfg0
             sfg1 = 1-sfg0
             is_ordered = (sfg0 > sfg1) & (sfg1 > 0)
-        else:
+        else: # self.n_components == 1:
             is_ordered = True
         display("is_in_minmax",(prms_df.prms_min < prms_df.inprms) & (prms_df.inprms < prms_df.prms_max),"is_ordered",is_ordered) if DEBUG else None
         return is_in_minmax & is_ordered
