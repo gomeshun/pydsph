@@ -13,7 +13,7 @@ def generate_x_w(a,b,width,mN,pN,xp=np):
     x = phi(t)
     w = phi'(t)
     '''
-    print("generate_x_w in",a,b,width,mN,pN)
+    #print("generate_x_w in",a,b,width,mN,pN)
     pi2 = xp.pi/2
     ts = width*xp.arange(-mN,pN)#.astype(dtype)
     if np.all(not np.isinf(a)) and np.all(np.isinf(b)):
