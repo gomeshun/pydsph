@@ -33,10 +33,10 @@ def Jfactor_err(rhos_Msunpc3,rs_pc,a,b,g,dist,*,Rtrunc_pc=2000):
     integ, err = quad(integrand_err_Jfactor,Rroi_pc(dist),Rtrunc_pc,args=(rhos_Msunpc3,rs_pc,a,b,g,dist))
     return C_J * integ
 
-def Jfactor_err_dequad(rhos_Msunpc3,rs_pc,a,b,g,dist,*,Rtrunc_pc=2000,width=5e-3,pN=1000,mN=1000): 
+def Jfactor_err_dequad(rhos_Msunpc3,rs_pc,a,b,g,dist,*,Rtrunc_pc=2000,width=5e-3,pN=1000,mN=1000,show_fig=True): 
     args = [arg[:,np.newaxis] for arg in [rhos_Msunpc3,rs_pc,a,b,g,dist]]
     func = lambda r_pc: (Rtrunc_pc-Rroi_pc(args[-1]))/2 * integrand_err_Jfactor((Rtrunc_pc-Rroi_pc(args[-1]))/2 * r_pc + (Rtrunc_pc+Rroi_pc(args[-1]))/2,*args)
-    integ = dequad(func,a=-1,b=1,axis=1,ignore_nan=True,show_fig=True,width=width,pN=pN,mN=mN)
+    integ = dequad(func,a=-1,b=1,axis=1,ignore_nan=True,show_fig=show_fig,width=width,pN=pN,mN=mN)
     return C_J * integ
 
 def Jfactor_v01(rhos_Msunpc3,rs_pc,a,b,g,dist):
@@ -81,7 +81,7 @@ def Jfactor_v02(rhos_Msunpc3,rs_pc,a,b,g,dist,*,Rtrunc_pc=2000):
         
 Jfactor_v02 = np.vectorize(Jfactor_v02)
 
-def Jfactor(rhos_Msunpc3,rs_pc,a,b,g,dist,*,Rtrunc_pc=2000,return_relerr=False,width=5e-3,pN=1000,mN=1000):
+def Jfactor(rhos_Msunpc3,rs_pc,a,b,g,dist,*,Rtrunc_pc=2000,return_relerr=False,width=5e-3,pN=1000,mN=1000,show_fig=False):
     ret = np.zeros_like(rhos_Msunpc3)
     is_truncated = Rtrunc_pc < Rroi_pc(dist)
     isnot_truncated = np.logical_not(is_truncated)
@@ -91,7 +91,7 @@ def Jfactor(rhos_Msunpc3,rs_pc,a,b,g,dist,*,Rtrunc_pc=2000,return_relerr=False,w
     ret[is_truncated]  = Jfactor_v01_truncated(*args_truncated,Rtrunc_pc)
     
     ret_isnot_truncated = Jfactor_v01(*args_not_truncated)
-    ret_isnot_truncated_err = Jfactor_err_dequad(*args_not_truncated,Rtrunc_pc=Rtrunc_pc,width=width,pN=pN,mN=mN)
+    ret_isnot_truncated_err = Jfactor_err_dequad(*args_not_truncated,Rtrunc_pc=Rtrunc_pc,width=width,pN=pN,mN=mN,show_fig=show_fig)
     ret[isnot_truncated] = ret_isnot_truncated + ret_isnot_truncated_err
     
     return (ret if (not return_relerr) else (ret, ret_isnot_truncated_err/ret_isnot_truncated) )
