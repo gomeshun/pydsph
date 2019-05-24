@@ -33,7 +33,7 @@ def generate_x_w(a,b,width,mN,pN,xp=np):
         
     return xs,ws
 
-def dequad(func,a,b,width=5e-3,pN=1000,mN=1000,axis=None,kind="linear",dtype=float64,show_fig=False,show_integrand_array=True,ignore_nan=False,xp=np):
+def dequad(func,a,b,width=5e-3,pN=1000,mN=1000,axis=None,kind="linear",dtype=float64,show_fig=False,show_integrand_array=False,ignore_nan=False,xp=np):
     '''
     func: func(ndarray_in) = ndarray_out
     axis: define the axis of ndarray_out to use integrate.
