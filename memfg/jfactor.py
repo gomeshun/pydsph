@@ -8,6 +8,7 @@ from scipy.constants import parsec, physical_constants
 from scipy.special import betainc, beta
 from scipy.integrate import quad
 from numpy import pi, log, power, sqrt
+from .dequad import dequad
 #from py_header.DSphFuncs import DRACO_DISTANCE
 
 kg_eV = 1./physical_constants["electron volt-kilogram relationship"][0]
@@ -32,6 +33,12 @@ def Jfactor_err(rhos_Msunpc3,rs_pc,a,b,g,dist,*,Rtrunc_pc=2000):
     integ, err = quad(integrand_err_Jfactor,Rroi_pc(dist),Rtrunc_pc,args=(rhos_Msunpc3,rs_pc,a,b,g,dist))
     return C_J * integ
 
+def Jfactor_err_dequad(rhos_Msunpc3,rs_pc,a,b,g,dist,*,Rtrunc_pc=2000,width=5e-3,pN=1000,mN=1000): 
+    args = [arg[:,np.newaxis] for arg in [rhos_Msunpc3,rs_pc,a,b,g,dist]]
+    func = lambda r_pc: (Rtrunc_pc-Rroi_pc(args[-1]))/2 * integrand_err_Jfactor((Rtrunc_pc-Rroi_pc(args[-1]))/2 * r_pc + (Rtrunc_pc+Rroi_pc(args[-1]))/2,*args)
+    integ = dequad(func,a=-1,b=1,axis=1,ignore_nan=True,show_fig=True,width=width,pN=pN,mN=mN)
+    return C_J * integ
+
 def Jfactor_v01(rhos_Msunpc3,rs_pc,a,b,g,dist):
     xa = np.power(Rroi_pc(dist)/rs_pc,a)
     argbeta0 = (3.-2.*g)/a
@@ -43,6 +50,16 @@ def Jfactor_v01(rhos_Msunpc3,rs_pc,a,b,g,dist):
         +(1./3.)*(4.*np.pi*rs_pc**5/a)*rhos_Msunpc3**2*beta(argbeta2,argbeta3)*betainc(argbeta2,argbeta3,xa/(1+xa))/dist**4
         ) #M_sun/pc^2
 
+def Jfactor_v01_truncated(rhos_Msunpc3,rs_pc,a,b,g,dist,Rtrunc_pc=2000):
+    xa = np.power(Rtrunc_pc/rs_pc,a)
+    argbeta0 = (3.-2.*g)/a
+    argbeta1 = (2.*b-3.)/a
+    argbeta2 = (5.-2.*g)/a
+    argbeta3 = (5.*b-3.)/a
+    return C_J * (
+        (4.*np.pi*rs_pc**3/a)*rhos_Msunpc3**2*beta(argbeta0,argbeta1)*betainc(argbeta0,argbeta1,xa/(1+xa))/dist**2
+        +(1./3.)*(4.*np.pi*rs_pc**5/a)*rhos_Msunpc3**2*beta(argbeta2,argbeta3)*betainc(argbeta2,argbeta3,xa/(1+xa))/dist**4
+        ) #M_sun/pc^2
   
 #@numba.vectorize(['f8[:](f8[:],f8[:],f8[:],f8[:],f8[:])'])
 #@numba.guvectorize('f8[:](f8[:],f8[:],f8[:],f8[:],f8[:],f8[:])','(m),(m),(m),(m),(m),(m)->(m)')
@@ -63,6 +80,22 @@ def Jfactor_v02(rhos_Msunpc3,rs_pc,a,b,g,dist,*,Rtrunc_pc=2000):
         return Jfactor_v01(rhos_Msunpc3,rs_pc,a,b,g,dist) + Jfactor_err(rhos_Msunpc3,rs_pc,a,b,g,dist=dist,Rtrunc_pc=Rtrunc_pc)
         
 Jfactor_v02 = np.vectorize(Jfactor_v02)
+
+def Jfactor(rhos_Msunpc3,rs_pc,a,b,g,dist,*,Rtrunc_pc=2000,return_relerr=False,width=5e-3,pN=1000,mN=1000):
+    ret = np.zeros_like(rhos_Msunpc3)
+    is_truncated = Rtrunc_pc < Rroi_pc(dist)
+    isnot_truncated = np.logical_not(is_truncated)
+    args_truncated = [arg[is_truncated] for arg in [rhos_Msunpc3,rs_pc,a,b,g,dist]]
+    args_not_truncated = [arg[isnot_truncated] for arg in [rhos_Msunpc3,rs_pc,a,b,g,dist]]
+    
+    ret[is_truncated]  = Jfactor_v01_truncated(*args_truncated,Rtrunc_pc)
+    
+    ret_isnot_truncated = Jfactor_v01(*args_not_truncated)
+    ret_isnot_truncated_err = Jfactor_err_dequad(*args_not_truncated,Rtrunc_pc=Rtrunc_pc,width=width,pN=pN,mN=mN)
+    ret[isnot_truncated] = ret_isnot_truncated + ret_isnot_truncated_err
+    
+    return (ret if (not return_relerr) else (ret, ret_isnot_truncated_err/ret_isnot_truncated) )
+
 
 '''
 print(np.log10(Jfactor_v01(np.power(10,-2.05),np.power(10,3.96),2.78,7.78,0.675)))
