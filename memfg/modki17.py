@@ -61,7 +61,7 @@ class modKI17:
         
         self.init_center0(sc_center0)
         
-        self.R_RoI = np.max(self.Rs(0,0,sc_center0.distance)) # use Rs.max as the RoI
+        self.R_RoI = np.max(self.separation_pc(0,0,sc_center0.distance)) # use Rs.max as the RoI
         
         self.beta = 1/np.log(len(self.sc_obsdata))
         
@@ -156,7 +156,7 @@ class modKI17:
             dec=self.sc_center0.dec+dde0*u.deg,
             distance=dist*u.pc)
 
-    def Rs(self,dra0,dde0,dist):
+    def separation_pc(self,dra0,dde0,dist):
         c = self.sc_center(dra0,dde0,dist)
         return c.distance.value*np.sin(self.sc_obsdata.separation(c).rad)
 
@@ -225,26 +225,18 @@ class modKI17:
             is_ordered = True
         display("is_in_minmax",(prms_df.prms_min < prms_df.inprms) & (prms_df.inprms < prms_df.prms_max),"is_ordered",is_ordered) if DEBUG else None
         return is_in_minmax & is_ordered
-    """
-    def is_parameters_in_domain(self,re,odds,dra0,dde0,
-            log10_rs_pc,log10_rhos_Msunpc3,a,b,g,
-            mlog10_1manib,
-            vmem,vfg0,vfg1,dvfg0,dvfg1, sfg0):
-        is_positive_ = np.all(is_positive(re,odds,dvfg0,dvfg1))
-        is_vfg_ordered_ = vfg0 < vfg1
-        is_ffg_normalized_ = 0<sfg0<1
-        is_in_domain_ = -1<mlog10_1manib<1 and -4<log10_rhos_Msunpc3<4 and 0<log10_rs_pc<5 and 0.5<a<3 and 3<b<10 and 0<g<1.2
-        return (is_positive_ and is_vfg_ordered_ and is_ffg_normalized_ and is_in_domain_)
-    """
+    
+    def memfg_ratio_at_R(self,mem,odds,R):
+        return 1/(1+ 1/(odds * mem.density_2d_normalized_re(R)))
     
     def lnfmems(self,re_pc,dra0,dde0,
             log10_rs_pc,log10_rhos_Msunpc3,a,b,g,
             mlog10_1manib,
             vmem,dist):
 
-        # for debug
-        prms = pd.Series(locals()).drop("self")
-        display("args of loglikeli:",prms) if DEBUG else None
+        if DEBUG:
+            prms = pd.Series(locals()).drop("self")
+            display("args of loglikeli:",prms)
         
         vs=self.sc_obsdata.radial_velocity.value
         mem,dm= self.dsph.submodels["stellar_model"],self.dsph.submodels["DM_model"]
@@ -255,7 +247,7 @@ class modKI17:
         self.dsph.update({"anib":1-power(10,-mlog10_1manib)})
         ref_R = mem.half_light_radius() # 1.67834699001666*re
         
-        Rs = self.Rs(dra0,dde0,dist) # here 
+        Rs = self.separation_pc(dra0,dde0,dist) # here 
         
         sigmalos = self.dsph.sigmalos_dequad_interp1d_downsampled(Rs)
         #sigmalos = self.dsph.sigmalos_dequad(Rs)
@@ -266,6 +258,58 @@ class modKI17:
     
     def lnlikeli(self,params):
         return self.loglikelihood(*params)
+    
+    def weighted_distribution_functions(
+        self,re_pc,odds,dra0,dde0,
+            log10_rs_pc,log10_rhos_Msunpc3,a,b,g,
+            mlog10_1manib,
+            vmem,vfg0,vfg1,dvfg0,dvfg1, sfg0, dist
+    ):
+        prms = pd.Series(locals()).drop("self")
+        display("args of loglikeli:",prms) if DEBUG else None
+        
+        vs=self.sc_obsdata.radial_velocity.value
+        mem,dm,fg = self.dsph.submodels["stellar_model"],self.dsph.submodels["DM_model"],self.fg
+        
+        #update parameters
+        mem.update({"re_pc":re_pc*(dist/self.sc_center0.distance.value)}) # Note that re_pc given by the stelar fit is just the angle (re_rad), not re_pc !!!
+        dm.update({"rs_pc":power(10,log10_rs_pc),"rhos_Msunpc3":power(10,log10_rhos_Msunpc3),"a":a,"b":b,"g":g})
+        self.dsph.update({"anib":1-power(10,-mlog10_1manib)})
+        ref_R = mem.half_light_radius() # 1.67834699001666*re
+        
+        Rs = self.separation_pc(dra0,dde0,dist) # here 
+        
+        s = 1/(1+ 1/(odds * mem.density_2d_normalized_re(Rs))) # Not s but s(R)
+        sigmalos = self.dsph.sigmalos_dequad_interp1d_downsampled(Rs)
+        #sigmalos = self.dsph.sigmalos_dequad(Rs)
+        sfg1 = 1-sfg0
+        
+        vobs_err = (self.sc_obsdata.radial_velocity_err.value if hasattr(self.sc_obsdata,"radial_velocity_err") else 0)
+        logfmem = norm.logpdf(vs,loc=vmem,scale=sqrt(sigmalos**2+vobs_err**2))
+        
+        logffg0 = norm.logpdf(vs,loc=vfg0,scale=sqrt(dvfg0**2+vobs_err**2))
+        logffg1 = norm.logpdf(vs,loc=vfg1,scale=sqrt(dvfg1**2+vobs_err**2))
+        
+        logfs = [logfmem,logffg0,logffg1]
+        ss = [s,(1-s)*sfg0,(1-s)*sfg1]
+                         
+        display("sigmalos:{}".format(sigmalos)) if DEBUG else None
+        print("fmem:{}".format(fmem)) if DEBUG else None
+        print("s*fmem+(1-s)*ffg:{}".format(s*fmem+(1-s)*ffg)) if DEBUG else None
+        
+        ret = np.array(ss)*np.exp(logfs)
+        
+        return ret
+    
+    def membership_prob(self,re_pc,odds,dra0,dde0,
+            log10_rs_pc,log10_rhos_Msunpc3,a,b,g,
+            mlog10_1manib,
+            vmem,vfg0,vfg1,dvfg0,dvfg1, sfg0, dist):
+        params = pd.Series(locals()).drop("self")
+        weighted_dist_funcs = self.weighted_distribution_functions(**params)  # (n_distfunc, n_star)
+        normalizations = weighted_dist_funcs.sum(axis=0)
+        memfg_ratios = (weighted_dist_funcs/normalizations)[0]  # (n_distfunc, n_star)
+        return memfg_ratios
     
     def loglikelihood(
         self,re_pc,odds,dra0,dde0,
@@ -286,7 +330,7 @@ class modKI17:
         self.dsph.update({"anib":1-power(10,-mlog10_1manib)})
         ref_R = mem.half_light_radius() # 1.67834699001666*re
         
-        Rs = self.Rs(dra0,dde0,dist) # here 
+        Rs = self.separation_pc(dra0,dde0,dist) # here 
         
         s = 1/(1+ 1/(odds * mem.density_2d_normalized_re(Rs))) # Not s but s(R)
         sigmalos = self.dsph.sigmalos_dequad_interp1d_downsampled(Rs)
@@ -323,7 +367,7 @@ class modKI17_1gauss(modKI17):
         
         vs = self.sc_obsdata.radial_velocity.value
         vobs_err = (self.sc_obsdata.radial_velocity_err.value if hasattr(self.sc_obsdata,"radial_velocity_err") else 0)
-        s = 1/(1+ 1/(odds * mem.density_2d_normalized_re(self.Rs(dra0,dde0,dist)))) # In this line, we use "mem.foo", so we should update "mem" in advance.
+        s = 1/(1+ 1/(odds * mem.density_2d_normalized_re(self.separation_pc(dra0,dde0,dist)))) # In this line, we use "mem.foo", so we should update "mem" in advance.
         
         lnfmems = self.lnfmems(re_pc,dra0,dde0,log10_rs_pc,log10_rhos_Msunpc3,a,b,g,mlog10_1manib,vmem,dist)
         lnffg0s = norm.logpdf(vs,loc=vfg0,scale=sqrt(dvfg0**2+vobs_err**2))
@@ -356,7 +400,7 @@ class modKI17_memonly:
         self.RA0,self.DE0 = dSph_property.loc[dsph_name][["RAdeg","DEdeg"]]
         self.DIST,self.err_DIST = dSph_property.loc[dsph_name][["DIST","err_DIST"]]
 
-        self.R_RoI = np.max(self.Rs(0,0,self.DIST)) # use Rs.max as the RoI
+        self.R_RoI = np.max(self.separation_pc(0,0,self.DIST)) # use Rs.max as the RoI
         self.beta = beta
         #print(Rs.describe())
         print("beta: {}".format(self.beta)) if beta != 1 else None
@@ -370,7 +414,7 @@ class modKI17_memonly:
         
         #self.fg = dsph_model.uniform2d_model(Rmax_pc=self.R_RoI,show_init=True)
 
-    def Rs(self,dra0,dde0,dist):
+    def separation_pc(self,dra0,dde0,dist):
         return coord.projected_distance(
             dist=dist,
             ra_center = self.RA0+dra0,
@@ -443,7 +487,7 @@ class modKI17_memonly:
         self.dsph.update({"anib":1-power(10,-mlog10_1manib)})
         ref_R = mem.half_light_radius() # 1.67834699001666*re
         
-        Rs = self.Rs(dra0,dde0,dist) # here 
+        Rs = self.separation_pc(dra0,dde0,dist) # here 
         
         #s = 1/(1+ 1/(odds * mem.density_2d_normalized_re(Rs)))
         sigmalos = self.dsph.sigmalos_dequad(Rs)
@@ -502,12 +546,12 @@ class modKI17_photometry:
     def beta(self):
         return 1/np.log(len(self.obs_data))
         
-    def _Rs(self,sc,dra0,dde0):
+    def _separation_pc(self,sc,dra0,dde0):
         center = SkyCoord(ra=self.center0.ra+dra0*u.deg,dec=self.center0.dec+dde0*u.deg,distance=self.center0.distance)
         return self.center0.distance.pc*np.sin(sc.separation(center).rad)
     
     def Rs(self,dra0,dde0):
-        return self._Rs(sc=self.obs_data,dra0=dra0,dde0=dde0)
+        return self._separation_pc(sc=self.obs_data,dra0=dra0,dde0=dde0)
     
     def __call__(self,prms):
         if self.lnprior(*prms) == -np.inf:

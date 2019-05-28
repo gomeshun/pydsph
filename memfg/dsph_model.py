@@ -65,8 +65,10 @@ class model:
     def is_required_params_name(self,params_name_candidates):
         return [ (p in self.required_params_name) for p in params_name_candidates ]
 
-    def update(self,new_params_dict,target='all'):
+    def update(self,new_params_dict=None,target='all',**kwargs):
         new_params = pd.Series(new_params_dict) if type(new_params_dict)==dict else None
+        if new_params is None:
+            new_params = pd.Series(kwargs)
         #print(np.isin(new_params.index, self.show_required_params_name('all')+['this','all']))
         if not np.any(np.isin(new_params.index, self.show_required_params_name('all')+['this','all'])):
             raise TypeError("new params has no required parameters")
