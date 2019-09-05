@@ -40,6 +40,12 @@ class modKI17:
                 SkyCoord of ad hoc center of dSph
             - paramlims_fname
                 Filename of prior configuration. File format: 
+                    $     ,prms_min,prms_max
+                    $ (p0),(p0_min),(p0_max)
+                    $ (p1),(p1_loc),(p1_max)
+                    $ ...
+            - prior_norm_fname
+                Filename of prior configuration. File format: 
                     $   ,loc   ,scale
                     $ p0,p0_loc,p0_scale
                     $ p1,p1_loc,p1_scale
