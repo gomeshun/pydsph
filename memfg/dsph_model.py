@@ -236,9 +236,11 @@ class NFW_model(DM_model):
     #    if set(self.params.index) != set(NFW_params_name):
     #        raise TypeError('NFW_model has the paramsters: '+str(NFW_params_name))
 
-    def density_3d(self,r_pc):
-        pass
-    
+    def mass_density_3d(self,r_pc):
+        rs_pc, rhos_Msunpc3,a,b,g = self.params.rs_pc, self.params.rhos_Msunpc3, self.params.a, self.params.b,self.params.g
+        x = r_pc/rs_pc
+        return rhos_Msunpc3*power(x,-g)*power(1+power(x,a),-(b-g)/a)
+        
     def enclosure_mass(self,r_pc):
         #ret = (array(r_pc.shape) if len(r_pc)>1 else 0)
         rs_pc, rhos_Msunpc3,a,b,g = self.params.rs_pc, self.params.rhos_Msunpc3, self.params.a, self.params.b,self.params.g
