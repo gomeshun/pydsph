@@ -2,9 +2,9 @@ import pandas as pd
 import numpy as np
 import multiprocessing as multi
 
-from .dequad import dequad_hinf
+from .dequad import dequad_hinf, dequad
 
-from numpy import array,pi,sqrt,exp,power,log,log10,log1p,cos,tan,sin, sort,argsort
+from numpy import array,pi,sqrt,exp,power,log,log10,log1p,cos,tan,sin, sort,argsort, inf
 from scipy.stats import norm
 from scipy.special import k0, betainc, beta, hyp2f1, erf, gamma, gammainc
 from scipy import integrate
@@ -71,7 +71,7 @@ class model:
             new_params = pd.Series(kwargs)
         #print(np.isin(new_params.index, self.show_required_params_name('all')+['this','all']))
         if not np.any(np.isin(new_params.index, self.show_required_params_name('all')+['this','all'])):
-            raise TypeError("new params has no required parameters")
+            raise TypeError("new params has no required parameters.\nrequired parameters:{}".format(self.required_params_name))
         if target in ('this','all'):
             self.params.update(new_params)
             [model.params.update(new_params) for model in self.submodels.values()] if target in ('all',) else None
@@ -369,12 +369,12 @@ class dSph_model(model):
             raise TypeError("nan! {}".format(ret))
         return ret
     
-    def sigmalos_dequad(self,R_pc,show_fig=False,dtype=np.float64):
+    def sigmalos_dequad(self,R_pc,show_fig=False,dtype=np.float64,ignore_nan=False):
         def func(u):
             u_ = np.array(u)[np.newaxis,:]
             R_pc_ = np.array(R_pc)[:,np.newaxis]
             return self.integrand_sigmalos2_using_mykernel(u_,R_pc_)
-        return np.sqrt(dequad_hinf(func,1,axis=1,width=5e-3,pN=1000,mN=1000,dtype=dtype,show_fig=show_fig))
+        return np.sqrt(dequad(func,1,inf,axis=1,width=5e-3,pN=1000,mN=1000,dtype=dtype,show_fig=show_fig,ignore_nan=ignore_nan))
     
     def downsampling(self,array,downsampling_rate=0.5):
         '''
@@ -399,10 +399,10 @@ class dSph_model(model):
             #display(ret)
         return ret
     
-    def sigmalos_dequad_interp1d_downsampled(self,R_pc,downsampling_rate=0.6,iteration=5,kind="cubic",offset=5,sep_offset=1,points=[25.,50.,100.,191.,400.,1950.,2000.,2050.],show_fig=False,dtype=np.float64):
+    def sigmalos_dequad_interp1d_downsampled(self,R_pc,downsampling_rate=0.6,iteration=5,kind="cubic",offset=5,sep_offset=1,points=[25.,50.,100.,191.,400.,1950.,2000.,2050.],show_fig=False,dtype=np.float64,ignore_nan=True):
         R_pc_sorted = sort(R_pc)
         R_pc_downsampled = np.unique(np.concatenate([self.downsamplings(R_pc,iteration=iteration),R_pc_sorted[:offset:sep_offset],R_pc_sorted[-offset::sep_offset],points]))
-        sigmalos_ = self.sigmalos_dequad(R_pc_downsampled,show_fig=show_fig,dtype=dtype)
+        sigmalos_ = self.sigmalos_dequad(R_pc_downsampled,show_fig=show_fig,dtype=dtype,ignore_nan=ignore_nan)
         interpd_func = interp1d(R_pc_downsampled, sigmalos_,kind=kind)
         #interpd_func = Akima1DInterpolator(R_pc_downsampled, sigmalos_)
         return interpd_func(R_pc) # here R_pc is original, so return unsorted results
