@@ -379,6 +379,7 @@ class modKI17_1gauss(modKI17):
         
         return ret
     
+    
 class modKI17_memonly:
     def __init__(self,vs,dRAs,dDEs,dsph_name,paramlims_fname,beta=1):
         """
@@ -509,7 +510,8 @@ class modKI17_memonly:
         ret = np.log(fmem)
         
         return self.beta * ret
- 
+
+
 class modKI17_photometry:
     def __init__(self,data,center0,
                  #area_fname,area_config_fname,

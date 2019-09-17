@@ -2,9 +2,9 @@ import pandas as pd
 import numpy as np
 import multiprocessing as multi
 
-from .dequad import dequad_hinf
+from .dequad import dequad
 
-from numpy import array,pi,sqrt,exp,power,log,log10,log1p,cos,tan,sin, sort,argsort
+from numpy import array,pi,sqrt,exp,power,log,log10,log1p,cos,tan,sin, sort,argsort,inf
 from scipy.stats import norm
 from scipy.special import k0, betainc, beta, hyp2f1, erf, gamma, gammainc
 from scipy import integrate
@@ -298,7 +298,7 @@ class dSph_model(model):
         RELERROR_INTEG = 1e-6
         anib = self.params.anib
         integrand = lambda r,r1: self.submodels["stellar_model"].density_3d(r)*np.power(r/r1,-2*anib)*GMsun_m3s2*self.submodels["DM_model"].enclosure_mass(r)/r**2/self.submodels["stellar_model"].density_3d(r_pc)*1e-6/parsec
-        integ, abserr = integrate.quad(integrand,r_pc,np.inf,args=(r_pc,))
+        integ, abserr = integrate.quad(integrand,r_pc,inf,args=(r_pc,))
         return integ
     
     def naive_sigmalos2(self,R_pc):
@@ -307,7 +307,7 @@ class dSph_model(model):
         integrand = lambda r: (1-anib*(R_pc/r)**2)*self.submodels["stellar_model"].density_3d(r)*self.sigmar2(r)/np.sqrt(1-(R_pc/r)**2)
         rs_interp = np.logspace(-2,6,51)
         integrand_interp = interp1d(rs_interp,[integrand(r) for r in rs_interp],kind="quadratic") 
-        integ, abserr = integrate.quad(integrand_interp,R_pc,np.inf)
+        integ, abserr = integrate.quad(integrand_interp,R_pc,inf)
         return 2*integ/self.submodels["stellar_model"].density_2d(R_pc)
     
     def integrand_sigmalos2(self,c,arg_R_pc):
@@ -372,7 +372,7 @@ class dSph_model(model):
             u_ = np.array(u)[np.newaxis,:]
             R_pc_ = np.array(R_pc)[:,np.newaxis]
             return self.integrand_sigmalos2_using_mykernel(u_,R_pc_)
-        return np.sqrt(dequad_hinf(func,1,axis=1,width=5e-3,pN=1000,mN=1000,dtype=dtype,show_fig=show_fig))
+        return np.sqrt(dequad(func,1,inf,axis=1,width=5e-3,pN=1000,mN=1000,dtype=dtype,show_fig=show_fig,ignore_nan=True))
     
     def downsampling(self,array,downsampling_rate=0.5):
         '''
