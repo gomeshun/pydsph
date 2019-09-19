@@ -119,9 +119,10 @@ class modKI17:
     def init_data(self,sc_obsdata):
         self.sc_obsdata = sc_obsdata
         if hasattr(self.sc_obsdata,"radial_velocity_err"):
-            print("sc_obsdata has radial_velocity_err.\
-                   Likelihood function is defined with velocity error:\n\
-                   {}".format(self.sc_obsdata.radial_velocity_err))
+            print("sc_obsdata has radial_velocity_err. ",
+                  "Likelihood function is defined with velocity error:",
+                  self.sc_obsdata.radial_velocity_err
+                 )
         else:
             self.sc_obsdata.radial_velocity_err = array(0)
         #self.sc_center0 = sc_center0
