@@ -79,7 +79,8 @@ class Sampler:
             df.to_csv(f,index=None,header=header)
     
     ######## parameter sampler ########
-    def sample(self,p0,n_run = 5000,fname=None,mode="w",header=True,reset=False,desc=None):
+    def sample(self,p0 = None,n_run = 5000,fname=None,mode="w",header=True,reset=False,desc=None):
+        p0 = p0 if (p0 is not None) else self.pos0
         for pos, prob, state in tqdm(self.sampler.sample(p0,iterations=n_run),total=n_run,desc=desc):
             pass
         
@@ -91,21 +92,22 @@ class Sampler:
         return pos
     
     
-    def burnin(self,n_burnin,nwalkers=None,pos0=None):
-        nwalkers = self.n_param * 2 if (nwalkers is None) else nwalkers 
+    def burnin(self,n_burnin,nwalkers,pos0=None):
         pos0 = pos0 if (pos0 is not None) else self.pos0
-        pos = self.sample(pos0,n_burnin,desc="Burn in: ")
+        
+        self.pos0 = self.sample(pos0,n_burnin,desc="Burn in: ")
+        
         self.sampler.reset()
-        return pos
+        
+        return self.pos0
     
     
-    def find_map(self,n_find_map,n_find_map_burnin=None,nwalkers=None,pos0=None):
-        nwalkers = self.n_param * 2 if (nwalkers is None) else nwalkers 
+    def find_map(self,n_find_map,nwalkers,n_find_map_burnin=None,pos0=None):
         pos0 = pos0 if (pos0 is not None) else self.pos0
         n_find_map_burnin = n_find_map_burnin if (n_find_map_burnin is not None) else n_find_map
         
-        pos = self.burnin(n_find_map_burnin,nwalkers=nwalkers,pos0=pos0)
-        self.sample(pos,n_find_map,desc="find MAP points: ")
+        self.burnin(n_find_map_burnin,nwalkers=nwalkers,pos0=pos0)
+        self.sample(n_find_map,desc="find MAP points: ")
         
         _poss = self.sampler.flatchain  # (iterations, dim)
         _lnprobs = self.sampler.flatlnprobability
@@ -115,40 +117,41 @@ class Sampler:
         poss = _poss[idx]
         
         # find nwalkers map points
-        pos = poss[np.argsort(-lnprobs)][:nwalkers]
+        self.pos0 = poss[np.argsort(-lnprobs)][:nwalkers]
         
         self.sampler.reset()
         
-        return pos
+        return self.pos0
     
     
-    def run_mcmc(self,output_fname,n_burnin,n_find_map=1000,n_run=5000,nwalkers=None,to_csv=True,mode="w",header=True):
-        nwalkers = self.n_param * 2 if (nwalkers is None) else nwalkers 
+    def run_mcmc(self,output_fname,n_burnin,n_run,nwalkers,n_find_map=None,to_csv=True,mode="w",header=True):
         self.init_sampler(nwalkers)
         self.prepare_csv(output_fname)
         
-        pos = self.find_map(n_find_map,nwalkers=nwalkers)
-        pos = self.burnin(n_burnin,nwalkers,pos0=pos)
-        pos = self.sample(pos,n_run,output_fname,desc="Sampling: ")
+        if n_find_map is not None:
+            self.find_map(n_find_map,nwalkers=nwalkers)
+
+        self.burnin(n_burnin,nwalkers)
+        pos = self.sample(n_run,output_fname,desc="Sampling: ")
         
         if to_csv:
             self.to_csv(output_fname,mode,header)
         return pos
     
     
-    def run_mcmc_epoch(self,output_fname,n_burnin=1000,n_find_map=1000,n_run=500,n_epoch=12,nwalkers=None):
+    def run_mcmc_epoch(self,output_fname,nwalkers,n_burnin,n_run,n_epoch,n_find_map=None):
         self.init_sampler(nwalkers)
         
-        nwalkers = self.n_param * 2 if (nwalkers is None) else nwalkers 
-        pos = self.find_map(n_find_map,nwalkers=nwalkers)
-        pos = self.burnin(n_burnin,nwalkers,pos0=pos)
+        if n_find_map is not None:
+            self.find_map(n_find_map,nwalkers=nwalkers)
+        self.burnin(n_burnin,nwalkers)
 
         # create file
         self.prepare_csv(output_fname)
         
         # run
         for i in range(n_epoch):
-            pos = self.sample(pos,n_run,output_fname,mode="a",header=False,reset=True,desc="{} th Sampling: ".format(i))
+            pos = self.sample(n_run=n_run,fname=output_fname,mode="a",header=False,reset=True,desc="{} th Sampling: ".format(i))
          
         return pos
 
