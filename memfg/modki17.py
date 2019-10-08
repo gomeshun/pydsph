@@ -354,7 +354,7 @@ class modKI17:
         
         ret = norm.logpdf(vs,loc=p["vmem"],scale=sqrt(sigmalos**2+vobs_err**2))
         
-        if (not with_Rs) and (not with_normalized_density):
+        if (not with_Rs) and (not with_s_R):
             return ret
         else:
             ret = {"lnfmems":ret}
@@ -435,14 +435,15 @@ class modKI17:
         vs=self.sc_obsdata.radial_velocity.value        
         vobs_err = self.sc_obsdata.radial_velocity_err.value
         
-        logfmem = self._lnfmems(p) # here we update mem.
+        _logfmem = self._lnfmems(p,with_s_R=True) # here we update mem.
+        logfmem,s_R = _logfmem["lnfmems"], _logfmem["s_R"]
         logffgs = self._lnffgs(p)
         logfs = [logfmem,*logffgs]
         
         mem = self.dsph.submodels["stellar_model"]
         
         sfgs = self._sfgs(p)
-        s_R = 1/(1+ 1/(p["odds"] * mem.density_2d_normalized_re(Rs))) # Not s but s(R)
+        #s_R = 1/(1+ 1/(p["odds"] * mem.density_2d_normalized_re(Rs))) # Not s but s(R)
         ss = [s_R, *((1-s_R)[np.newaxis,:]*self._sfgs(p)[:,np.newaxis])]
         
         if DEBUG:
