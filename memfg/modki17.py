@@ -148,7 +148,7 @@ class modKI17:
         self.sc_center0 = center0
         try:
             getattr(self.sc_center0,"distance_err")
-        except AttrbuteError as e: 
+        except AttributeError as e: 
             print(e)
             raise e
         
