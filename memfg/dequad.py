@@ -59,8 +59,8 @@ def dequad(func,a,b,width=5e-3,pN=1000,mN=1000,axis=None,kind="linear",dtype=flo
             if len(wsfs.shape)>1:
                 np.set_printoptions(threshold=20)
                 display(wsfs) if show_integrand_array else None
-                plt.plot(width*xp.arange(-mN,pN),*wsfs,label=(wsfs).sum(axis=axis))
-                plt.legend()
+                plt.plot(width*xp.arange(-mN,pN),wsfs.T)
+                plt.legend(wsfs.sum(axis=axis))
             else:
                 plt.plot(ts,wsfs)
         return (wsfs).sum(axis=axis)
