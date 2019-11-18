@@ -45,7 +45,7 @@ def dequad(func,a,b,width=5e-3,pN=1000,mN=1000,axis=None,kind="linear",dtype=flo
     if kind == "linear":
         #print(a,b,width,mN,pN)
         #print(generate_x_w(a,b,width,mN,pN,xp=np))
-        xs,ws = generate_x_w(a,b,width,mN,pN,xp=np)
+        xs,ws = generate_x_w(a,b,width,mN,pN,xp)
         wsfs = ws*func(xs)
         isnan = xp.isnan(wsfs)
         isinf = xp.isinf(wsfs)

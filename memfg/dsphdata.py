@@ -70,15 +70,20 @@ class dSphData:
                  ra_idx="ra",dec_idx="dec",
                  radial_velocity_idx=None,radial_velocity_err_idx=None
                 ):
-        df_tot = pd.read_csv(fname,index_col=index_col)
-        df = df_tot if (cut is None) else df_tot[df_tot[cut]].reset_index(drop=True)
+        df_tot = pd.read_csv(fname,index_col=index_col)  # before cut
+        df = df_tot if (cut is None) else df_tot[df_tot[cut]].reset_index(drop=True)  # after cut
+        
+        # prepare args of SkyCoord
         sc_kwargs = dict(ra=df[ra_idx].values*u.deg, dec=df[dec_idx].values*u.deg)
         if not radial_velocity_idx is None:
             sc_kwargs["radial_velocity"] = df[radial_velocity_idx].values*u.km/u.s
         sc = SkyCoord(**sc_kwargs)
+        
+        # set radial_velocity_err to sc if specified
         if not radial_velocity_err_idx is None:
             sc.radial_velocity_err = df[radial_velocity_err_idx].values*u.km/u.s
             print("radial velocity err loaded.")
+            
         setattr(self,"df_"+name,df)
         setattr(self,"sc_"+name,sc)
         #setattr(self,"sep_"+name,self.dsph_prop_sc.separation(sc))
