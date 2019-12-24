@@ -1,0 +1,452 @@
+\hypertarget{classmodki17_1_1modKI17__memonly}{}\section{modki17.\+mod\+K\+I17\+\_\+memonly Class Reference}
+\label{classmodki17_1_1modKI17__memonly}\index{modki17.\+mod\+K\+I17\+\_\+memonly@{modki17.\+mod\+K\+I17\+\_\+memonly}}
+
+
+Collaboration diagram for modki17.\+mod\+K\+I17\+\_\+memonly\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{da/d4b/classmodki17_1_1modKI17__memonly__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmodki17_1_1modKI17__memonly_a130f863b48dea1c6555c206233f6ba40}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, \hyperlink{classmodki17_1_1modKI17__memonly_a20e35678f46a3680074c9825fbee1827}{vs}, d\+R\+As, \hyperlink{classmodki17_1_1modKI17__memonly_aae460091f1bf62d4cf6bd2a4af2ff4dd}{d\+D\+Es}, dsph\+\_\+name, paramlims\+\_\+fname, \hyperlink{classmodki17_1_1modKI17__memonly_a193da8b47599eb4a1c60ae080d7475c1}{beta}=1)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__memonly_ae46bea8dc18dc3d68cd1fe560da8eee8}{separation\+\_\+pc} (self, dra0, dde0, dist)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__memonly_abb74996f02269af842ee9a12f8054635}{lnprior} (self, prms)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__memonly_a9c3df4e62b2a34f1bde0835d75c4afdf}{\+\_\+\+\_\+call\+\_\+\+\_\+} (self, args)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__memonly_a5eb9873dae68be85438e7014425d69a0}{lnprob} (self, params)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__memonly_a32029497de5993152e902e6cee8554c9}{is\+\_\+parameters\+\_\+in\+\_\+domain} (self, prms)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__memonly_acd5664cdd71217fd6cdd195907ba79a1}{lnlikelis} (self, re, dra0, dde0, log10\+\_\+rs\+\_\+pc, log10\+\_\+rhos\+\_\+\+Msunpc3, a, b, g, mlog10\+\_\+1manib, vmem, dist)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmodki17_1_1modKI17__memonly_a7ee723c1fd5c5bf977caeaadd52d9e24}{params\+\_\+name}
+\item 
+\hyperlink{classmodki17_1_1modKI17__memonly_a1a9a34758068e1adc3da2f367ddf2350}{prior\+\_\+lim}
+\item 
+\hyperlink{classmodki17_1_1modKI17__memonly_a20e35678f46a3680074c9825fbee1827}{vs}
+\item 
+\hyperlink{classmodki17_1_1modKI17__memonly_aae460091f1bf62d4cf6bd2a4af2ff4dd}{d\+D\+Es}
+\item 
+\hyperlink{classmodki17_1_1modKI17__memonly_ad7dbff1472926d76e3e5231bf0115e55}{D\+E0}
+\item 
+\hyperlink{classmodki17_1_1modKI17__memonly_ab976f4443d74cc55625b78a0e5f6b9b6}{err\+\_\+\+D\+I\+ST}
+\item 
+\hyperlink{classmodki17_1_1modKI17__memonly_ae38f2f8fc61b3c67e115804eae04a1dc}{R\+\_\+\+RoI}
+\item 
+\hyperlink{classmodki17_1_1modKI17__memonly_a193da8b47599eb4a1c60ae080d7475c1}{beta}
+\item 
+\hyperlink{classmodki17_1_1modKI17__memonly_af18e7534e139aac140481e4971e85056}{dsph}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 493 of file modki17.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_a130f863b48dea1c6555c206233f6ba40}\label{classmodki17_1_1modKI17__memonly_a130f863b48dea1c6555c206233f6ba40}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+memonly.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{vs,  }\item[{}]{d\+R\+As,  }\item[{}]{d\+D\+Es,  }\item[{}]{dsph\+\_\+name,  }\item[{}]{paramlims\+\_\+fname,  }\item[{}]{beta = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}vs: velosity data
+dRAs, dDEs: position data
+RA0,DE0: adhoc central position of dSph 
+paramlims_fname: filename of prior configuration
+\end{DoxyVerb}
+ 
+
+Definition at line 494 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+494     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_a0ebbb93e5c948bc426658cbdc92bfd12}{\_\_init\_\_}(self,vs,dRAs,dDEs,dsph\_name,paramlims\_fname,beta=1):
+495         \textcolor{stringliteral}{"""}
+496 \textcolor{stringliteral}{        vs: velosity data}
+497 \textcolor{stringliteral}{        dRAs, dDEs: position data}
+498 \textcolor{stringliteral}{        RA0,DE0: adhoc central position of dSph }
+499 \textcolor{stringliteral}{        paramlims\_fname: filename of prior configuration}
+500 \textcolor{stringliteral}{        """}
+501         self.params\_name = [\textcolor{stringliteral}{"re"},\textcolor{stringliteral}{"dra0"},\textcolor{stringliteral}{"dde0"},\textcolor{stringliteral}{"log10\_rs\_pc"},\textcolor{stringliteral}{"log10\_rhos\_Msunpc3"},\textcolor{stringliteral}{"a"},\textcolor{stringliteral}{"b"},\textcolor{stringliteral}{"g"},\textcolor{stringliteral}{"
+      mlog10\_1manib"},\textcolor{stringliteral}{"vmem"},\textcolor{stringliteral}{"dist"}]
+502         self.prior\_lim = pd.read\_csv(paramlims\_fname,index\_col=0).loc[self.params\_name]
+503         
+504         \textcolor{comment}{#for val in vs,dRAs,dDEs:}
+505         \textcolor{comment}{#    if isinstance(val,pd.DataFrame):}
+506         \textcolor{comment}{#        val = val.values}
+507         self.vs = vs
+508         self.dRAs,self.dDEs = dRAs,dDEs
+509         
+510         \textcolor{comment}{# read property}
+511         self.RA0,self.DE0 = dSph\_property.loc[dsph\_name][[\textcolor{stringliteral}{"RAdeg"},\textcolor{stringliteral}{"DEdeg"}]]
+512         self.DIST,self.err\_DIST = dSph\_property.loc[dsph\_name][[\textcolor{stringliteral}{"DIST"},\textcolor{stringliteral}{"err\_DIST"}]]
+513 
+514         self.R\_RoI = np.max(self.separation\_pc(0,0,self.DIST)) \textcolor{comment}{# use Rs.max as the RoI}
+515         self.beta = beta
+516         \textcolor{comment}{#print(Rs.describe())}
+517         print(\textcolor{stringliteral}{"beta: \{\}"}.format(self.beta)) \textcolor{keywordflow}{if} beta != 1 \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}
+518         mem = plummer\_model(re\_pc=nan)
+519         dm = NFW\_model(
+520             a=nan,b=nan,g=nan,
+521             rhos\_Msunpc3=nan,rs\_pc=nan,
+522             R\_trunc\_pc=nan
+523         )
+524         self.dsph = \hyperlink{namespacedsph__model}{dsph\_model}(anib=nan,submodels\_dict=\{\textcolor{stringliteral}{"stellar\_model"}:mem,\textcolor{stringliteral}{"DM\_model"}:dm\},
+      show\_init=\textcolor{keyword}{True})
+525         
+526         \textcolor{comment}{#self.fg = dsph\_model.uniform2d\_model(Rmax\_pc=self.R\_RoI,show\_init=True)}
+527 
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_a9c3df4e62b2a34f1bde0835d75c4afdf}\label{classmodki17_1_1modKI17__memonly_a9c3df4e62b2a34f1bde0835d75c4afdf}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!\+\_\+\+\_\+call\+\_\+\+\_\+@{\+\_\+\+\_\+call\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+call\+\_\+\+\_\+@{\+\_\+\+\_\+call\+\_\+\+\_\+}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+call\+\_\+\+\_\+()}{\_\_call\_\_()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+memonly.\+\_\+\+\_\+call\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{args }\end{DoxyParamCaption})}
+
+
+
+Definition at line 550 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+550     \textcolor{keyword}{def }\_\_call\_\_(self,**args):
+551         ret = self.lnprior(**args)
+552         \textcolor{keywordflow}{if} ret == -inf:
+553             \textcolor{keywordflow}{return} ret
+554         \textcolor{keywordflow}{else}:
+555             \textcolor{keywordflow}{return} ret + np.sum(self.lnlikelis(**args)) 
+556         
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/da2/classmodki17_1_1modKI17__memonly_a9c3df4e62b2a34f1bde0835d75c4afdf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/da2/classmodki17_1_1modKI17__memonly_a9c3df4e62b2a34f1bde0835d75c4afdf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_a32029497de5993152e902e6cee8554c9}\label{classmodki17_1_1modKI17__memonly_a32029497de5993152e902e6cee8554c9}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!is\+\_\+parameters\+\_\+in\+\_\+domain@{is\+\_\+parameters\+\_\+in\+\_\+domain}}
+\index{is\+\_\+parameters\+\_\+in\+\_\+domain@{is\+\_\+parameters\+\_\+in\+\_\+domain}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{is\+\_\+parameters\+\_\+in\+\_\+domain()}{is\_parameters\_in\_domain()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+memonly.\+is\+\_\+parameters\+\_\+in\+\_\+domain (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{prms }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}check the parameters are in valid domain.
+\end{DoxyVerb}
+ 
+
+Definition at line 561 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+561     \textcolor{keyword}{def }is\_parameters\_in\_domain(self,**prms):
+562         \textcolor{stringliteral}{"""}
+563 \textcolor{stringliteral}{        check the parameters are in valid domain.}
+564 \textcolor{stringliteral}{        """}
+565         prms\_df = pd.DataFrame(\{**self.prior\_lim,\textcolor{stringliteral}{"inprms"}:prms\})
+566         display(prms\_df) \textcolor{keywordflow}{if} DEBUG \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}
+567         is\_in\_minmax = np.all((prms\_df.prms\_min < prms\_df.inprms) & (prms\_df.inprms < prms\_df.prms\_max))
+568         \textcolor{comment}{#is\_ordered = prms\_df.inprms.vfg0 < prms\_df.inprms.vfg1}
+569         display(\textcolor{stringliteral}{"is\_in\_minmax"},(prms\_df.prms\_min < prms\_df.inprms) & (prms\_df.inprms < prms\_df.prms\_max)) \textcolor{keywordflow}{
+      if} DEBUG \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}
+570         \textcolor{keywordflow}{return} is\_in\_minmax
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/da2/classmodki17_1_1modKI17__memonly_a32029497de5993152e902e6cee8554c9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/da2/classmodki17_1_1modKI17__memonly_a32029497de5993152e902e6cee8554c9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_acd5664cdd71217fd6cdd195907ba79a1}\label{classmodki17_1_1modKI17__memonly_acd5664cdd71217fd6cdd195907ba79a1}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!lnlikelis@{lnlikelis}}
+\index{lnlikelis@{lnlikelis}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{lnlikelis()}{lnlikelis()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+memonly.\+lnlikelis (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{re,  }\item[{}]{dra0,  }\item[{}]{dde0,  }\item[{}]{log10\+\_\+rs\+\_\+pc,  }\item[{}]{log10\+\_\+rhos\+\_\+\+Msunpc3,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{g,  }\item[{}]{mlog10\+\_\+1manib,  }\item[{}]{vmem,  }\item[{}]{dist }\end{DoxyParamCaption})}
+
+
+
+Definition at line 588 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+588     ): \textcolor{comment}{# R\_trunc\_pc is fixed 2000 pc}
+589         prms = pd.Series(locals()).drop(\textcolor{stringliteral}{"self"})
+590         display(\textcolor{stringliteral}{"args of loglikeli:"},prms) \textcolor{keywordflow}{if} DEBUG \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}
+591         
+592         vs=self.vs
+593         mem,dm = self.dsph.submodels[\textcolor{stringliteral}{"stellar\_model"}],self.dsph.submodels[\textcolor{stringliteral}{"DM\_model"}]
+594         
+595         \textcolor{comment}{#update parameters}
+596         mem.update(\{\textcolor{stringliteral}{"re\_pc"}:re*(dist/self.DIST)\}) \textcolor{comment}{# Note that re\_pc given by the stelar fit is just the
+       angle (re\_rad), not re\_pc !!!}
+597         dm.update(\{\textcolor{stringliteral}{"rs\_pc"}:power(10,log10\_rs\_pc),\textcolor{stringliteral}{"rhos\_Msunpc3"}:power(10,log10\_rhos\_Msunpc3),\textcolor{stringliteral}{"a"}:a,\textcolor{stringliteral}{"b"}:b,\textcolor{stringliteral}{"g
+      "}:g\})
+598         self.dsph.update(\{\textcolor{stringliteral}{"anib"}:1-power(10,-mlog10\_1manib)\})
+599         ref\_R = mem.half\_light\_radius() \textcolor{comment}{# 1.67834699001666*re}
+600         
+601         Rs = self.separation\_pc(dra0,dde0,dist) \textcolor{comment}{# here }
+602         
+603         \textcolor{comment}{#s = 1/(1+ 1/(odds * mem.density\_2d\_normalized\_re(Rs)))}
+604         sigmalos = self.dsph.sigmalos\_dequad(Rs)
+605         \textcolor{keywordflow}{if} np.any(np.isnan(sigmalos)):
+606             \textcolor{keywordflow}{raise} TypeError(\textcolor{stringliteral}{"sigmalos is nan! \{\}"}.format(sigmalos))
+607         \textcolor{comment}{#sigmalos = self.dsph.sigmalos\_dequad(Rs)}
+608         \textcolor{comment}{#sfg1 = 1-sfg0}
+609         
+610         fmem = norm.pdf(vs,loc=vmem,scale=sigmalos)
+611         
+612         \textcolor{comment}{#ffg0 = sfg0 * norm.pdf(vs,loc=vfg0,scale=dvfg0)}
+613         \textcolor{comment}{#ffg1 = sfg1 * norm.pdf(vs,loc=vfg1,scale=dvfg1)}
+614         \textcolor{comment}{#ffg = ffg0+ffg1}
+615         
+616         display(\textcolor{stringliteral}{"sigmalos:\{\}"}.format(sigmalos)) \textcolor{keywordflow}{if} DEBUG \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}
+617         print(\textcolor{stringliteral}{"fmem:\{\}"}.format(fmem)) \textcolor{keywordflow}{if} DEBUG \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}
+618         \textcolor{comment}{#print("s*fmem+(1-s)*ffg:\{\}".format(s*fmem+(1-s)*ffg)) if DEBUG else None}
+619         \textcolor{comment}{#ret = log(s*fmem+(1-s)*ffg)}
+620         ret = log(fmem)
+621         
+622         \textcolor{keywordflow}{return} self.beta * ret
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/da2/classmodki17_1_1modKI17__memonly_acd5664cdd71217fd6cdd195907ba79a1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/da2/classmodki17_1_1modKI17__memonly_acd5664cdd71217fd6cdd195907ba79a1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_abb74996f02269af842ee9a12f8054635}\label{classmodki17_1_1modKI17__memonly_abb74996f02269af842ee9a12f8054635}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!lnprior@{lnprior}}
+\index{lnprior@{lnprior}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{lnprior()}{lnprior()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+memonly.\+lnprior (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{prms }\end{DoxyParamCaption})}
+
+
+
+Definition at line 537 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+537     \textcolor{keyword}{def }lnprior(self,**prms):
+538         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} self.is\_parameters\_in\_domain(**prms):
+539             display(\textcolor{stringliteral}{"out ouf dom:"},self.is\_parameters\_in\_domain(**prms)) \textcolor{keywordflow}{if} DEBUG \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}
+540             \textcolor{keywordflow}{return} -inf
+541         \textcolor{keywordflow}{else}:
+542             \textcolor{comment}{#G\_re = norm.pdf(re,loc=191,scale=5.7)}
+543             \textcolor{comment}{#G\_odds = norm.pdf(odds,loc=8.794,scale=0.5107)}
+544             \textcolor{comment}{#G\_dra0 = norm.pdf(dra0,loc=4.212e-3,scale=7.052e-3)}
+545             \textcolor{comment}{#G\_dde0 = norm.pdf(dde0,loc=-1.991e-3,scale=3.302e-3)}
+546             G\_dist = norm.pdf(prms[\textcolor{stringliteral}{"dist"}],loc=self.DIST,scale=self.err\_DIST)
+547         
+548             \textcolor{keywordflow}{return} np.sum(log([G\_dist,1]))
+549 
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/da2/classmodki17_1_1modKI17__memonly_abb74996f02269af842ee9a12f8054635_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/da2/classmodki17_1_1modKI17__memonly_abb74996f02269af842ee9a12f8054635_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_a5eb9873dae68be85438e7014425d69a0}\label{classmodki17_1_1modKI17__memonly_a5eb9873dae68be85438e7014425d69a0}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!lnprob@{lnprob}}
+\index{lnprob@{lnprob}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{lnprob()}{lnprob()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+memonly.\+lnprob (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{params }\end{DoxyParamCaption})}
+
+
+
+Definition at line 557 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+557     \textcolor{keyword}{def }lnprob(self,params):
+558         prms = \{key:val \textcolor{keywordflow}{for} key,val \textcolor{keywordflow}{in} zip(self.params\_name,params)\}
+559         \textcolor{keywordflow}{return} self.\_\_call\_\_(**prms)
+560     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/da2/classmodki17_1_1modKI17__memonly_a5eb9873dae68be85438e7014425d69a0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_ae46bea8dc18dc3d68cd1fe560da8eee8}\label{classmodki17_1_1modKI17__memonly_ae46bea8dc18dc3d68cd1fe560da8eee8}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!separation\+\_\+pc@{separation\+\_\+pc}}
+\index{separation\+\_\+pc@{separation\+\_\+pc}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{separation\+\_\+pc()}{separation\_pc()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+memonly.\+separation\+\_\+pc (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{dra0,  }\item[{}]{dde0,  }\item[{}]{dist }\end{DoxyParamCaption})}
+
+
+
+Definition at line 528 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+528     \textcolor{keyword}{def }separation\_pc(self,dra0,dde0,dist):
+529         \textcolor{keywordflow}{return} \hyperlink{namespacecoord_a46aebc3089e078f4597812fecdd0975f}{coord.projected\_distance}(
+530             dist=dist,
+531             ra\_center = self.RA0+dra0,
+532             de\_center = self.DE0+dde0,
+533             ra = self.RA0+self.dRAs,
+534             de = self.DE0+self.dDEs,
+535             dtype=\textcolor{stringliteral}{"deg"})
+536 
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/da2/classmodki17_1_1modKI17__memonly_ae46bea8dc18dc3d68cd1fe560da8eee8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/da2/classmodki17_1_1modKI17__memonly_ae46bea8dc18dc3d68cd1fe560da8eee8_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_a193da8b47599eb4a1c60ae080d7475c1}\label{classmodki17_1_1modKI17__memonly_a193da8b47599eb4a1c60ae080d7475c1}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!beta@{beta}}
+\index{beta@{beta}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{beta}{beta}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+memonly.\+beta}
+
+
+
+Definition at line 515 of file modki17.\+py.
+
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_aae460091f1bf62d4cf6bd2a4af2ff4dd}\label{classmodki17_1_1modKI17__memonly_aae460091f1bf62d4cf6bd2a4af2ff4dd}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!d\+D\+Es@{d\+D\+Es}}
+\index{d\+D\+Es@{d\+D\+Es}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{d\+D\+Es}{dDEs}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+memonly.\+d\+D\+Es}
+
+
+
+Definition at line 508 of file modki17.\+py.
+
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_ad7dbff1472926d76e3e5231bf0115e55}\label{classmodki17_1_1modKI17__memonly_ad7dbff1472926d76e3e5231bf0115e55}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!D\+E0@{D\+E0}}
+\index{D\+E0@{D\+E0}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{D\+E0}{DE0}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+memonly.\+D\+E0}
+
+
+
+Definition at line 511 of file modki17.\+py.
+
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_af18e7534e139aac140481e4971e85056}\label{classmodki17_1_1modKI17__memonly_af18e7534e139aac140481e4971e85056}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!dsph@{dsph}}
+\index{dsph@{dsph}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{dsph}{dsph}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+memonly.\+dsph}
+
+
+
+Definition at line 524 of file modki17.\+py.
+
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_ab976f4443d74cc55625b78a0e5f6b9b6}\label{classmodki17_1_1modKI17__memonly_ab976f4443d74cc55625b78a0e5f6b9b6}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!err\+\_\+\+D\+I\+ST@{err\+\_\+\+D\+I\+ST}}
+\index{err\+\_\+\+D\+I\+ST@{err\+\_\+\+D\+I\+ST}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{err\+\_\+\+D\+I\+ST}{err\_DIST}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+memonly.\+err\+\_\+\+D\+I\+ST}
+
+
+
+Definition at line 512 of file modki17.\+py.
+
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_a7ee723c1fd5c5bf977caeaadd52d9e24}\label{classmodki17_1_1modKI17__memonly_a7ee723c1fd5c5bf977caeaadd52d9e24}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!params\+\_\+name@{params\+\_\+name}}
+\index{params\+\_\+name@{params\+\_\+name}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{params\+\_\+name}{params\_name}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+memonly.\+params\+\_\+name}
+
+
+
+Definition at line 501 of file modki17.\+py.
+
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_a1a9a34758068e1adc3da2f367ddf2350}\label{classmodki17_1_1modKI17__memonly_a1a9a34758068e1adc3da2f367ddf2350}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!prior\+\_\+lim@{prior\+\_\+lim}}
+\index{prior\+\_\+lim@{prior\+\_\+lim}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{prior\+\_\+lim}{prior\_lim}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+memonly.\+prior\+\_\+lim}
+
+
+
+Definition at line 502 of file modki17.\+py.
+
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_ae38f2f8fc61b3c67e115804eae04a1dc}\label{classmodki17_1_1modKI17__memonly_ae38f2f8fc61b3c67e115804eae04a1dc}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!R\+\_\+\+RoI@{R\+\_\+\+RoI}}
+\index{R\+\_\+\+RoI@{R\+\_\+\+RoI}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{R\+\_\+\+RoI}{R\_RoI}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+memonly.\+R\+\_\+\+RoI}
+
+
+
+Definition at line 514 of file modki17.\+py.
+
+\mbox{\Hypertarget{classmodki17_1_1modKI17__memonly_a20e35678f46a3680074c9825fbee1827}\label{classmodki17_1_1modKI17__memonly_a20e35678f46a3680074c9825fbee1827}} 
+\index{modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}!vs@{vs}}
+\index{vs@{vs}!modki17\+::mod\+K\+I17\+\_\+memonly@{modki17\+::mod\+K\+I17\+\_\+memonly}}
+\subsubsection{\texorpdfstring{vs}{vs}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+memonly.\+vs}
+
+
+
+Definition at line 507 of file modki17.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{modki17_8py}{modki17.\+py}\end{DoxyCompactItemize}

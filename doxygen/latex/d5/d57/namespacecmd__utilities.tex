@@ -1,0 +1,85 @@
+\hypertarget{namespacecmd__utilities}{}\section{cmd\+\_\+utilities Namespace Reference}
+\label{namespacecmd__utilities}\index{cmd\+\_\+utilities@{cmd\+\_\+utilities}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacecmd__utilities_a016d198d084cbddc117765f2db6169db}{inpolygon} (x, y, xs\+\_\+vertex, ys\+\_\+vertex)
+\item 
+def \hyperlink{namespacecmd__utilities_ad7c7b1221baf98a83c4fd558b214c7bc}{inpoly} (x, y, xs\+\_\+vertex, ys\+\_\+vertex)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacecmd__utilities_ad7c7b1221baf98a83c4fd558b214c7bc}\label{namespacecmd__utilities_ad7c7b1221baf98a83c4fd558b214c7bc}} 
+\index{cmd\+\_\+utilities@{cmd\+\_\+utilities}!inpoly@{inpoly}}
+\index{inpoly@{inpoly}!cmd\+\_\+utilities@{cmd\+\_\+utilities}}
+\subsubsection{\texorpdfstring{inpoly()}{inpoly()}}
+{\footnotesize\ttfamily def cmd\+\_\+utilities.\+inpoly (\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{xs\+\_\+vertex,  }\item[{}]{ys\+\_\+vertex }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}xs_vertex[:], ys_vertex[:]: polygon
+x, y: point
+\end{DoxyVerb}
+ 
+
+Definition at line 22 of file cmd\+\_\+utilities.\+py.
+
+
+\begin{DoxyCode}
+22 \textcolor{keyword}{def }\hyperlink{namespacecmd__utilities_ad7c7b1221baf98a83c4fd558b214c7bc}{inpoly}(x,y,xs\_vertex,ys\_vertex):
+23     \textcolor{stringliteral}{''' }
+24 \textcolor{stringliteral}{    xs\_vertex[:], ys\_vertex[:]: polygon}
+25 \textcolor{stringliteral}{    x, y: point}
+26 \textcolor{stringliteral}{    '''}
+27     x1 = xs\_vertex[:,np.newaxis]
+28     y1 = ys\_vertex[:,np.newaxis]
+29     x2 = np.roll(x1,-1)
+30     y2 = np.roll(y1,-1)
+31     print(np.array([x1[:,0],y1[:,0]]))
+32     print(np.array([x2[:,0],y2[:,0]]))
+33     ispointbetweenithsep = (x1-x)*(x2-x)<0
+34     ispointaboveithsep = (x2-x1)*((x2-x1)*(y-y1)-(y2-y1)*(x-x1))>0
+35     numofsepbelowpoint = (ispointbetweenithsep*ispointaboveithsep).sum(axis=0)
+36     isoddnumbersepabovepoint = (numofsepbelowpoint%2 == 1)
+37     \textcolor{comment}{#print(ispointbetweenithsep)}
+38     \textcolor{comment}{#print(ispointaboveithsep)}
+39     \textcolor{comment}{#print(numofsepbelowpoint)}
+40     \textcolor{comment}{#print(isoddnumbersepabovepoint)}
+41     \textcolor{keywordflow}{return} isoddnumbersepabovepoint
+42 
+43 \end{DoxyCode}
+\mbox{\Hypertarget{namespacecmd__utilities_a016d198d084cbddc117765f2db6169db}\label{namespacecmd__utilities_a016d198d084cbddc117765f2db6169db}} 
+\index{cmd\+\_\+utilities@{cmd\+\_\+utilities}!inpolygon@{inpolygon}}
+\index{inpolygon@{inpolygon}!cmd\+\_\+utilities@{cmd\+\_\+utilities}}
+\subsubsection{\texorpdfstring{inpolygon()}{inpolygon()}}
+{\footnotesize\ttfamily def cmd\+\_\+utilities.\+inpolygon (\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{xs\+\_\+vertex,  }\item[{}]{ys\+\_\+vertex }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}xs_vertex[:], ys_vertex[:]: polygon
+x, y: point
+\end{DoxyVerb}
+ 
+
+Definition at line 3 of file cmd\+\_\+utilities.\+py.
+
+
+\begin{DoxyCode}
+3 \textcolor{keyword}{def }\hyperlink{namespacecmd__utilities_a016d198d084cbddc117765f2db6169db}{inpolygon}(x, y, xs\_vertex, ys\_vertex):
+4     \textcolor{stringliteral}{''' }
+5 \textcolor{stringliteral}{    xs\_vertex[:], ys\_vertex[:]: polygon}
+6 \textcolor{stringliteral}{    x, y: point}
+7 \textcolor{stringliteral}{    '''}     
+8     n\_p = len(xs\_vertex)
+9     inside = \textcolor{keyword}{False}
+10     \textcolor{keywordflow}{for} i1 \textcolor{keywordflow}{in} range(n\_p): 
+11         i2 = (i1+1)%n\_p
+12         \textcolor{keywordflow}{if} min(xs\_vertex[i1], xs\_vertex[i2]) < x < max(xs\_vertex[i1], xs\_vertex[i2]):
+13             \textcolor{comment}{#a = (y[i2]-y[i1])/(x[i2]-x[i1])}
+14             \textcolor{comment}{#b = y[i1] - a*x[i1]}
+15             \textcolor{comment}{#dy = a*x+b - y}
+16             \textcolor{comment}{#if dy >= 0:}
+17             \textcolor{keywordflow}{if} (ys\_vertex[i1] + (ys\_vertex[i2]-ys\_vertex[i1])/(xs\_vertex[i2]-xs\_vertex[i1])*(x-xs\_vertex[i1
+      ]) - y) > 0:
+18                 inside = \textcolor{keywordflow}{not} inside
+19 
+20     \textcolor{keywordflow}{return} inside
+21 
+\end{DoxyCode}

@@ -1,0 +1,141 @@
+\hypertarget{namespacedsph__model}{}\section{dsph\+\_\+model Namespace Reference}
+\label{namespacedsph__model}\index{dsph\+\_\+model@{dsph\+\_\+model}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classdsph__model_1_1DM__model}{D\+M\+\_\+model}
+\item 
+class \hyperlink{classdsph__model_1_1dSph__model}{d\+Sph\+\_\+model}
+\item 
+class \hyperlink{classdsph__model_1_1exp2d__model}{exp2d\+\_\+model}
+\item 
+class \hyperlink{classdsph__model_1_1exp3d__model}{exp3d\+\_\+model}
+\item 
+class \hyperlink{classdsph__model_1_1KI17__model}{K\+I17\+\_\+model}
+\item 
+class \hyperlink{classdsph__model_1_1model}{model}
+\item 
+class \hyperlink{classdsph__model_1_1NFW__model}{N\+F\+W\+\_\+model}
+\item 
+class \hyperlink{classdsph__model_1_1plummer__model}{plummer\+\_\+model}
+\item 
+class \hyperlink{classdsph__model_1_1sersic__model}{sersic\+\_\+model}
+\item 
+class \hyperlink{classdsph__model_1_1stellar__model}{stellar\+\_\+model}
+\item 
+class \hyperlink{classdsph__model_1_1uniform2d__model}{uniform2d\+\_\+model}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{namespacedsph__model_a783ea3c074de2e7c951b342b5749a522}{G\+Msun\+\_\+m3s2} = 1.\+32712440018e20
+\item 
+int \hyperlink{namespacedsph__model_a03ec56ecf56f64e59a6be020a76a36f1}{R\+\_\+trunc\+\_\+pc} = 1866.
+\item 
+\hyperlink{namespacedsph__model_a83bb8253e5a6c16c6d8f2b3ae8643576}{dm\+\_\+model} = \hyperlink{classdsph__model_1_1NFW__model}{N\+F\+W\+\_\+model}(a=2.\+78,b=7.\+78,g=0.\+675,rhos\+\_\+\+Msunpc3=np.\+power(10,-\/2.\+05),rs\+\_\+pc=np.\+power(10,3.\+96),\hyperlink{namespacedsph__model_a03ec56ecf56f64e59a6be020a76a36f1}{R\+\_\+trunc\+\_\+pc}=2000)
+\item 
+\hyperlink{namespacedsph__model_af9dc9391755a4aee2481a666d18e218a}{mystellar\+\_\+model} = \hyperlink{classdsph__model_1_1plummer__model}{plummer\+\_\+model}(re\+\_\+pc=221)
+\item 
+\hyperlink{namespacedsph__model_ab28142aa13968c1b7647e1fccabec0c6}{draco\+\_\+model} = \hyperlink{classdsph__model_1_1dSph__model}{d\+Sph\+\_\+model}(submodels\+\_\+dict=\{\char`\"{}D\+M\+\_\+model\char`\"{}\+:dm\+\_\+model,\char`\"{}stellar\+\_\+model\char`\"{}\+:mystellar\+\_\+model\},anib=1-\/np.\+power(10,0.\+13),dist\+\_\+center\+\_\+pc=76e3,ra\+\_\+center\+\_\+deg=0,de\+\_\+center\+\_\+deg=0)
+\item 
+\hyperlink{namespacedsph__model_af25a421d0de32d247b1aa0e8cf4894e3}{Rs} = np.\+logspace(-\/1,9,100)
+\item 
+\hyperlink{namespacedsph__model_a47e0439ddc091a015abf3612c9ee26c3}{ss} = draco\+\_\+model.\+sigmalos2(\hyperlink{namespacedsph__model_af25a421d0de32d247b1aa0e8cf4894e3}{Rs})
+\item 
+list \hyperlink{namespacedsph__model_abcaee14ea865b10f10051c500197bd4d}{ss2} = \mbox{[}draco\+\_\+model.\+sigmar2(R) for R in \hyperlink{namespacedsph__model_af25a421d0de32d247b1aa0e8cf4894e3}{Rs}\mbox{]}
+\item 
+list \hyperlink{namespacedsph__model_a570b90342742f8795c9affea98066d87}{ss3} = \mbox{[}draco\+\_\+model.\+naive\+\_\+sigmalos2(R) for R in \hyperlink{namespacedsph__model_af25a421d0de32d247b1aa0e8cf4894e3}{Rs}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacedsph__model_a83bb8253e5a6c16c6d8f2b3ae8643576}\label{namespacedsph__model_a83bb8253e5a6c16c6d8f2b3ae8643576}} 
+\index{dsph\+\_\+model@{dsph\+\_\+model}!dm\+\_\+model@{dm\+\_\+model}}
+\index{dm\+\_\+model@{dm\+\_\+model}!dsph\+\_\+model@{dsph\+\_\+model}}
+\subsubsection{\texorpdfstring{dm\+\_\+model}{dm\_model}}
+{\footnotesize\ttfamily dsph\+\_\+model.\+dm\+\_\+model = \hyperlink{classdsph__model_1_1NFW__model}{N\+F\+W\+\_\+model}(a=2.\+78,b=7.\+78,g=0.\+675,rhos\+\_\+\+Msunpc3=np.\+power(10,-\/2.\+05),rs\+\_\+pc=np.\+power(10,3.\+96),\hyperlink{namespacedsph__model_a03ec56ecf56f64e59a6be020a76a36f1}{R\+\_\+trunc\+\_\+pc}=2000)}
+
+
+
+Definition at line 524 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{namespacedsph__model_ab28142aa13968c1b7647e1fccabec0c6}\label{namespacedsph__model_ab28142aa13968c1b7647e1fccabec0c6}} 
+\index{dsph\+\_\+model@{dsph\+\_\+model}!draco\+\_\+model@{draco\+\_\+model}}
+\index{draco\+\_\+model@{draco\+\_\+model}!dsph\+\_\+model@{dsph\+\_\+model}}
+\subsubsection{\texorpdfstring{draco\+\_\+model}{draco\_model}}
+{\footnotesize\ttfamily dsph\+\_\+model.\+draco\+\_\+model = \hyperlink{classdsph__model_1_1dSph__model}{d\+Sph\+\_\+model}(submodels\+\_\+dict=\{\char`\"{}D\+M\+\_\+model\char`\"{}\+:dm\+\_\+model,\char`\"{}stellar\+\_\+model\char`\"{}\+:mystellar\+\_\+model\},anib=1-\/np.\+power(10,0.\+13),dist\+\_\+center\+\_\+pc=76e3,ra\+\_\+center\+\_\+deg=0,de\+\_\+center\+\_\+deg=0)}
+
+
+
+Definition at line 526 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{namespacedsph__model_a783ea3c074de2e7c951b342b5749a522}\label{namespacedsph__model_a783ea3c074de2e7c951b342b5749a522}} 
+\index{dsph\+\_\+model@{dsph\+\_\+model}!G\+Msun\+\_\+m3s2@{G\+Msun\+\_\+m3s2}}
+\index{G\+Msun\+\_\+m3s2@{G\+Msun\+\_\+m3s2}!dsph\+\_\+model@{dsph\+\_\+model}}
+\subsubsection{\texorpdfstring{G\+Msun\+\_\+m3s2}{GMsun\_m3s2}}
+{\footnotesize\ttfamily float dsph\+\_\+model.\+G\+Msun\+\_\+m3s2 = 1.\+32712440018e20}
+
+
+
+Definition at line 17 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{namespacedsph__model_af9dc9391755a4aee2481a666d18e218a}\label{namespacedsph__model_af9dc9391755a4aee2481a666d18e218a}} 
+\index{dsph\+\_\+model@{dsph\+\_\+model}!mystellar\+\_\+model@{mystellar\+\_\+model}}
+\index{mystellar\+\_\+model@{mystellar\+\_\+model}!dsph\+\_\+model@{dsph\+\_\+model}}
+\subsubsection{\texorpdfstring{mystellar\+\_\+model}{mystellar\_model}}
+{\footnotesize\ttfamily dsph\+\_\+model.\+mystellar\+\_\+model = \hyperlink{classdsph__model_1_1plummer__model}{plummer\+\_\+model}(re\+\_\+pc=221)}
+
+
+
+Definition at line 525 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{namespacedsph__model_a03ec56ecf56f64e59a6be020a76a36f1}\label{namespacedsph__model_a03ec56ecf56f64e59a6be020a76a36f1}} 
+\index{dsph\+\_\+model@{dsph\+\_\+model}!R\+\_\+trunc\+\_\+pc@{R\+\_\+trunc\+\_\+pc}}
+\index{R\+\_\+trunc\+\_\+pc@{R\+\_\+trunc\+\_\+pc}!dsph\+\_\+model@{dsph\+\_\+model}}
+\subsubsection{\texorpdfstring{R\+\_\+trunc\+\_\+pc}{R\_trunc\_pc}}
+{\footnotesize\ttfamily int dsph\+\_\+model.\+R\+\_\+trunc\+\_\+pc = 1866.}
+
+
+
+Definition at line 18 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{namespacedsph__model_af25a421d0de32d247b1aa0e8cf4894e3}\label{namespacedsph__model_af25a421d0de32d247b1aa0e8cf4894e3}} 
+\index{dsph\+\_\+model@{dsph\+\_\+model}!Rs@{Rs}}
+\index{Rs@{Rs}!dsph\+\_\+model@{dsph\+\_\+model}}
+\subsubsection{\texorpdfstring{Rs}{Rs}}
+{\footnotesize\ttfamily dsph\+\_\+model.\+Rs = np.\+logspace(-\/1,9,100)}
+
+
+
+Definition at line 528 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{namespacedsph__model_a47e0439ddc091a015abf3612c9ee26c3}\label{namespacedsph__model_a47e0439ddc091a015abf3612c9ee26c3}} 
+\index{dsph\+\_\+model@{dsph\+\_\+model}!ss@{ss}}
+\index{ss@{ss}!dsph\+\_\+model@{dsph\+\_\+model}}
+\subsubsection{\texorpdfstring{ss}{ss}}
+{\footnotesize\ttfamily dsph\+\_\+model.\+ss = draco\+\_\+model.\+sigmalos2(\hyperlink{namespacedsph__model_af25a421d0de32d247b1aa0e8cf4894e3}{Rs})}
+
+
+
+Definition at line 529 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{namespacedsph__model_abcaee14ea865b10f10051c500197bd4d}\label{namespacedsph__model_abcaee14ea865b10f10051c500197bd4d}} 
+\index{dsph\+\_\+model@{dsph\+\_\+model}!ss2@{ss2}}
+\index{ss2@{ss2}!dsph\+\_\+model@{dsph\+\_\+model}}
+\subsubsection{\texorpdfstring{ss2}{ss2}}
+{\footnotesize\ttfamily list dsph\+\_\+model.\+ss2 = \mbox{[}draco\+\_\+model.\+sigmar2(R) for R in \hyperlink{namespacedsph__model_af25a421d0de32d247b1aa0e8cf4894e3}{Rs}\mbox{]}}
+
+
+
+Definition at line 530 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{namespacedsph__model_a570b90342742f8795c9affea98066d87}\label{namespacedsph__model_a570b90342742f8795c9affea98066d87}} 
+\index{dsph\+\_\+model@{dsph\+\_\+model}!ss3@{ss3}}
+\index{ss3@{ss3}!dsph\+\_\+model@{dsph\+\_\+model}}
+\subsubsection{\texorpdfstring{ss3}{ss3}}
+{\footnotesize\ttfamily list dsph\+\_\+model.\+ss3 = \mbox{[}draco\+\_\+model.\+naive\+\_\+sigmalos2(R) for R in \hyperlink{namespacedsph__model_af25a421d0de32d247b1aa0e8cf4894e3}{Rs}\mbox{]}}
+
+
+
+Definition at line 531 of file dsph\+\_\+model.\+py.
+

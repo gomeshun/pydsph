@@ -1,0 +1,698 @@
+\hypertarget{classsampler_1_1Sampler}{}\section{sampler.\+Sampler Class Reference}
+\label{classsampler_1_1Sampler}\index{sampler.\+Sampler@{sampler.\+Sampler}}
+
+
+Collaboration diagram for sampler.\+Sampler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{de/d63/classsampler_1_1Sampler__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classsampler_1_1Sampler_a0ebbb93e5c948bc426658cbdc92bfd12}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, mode, dsphdata, dsphprop, \hyperlink{classsampler_1_1Sampler_a5582a0d537f1aa6f2c4eca9cb7e00859}{model}, \hyperlink{classsampler_1_1Sampler_a63de348f6e0cd91f24e09e66bfe160d4}{param\+\_\+names}, \hyperlink{classsampler_1_1Sampler_a8d5d2c3f85eace580c0633b79de6a3f2}{init\+\_\+low}, \hyperlink{classsampler_1_1Sampler_a6f7037a873847e97098dc065a329d0a3}{init\+\_\+high}, paramlims\+\_\+fname=None, prior\+\_\+norm\+\_\+fname=None)
+\item 
+def \hyperlink{classsampler_1_1Sampler_aebf7df56d9b2f3bb74c0809bd4ce97d1}{init\+\_\+sampler} (self, nwalkers=None)
+\item 
+def \hyperlink{classsampler_1_1Sampler_a4e540da7daf591f96268bd3090018679}{wbic\+\_\+init\+\_\+sampler} (self, nwalkers=None)
+\item 
+def \hyperlink{classsampler_1_1Sampler_ad8e9c065a95873230d9e0310f1b893cc}{prepare\+\_\+csv} (self, fname)
+\item 
+def \hyperlink{classsampler_1_1Sampler_a57168d6c5801b89109e2a2cd7d7ff4ce}{to\+\_\+csv} (self, fname, mode=\char`\"{}w\char`\"{}, header=True)
+\item 
+def \hyperlink{classsampler_1_1Sampler_a92faf5125f59ded708dc71303d4938ac}{wbic\+\_\+prepare\+\_\+csv} (self, fname)
+\item 
+def \hyperlink{classsampler_1_1Sampler_a6ade3671106e25577cd51ea1a055b680}{wbic\+\_\+to\+\_\+csv} (self, fname, mode=\char`\"{}w\char`\"{}, header=True)
+\item 
+def \hyperlink{classsampler_1_1Sampler_a9403aa08f08af30f703b7b507431d7a9}{sample} (self, p0=None, n\+\_\+run=5000, fname=None, mode=\char`\"{}w\char`\"{}, header=True, reset=False, desc=None)
+\begin{DoxyCompactList}\small\item\em parameter sampler \#\#\#\#\#\#\#\# \end{DoxyCompactList}\item 
+def \hyperlink{classsampler_1_1Sampler_a0520c9a624d5abc9edd3e379d1b66021}{burnin} (self, n\+\_\+burnin, nwalkers, \hyperlink{classsampler_1_1Sampler_ad81b8f4bc5bc8925873719991006acd8}{pos0}=None)
+\item 
+def \hyperlink{classsampler_1_1Sampler_ad7ddd812810028fad49c18ba7270f23f}{find\+\_\+map} (self, n\+\_\+find\+\_\+map, nwalkers, n\+\_\+find\+\_\+map\+\_\+burnin=None, \hyperlink{classsampler_1_1Sampler_ad81b8f4bc5bc8925873719991006acd8}{pos0}=None)
+\item 
+def \hyperlink{classsampler_1_1Sampler_ab35f387d6b11e001d006731559e09f56}{run\+\_\+mcmc} (self, output\+\_\+fname, n\+\_\+burnin, n\+\_\+run, nwalkers, n\+\_\+find\+\_\+map=None, \hyperlink{classsampler_1_1Sampler_a57168d6c5801b89109e2a2cd7d7ff4ce}{to\+\_\+csv}=True, mode=\char`\"{}w\char`\"{}, header=True)
+\item 
+def \hyperlink{classsampler_1_1Sampler_a93e39e8143affeb3572fdf024bf2d12b}{run\+\_\+mcmc\+\_\+epoch} (self, output\+\_\+fname, nwalkers, n\+\_\+burnin, n\+\_\+run, n\+\_\+epoch, n\+\_\+find\+\_\+map=None)
+\item 
+def \hyperlink{classsampler_1_1Sampler_ad07e2a415fe1c3890c6f6efcfe7515db}{wbic\+\_\+sample} (self, p0, n\+\_\+run=5000, fname=None, mode=\char`\"{}w\char`\"{}, header=True, reset=False, desc=None)
+\begin{DoxyCompactList}\small\item\em W\+B\+IC sampler \#\#\#\#\#\#\#\#. \end{DoxyCompactList}\item 
+def \hyperlink{classsampler_1_1Sampler_aa26f751fdfe25f8b8fcc450d09ace641}{wbic\+\_\+run\+\_\+mcmc} (self, output\+\_\+fname, n\+\_\+burnin, n\+\_\+run=5000, \hyperlink{classsampler_1_1Sampler_a57168d6c5801b89109e2a2cd7d7ff4ce}{to\+\_\+csv}=True, mode=\char`\"{}w\char`\"{}, header=True, nwalkers=None)
+\item 
+def \hyperlink{classsampler_1_1Sampler_a5e76a78ad9e222e49f77a4d2e6c23c04}{wbic\+\_\+run\+\_\+mcmc\+\_\+epoch} (self, output\+\_\+fname, n\+\_\+burnin=1000, n\+\_\+run=500, n\+\_\+epoch=12, nwalkers=None)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classsampler_1_1Sampler_a5582a0d537f1aa6f2c4eca9cb7e00859}{model}
+\item 
+\hyperlink{classsampler_1_1Sampler_a63de348f6e0cd91f24e09e66bfe160d4}{param\+\_\+names}
+\item 
+\hyperlink{classsampler_1_1Sampler_a8d5d2c3f85eace580c0633b79de6a3f2}{init\+\_\+low}
+\item 
+\hyperlink{classsampler_1_1Sampler_a6f7037a873847e97098dc065a329d0a3}{init\+\_\+high}
+\item 
+\hyperlink{classsampler_1_1Sampler_a10de0613d5ee970646098a8cf9a15fbe}{n\+\_\+param}
+\item 
+\hyperlink{classsampler_1_1Sampler_ad81b8f4bc5bc8925873719991006acd8}{pos0}
+\item 
+\hyperlink{classsampler_1_1Sampler_a29acc101d68c463f924d34f1f259708e}{sampler}
+\item 
+\hyperlink{classsampler_1_1Sampler_acc468d79c6593e5b1c282d938a9877f0}{wbic\+\_\+pos0}
+\item 
+\hyperlink{classsampler_1_1Sampler_a8476d0b5a5f4f22edef248b2f0930c6a}{wbic\+\_\+sampler}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 15 of file sampler.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsampler_1_1Sampler_a0ebbb93e5c948bc426658cbdc92bfd12}\label{classsampler_1_1Sampler_a0ebbb93e5c948bc426658cbdc92bfd12}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{mode,  }\item[{}]{dsphdata,  }\item[{}]{dsphprop,  }\item[{}]{model,  }\item[{}]{param\+\_\+names,  }\item[{}]{init\+\_\+low,  }\item[{}]{init\+\_\+high,  }\item[{}]{paramlims\+\_\+fname = {\ttfamily None},  }\item[{}]{prior\+\_\+norm\+\_\+fname = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 16 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+16     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_a0ebbb93e5c948bc426658cbdc92bfd12}{\_\_init\_\_}(
+      self,mode,dsphdata,dsphprop,model,param\_names,init\_low,init\_high,paramlims\_fname=None,prior\_norm\_fname=None):
+17         
+18         \textcolor{keywordflow}{if} mode == \textcolor{stringliteral}{"photo"}:
+19             self.model = \hyperlink{classmodki17_1_1modKI17__photometry}{modki17.modKI17\_photometry}(
+20                 dsphdata.to\_sc(\textcolor{stringliteral}{"photo"}),dsphprop.to\_sc(),
+21                 model=model
+22             )
+23         \textcolor{keywordflow}{elif} mode == \textcolor{stringliteral}{"spec"}:
+24             self.model = \hyperlink{classmodki17_1_1modKI17}{modki17.modKI17}(
+25                 dsphdata.to\_sc(\textcolor{stringliteral}{"spec"}),dsphprop.to\_sc(),
+26                 model,paramlims\_fname,prior\_norm\_fname,
+27             )
+28         
+29         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} (len(param\_names)==len(init\_low) \textcolor{keywordflow}{and} len(param\_names)==len(init\_high)):
+30             \textcolor{keywordflow}{raise} TypeError(\textcolor{stringliteral}{"invalid param\_names,low or high"})
+31         
+32         self.param\_names = param\_names
+33         self.init\_low = init\_low
+34         self.init\_high = init\_high
+35         self.n\_param = len(param\_names)
+36         
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classsampler_1_1Sampler_a0520c9a624d5abc9edd3e379d1b66021}\label{classsampler_1_1Sampler_a0520c9a624d5abc9edd3e379d1b66021}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!burnin@{burnin}}
+\index{burnin@{burnin}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{burnin()}{burnin()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+burnin (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{n\+\_\+burnin,  }\item[{}]{nwalkers,  }\item[{}]{pos0 = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 95 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+95     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_a0520c9a624d5abc9edd3e379d1b66021}{burnin}(self,n\_burnin,nwalkers,pos0=None):
+96         pos0 = pos0 \textcolor{keywordflow}{if} (pos0 \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{else} self.pos0
+97         
+98         self.pos0 = self.sample(pos0,n\_burnin,desc=\textcolor{stringliteral}{"Burn in: "})
+99         
+100         self.sampler.reset()
+101         
+102         \textcolor{keywordflow}{return} self.pos0
+103     
+104     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_a0520c9a624d5abc9edd3e379d1b66021_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_a0520c9a624d5abc9edd3e379d1b66021_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_ad7ddd812810028fad49c18ba7270f23f}\label{classsampler_1_1Sampler_ad7ddd812810028fad49c18ba7270f23f}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!find\+\_\+map@{find\+\_\+map}}
+\index{find\+\_\+map@{find\+\_\+map}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{find\+\_\+map()}{find\_map()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+find\+\_\+map (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{n\+\_\+find\+\_\+map,  }\item[{}]{nwalkers,  }\item[{}]{n\+\_\+find\+\_\+map\+\_\+burnin = {\ttfamily None},  }\item[{}]{pos0 = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 105 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+105     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_ad7ddd812810028fad49c18ba7270f23f}{find\_map}(self,n\_find\_map,nwalkers,n\_find\_map\_burnin=None,pos0=None):
+106         pos0 = pos0 \textcolor{keywordflow}{if} (pos0 \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{else} self.pos0
+107         n\_find\_map\_burnin = n\_find\_map\_burnin \textcolor{keywordflow}{if} (n\_find\_map\_burnin \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{else} n\_find\_map
+108         
+109         self.burnin(n\_find\_map\_burnin,nwalkers=nwalkers,pos0=pos0)
+110         self.sample(n\_find\_map,desc=\textcolor{stringliteral}{"find MAP points: "})
+111         
+112         \_poss = self.sampler.flatchain  \textcolor{comment}{# (iterations, dim)}
+113         \_lnprobs = self.sampler.flatlnprobability
+114         
+115         \textcolor{comment}{# extract unique points}
+116         lnprobs, idx = np.unique(\_lnprobs,return\_index=\textcolor{keyword}{True})
+117         poss = \_poss[idx]
+118         
+119         \textcolor{comment}{# find nwalkers map points}
+120         self.pos0 = poss[np.argsort(-lnprobs)][:nwalkers]
+121         
+122         self.sampler.reset()
+123         
+124         \textcolor{keywordflow}{return} self.pos0
+125     
+126     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_ad7ddd812810028fad49c18ba7270f23f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_ad7ddd812810028fad49c18ba7270f23f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_aebf7df56d9b2f3bb74c0809bd4ce97d1}\label{classsampler_1_1Sampler_aebf7df56d9b2f3bb74c0809bd4ce97d1}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!init\+\_\+sampler@{init\+\_\+sampler}}
+\index{init\+\_\+sampler@{init\+\_\+sampler}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{init\+\_\+sampler()}{init\_sampler()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+init\+\_\+sampler (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{nwalkers = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize the sampler for the parameter estimation.
+\end{DoxyVerb}
+ 
+
+Definition at line 37 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+37     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_aebf7df56d9b2f3bb74c0809bd4ce97d1}{init\_sampler}(self,nwalkers=None):
+38         \textcolor{stringliteral}{'''}
+39 \textcolor{stringliteral}{        Initialize the sampler for the parameter estimation.}
+40 \textcolor{stringliteral}{        '''}
+41         nwalkers = self.n\_param * 2 \textcolor{keywordflow}{if} (nwalkers \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{else} nwalkers 
+42         self.pos0 = np.random.uniform(low=self.init\_low,high=self.init\_high,size=(nwalkers,self.n\_param))
+43         self.sampler = MyEnsembleSampler(
+44             nwalkers=nwalkers, dim=self.n\_param,
+45             lnpostfn=self.model.lnpost, threads=16)
+46         \textcolor{keywordflow}{return} self.pos0
+47     
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_aebf7df56d9b2f3bb74c0809bd4ce97d1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_ad8e9c065a95873230d9e0310f1b893cc}\label{classsampler_1_1Sampler_ad8e9c065a95873230d9e0310f1b893cc}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!prepare\+\_\+csv@{prepare\+\_\+csv}}
+\index{prepare\+\_\+csv@{prepare\+\_\+csv}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{prepare\+\_\+csv()}{prepare\_csv()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+prepare\+\_\+csv (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{fname }\end{DoxyParamCaption})}
+
+
+
+Definition at line 59 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+59     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_ad8e9c065a95873230d9e0310f1b893cc}{prepare\_csv}(self,fname):
+60         df = pd.DataFrame(columns=[*(self.param\_names),\textcolor{stringliteral}{"lnpost"}])
+61         df.to\_csv(fname,index=\textcolor{keywordtype}{None},header=\textcolor{keyword}{True})
+62         
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_ad8e9c065a95873230d9e0310f1b893cc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_ab35f387d6b11e001d006731559e09f56}\label{classsampler_1_1Sampler_ab35f387d6b11e001d006731559e09f56}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!run\+\_\+mcmc@{run\+\_\+mcmc}}
+\index{run\+\_\+mcmc@{run\+\_\+mcmc}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{run\+\_\+mcmc()}{run\_mcmc()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+run\+\_\+mcmc (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{output\+\_\+fname,  }\item[{}]{n\+\_\+burnin,  }\item[{}]{n\+\_\+run,  }\item[{}]{nwalkers,  }\item[{}]{n\+\_\+find\+\_\+map = {\ttfamily None},  }\item[{}]{to\+\_\+csv = {\ttfamily True},  }\item[{}]{mode = {\ttfamily \char`\"{}w\char`\"{}},  }\item[{}]{header = {\ttfamily True} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 127 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+127     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_ab35f387d6b11e001d006731559e09f56}{run\_mcmc}(
+      self,output\_fname,n\_burnin,n\_run,nwalkers,n\_find\_map=None,to\_csv=True,mode="w",header=True):
+128         self.init\_sampler(nwalkers)
+129         self.prepare\_csv(output\_fname)
+130         
+131         \textcolor{keywordflow}{if} n\_find\_map \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{keywordtype}{None}:
+132             self.find\_map(n\_find\_map,nwalkers=nwalkers)
+133 
+134         self.burnin(n\_burnin,nwalkers)
+135         pos = self.sample(n\_run,output\_fname,desc=\textcolor{stringliteral}{"Sampling: "})
+136         
+137         \textcolor{keywordflow}{if} to\_csv:
+138             self.to\_csv(output\_fname,mode,header)
+139         \textcolor{keywordflow}{return} pos
+140     
+141     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_ab35f387d6b11e001d006731559e09f56_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_a93e39e8143affeb3572fdf024bf2d12b}\label{classsampler_1_1Sampler_a93e39e8143affeb3572fdf024bf2d12b}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!run\+\_\+mcmc\+\_\+epoch@{run\+\_\+mcmc\+\_\+epoch}}
+\index{run\+\_\+mcmc\+\_\+epoch@{run\+\_\+mcmc\+\_\+epoch}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{run\+\_\+mcmc\+\_\+epoch()}{run\_mcmc\_epoch()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+run\+\_\+mcmc\+\_\+epoch (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{output\+\_\+fname,  }\item[{}]{nwalkers,  }\item[{}]{n\+\_\+burnin,  }\item[{}]{n\+\_\+run,  }\item[{}]{n\+\_\+epoch,  }\item[{}]{n\+\_\+find\+\_\+map = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 142 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+142     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_a93e39e8143affeb3572fdf024bf2d12b}{run\_mcmc\_epoch}(self,output\_fname,nwalkers,n\_burnin,n\_run,n\_epoch,n\_find\_map=None):
+143         self.init\_sampler(nwalkers)
+144         
+145         \textcolor{keywordflow}{if} n\_find\_map \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{keywordtype}{None}:
+146             self.find\_map(n\_find\_map,nwalkers=nwalkers)
+147         self.burnin(n\_burnin,nwalkers)
+148 
+149         \textcolor{comment}{# create file}
+150         self.prepare\_csv(output\_fname)
+151         
+152         \textcolor{comment}{# run}
+153         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(n\_epoch):
+154             pos = self.sample(n\_run=n\_run,fname=output\_fname,mode=\textcolor{stringliteral}{"a"},header=\textcolor{keyword}{False},reset=\textcolor{keyword}{True},desc=\textcolor{stringliteral}{"\{\} th
+       Sampling: "}.format(i))
+155          
+156         \textcolor{keywordflow}{return} pos
+157 
+158     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_a93e39e8143affeb3572fdf024bf2d12b_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_a9403aa08f08af30f703b7b507431d7a9}\label{classsampler_1_1Sampler_a9403aa08f08af30f703b7b507431d7a9}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!sample@{sample}}
+\index{sample@{sample}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+sample (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{p0 = {\ttfamily None},  }\item[{}]{n\+\_\+run = {\ttfamily 5000},  }\item[{}]{fname = {\ttfamily None},  }\item[{}]{mode = {\ttfamily \char`\"{}w\char`\"{}},  }\item[{}]{header = {\ttfamily True},  }\item[{}]{reset = {\ttfamily False},  }\item[{}]{desc = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+parameter sampler \#\#\#\#\#\#\#\# 
+
+
+
+Definition at line 82 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+82     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_a9403aa08f08af30f703b7b507431d7a9}{sample}(self,p0 = None,n\_run = 5000,fname=None,mode="w",header=True,reset=False,desc=None):
+83         p0 = p0 \textcolor{keywordflow}{if} (p0 \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{else} self.pos0
+84         \textcolor{keywordflow}{for} pos, prob, state \textcolor{keywordflow}{in} tqdm(self.sampler.\hyperlink{classsampler_1_1Sampler_a9403aa08f08af30f703b7b507431d7a9}{sample}(p0,iterations=n\_run),total=n\_run,desc=desc):
+85             \textcolor{keywordflow}{pass}
+86         
+87         \textcolor{keywordflow}{if} fname \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{keywordtype}{None}:
+88             self.to\_csv(fname,mode,header)
+89         \textcolor{keywordflow}{if} reset:
+90             self.sampler.reset()
+91         
+92         \textcolor{keywordflow}{return} pos
+93     
+94     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_a9403aa08f08af30f703b7b507431d7a9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_a9403aa08f08af30f703b7b507431d7a9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_a57168d6c5801b89109e2a2cd7d7ff4ce}\label{classsampler_1_1Sampler_a57168d6c5801b89109e2a2cd7d7ff4ce}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!to\+\_\+csv@{to\+\_\+csv}}
+\index{to\+\_\+csv@{to\+\_\+csv}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{to\+\_\+csv()}{to\_csv()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+to\+\_\+csv (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{fname,  }\item[{}]{mode = {\ttfamily \char`\"{}w\char`\"{}},  }\item[{}]{header = {\ttfamily True} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 63 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+63     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_a57168d6c5801b89109e2a2cd7d7ff4ce}{to\_csv}(self,fname,mode="w",header=True):
+64         with open(fname,mode) \textcolor{keyword}{as} f:
+65             df = pd.DataFrame(
+66                 np.concatenate([self.sampler.flatchain,self.sampler.flatlnprobability[:,np.newaxis]],axis=1
+      ),
+67                 columns=[*(self.param\_names),\textcolor{stringliteral}{"lnpost"}] )
+68             df.to\_csv(f,index=\textcolor{keywordtype}{None},header=header)
+69             
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_a57168d6c5801b89109e2a2cd7d7ff4ce_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_a4e540da7daf591f96268bd3090018679}\label{classsampler_1_1Sampler_a4e540da7daf591f96268bd3090018679}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!wbic\+\_\+init\+\_\+sampler@{wbic\+\_\+init\+\_\+sampler}}
+\index{wbic\+\_\+init\+\_\+sampler@{wbic\+\_\+init\+\_\+sampler}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{wbic\+\_\+init\+\_\+sampler()}{wbic\_init\_sampler()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+wbic\+\_\+init\+\_\+sampler (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{nwalkers = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize the sampler for the wbic estimation.
+\end{DoxyVerb}
+ 
+
+Definition at line 48 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+48     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_a4e540da7daf591f96268bd3090018679}{wbic\_init\_sampler}(self,nwalkers=None):
+49         \textcolor{stringliteral}{'''}
+50 \textcolor{stringliteral}{        Initialize the sampler for the wbic estimation.}
+51 \textcolor{stringliteral}{        '''}
+52         nwalkers = self.n\_param * 2 \textcolor{keywordflow}{if} (nwalkers \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{else} nwalkers 
+53         self.wbic\_pos0 = np.random.uniform(low=self.init\_low,high=self.init\_high,size=(nwalkers,self.
+      n\_param))
+54         self.wbic\_sampler = MyEnsembleSampler(
+55             nwalkers=nwalkers, dim=self.n\_param,
+56             lnpostfn=self.model.lnposterior\_general, threads=16)
+57         \textcolor{keywordflow}{return} self.wbic\_pos0
+58     
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{d3/d8a/classsampler_1_1Sampler_a4e540da7daf591f96268bd3090018679_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_a92faf5125f59ded708dc71303d4938ac}\label{classsampler_1_1Sampler_a92faf5125f59ded708dc71303d4938ac}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!wbic\+\_\+prepare\+\_\+csv@{wbic\+\_\+prepare\+\_\+csv}}
+\index{wbic\+\_\+prepare\+\_\+csv@{wbic\+\_\+prepare\+\_\+csv}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{wbic\+\_\+prepare\+\_\+csv()}{wbic\_prepare\_csv()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+wbic\+\_\+prepare\+\_\+csv (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{fname }\end{DoxyParamCaption})}
+
+
+
+Definition at line 70 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+70     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_a92faf5125f59ded708dc71303d4938ac}{wbic\_prepare\_csv}(self,fname):
+71         df = pd.DataFrame(columns=[*(self.param\_names),\textcolor{stringliteral}{"lngenpost"},\textcolor{stringliteral}{"lnlike"}])
+72         df.to\_csv(fname,index=\textcolor{keywordtype}{None},header=\textcolor{keyword}{True})
+73         
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{d3/d8a/classsampler_1_1Sampler_a92faf5125f59ded708dc71303d4938ac_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_aa26f751fdfe25f8b8fcc450d09ace641}\label{classsampler_1_1Sampler_aa26f751fdfe25f8b8fcc450d09ace641}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!wbic\+\_\+run\+\_\+mcmc@{wbic\+\_\+run\+\_\+mcmc}}
+\index{wbic\+\_\+run\+\_\+mcmc@{wbic\+\_\+run\+\_\+mcmc}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{wbic\+\_\+run\+\_\+mcmc()}{wbic\_run\_mcmc()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+wbic\+\_\+run\+\_\+mcmc (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{output\+\_\+fname,  }\item[{}]{n\+\_\+burnin,  }\item[{}]{n\+\_\+run = {\ttfamily 5000},  }\item[{}]{to\+\_\+csv = {\ttfamily True},  }\item[{}]{mode = {\ttfamily \char`\"{}w\char`\"{}},  }\item[{}]{header = {\ttfamily True},  }\item[{}]{nwalkers = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 171 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+171     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_aa26f751fdfe25f8b8fcc450d09ace641}{wbic\_run\_mcmc}(
+      self,output\_fname,n\_burnin,n\_run=5000,to\_csv=True,mode="w",header=True,nwalkers=None):
+172         nwalkers = self.n\_param * 2 \textcolor{keywordflow}{if} (nwalkers \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{else} nwalkers 
+173         self.wbic\_init\_sampler(nwalkers)
+174         self.wbic\_prepare\_csv(output\_fname)
+175         pos = self.wbic\_sample(self.wbic\_pos0,n\_burnin,desc=\textcolor{stringliteral}{"WBIC Burn in: "})
+176         self.wbic\_sampler.reset()
+177         
+178         pos = self.wbic\_sample(pos,n\_run,output\_fname,desc=\textcolor{stringliteral}{"WBIC Sampling: "})
+179         \textcolor{keywordflow}{if} to\_csv:
+180             self.wbic\_to\_csv(output\_fname,mode,header)
+181         \textcolor{keywordflow}{return} pos
+182 
+183     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_aa26f751fdfe25f8b8fcc450d09ace641_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_a5e76a78ad9e222e49f77a4d2e6c23c04}\label{classsampler_1_1Sampler_a5e76a78ad9e222e49f77a4d2e6c23c04}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!wbic\+\_\+run\+\_\+mcmc\+\_\+epoch@{wbic\+\_\+run\+\_\+mcmc\+\_\+epoch}}
+\index{wbic\+\_\+run\+\_\+mcmc\+\_\+epoch@{wbic\+\_\+run\+\_\+mcmc\+\_\+epoch}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{wbic\+\_\+run\+\_\+mcmc\+\_\+epoch()}{wbic\_run\_mcmc\_epoch()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+wbic\+\_\+run\+\_\+mcmc\+\_\+epoch (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{output\+\_\+fname,  }\item[{}]{n\+\_\+burnin = {\ttfamily 1000},  }\item[{}]{n\+\_\+run = {\ttfamily 500},  }\item[{}]{n\+\_\+epoch = {\ttfamily 12},  }\item[{}]{nwalkers = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 184 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+184     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_a5e76a78ad9e222e49f77a4d2e6c23c04}{wbic\_run\_mcmc\_epoch}(
+      self,output\_fname,n\_burnin=1000,n\_run=500,n\_epoch=12,nwalkers=None):
+185         nwalkers = self.n\_param * 2 \textcolor{keywordflow}{if} (nwalkers \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{else} nwalkers 
+186         
+187         self.wbic\_init\_sampler(nwalkers)
+188         self.wbic\_prepare\_csv(output\_fname)
+189         pos = self.wbic\_sample(self.wbic\_pos0,n\_burnin,desc=\textcolor{stringliteral}{"WBIC Burn in: "})
+190         self.wbic\_sampler.reset()
+191 
+192         \textcolor{comment}{# create file}
+193         self.wbic\_prepare\_csv(output\_fname)
+194         \textcolor{comment}{# run}
+195         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(n\_epoch):
+196             pos = self.wbic\_sample(pos,n\_run,output\_fname,mode=\textcolor{stringliteral}{"a"},header=\textcolor{keyword}{False},reset=\textcolor{keyword}{True},desc=\textcolor{stringliteral}{"\{\} th WBIC
+       Sampling: "}.format(i))
+197 \end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_a5e76a78ad9e222e49f77a4d2e6c23c04_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_ad07e2a415fe1c3890c6f6efcfe7515db}\label{classsampler_1_1Sampler_ad07e2a415fe1c3890c6f6efcfe7515db}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!wbic\+\_\+sample@{wbic\+\_\+sample}}
+\index{wbic\+\_\+sample@{wbic\+\_\+sample}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{wbic\+\_\+sample()}{wbic\_sample()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+wbic\+\_\+sample (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{p0,  }\item[{}]{n\+\_\+run = {\ttfamily 5000},  }\item[{}]{fname = {\ttfamily None},  }\item[{}]{mode = {\ttfamily \char`\"{}w\char`\"{}},  }\item[{}]{header = {\ttfamily True},  }\item[{}]{reset = {\ttfamily False},  }\item[{}]{desc = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+W\+B\+IC sampler \#\#\#\#\#\#\#\#. 
+
+
+
+Definition at line 160 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+160     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_ad07e2a415fe1c3890c6f6efcfe7515db}{wbic\_sample}(self,p0,n\_run = 5000,fname=None,mode="w",header=True,reset=False,desc=None):
+161         \textcolor{keywordflow}{for} pos, prob, state, blobs \textcolor{keywordflow}{in} tqdm(self.wbic\_sampler.\hyperlink{classsampler_1_1Sampler_a9403aa08f08af30f703b7b507431d7a9}{sample}(p0,iterations=n\_run),total=n\_run
+      ,desc=desc):
+162             \textcolor{keywordflow}{pass}
+163         \textcolor{keywordflow}{else}:
+164             \textcolor{keywordflow}{if} fname \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{keywordtype}{None}:
+165                 self.wbic\_to\_csv(fname,mode,header)
+166             \textcolor{keywordflow}{if} reset:
+167                 self.wbic\_sampler.reset()
+168             \textcolor{keywordflow}{return} pos
+169     
+170     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_ad07e2a415fe1c3890c6f6efcfe7515db_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{d3/d8a/classsampler_1_1Sampler_ad07e2a415fe1c3890c6f6efcfe7515db_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsampler_1_1Sampler_a6ade3671106e25577cd51ea1a055b680}\label{classsampler_1_1Sampler_a6ade3671106e25577cd51ea1a055b680}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!wbic\+\_\+to\+\_\+csv@{wbic\+\_\+to\+\_\+csv}}
+\index{wbic\+\_\+to\+\_\+csv@{wbic\+\_\+to\+\_\+csv}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{wbic\+\_\+to\+\_\+csv()}{wbic\_to\_csv()}}
+{\footnotesize\ttfamily def sampler.\+Sampler.\+wbic\+\_\+to\+\_\+csv (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{fname,  }\item[{}]{mode = {\ttfamily \char`\"{}w\char`\"{}},  }\item[{}]{header = {\ttfamily True} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 74 of file sampler.\+py.
+
+
+\begin{DoxyCode}
+74     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_a6ade3671106e25577cd51ea1a055b680}{wbic\_to\_csv}(self,fname,mode="w",header=True):
+75         with open(fname,mode) \textcolor{keyword}{as} f:
+76             df = pd.DataFrame(
+77                 np.concatenate([self.wbic\_sampler.flatchain,self.wbic\_sampler.flatlnprobability[:,
+      np.newaxis],self.wbic\_sampler.flatblobs[:,np.newaxis]],axis=1),
+78                 columns=[*(self.param\_names),\textcolor{stringliteral}{"lngenpost"},\textcolor{stringliteral}{"lnlike"}] )
+79             df.to\_csv(f,index=\textcolor{keywordtype}{None},header=header)
+80     
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d8a/classsampler_1_1Sampler_a6ade3671106e25577cd51ea1a055b680_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classsampler_1_1Sampler_a6f7037a873847e97098dc065a329d0a3}\label{classsampler_1_1Sampler_a6f7037a873847e97098dc065a329d0a3}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!init\+\_\+high@{init\+\_\+high}}
+\index{init\+\_\+high@{init\+\_\+high}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{init\+\_\+high}{init\_high}}
+{\footnotesize\ttfamily sampler.\+Sampler.\+init\+\_\+high}
+
+
+
+Definition at line 34 of file sampler.\+py.
+
+\mbox{\Hypertarget{classsampler_1_1Sampler_a8d5d2c3f85eace580c0633b79de6a3f2}\label{classsampler_1_1Sampler_a8d5d2c3f85eace580c0633b79de6a3f2}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!init\+\_\+low@{init\+\_\+low}}
+\index{init\+\_\+low@{init\+\_\+low}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{init\+\_\+low}{init\_low}}
+{\footnotesize\ttfamily sampler.\+Sampler.\+init\+\_\+low}
+
+
+
+Definition at line 33 of file sampler.\+py.
+
+\mbox{\Hypertarget{classsampler_1_1Sampler_a5582a0d537f1aa6f2c4eca9cb7e00859}\label{classsampler_1_1Sampler_a5582a0d537f1aa6f2c4eca9cb7e00859}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!model@{model}}
+\index{model@{model}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily sampler.\+Sampler.\+model}
+
+
+
+Definition at line 19 of file sampler.\+py.
+
+\mbox{\Hypertarget{classsampler_1_1Sampler_a10de0613d5ee970646098a8cf9a15fbe}\label{classsampler_1_1Sampler_a10de0613d5ee970646098a8cf9a15fbe}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!n\+\_\+param@{n\+\_\+param}}
+\index{n\+\_\+param@{n\+\_\+param}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{n\+\_\+param}{n\_param}}
+{\footnotesize\ttfamily sampler.\+Sampler.\+n\+\_\+param}
+
+
+
+Definition at line 35 of file sampler.\+py.
+
+\mbox{\Hypertarget{classsampler_1_1Sampler_a63de348f6e0cd91f24e09e66bfe160d4}\label{classsampler_1_1Sampler_a63de348f6e0cd91f24e09e66bfe160d4}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!param\+\_\+names@{param\+\_\+names}}
+\index{param\+\_\+names@{param\+\_\+names}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{param\+\_\+names}{param\_names}}
+{\footnotesize\ttfamily sampler.\+Sampler.\+param\+\_\+names}
+
+
+
+Definition at line 32 of file sampler.\+py.
+
+\mbox{\Hypertarget{classsampler_1_1Sampler_ad81b8f4bc5bc8925873719991006acd8}\label{classsampler_1_1Sampler_ad81b8f4bc5bc8925873719991006acd8}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!pos0@{pos0}}
+\index{pos0@{pos0}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{pos0}{pos0}}
+{\footnotesize\ttfamily sampler.\+Sampler.\+pos0}
+
+
+
+Definition at line 42 of file sampler.\+py.
+
+\mbox{\Hypertarget{classsampler_1_1Sampler_a29acc101d68c463f924d34f1f259708e}\label{classsampler_1_1Sampler_a29acc101d68c463f924d34f1f259708e}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!sampler@{sampler}}
+\index{sampler@{sampler}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{sampler}{sampler}}
+{\footnotesize\ttfamily sampler.\+Sampler.\+sampler}
+
+
+
+Definition at line 43 of file sampler.\+py.
+
+\mbox{\Hypertarget{classsampler_1_1Sampler_acc468d79c6593e5b1c282d938a9877f0}\label{classsampler_1_1Sampler_acc468d79c6593e5b1c282d938a9877f0}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!wbic\+\_\+pos0@{wbic\+\_\+pos0}}
+\index{wbic\+\_\+pos0@{wbic\+\_\+pos0}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{wbic\+\_\+pos0}{wbic\_pos0}}
+{\footnotesize\ttfamily sampler.\+Sampler.\+wbic\+\_\+pos0}
+
+
+
+Definition at line 53 of file sampler.\+py.
+
+\mbox{\Hypertarget{classsampler_1_1Sampler_a8476d0b5a5f4f22edef248b2f0930c6a}\label{classsampler_1_1Sampler_a8476d0b5a5f4f22edef248b2f0930c6a}} 
+\index{sampler\+::\+Sampler@{sampler\+::\+Sampler}!wbic\+\_\+sampler@{wbic\+\_\+sampler}}
+\index{wbic\+\_\+sampler@{wbic\+\_\+sampler}!sampler\+::\+Sampler@{sampler\+::\+Sampler}}
+\subsubsection{\texorpdfstring{wbic\+\_\+sampler}{wbic\_sampler}}
+{\footnotesize\ttfamily sampler.\+Sampler.\+wbic\+\_\+sampler}
+
+
+
+Definition at line 54 of file sampler.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{sampler_8py}{sampler.\+py}\end{DoxyCompactItemize}

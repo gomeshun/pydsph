@@ -1,0 +1,153 @@
+\hypertarget{classdsph__model_1_1NFW__model}{}\section{dsph\+\_\+model.\+N\+F\+W\+\_\+model Class Reference}
+\label{classdsph__model_1_1NFW__model}\index{dsph\+\_\+model.\+N\+F\+W\+\_\+model@{dsph\+\_\+model.\+N\+F\+W\+\_\+model}}
+
+
+Inheritance diagram for dsph\+\_\+model.\+N\+F\+W\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{d5/dc5/classdsph__model_1_1NFW__model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for dsph\+\_\+model.\+N\+F\+W\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{d9/d01/classdsph__model_1_1NFW__model__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdsph__model_1_1NFW__model_a77ffcfcaaa6845c611e882dcf59738f2}{mass\+\_\+density\+\_\+3d} (self, r\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1NFW__model_a6cd2ef0f9d8ce7af26d332761af25655}{enclosure\+\_\+mass} (self, r\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1NFW__model_ae7c0832d2a9c3edbccdfcffa40987046}{enclosure\+\_\+mass\+\_\+truncated} (self, r\+\_\+pc)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classdsph__model_1_1NFW__model_a5cf6e836f1d377ae4d7e0708c109b8cb}{name} = \char`\"{}N\+FW \hyperlink{classdsph__model_1_1model}{model}\char`\"{}
+\item 
+list \hyperlink{classdsph__model_1_1NFW__model_ae08a05fd1593c131b89e7da6d228abb4}{required\+\_\+params\+\_\+name} = \mbox{[}\textquotesingle{}rs\+\_\+pc\textquotesingle{},\textquotesingle{}rhos\+\_\+\+Msunpc3\textquotesingle{},\textquotesingle{}a\textquotesingle{},\textquotesingle{}b\textquotesingle{},\textquotesingle{}g\textquotesingle{},\textquotesingle{}\hyperlink{namespacedsph__model_a03ec56ecf56f64e59a6be020a76a36f1}{R\+\_\+trunc\+\_\+pc}\textquotesingle{}\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 230 of file dsph\+\_\+model.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1NFW__model_a6cd2ef0f9d8ce7af26d332761af25655}\label{classdsph__model_1_1NFW__model_a6cd2ef0f9d8ce7af26d332761af25655}} 
+\index{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model@{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model}!enclosure\+\_\+mass@{enclosure\+\_\+mass}}
+\index{enclosure\+\_\+mass@{enclosure\+\_\+mass}!dsph\+\_\+model\+::\+N\+F\+W\+\_\+model@{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model}}
+\subsubsection{\texorpdfstring{enclosure\+\_\+mass()}{enclosure\_mass()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+N\+F\+W\+\_\+model.\+enclosure\+\_\+mass (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{r\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 244 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+244     \textcolor{keyword}{def }enclosure\_mass(self,r\_pc):
+245         \textcolor{comment}{#ret = (array(r\_pc.shape) if len(r\_pc)>1 else 0)}
+246         rs\_pc, rhos\_Msunpc3,a,b,g = self.params.rs\_pc, self.params.rhos\_Msunpc3, self.params.a, self.params
+      .b,self.params.g
+247         
+248         x = power(r\_pc/rs\_pc,a)
+249         
+250         argbeta0 = (3-g)/a
+251         argbeta1 = (b-3)/a
+252         
+253         \textcolor{keywordflow}{return} (4.*pi*rs\_pc**3*rhos\_Msunpc3/a)*beta(argbeta0,argbeta1)*betainc(argbeta0,argbeta1,x/(1+x)) 
+254     
+\end{DoxyCode}
+\mbox{\Hypertarget{classdsph__model_1_1NFW__model_ae7c0832d2a9c3edbccdfcffa40987046}\label{classdsph__model_1_1NFW__model_ae7c0832d2a9c3edbccdfcffa40987046}} 
+\index{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model@{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model}!enclosure\+\_\+mass\+\_\+truncated@{enclosure\+\_\+mass\+\_\+truncated}}
+\index{enclosure\+\_\+mass\+\_\+truncated@{enclosure\+\_\+mass\+\_\+truncated}!dsph\+\_\+model\+::\+N\+F\+W\+\_\+model@{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model}}
+\subsubsection{\texorpdfstring{enclosure\+\_\+mass\+\_\+truncated()}{enclosure\_mass\_truncated()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+N\+F\+W\+\_\+model.\+enclosure\+\_\+mass\+\_\+truncated (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{r\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 255 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+255     \textcolor{keyword}{def }enclosure\_mass\_truncated(self,r\_pc):
+256         \textcolor{comment}{#ret = (array(r\_pc.shape) if len(r\_pc)>1 else 0)}
+257         rs\_pc, rhos\_Msunpc3,a,b,g = self.params.rs\_pc, self.params.rhos\_Msunpc3, self.params.a, self.params
+      .b,self.params.g
+258         
+259         is\_in\_Rtrunc = r\_pc<self.params.R\_trunc\_pc
+260         is\_outof\_Rtrunc = np.logical\_not(is\_in\_Rtrunc)
+261         
+262         x = power(r\_pc/rs\_pc,a)*is\_in\_Rtrunc
+263         x\_truncd = power(self.params.R\_trunc\_pc/rs\_pc,a)
+264         argbeta0 = (3-g)/a
+265         argbeta1 = (b-3)/a
+266         
+267         \textcolor{comment}{#ret[is\_in\_Rtrunc] =
+       (4.*pi*rs\_pc**3*rhos\_Msunpc3/a)*beta(argbeta0,argbeta1)*betainc(argbeta0,argbeta1,x/(1+x))}
+268         \textcolor{comment}{#ret[is\_outof\_Rtrunc] =
+       (4.*pi*rs\_pc**3*rhos\_Msunpc3/a)*beta(argbeta0,argbeta1)*betainc(argbeta0,argbeta1,x\_truncd/(1+x\_truncd))}
+269         \textcolor{keywordflow}{return} is\_in\_Rtrunc * (4.*pi*rs\_pc**3*rhos\_Msunpc3/a)*beta(argbeta0,argbeta1)*betainc(argbeta0,
+      argbeta1,x/(1+x)) + is\_outof\_Rtrunc * (4.*pi*rs\_pc**3*rhos\_Msunpc3/a)*beta(argbeta0,argbeta1)*betainc(argbeta0,
+      argbeta1,x\_truncd/(1+x\_truncd))
+270         
+\end{DoxyCode}
+\mbox{\Hypertarget{classdsph__model_1_1NFW__model_a77ffcfcaaa6845c611e882dcf59738f2}\label{classdsph__model_1_1NFW__model_a77ffcfcaaa6845c611e882dcf59738f2}} 
+\index{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model@{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model}!mass\+\_\+density\+\_\+3d@{mass\+\_\+density\+\_\+3d}}
+\index{mass\+\_\+density\+\_\+3d@{mass\+\_\+density\+\_\+3d}!dsph\+\_\+model\+::\+N\+F\+W\+\_\+model@{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model}}
+\subsubsection{\texorpdfstring{mass\+\_\+density\+\_\+3d()}{mass\_density\_3d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+N\+F\+W\+\_\+model.\+mass\+\_\+density\+\_\+3d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{r\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 239 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+239     \textcolor{keyword}{def }mass\_density\_3d(self,r\_pc):
+240         rs\_pc, rhos\_Msunpc3,a,b,g = self.params.rs\_pc, self.params.rhos\_Msunpc3, self.params.a, self.params
+      .b,self.params.g
+241         x = r\_pc/rs\_pc
+242         \textcolor{keywordflow}{return} rhos\_Msunpc3*power(x,-g)*power(1+power(x,a),-(b-g)/a)
+243         
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1NFW__model_a5cf6e836f1d377ae4d7e0708c109b8cb}\label{classdsph__model_1_1NFW__model_a5cf6e836f1d377ae4d7e0708c109b8cb}} 
+\index{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model@{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model}!name@{name}}
+\index{name@{name}!dsph\+\_\+model\+::\+N\+F\+W\+\_\+model@{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string dsph\+\_\+model.\+N\+F\+W\+\_\+model.\+name = \char`\"{}N\+FW \hyperlink{classdsph__model_1_1model}{model}\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 231 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{classdsph__model_1_1NFW__model_ae08a05fd1593c131b89e7da6d228abb4}\label{classdsph__model_1_1NFW__model_ae08a05fd1593c131b89e7da6d228abb4}} 
+\index{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model@{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model}!required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}}
+\index{required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}!dsph\+\_\+model\+::\+N\+F\+W\+\_\+model@{dsph\+\_\+model\+::\+N\+F\+W\+\_\+model}}
+\subsubsection{\texorpdfstring{required\+\_\+params\+\_\+name}{required\_params\_name}}
+{\footnotesize\ttfamily list dsph\+\_\+model.\+N\+F\+W\+\_\+model.\+required\+\_\+params\+\_\+name = \mbox{[}\textquotesingle{}rs\+\_\+pc\textquotesingle{},\textquotesingle{}rhos\+\_\+\+Msunpc3\textquotesingle{},\textquotesingle{}a\textquotesingle{},\textquotesingle{}b\textquotesingle{},\textquotesingle{}g\textquotesingle{},\textquotesingle{}\hyperlink{namespacedsph__model_a03ec56ecf56f64e59a6be020a76a36f1}{R\+\_\+trunc\+\_\+pc}\textquotesingle{}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 232 of file dsph\+\_\+model.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{dsph__model_8py}{dsph\+\_\+model.\+py}\end{DoxyCompactItemize}

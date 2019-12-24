@@ -1,0 +1,104 @@
+\hypertarget{namespaceinpoly}{}\section{inpoly Namespace Reference}
+\label{namespaceinpoly}\index{inpoly@{inpoly}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceinpoly_ac011fa801ecb6cc9429eaf02b25dd1e5}{inpolygon} (sx, sy, x, y)
+\item 
+def \hyperlink{namespaceinpoly_ad77175adc1811d9ba49b3a6f5753e336}{inpoly} (sx, sy, x, y, verbose=False)
+\item 
+def \hyperlink{namespaceinpoly_a6071c414de973f7a1162ae911036c02d}{cut} (data\+\_\+fname, poly\+\_\+fname, x\+\_\+data, y\+\_\+data, x\+\_\+poly, y\+\_\+poly, kwargs\+\_\+data=None, kwargs\+\_\+poly=None)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceinpoly_a6071c414de973f7a1162ae911036c02d}\label{namespaceinpoly_a6071c414de973f7a1162ae911036c02d}} 
+\index{inpoly@{inpoly}!cut@{cut}}
+\index{cut@{cut}!inpoly@{inpoly}}
+\subsubsection{\texorpdfstring{cut()}{cut()}}
+{\footnotesize\ttfamily def inpoly.\+cut (\begin{DoxyParamCaption}\item[{}]{data\+\_\+fname,  }\item[{}]{poly\+\_\+fname,  }\item[{}]{x\+\_\+data,  }\item[{}]{y\+\_\+data,  }\item[{}]{x\+\_\+poly,  }\item[{}]{y\+\_\+poly,  }\item[{}]{kwargs\+\_\+data = {\ttfamily None},  }\item[{}]{kwargs\+\_\+poly = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 45 of file inpoly.\+py.
+
+
+\begin{DoxyCode}
+45 \textcolor{keyword}{def }\hyperlink{namespaceinpoly_a6071c414de973f7a1162ae911036c02d}{cut}(data\_fname,poly\_fname,x\_data,y\_data,x\_poly,y\_poly,kwargs\_data=None,kwargs\_poly=None):
+46     data = read\_csv(data\_fname,**kwargs\_data)
+47     poly = read\_csv(poly\_fname,**kwargs\_poly)
+48     \textcolor{keywordflow}{return} \hyperlink{namespaceinpoly}{inpoly}(data[x\_data],data[y\_data],poly[x\_poly],data[x\_poly])
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaceinpoly_ad77175adc1811d9ba49b3a6f5753e336}\label{namespaceinpoly_ad77175adc1811d9ba49b3a6f5753e336}} 
+\index{inpoly@{inpoly}!inpoly@{inpoly}}
+\index{inpoly@{inpoly}!inpoly@{inpoly}}
+\subsubsection{\texorpdfstring{inpoly()}{inpoly()}}
+{\footnotesize\ttfamily def inpoly.\+inpoly (\begin{DoxyParamCaption}\item[{}]{sx,  }\item[{}]{sy,  }\item[{}]{x,  }\item[{}]{y,  }\item[{}]{verbose = {\ttfamily False} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}x[:], y[:]: polygon
+sx, sy: point
+\end{DoxyVerb}
+ 
+
+Definition at line 23 of file inpoly.\+py.
+
+
+\begin{DoxyCode}
+23 \textcolor{keyword}{def }\hyperlink{namespaceinpoly_ad77175adc1811d9ba49b3a6f5753e336}{inpoly}(sx,sy,x,y,verbose=False):
+24     \textcolor{stringliteral}{''' }
+25 \textcolor{stringliteral}{    x[:], y[:]: polygon}
+26 \textcolor{stringliteral}{    sx, sy: point}
+27 \textcolor{stringliteral}{    '''}    
+28     x1 = x[:,np.newaxis]
+29     y1 = y[:,np.newaxis]
+30     x2 = np.roll(x1,-1)
+31     y2 = np.roll(y1,-1)
+32     \textcolor{keywordflow}{if} verbose:
+33         print(np.array([x1[:,0],y1[:,0]]))
+34         print(np.array([x2[:,0],y2[:,0]]))
+35     ispointbetweenithsep = (x1-sx)*(x2-sx)<0
+36     ispointaboveithsep = (x2-x1)*((x2-x1)*(sy-y1)-(y2-y1)*(sx-x1))>0
+37     numofsepbelowpoint = (ispointbetweenithsep*ispointaboveithsep).sum(axis=0)
+38     isoddnumbersepabovepoint = (numofsepbelowpoint%2 == 1)
+39     \textcolor{comment}{#print(ispointbetweenithsep)}
+40     \textcolor{comment}{#print(ispointaboveithsep)}
+41     \textcolor{comment}{#print(numofsepbelowpoint)}
+42     \textcolor{comment}{#print(isoddnumbersepabovepoint)}
+43     \textcolor{keywordflow}{return} isoddnumbersepabovepoint
+44 
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaceinpoly_ac011fa801ecb6cc9429eaf02b25dd1e5}\label{namespaceinpoly_ac011fa801ecb6cc9429eaf02b25dd1e5}} 
+\index{inpoly@{inpoly}!inpolygon@{inpolygon}}
+\index{inpolygon@{inpolygon}!inpoly@{inpoly}}
+\subsubsection{\texorpdfstring{inpolygon()}{inpolygon()}}
+{\footnotesize\ttfamily def inpoly.\+inpolygon (\begin{DoxyParamCaption}\item[{}]{sx,  }\item[{}]{sy,  }\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}x[:], y[:]: polygon
+sx, sy: point
+\end{DoxyVerb}
+ 
+
+Definition at line 4 of file inpoly.\+py.
+
+
+\begin{DoxyCode}
+4 \textcolor{keyword}{def }\hyperlink{namespaceinpoly_ac011fa801ecb6cc9429eaf02b25dd1e5}{inpolygon}(sx, sy, x, y):
+5     \textcolor{stringliteral}{''' }
+6 \textcolor{stringliteral}{    x[:], y[:]: polygon}
+7 \textcolor{stringliteral}{    sx, sy: point}
+8 \textcolor{stringliteral}{    '''}     
+9     np = len(x)
+10     inside = \textcolor{keyword}{False}
+11     \textcolor{keywordflow}{for} i1 \textcolor{keywordflow}{in} range(np): 
+12         i2 = (i1+1)%np
+13         \textcolor{keywordflow}{if} min(x[i1], x[i2]) < sx < max(x[i1], x[i2]):
+14             \textcolor{comment}{#a = (y[i2]-y[i1])/(x[i2]-x[i1])}
+15             \textcolor{comment}{#b = y[i1] - a*x[i1]}
+16             \textcolor{comment}{#dy = a*sx+b - sy}
+17             \textcolor{comment}{#if dy >= 0:}
+18             \textcolor{keywordflow}{if} (y[i1] + (y[i2]-y[i1])/(x[i2]-x[i1])*(sx-x[i1]) - sy) > 0:
+19                 inside = \textcolor{keywordflow}{not} inside
+20 
+21     \textcolor{keywordflow}{return} inside
+22 
+\end{DoxyCode}

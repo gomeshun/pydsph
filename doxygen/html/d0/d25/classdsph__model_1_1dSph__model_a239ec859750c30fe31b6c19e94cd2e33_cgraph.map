@@ -1,0 +1,7 @@
+<map id="dsph_model.dSph_model.sigmalos_interp1d_dequad" name="dsph_model.dSph_model.sigmalos_interp1d_dequad">
+<area shape="rect" id="node2" href="$d0/d25/classdsph__model_1_1dSph__model.html#a87273cf6ad641b1d12f9b236821807c6" title="dsph_model.dSph_model.sigmalos2\l_dequad" alt="" coords="277,35,508,76"/>
+<area shape="rect" id="node3" href="$d0/d25/classdsph__model_1_1dSph__model.html#a5df6fa479eb9092d850da8779073eed5" title="dsph_model.dSph_model.integrand\l_sigmalos2_using_mykernel" alt="" coords="556,5,781,47"/>
+<area shape="rect" id="node5" href="$da/dfc/namespacedequad.html#a2654bb61f33ab8685320882396c81ae0" title="dequad.dequad_hinf" alt="" coords="599,71,738,98"/>
+<area shape="rect" id="node4" href="$d0/d25/classdsph__model_1_1dSph__model.html#a5e0091742da19919dc6c085a806ad6e0" title="dsph_model.dSph_model.mykernel\l_over_u" alt="" coords="829,5,1055,47"/>
+<area shape="rect" id="node6" href="$da/dfc/namespacedequad.html#a0774348e796cb0945f2e0b0a7fa1c1e9" title="dequad.generate_x_w" alt="" coords="867,71,1017,98"/>
+</map>

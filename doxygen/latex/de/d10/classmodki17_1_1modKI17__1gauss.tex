@@ -1,0 +1,85 @@
+\hypertarget{classmodki17_1_1modKI17__1gauss}{}\section{modki17.\+mod\+K\+I17\+\_\+1gauss Class Reference}
+\label{classmodki17_1_1modKI17__1gauss}\index{modki17.\+mod\+K\+I17\+\_\+1gauss@{modki17.\+mod\+K\+I17\+\_\+1gauss}}
+
+
+Inheritance diagram for modki17.\+mod\+K\+I17\+\_\+1gauss\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d0/d77/classmodki17_1_1modKI17__1gauss__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for modki17.\+mod\+K\+I17\+\_\+1gauss\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d4/d3c/classmodki17_1_1modKI17__1gauss__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmodki17_1_1modKI17__1gauss_a33a9f117f11c57c90b8d95661ce9980b}{loglikelihood} (self, re\+\_\+pc, odds, dra0, dde0, log10\+\_\+rs\+\_\+pc, log10\+\_\+rhos\+\_\+\+Msunpc3, a, b, g, mlog10\+\_\+1manib, vmem, vfg0, dvfg0, dist)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 468 of file modki17.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__1gauss_a33a9f117f11c57c90b8d95661ce9980b}\label{classmodki17_1_1modKI17__1gauss_a33a9f117f11c57c90b8d95661ce9980b}} 
+\index{modki17\+::mod\+K\+I17\+\_\+1gauss@{modki17\+::mod\+K\+I17\+\_\+1gauss}!loglikelihood@{loglikelihood}}
+\index{loglikelihood@{loglikelihood}!modki17\+::mod\+K\+I17\+\_\+1gauss@{modki17\+::mod\+K\+I17\+\_\+1gauss}}
+\subsubsection{\texorpdfstring{loglikelihood()}{loglikelihood()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+1gauss.\+loglikelihood (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{re\+\_\+pc,  }\item[{}]{odds,  }\item[{}]{dra0,  }\item[{}]{dde0,  }\item[{}]{log10\+\_\+rs\+\_\+pc,  }\item[{}]{log10\+\_\+rhos\+\_\+\+Msunpc3,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{g,  }\item[{}]{mlog10\+\_\+1manib,  }\item[{}]{vmem,  }\item[{}]{vfg0,  }\item[{}]{dvfg0,  }\item[{}]{dist }\end{DoxyParamCaption})}
+
+
+
+Definition at line 473 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+473     ):
+474         mem = self.dsph.submodels[\textcolor{stringliteral}{"stellar\_model"}]
+475         mem.update(\{\textcolor{stringliteral}{"re\_pc"}:re\_pc*(dist/self.sc\_center0.distance.value)\}) \textcolor{comment}{# TODO: "update" is required.
+       This is very confusing and may cause bugs.}
+476         
+477         vs = self.sc\_obsdata.radial\_velocity.value
+478         vobs\_err = (self.sc\_obsdata.radial\_velocity\_err.value \textcolor{keywordflow}{if} hasattr(self.sc\_obsdata,\textcolor{stringliteral}{"
+      radial\_velocity\_err"}) \textcolor{keywordflow}{else} 0)
+479         s = 1/(1+ 1/(odds * mem.density\_2d\_normalized\_re(self.separation\_pc(dra0,dde0,dist)))) \textcolor{comment}{# In this
+       line, we use "mem.foo", so we should update "mem" in advance.}
+480         
+481         lnfmems = self.lnfmems(re\_pc,dra0,dde0,log10\_rs\_pc,log10\_rhos\_Msunpc3,a,b,g,mlog10\_1manib,vmem,dist
+      )
+482         lnffg0s = norm.logpdf(vs,loc=vfg0,scale=sqrt(dvfg0**2+vobs\_err**2))
+483     
+484         logfs = [lnfmems,lnffg0s]
+485         ss = [s,(1-s)]
+486         
+487         ret = np.sum(logsumexp(a=logfs,b=ss,axis=0)) \textcolor{comment}{# note that logsumexp must be used to aviod
+       over/underflow of the likelihood}
+488         
+489         \textcolor{keywordflow}{return} ret
+490     
+491     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/d10/classmodki17_1_1modKI17__1gauss_a33a9f117f11c57c90b8d95661ce9980b_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{modki17_8py}{modki17.\+py}\end{DoxyCompactItemize}

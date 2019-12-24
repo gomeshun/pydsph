@@ -1,0 +1,247 @@
+\hypertarget{classdsph__model_1_1sersic__model}{}\section{dsph\+\_\+model.\+sersic\+\_\+model Class Reference}
+\label{classdsph__model_1_1sersic__model}\index{dsph\+\_\+model.\+sersic\+\_\+model@{dsph\+\_\+model.\+sersic\+\_\+model}}
+
+
+Inheritance diagram for dsph\+\_\+model.\+sersic\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{dd/dec/classdsph__model_1_1sersic__model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for dsph\+\_\+model.\+sersic\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{dd/d39/classdsph__model_1_1sersic__model__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdsph__model_1_1sersic__model_a13e1833567fab6c27dfc49cb80eab9a3}{b} (self, n)
+\item 
+def \hyperlink{classdsph__model_1_1sersic__model_a9af6c3cabf132205c55129bc28b9d867}{norm} (self)
+\item 
+def \hyperlink{classdsph__model_1_1sersic__model_afd0e257748b9a1b46c2f5443e3214523}{density\+\_\+2d} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1sersic__model_a68a272af30ef7e30ddaa70b076dc2818}{cdf\+\_\+R} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1sersic__model_a52fb76f30a58833cc14b3c9878ac9b56}{mean\+\_\+density\+\_\+2d} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1sersic__model_a555bceba3036d02a71218318516bba8a}{half\+\_\+light\+\_\+radius} (self)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classdsph__model_1_1sersic__model_ab2173ac383d967b9b3ebbb71dde7ed8a}{name} = \char`\"{}Sersic \hyperlink{classdsph__model_1_1model}{model}\char`\"{}
+\item 
+list \hyperlink{classdsph__model_1_1sersic__model_a19d71ba6a9b6df68453b7bbdfd8c8022}{required\+\_\+params\+\_\+name} = \mbox{[}\textquotesingle{}re\+\_\+pc\textquotesingle{},\textquotesingle{}n\textquotesingle{}\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 140 of file dsph\+\_\+model.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1sersic__model_a13e1833567fab6c27dfc49cb80eab9a3}\label{classdsph__model_1_1sersic__model_a13e1833567fab6c27dfc49cb80eab9a3}} 
+\index{dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}!b@{b}}
+\index{b@{b}!dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}}
+\subsubsection{\texorpdfstring{b()}{b()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+sersic\+\_\+model.\+b (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{n }\end{DoxyParamCaption})}
+
+
+
+Definition at line 143 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+143     \textcolor{keyword}{def }\hyperlink{namespacejfactor_a52f3e9e591dbe4f5d14f760a578cb15b}{b}(self,n):
+144         \textcolor{keywordflow}{return} 2*n - 0.324
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/de9/classdsph__model_1_1sersic__model_a13e1833567fab6c27dfc49cb80eab9a3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1sersic__model_a68a272af30ef7e30ddaa70b076dc2818}\label{classdsph__model_1_1sersic__model_a68a272af30ef7e30ddaa70b076dc2818}} 
+\index{dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}!cdf\+\_\+R@{cdf\+\_\+R}}
+\index{cdf\+\_\+R@{cdf\+\_\+R}!dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}}
+\subsubsection{\texorpdfstring{cdf\+\_\+\+R()}{cdf\_R()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+sersic\+\_\+model.\+cdf\+\_\+R (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}cdf_R(R) = \int_0^R \dd{R'} 2\pi R' \Sigma(R')
+\end{DoxyVerb}
+ 
+
+Definition at line 152 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+152     \textcolor{keyword}{def }cdf\_R(self,R\_pc):
+153         \textcolor{stringliteral}{'''}
+154 \textcolor{stringliteral}{        cdf\_R(R) = \(\backslash\)int\_0^R \(\backslash\)dd\{R'\} 2\(\backslash\)pi R' \(\backslash\)Sigma(R')}
+155 \textcolor{stringliteral}{        '''}
+156         re\_pc= self.params.re\_pc
+157         n = self.params.n
+158         \textcolor{keywordflow}{return} gammainc(2*n,self.b(n)*power(R\_pc/re\_pc,1/n)) - gammainc(2*n,0)
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/de9/classdsph__model_1_1sersic__model_a68a272af30ef7e30ddaa70b076dc2818_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/de9/classdsph__model_1_1sersic__model_a68a272af30ef7e30ddaa70b076dc2818_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1sersic__model_afd0e257748b9a1b46c2f5443e3214523}\label{classdsph__model_1_1sersic__model_afd0e257748b9a1b46c2f5443e3214523}} 
+\index{dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}!density\+\_\+2d@{density\+\_\+2d}}
+\index{density\+\_\+2d@{density\+\_\+2d}!dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}}
+\subsubsection{\texorpdfstring{density\+\_\+2d()}{density\_2d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+sersic\+\_\+model.\+density\+\_\+2d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 148 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+148     \textcolor{keyword}{def }density\_2d(self,R\_pc):
+149         re\_pc= self.params.re\_pc
+150         n = self.params.n
+151         \textcolor{keywordflow}{return} exp(-self.b(n)*power(R\_pc/self.params.re\_pc,1/n))/self.norm()
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/de9/classdsph__model_1_1sersic__model_afd0e257748b9a1b46c2f5443e3214523_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/de9/classdsph__model_1_1sersic__model_afd0e257748b9a1b46c2f5443e3214523_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1sersic__model_a555bceba3036d02a71218318516bba8a}\label{classdsph__model_1_1sersic__model_a555bceba3036d02a71218318516bba8a}} 
+\index{dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}!half\+\_\+light\+\_\+radius@{half\+\_\+light\+\_\+radius}}
+\index{half\+\_\+light\+\_\+radius@{half\+\_\+light\+\_\+radius}!dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}}
+\subsubsection{\texorpdfstring{half\+\_\+light\+\_\+radius()}{half\_light\_radius()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+sersic\+\_\+model.\+half\+\_\+light\+\_\+radius (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 167 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+167     \textcolor{keyword}{def }half\_light\_radius(self):
+168         \textcolor{keywordflow}{return} self.params.re\_pc
+\end{DoxyCode}
+\mbox{\Hypertarget{classdsph__model_1_1sersic__model_a52fb76f30a58833cc14b3c9878ac9b56}\label{classdsph__model_1_1sersic__model_a52fb76f30a58833cc14b3c9878ac9b56}} 
+\index{dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}!mean\+\_\+density\+\_\+2d@{mean\+\_\+density\+\_\+2d}}
+\index{mean\+\_\+density\+\_\+2d@{mean\+\_\+density\+\_\+2d}!dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}}
+\subsubsection{\texorpdfstring{mean\+\_\+density\+\_\+2d()}{mean\_density\_2d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+sersic\+\_\+model.\+mean\+\_\+density\+\_\+2d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}return the mean density_2d in R < R_pc with the weight 2*pi*R
+mean_density_2d = \frac{\int_\RoIR \dd{R} 2\pi R \Sigma(R)}{\int_\RoIR \dd{R} 2\pi R}
+    = \frac{cdf_R(R)}{\pi R^2}
+\end{DoxyVerb}
+ 
+
+Definition at line 159 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+159     \textcolor{keyword}{def }mean\_density\_2d(self,R\_pc):
+160         \textcolor{stringliteral}{'''}
+161 \textcolor{stringliteral}{        return the mean density\_2d in R < R\_pc with the weight 2*pi*R}
+162 \textcolor{stringliteral}{        mean\_density\_2d = \(\backslash\)frac\{\(\backslash\)int\_\(\backslash\)RoIR \(\backslash\)dd\{R\} 2\(\backslash\)pi R \(\backslash\)Sigma(R)\}\{\(\backslash\)int\_\(\backslash\)RoIR \(\backslash\)dd\{R\} 2\(\backslash\)pi R\}}
+163 \textcolor{stringliteral}{            = \(\backslash\)frac\{cdf\_R(R)\}\{\(\backslash\)pi R^2\}}
+164 \textcolor{stringliteral}{        '''}
+165         \textcolor{keywordflow}{return} self.cdf\_R(R\_pc)/pi/R\_pc**2
+166     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/de9/classdsph__model_1_1sersic__model_a52fb76f30a58833cc14b3c9878ac9b56_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1sersic__model_a9af6c3cabf132205c55129bc28b9d867}\label{classdsph__model_1_1sersic__model_a9af6c3cabf132205c55129bc28b9d867}} 
+\index{dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}!norm@{norm}}
+\index{norm@{norm}!dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}}
+\subsubsection{\texorpdfstring{norm()}{norm()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+sersic\+\_\+model.\+norm (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 145 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+145     \textcolor{keyword}{def }norm(self):
+146         n = self.params.n
+147         \textcolor{keywordflow}{return} pi*self.params.re\_pc**2 *power(self.b(n),-2*n) * gamma(2*n+1)
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/de9/classdsph__model_1_1sersic__model_a9af6c3cabf132205c55129bc28b9d867_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/de9/classdsph__model_1_1sersic__model_a9af6c3cabf132205c55129bc28b9d867_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1sersic__model_ab2173ac383d967b9b3ebbb71dde7ed8a}\label{classdsph__model_1_1sersic__model_ab2173ac383d967b9b3ebbb71dde7ed8a}} 
+\index{dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}!name@{name}}
+\index{name@{name}!dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string dsph\+\_\+model.\+sersic\+\_\+model.\+name = \char`\"{}Sersic \hyperlink{classdsph__model_1_1model}{model}\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 141 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{classdsph__model_1_1sersic__model_a19d71ba6a9b6df68453b7bbdfd8c8022}\label{classdsph__model_1_1sersic__model_a19d71ba6a9b6df68453b7bbdfd8c8022}} 
+\index{dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}!required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}}
+\index{required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}!dsph\+\_\+model\+::sersic\+\_\+model@{dsph\+\_\+model\+::sersic\+\_\+model}}
+\subsubsection{\texorpdfstring{required\+\_\+params\+\_\+name}{required\_params\_name}}
+{\footnotesize\ttfamily list dsph\+\_\+model.\+sersic\+\_\+model.\+required\+\_\+params\+\_\+name = \mbox{[}\textquotesingle{}re\+\_\+pc\textquotesingle{},\textquotesingle{}n\textquotesingle{}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 142 of file dsph\+\_\+model.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{dsph__model_8py}{dsph\+\_\+model.\+py}\end{DoxyCompactItemize}

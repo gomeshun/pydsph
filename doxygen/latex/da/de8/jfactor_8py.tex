@@ -1,0 +1,97 @@
+\hypertarget{jfactor_8py}{}\section{memfg/jfactor.py File Reference}
+\label{jfactor_8py}\index{memfg/jfactor.\+py@{memfg/jfactor.\+py}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacejfactor}{jfactor}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacejfactor_ae5aad7f2ac90b82740c027677d7f4ac7}{jfactor.\+Rroi\+\_\+pc} (dist)
+\item 
+def \hyperlink{namespacejfactor_aa60ca47daf4f993e2cc8bd268f7b206d}{jfactor.\+rho\+\_\+\+Msunpc3} (r\+\_\+pc, rhos\+\_\+\+Msunpc3, rs\+\_\+pc, a, b, g)
+\item 
+def \hyperlink{namespacejfactor_afb33d5b3499565b8b7c23e15f3615ec0}{jfactor.\+integrand\+\_\+err\+\_\+\+Jfactor} (r\+\_\+pc, rhos\+\_\+\+Msunpc3, rs\+\_\+pc, a, b, g, dist)
+\item 
+def \hyperlink{namespacejfactor_ad8b8ed7dec1d2c3b4432d37e53117f03}{jfactor.\+Jfactor\+\_\+err} (rhos\+\_\+\+Msunpc3, rs\+\_\+pc, a, b, g, dist, Rtrunc\+\_\+pc=2000)
+\item 
+def \hyperlink{namespacejfactor_a4d9eb98f6dca866cd6248ef6b1c308a5}{jfactor.\+Jfactor\+\_\+err\+\_\+dequad} (rhos\+\_\+\+Msunpc3, rs\+\_\+pc, a, b, g, dist, Rtrunc\+\_\+pc=2000, width=5e-\/3, p\+N=1000, m\+N=1000, show\+\_\+fig=\+True)
+\item 
+def \hyperlink{namespacejfactor_aeb50ca469052983461a3e8382cfb4f95}{jfactor.\+Jfactor\+\_\+v01} (rhos\+\_\+\+Msunpc3, rs\+\_\+pc, a, b, g, dist)
+\item 
+def \hyperlink{namespacejfactor_afd0f5558d89189557900a6a1503261b3}{jfactor.\+Jfactor\+\_\+v01\+\_\+truncated} (rhos\+\_\+\+Msunpc3, rs\+\_\+pc, a, b, g, dist, Rtrunc\+\_\+pc=2000)
+\item 
+def \hyperlink{namespacejfactor_aaa43ebb0d9314fc697123b204465286e}{jfactor.\+Jfactor\+\_\+v02} (rhos\+\_\+\+Msunpc3, rs\+\_\+pc, a, b, g, dist, Rtrunc\+\_\+pc=2000)
+\item 
+def \hyperlink{namespacejfactor_a3261c30e40781120e1cacf7721893cb7}{jfactor.\+Jfactor} (rhos\+\_\+\+Msunpc3, rs\+\_\+pc, a, b, g, dist, Rtrunc\+\_\+pc=2000, return\+\_\+relerr=False, width=5e-\/3, p\+N=1000, m\+N=1000, show\+\_\+fig=\+False)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{namespacejfactor_a2881505111ca34d6a84a5b09a5c19a86}{jfactor.\+kg\+\_\+eV} = 1./physical\+\_\+constants\mbox{[}\char`\"{}electron volt-\/kilogram relationship\char`\"{}\mbox{]}\mbox{[}0\mbox{]}
+\item 
+int \hyperlink{namespacejfactor_a3d86861d725265dc096b798369902d43}{jfactor.\+im\+\_\+eV} = 1./physical\+\_\+constants\mbox{[}\char`\"{}electron volt-\/inverse meter relationship\char`\"{}\mbox{]}\mbox{[}0\mbox{]}
+\item 
+float \hyperlink{namespacejfactor_a30f254edbd584a30535a1b98c2916563}{jfactor.\+solar\+\_\+mass\+\_\+kg} = 1.\+9884e30
+\item 
+tuple \hyperlink{namespacejfactor_a69776fb72a257bd354abf1104511a3c7}{jfactor.\+C0} = (solar\+\_\+mass\+\_\+kg$\ast$kg\+\_\+eV)$\ast$$\ast$2$\ast$((1./parsec)$\ast$im\+\_\+eV)$\ast$$\ast$5
+\item 
+tuple \hyperlink{namespacejfactor_a2c0c80a124f7a32f943f0b9b38f184d4}{jfactor.\+C1} = (1e9)$\ast$$\ast$2 $\ast$ (1e2$\ast$im\+\_\+e\+V)$\ast$$\ast$5
+\item 
+tuple \hyperlink{namespacejfactor_aaa482b21aae986b864a5adb04d928dab}{jfactor.\+C\+\_\+J} = C0/C1
+\item 
+\hyperlink{namespacejfactor_abfd9403bf30810505dc44d7af9746a12}{jfactor.\+Jfactor\+\_\+v02} = np.\+vectorize(Jfactor\+\_\+v02)
+\item 
+\hyperlink{namespacejfactor_a2f38906b89281fb8e6cdc4cbc9c8735e}{jfactor.\+argvs} = sys.\+argv
+\item 
+\hyperlink{namespacejfactor_a7ec02594672c6b2a0a519df5a7648ce2}{jfactor.\+argc} = len(argvs)
+\item 
+list \hyperlink{namespacejfactor_a32ed195f2e906262c560b25bbc440b00}{jfactor.\+log\+M\+Cparams\+\_\+filenames\+\_\+list} = \mbox{[}glob.\+glob(argv) for argv in argvs\mbox{[}1\+:\mbox{]}\mbox{]}
+\item 
+\hyperlink{namespacejfactor_a025ed272933b6b6f31f688649810e704}{jfactor.\+log\+M\+Cparams\+\_\+list} = np.\+array(\mbox{[}np.\+loadtxt(log\+M\+Cparams\+\_\+filename,delimiter=\textquotesingle{},\textquotesingle{},comments=\textquotesingle{}\#\textquotesingle{})\mbox{[}0\+:-\/1,\+:\mbox{]} for log\+M\+Cparams\+\_\+filenames in log\+M\+Cparams\+\_\+filenames\+\_\+list for log\+M\+Cparams\+\_\+filename in log\+M\+Cparams\+\_\+filenames\mbox{]})
+\item 
+\hyperlink{namespacejfactor_a1c0eda6de5a29ea1a33584eb69690477}{jfactor.\+log\+M\+Cparams} = np.\+concatenate(log\+M\+Cparams\+\_\+list, axis=0)\mbox{[}E\+R\+A\+S\+E\+\_\+\+S\+T\+E\+P\+S\+:,1\+:\mbox{]}
+\item 
+\hyperlink{namespacejfactor_a979d9034e576ba9891d6a8eb13f2a8b9}{jfactor.\+ploted\+\_\+step} = log\+M\+Cparams.\+shape\mbox{[}0\mbox{]}
+\item 
+\hyperlink{namespacejfactor_af2c2b0ba5a6685424721abec6152e28d}{jfactor.\+log10\+\_\+rhos\+\_\+\+Msunpc3}
+\item 
+\hyperlink{namespacejfactor_a3102b0936ba8da6d8f0bf7044cd1aa7c}{jfactor.\+log10\+\_\+rs\+\_\+pc}
+\item 
+\hyperlink{namespacejfactor_ab5ce4a1ef962b5f938f157d0abc69a20}{jfactor.\+a}
+\item 
+\hyperlink{namespacejfactor_a52f3e9e591dbe4f5d14f760a578cb15b}{jfactor.\+b}
+\item 
+\hyperlink{namespacejfactor_a1e07b351e264fceb00b01b4a591e45e5}{jfactor.\+g}
+\item 
+\hyperlink{namespacejfactor_aa9f6835eba853a5bb2b380ad7fb87010}{jfactor.\+rhos\+\_\+\+Msunpc3} = np.\+power(10,log10\+\_\+rhos\+\_\+\+Msunpc3)
+\item 
+\hyperlink{namespacejfactor_ae602db7ab45f472ad4007d04def859f7}{jfactor.\+rs\+\_\+pc} = np.\+power(10,log10\+\_\+rs\+\_\+pc)
+\item 
+def \hyperlink{namespacejfactor_adfab35ee4763d30c17fe3a8791394e44}{jfactor.\+Jfactor\+\_\+} = Jfactor\+\_\+v02(rhos\+\_\+\+Msunpc3,rs\+\_\+pc,a,b,g)
+\item 
+def \hyperlink{namespacejfactor_a4345d50706cf418a1957595314a7af18}{jfactor.\+num} = Jfactor\+\_\+.\+size
+\item 
+\hyperlink{namespacejfactor_aaf9c1c756ff45c03f48ccc922857360f}{jfactor.\+ind\+\_\+lo} = int(num$\ast$0.\+16)
+\item 
+\hyperlink{namespacejfactor_a449b6d5eec9600e32c2388268c367957}{jfactor.\+ind\+\_\+hi} = int(num$\ast$0.\+84)
+\item 
+\hyperlink{namespacejfactor_a9a89658d06c0c77e0c11e4372ef88f4f}{jfactor.\+log10\+Jfactor} = np.\+log10(Jfactor\+\_\+)
+\item 
+\hyperlink{namespacejfactor_a81a38976b26f5865c633d0d078ab7796}{jfactor.\+log10\+Jfactor\+\_\+sorted} = np.\+sort(log10\+Jfactor)
+\item 
+\hyperlink{namespacejfactor_a1e5820e27e0fea1ecb631861940d56c9}{jfactor.\+log10\+Jfacotr\+\_\+mean} = np.\+mean(log10\+Jfactor)
+\item 
+\hyperlink{namespacejfactor_a2d1ea785abc603943b2645a312197359}{jfactor.\+log10\+Jfacotr\+\_\+median} = np.\+median(log10\+Jfactor)
+\item 
+\hyperlink{namespacejfactor_a9f023e9540cdb0cd16e23b84817d50dd}{jfactor.\+log10\+Jgactor\+\_\+lo} = log10\+Jfactor\+\_\+sorted\mbox{[}ind\+\_\+lo\mbox{]}
+\item 
+\hyperlink{namespacejfactor_a17eab489ecdc2fcda0ff105b820f38a4}{jfactor.\+log10\+Jfactor\+\_\+up} = log10\+Jfactor\+\_\+sorted\mbox{[}ind\+\_\+hi\mbox{]}
+\item 
+\hyperlink{namespacejfactor_a543bb58e72396959da8abdb03baad5eb}{jfactor.\+fig} = plt.\+figure()
+\item 
+\hyperlink{namespacejfactor_a768b65ab10ab4bc6a8783ad4fd176789}{jfactor.\+ax} = fig.\+add\+\_\+subplot(111)
+\item 
+\hyperlink{namespacejfactor_a819ba1bdb19519796c682583f8b5971f}{jfactor.\+bins}
+\end{DoxyCompactItemize}

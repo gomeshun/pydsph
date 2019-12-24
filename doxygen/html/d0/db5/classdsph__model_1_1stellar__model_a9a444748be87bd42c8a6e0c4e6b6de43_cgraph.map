@@ -1,0 +1,12 @@
+<map id="dsph_model.stellar_model.density" name="dsph_model.stellar_model.density">
+<area shape="rect" id="node2" href="$d4/d46/classdsph__model_1_1plummer__model.html#af63912fdaa4af84219a46210ffd8ab92" title="dsph_model.plummer\l_model.density_2d" alt="" coords="231,5,377,47"/>
+<area shape="rect" id="node3" href="$d0/de9/classdsph__model_1_1sersic__model.html#afd0e257748b9a1b46c2f5443e3214523" title="dsph_model.sersic_model.density_2d" alt="" coords="184,71,424,98"/>
+<area shape="rect" id="node6" href="$df/d3d/classdsph__model_1_1exp2d__model.html#a41d0f3f53b8a31f9b64c71c733e7718e" title="dsph_model.exp2d_model.density_2d" alt="" coords="184,122,424,149"/>
+<area shape="rect" id="node7" href="$dc/d37/classdsph__model_1_1exp3d__model.html#ab510e347adc62697068885282a6f477a" title="dsph_model.exp3d_model.density_2d" alt="" coords="184,173,424,199"/>
+<area shape="rect" id="node8" href="$de/daa/classdsph__model_1_1uniform2d__model.html#aff33b4418158947e106a097c3a58a67e" title="dsph_model.uniform2d\l_model.density_2d" alt="" coords="227,224,381,265"/>
+<area shape="rect" id="node9" href="$d4/d46/classdsph__model_1_1plummer__model.html#ab60395efc8859c48ca5643e54f7e65be" title="dsph_model.plummer\l_model.density_3d" alt="" coords="231,289,377,331"/>
+<area shape="rect" id="node10" href="$df/d3d/classdsph__model_1_1exp2d__model.html#a6736a23153473de1a3cba39c569f0aab" title="dsph_model.exp2d_model.density_3d" alt="" coords="184,355,424,382"/>
+<area shape="rect" id="node11" href="$dc/d37/classdsph__model_1_1exp3d__model.html#ae31f24dee429dda1409429bf62fea05d" title="dsph_model.exp3d_model.density_3d" alt="" coords="184,406,424,433"/>
+<area shape="rect" id="node4" href="$d0/de9/classdsph__model_1_1sersic__model.html#a13e1833567fab6c27dfc49cb80eab9a3" title="dsph_model.sersic_model.b" alt="" coords="727,71,911,98"/>
+<area shape="rect" id="node5" href="$d0/de9/classdsph__model_1_1sersic__model.html#a9af6c3cabf132205c55129bc28b9d867" title="dsph_model.sersic_model.norm" alt="" coords="472,97,679,123"/>
+</map>

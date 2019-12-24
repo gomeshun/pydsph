@@ -1,0 +1,288 @@
+\hypertarget{classdsph__model_1_1model}{}\section{dsph\+\_\+model.\+model Class Reference}
+\label{classdsph__model_1_1model}\index{dsph\+\_\+model.\+model@{dsph\+\_\+model.\+model}}
+
+
+Inheritance diagram for dsph\+\_\+model.\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d46/classdsph__model_1_1model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for dsph\+\_\+model.\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{d9/d48/classdsph__model_1_1model__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdsph__model_1_1model_a09edf285220369ef40d5f8d9dd352059}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, show\+\_\+init=False, submodels\+\_\+dict=\{\}, \hyperlink{classdsph__model_1_1model_a6065e2aaacf2408cb5e5c0560bd852d6}{params})
+\item 
+def \hyperlink{classdsph__model_1_1model_a5445148b72ecd03858f543cb7c9c2c6f}{\+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+def \hyperlink{classdsph__model_1_1model_a44b8bf302a0786eb9a492a904213f977}{show\+\_\+params} (self, models=\textquotesingle{}all\textquotesingle{})
+\item 
+def \hyperlink{classdsph__model_1_1model_a399541f174c45f4f640f7fcbeed99e00}{show\+\_\+required\+\_\+params\+\_\+name} (self, models=\textquotesingle{}all\textquotesingle{})
+\item 
+def \hyperlink{classdsph__model_1_1model_a9826d4256eb05869703fb1a989503ecc}{is\+\_\+required\+\_\+params\+\_\+name} (self, params\+\_\+name\+\_\+candidates)
+\item 
+def \hyperlink{classdsph__model_1_1model_a80a9ec2a3ea7ead926e609f6e3d316f0}{update} (self, new\+\_\+params\+\_\+dict=None, target=\textquotesingle{}all\textquotesingle{}, kwargs)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classdsph__model_1_1model_a6065e2aaacf2408cb5e5c0560bd852d6}{params}
+\item 
+\hyperlink{classdsph__model_1_1model_a29f4fc5b8abf614776cfda3b6f72911f}{required\+\_\+params\+\_\+name}
+\item 
+\hyperlink{classdsph__model_1_1model_ab75d0b914dcaeb85599e434ee7ea22dc}{submodels}
+\item 
+\hyperlink{classdsph__model_1_1model_aa8a40f5b5693b44327acbcce9ac02324}{required\+\_\+models}
+\item 
+\hyperlink{classdsph__model_1_1model_ab619deb7b25e9fe63f8d542a04f14e53}{name}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}params, required_prams_name is undefined; must be defined in child class
+\end{DoxyVerb}
+ 
+
+Definition at line 20 of file dsph\+\_\+model.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1model_a09edf285220369ef40d5f8d9dd352059}\label{classdsph__model_1_1model_a09edf285220369ef40d5f8d9dd352059}} 
+\index{dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+model.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{show\+\_\+init = {\ttfamily False},  }\item[{}]{submodels\+\_\+dict = {\ttfamily \{\}},  }\item[{}]{params }\end{DoxyParamCaption})}
+
+
+
+Definition at line 25 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+25     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_a0ebbb93e5c948bc426658cbdc92bfd12}{\_\_init\_\_}(self,show\_init=False,submodels\_dict=\{\},**params):
+26         self.params = pd.Series(params)
+27         self.required\_params\_name = list(self.required\_params\_name)
+28         self.submodels = submodels\_dict
+29         self.required\_models = \{\}
+30         \textcolor{keywordflow}{if} \textcolor{stringliteral}{'submodels'} \textcolor{keywordflow}{in} self.params.index:
+31             \textcolor{keywordflow}{raise} TypeError(\textcolor{stringliteral}{'submodels -> submodels\_dict?'})
+32         \textcolor{keywordflow}{if} set(self.params.index) != set(self.required\_params\_name):
+33             \textcolor{keywordflow}{raise} TypeError(self.name+\textcolor{stringliteral}{' has the paramsters: '}+str(self.required\_params\_name)+\textcolor{stringliteral}{" but in put
+       is "}+str(self.params.index))
+34         \textcolor{keywordflow}{for} required\_model \textcolor{keywordflow}{in} self.required\_models:
+35             isinstance\_ =  [isinstance(model,required\_model) \textcolor{keywordflow}{for} model \textcolor{keywordflow}{in} self.submodels.values]
+36             \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} any(isinstance\_):
+37                 \textcolor{keywordflow}{raise} TypeError(\textcolor{stringliteral}{"no "}+str(required\_model))
+38             
+39         \textcolor{keywordflow}{if} self.submodels != \{\}:
+40             self.name = \textcolor{stringliteral}{': '} + \textcolor{stringliteral}{' and '}.join((model.name \textcolor{keywordflow}{for} model \textcolor{keywordflow}{in} self.submodels.values()))
+41         \textcolor{keywordflow}{if} show\_init:
+42             print(\textcolor{stringliteral}{"initialized:"})
+43             print(self.show\_params(\textcolor{stringliteral}{"all"}))
+44 
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1model_a5445148b72ecd03858f543cb7c9c2c6f}\label{classdsph__model_1_1model_a5445148b72ecd03858f543cb7c9c2c6f}} 
+\index{dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}!\+\_\+\+\_\+repr\+\_\+\+\_\+@{\+\_\+\+\_\+repr\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+repr\+\_\+\+\_\+@{\+\_\+\+\_\+repr\+\_\+\+\_\+}!dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+repr\+\_\+\+\_\+()}{\_\_repr\_\_()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+model.\+\_\+\+\_\+repr\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 45 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+45     \textcolor{keyword}{def }\_\_repr\_\_(self):
+46         ret = self.name + \textcolor{stringliteral}{":\(\backslash\)n"} + self.show\_params().\_\_repr\_\_()
+47         \textcolor{comment}{#if len(self.submodels) > 0:}
+48         \textcolor{comment}{#    ret += '\(\backslash\)n'}
+49         \textcolor{comment}{#    for model in self.submodels.values():}
+50         \textcolor{comment}{#        ret += model.\_\_repr\_\_() + '\(\backslash\)n'}
+51         \textcolor{keywordflow}{return} ret
+52 
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{d3/da3/classdsph__model_1_1model_a5445148b72ecd03858f543cb7c9c2c6f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1model_a9826d4256eb05869703fb1a989503ecc}\label{classdsph__model_1_1model_a9826d4256eb05869703fb1a989503ecc}} 
+\index{dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}!is\+\_\+required\+\_\+params\+\_\+name@{is\+\_\+required\+\_\+params\+\_\+name}}
+\index{is\+\_\+required\+\_\+params\+\_\+name@{is\+\_\+required\+\_\+params\+\_\+name}!dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}}
+\subsubsection{\texorpdfstring{is\+\_\+required\+\_\+params\+\_\+name()}{is\_required\_params\_name()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+model.\+is\+\_\+required\+\_\+params\+\_\+name (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{params\+\_\+name\+\_\+candidates }\end{DoxyParamCaption})}
+
+
+
+Definition at line 65 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+65     \textcolor{keyword}{def }is\_required\_params\_name(self,params\_name\_candidates):
+66         \textcolor{keywordflow}{return} [ (p \textcolor{keywordflow}{in} self.required\_params\_name) \textcolor{keywordflow}{for} p \textcolor{keywordflow}{in} params\_name\_candidates ]
+67 
+\end{DoxyCode}
+\mbox{\Hypertarget{classdsph__model_1_1model_a44b8bf302a0786eb9a492a904213f977}\label{classdsph__model_1_1model_a44b8bf302a0786eb9a492a904213f977}} 
+\index{dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}!show\+\_\+params@{show\+\_\+params}}
+\index{show\+\_\+params@{show\+\_\+params}!dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}}
+\subsubsection{\texorpdfstring{show\+\_\+params()}{show\_params()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+model.\+show\+\_\+params (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{models = {\ttfamily \textquotesingle{}all\textquotesingle{}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 53 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+53     \textcolor{keyword}{def }show\_params(self,models='all'):
+54         ret = self.params
+55         \textcolor{keywordflow}{if} self.submodels != \{\} \textcolor{keywordflow}{and} models==\textcolor{stringliteral}{'all'}:
+56             ret = pd.concat([model.show\_params(\textcolor{stringliteral}{'all'}) \textcolor{keywordflow}{for} model \textcolor{keywordflow}{in} self.submodels.values()])
+57         \textcolor{keywordflow}{return} ret
+58 
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{d3/da3/classdsph__model_1_1model_a44b8bf302a0786eb9a492a904213f977_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1model_a399541f174c45f4f640f7fcbeed99e00}\label{classdsph__model_1_1model_a399541f174c45f4f640f7fcbeed99e00}} 
+\index{dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}!show\+\_\+required\+\_\+params\+\_\+name@{show\+\_\+required\+\_\+params\+\_\+name}}
+\index{show\+\_\+required\+\_\+params\+\_\+name@{show\+\_\+required\+\_\+params\+\_\+name}!dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}}
+\subsubsection{\texorpdfstring{show\+\_\+required\+\_\+params\+\_\+name()}{show\_required\_params\_name()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+model.\+show\+\_\+required\+\_\+params\+\_\+name (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{models = {\ttfamily \textquotesingle{}all\textquotesingle{}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 59 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+59     \textcolor{keyword}{def }show\_required\_params\_name(self,models='all'):
+60         ret = self.required\_params\_name[:] \textcolor{comment}{# need copy because we must keep self.required\_params\_name}
+61         \textcolor{keywordflow}{if} self.submodels != \{\} \textcolor{keywordflow}{and} models==\textcolor{stringliteral}{'all'}:
+62             [ ret.extend(model.show\_required\_params\_name(\textcolor{stringliteral}{'all'})) \textcolor{keywordflow}{for} model \textcolor{keywordflow}{in} self.submodels.values() ]
+63         \textcolor{keywordflow}{return} ret
+64 
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/da3/classdsph__model_1_1model_a399541f174c45f4f640f7fcbeed99e00_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1model_a80a9ec2a3ea7ead926e609f6e3d316f0}\label{classdsph__model_1_1model_a80a9ec2a3ea7ead926e609f6e3d316f0}} 
+\index{dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}!update@{update}}
+\index{update@{update}!dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+model.\+update (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{new\+\_\+params\+\_\+dict = {\ttfamily None},  }\item[{}]{target = {\ttfamily \textquotesingle{}all\textquotesingle{}},  }\item[{}]{kwargs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 68 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+68     \textcolor{keyword}{def }update(self,new\_params\_dict=None,target='all',**kwargs):
+69         new\_params = pd.Series(new\_params\_dict) \textcolor{keywordflow}{if} type(new\_params\_dict)==dict \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}
+70         \textcolor{keywordflow}{if} new\_params \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}:
+71             new\_params = pd.Series(kwargs)
+72         \textcolor{comment}{#print(np.isin(new\_params.index, self.show\_required\_params\_name('all')+['this','all']))}
+73         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} np.any(np.isin(new\_params.index, self.show\_required\_params\_name(\textcolor{stringliteral}{'all'})+[\textcolor{stringliteral}{'this'},\textcolor{stringliteral}{'all'}])):
+74             \textcolor{keywordflow}{raise} TypeError(\textcolor{stringliteral}{"new params has no required parameters.\(\backslash\)nrequired parameters:\{\}"}.format(self.
+      required\_params\_name))
+75         \textcolor{keywordflow}{if} target \textcolor{keywordflow}{in} (\textcolor{stringliteral}{'this'},\textcolor{stringliteral}{'all'}):
+76             self.params.update(new\_params)
+77             [model.params.update(new\_params) \textcolor{keywordflow}{for} model \textcolor{keywordflow}{in} self.submodels.values()] \textcolor{keywordflow}{if} target \textcolor{keywordflow}{in} (\textcolor{stringliteral}{'all'},) \textcolor{keywordflow}{
+      else} \textcolor{keywordtype}{None}
+78         \textcolor{keywordflow}{else}:
+79             [(model.params.update(new\_params) \textcolor{keywordflow}{if} target==model.name \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{for} model \textcolor{keywordflow}{in} self.submodels.
+      values()]
+80 
+81 
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/da3/classdsph__model_1_1model_a80a9ec2a3ea7ead926e609f6e3d316f0_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1model_ab619deb7b25e9fe63f8d542a04f14e53}\label{classdsph__model_1_1model_ab619deb7b25e9fe63f8d542a04f14e53}} 
+\index{dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}!name@{name}}
+\index{name@{name}!dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily dsph\+\_\+model.\+model.\+name}
+
+
+
+Definition at line 40 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{classdsph__model_1_1model_a6065e2aaacf2408cb5e5c0560bd852d6}\label{classdsph__model_1_1model_a6065e2aaacf2408cb5e5c0560bd852d6}} 
+\index{dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}!params@{params}}
+\index{params@{params}!dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}}
+\subsubsection{\texorpdfstring{params}{params}}
+{\footnotesize\ttfamily dsph\+\_\+model.\+model.\+params}
+
+
+
+Definition at line 26 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{classdsph__model_1_1model_aa8a40f5b5693b44327acbcce9ac02324}\label{classdsph__model_1_1model_aa8a40f5b5693b44327acbcce9ac02324}} 
+\index{dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}!required\+\_\+models@{required\+\_\+models}}
+\index{required\+\_\+models@{required\+\_\+models}!dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}}
+\subsubsection{\texorpdfstring{required\+\_\+models}{required\_models}}
+{\footnotesize\ttfamily dsph\+\_\+model.\+model.\+required\+\_\+models}
+
+
+
+Definition at line 29 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{classdsph__model_1_1model_a29f4fc5b8abf614776cfda3b6f72911f}\label{classdsph__model_1_1model_a29f4fc5b8abf614776cfda3b6f72911f}} 
+\index{dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}!required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}}
+\index{required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}!dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}}
+\subsubsection{\texorpdfstring{required\+\_\+params\+\_\+name}{required\_params\_name}}
+{\footnotesize\ttfamily dsph\+\_\+model.\+model.\+required\+\_\+params\+\_\+name}
+
+
+
+Definition at line 27 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{classdsph__model_1_1model_ab75d0b914dcaeb85599e434ee7ea22dc}\label{classdsph__model_1_1model_ab75d0b914dcaeb85599e434ee7ea22dc}} 
+\index{dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}!submodels@{submodels}}
+\index{submodels@{submodels}!dsph\+\_\+model\+::model@{dsph\+\_\+model\+::model}}
+\subsubsection{\texorpdfstring{submodels}{submodels}}
+{\footnotesize\ttfamily dsph\+\_\+model.\+model.\+submodels}
+
+
+
+Definition at line 28 of file dsph\+\_\+model.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{dsph__model_8py}{dsph\+\_\+model.\+py}\end{DoxyCompactItemize}

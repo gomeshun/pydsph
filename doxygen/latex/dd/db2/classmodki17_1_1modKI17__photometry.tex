@@ -1,0 +1,529 @@
+\hypertarget{classmodki17_1_1modKI17__photometry}{}\section{modki17.\+mod\+K\+I17\+\_\+photometry Class Reference}
+\label{classmodki17_1_1modKI17__photometry}\index{modki17.\+mod\+K\+I17\+\_\+photometry@{modki17.\+mod\+K\+I17\+\_\+photometry}}
+
+
+Collaboration diagram for modki17.\+mod\+K\+I17\+\_\+photometry\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{d3/d59/classmodki17_1_1modKI17__photometry__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmodki17_1_1modKI17__photometry_ac6b74b27fd17bb8e7353d00bfd007ec1}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, data, \hyperlink{classmodki17_1_1modKI17__photometry_a5af79ede8fed3e9d7b3ba809c84a06e1}{center0}, model=\char`\"{}Plummer\char`\"{})
+\item 
+def \hyperlink{classmodki17_1_1modKI17__photometry_a7038c9a4666ac8568838f51f9a4d9c21}{beta} (self)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__photometry_aebe66d2f7557c9143c8d636468400837}{Rs} (self, dra0, dde0)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__photometry_a8161b90b7f4ae01225328c840512f1f5}{\+\_\+\+\_\+call\+\_\+\+\_\+} (self, prms)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__photometry_a9686c3f863cf13041edca94fbf62a157}{lnpost} (self, prms)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__photometry_a1c7a3d4028e066698b0b379ba46f61d6}{loglikeli} (self, re, odds, dra0, dde0)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__photometry_a857286f3245038e653c739b35c4988e8}{lnprior} (self, re, odds, dra0, dde0)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__photometry_a2d4b3707792c8c224068ad6715d42545}{logfs} (self, re, odds, dra0, dde0, \hyperlink{classmodki17_1_1modKI17__photometry_aebe66d2f7557c9143c8d636468400837}{Rs}=None)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__photometry_ae1dc87c123abbd71228d68b964469937}{mem\+\_\+cdf} (R, dra0, dde0)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__photometry_ad1288aa45a1823113ff486133a5f7fa9}{lnposterior\+\_\+general} (self, params)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmodki17_1_1modKI17__photometry_a78af1109146376d0e7e3310d2e49e957}{obs\+\_\+data}
+\item 
+\hyperlink{classmodki17_1_1modKI17__photometry_a5af79ede8fed3e9d7b3ba809c84a06e1}{center0}
+\item 
+\hyperlink{classmodki17_1_1modKI17__photometry_ad5606769c34da346fe8bc9d8d79ed0e5}{R\+\_\+\+RoI}
+\item 
+\hyperlink{classmodki17_1_1modKI17__photometry_a335237630ae300e82ccf6fd17be75070}{mem}
+\item 
+\hyperlink{classmodki17_1_1modKI17__photometry_ab5d7bda77297a71c86ac83b9159167bf}{fg}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classmodki17_1_1modKI17__photometry_af64d278fc0d7f4161dd13abf005ce8c8}{\+\_\+separation\+\_\+pc} (self, sc, dra0, dde0)
+\item 
+def \hyperlink{classmodki17_1_1modKI17__photometry_a8e4f0338eabca2c723b6cf4148dec7a7}{\+\_\+\+\_\+loglikelis} (self, re, odds, dra0, dde0, \hyperlink{classmodki17_1_1modKI17__photometry_aebe66d2f7557c9143c8d636468400837}{Rs}=None)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 624 of file modki17.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_ac6b74b27fd17bb8e7353d00bfd007ec1}\label{classmodki17_1_1modKI17__photometry_ac6b74b27fd17bb8e7353d00bfd007ec1}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+photometry.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{data,  }\item[{}]{center0,  }\item[{}]{model = {\ttfamily \char`\"{}Plummer\char`\"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}modKI17 likelihood for the photometric observation.
+
+Parameters:
+    data       : SkyCoord of observed stars
+    center0    : SkyCoord of default center position
+    # area_fname : filename of random sampled area
+    # area_config_fname: filename of random sampled area
+    # n_row      : number of the row you want to use in "area_fname".
+\end{DoxyVerb}
+ 
+
+Definition at line 628 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+628                  model=\textcolor{stringliteral}{"Plummer"}):
+629         \textcolor{stringliteral}{'''}
+630 \textcolor{stringliteral}{        modKI17 likelihood for the photometric observation.}
+631 \textcolor{stringliteral}{        }
+632 \textcolor{stringliteral}{        Parameters:}
+633 \textcolor{stringliteral}{            data       : SkyCoord of observed stars}
+634 \textcolor{stringliteral}{            center0    : SkyCoord of default center position}
+635 \textcolor{stringliteral}{            # area\_fname : filename of random sampled area}
+636 \textcolor{stringliteral}{            # area\_config\_fname: filename of random sampled area}
+637 \textcolor{stringliteral}{            # n\_row      : number of the row you want to use in "area\_fname".}
+638 \textcolor{stringliteral}{        '''}
+639         self.obs\_data = data
+640         self.center0 = center0
+641         self.R\_RoI = self.center0.distance.pc * sin(center0.separation(data).rad.max())
+642         
+643         \textcolor{keywordflow}{if} model==\textcolor{stringliteral}{"Plummer"}:
+644             self.mem = plummer\_model(re\_pc=200)
+645         \textcolor{keywordflow}{elif} model==\textcolor{stringliteral}{"exp2d"}:
+646             self.mem = exp2d\_model(re\_pc=200)
+647         \textcolor{keywordflow}{else}: 
+648             \textcolor{keywordflow}{raise} TypeError(\textcolor{stringliteral}{"Undefined stellar model!"})
+649         self.fg = uniform2d\_model(Rmax\_pc=self.R\_RoI)
+650         
+651         \textcolor{comment}{#df\_sample = pd.read\_csv(area\_fname)[:nrow]}
+652         \textcolor{comment}{#self.sc\_sample = SkyCoord(ra=df\_sample.ra*u.deg,dec=df\_sample.dec*u.deg)}
+653         \textcolor{comment}{#self.df\_sample\_config  = pd.read\_csv(area\_config\_fname,squeeze=True,index\_col=0,header=None)}
+654         \textcolor{comment}{# For the general case, R\_RoI is ambiguous}
+655     
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_a8161b90b7f4ae01225328c840512f1f5}\label{classmodki17_1_1modKI17__photometry_a8161b90b7f4ae01225328c840512f1f5}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!\+\_\+\+\_\+call\+\_\+\+\_\+@{\+\_\+\+\_\+call\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+call\+\_\+\+\_\+@{\+\_\+\+\_\+call\+\_\+\+\_\+}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+call\+\_\+\+\_\+()}{\_\_call\_\_()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+photometry.\+\_\+\+\_\+call\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{prms }\end{DoxyParamCaption})}
+
+
+
+Definition at line 667 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+667     \textcolor{keyword}{def }\_\_call\_\_(self,prms):
+668         \textcolor{keywordflow}{if} self.lnprior(*prms) == -inf:
+669             \textcolor{keywordflow}{return} -inf
+670         \textcolor{keywordflow}{else}:
+671             \textcolor{keywordflow}{return} np.sum(self.loglikelis(*prms))
+672         
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_a8161b90b7f4ae01225328c840512f1f5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_a8161b90b7f4ae01225328c840512f1f5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_a8e4f0338eabca2c723b6cf4148dec7a7}\label{classmodki17_1_1modKI17__photometry_a8e4f0338eabca2c723b6cf4148dec7a7}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!\+\_\+\+\_\+loglikelis@{\+\_\+\+\_\+loglikelis}}
+\index{\+\_\+\+\_\+loglikelis@{\+\_\+\+\_\+loglikelis}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+loglikelis()}{\_\_loglikelis()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+photometry.\+\_\+\+\_\+loglikelis (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{re,  }\item[{}]{odds,  }\item[{}]{dra0,  }\item[{}]{dde0,  }\item[{}]{Rs = {\ttfamily None} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 733 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+733     \textcolor{keyword}{def }\_\_loglikelis(self,re,odds,dra0,dde0,Rs=None): \textcolor{comment}{# old fashion. do not use!}
+734         mem = self.mem
+735         mem.update(\{\textcolor{stringliteral}{"re\_pc"}:re\})
+736         ref\_R = self.mem.half\_light\_radius() \textcolor{comment}{# 1.67834699001666*re for sersic model}
+737         
+738         \textcolor{comment}{# C1 and C0 are the normalization factor of the member and foreground distribution.}
+739         \textcolor{comment}{# For general area case, which is given by}
+740         \textcolor{comment}{# \(\backslash\)int\_Omega d\(\backslash\)Omega ~ Omega * (mean of p(R\_i), where R\_i denotes each samplinig points) }
+741         Omega = self.df\_sample\_config.loc[\textcolor{stringliteral}{"area"}]
+742         Rs\_rand = self.\_Rs(sc=self.sc\_sample,dra0=dra0,dde0=dde0)
+743         C0 = 1 / Omega / self.center0.distance.pc**2
+744         C1\_0 = 1 / np.mean(mem.density\_2d(Rs\_rand)) \textcolor{comment}{# C1/C0}
+745         \textcolor{comment}{# C1 = 1 / Omega / self.center0.distance.pc**2 / (np.mean(mem.density\_2d(\_Rs)))}
+746         C1 = C1\_0 * C0
+747         
+750         s = 1/(1+ 1/odds * C1\_0*mem.density\_2d(ref\_R))
+751         \textcolor{comment}{#print("mem.density2d:",mem.density\_2d(ref\_R))}
+752         \textcolor{comment}{#print("mem.mean\_density2d:",mem.mean\_density\_2d(self.R\_RoI))}
+753         
+754         \_Rs = (self.Rs(dra0,dde0) \textcolor{keywordflow}{if} Rs==\textcolor{keywordtype}{None} \textcolor{keywordflow}{else} Rs)
+755         ret = log(C0) + log(s*C1\_0*mem.density\_2d(\_Rs)+(1-s))
+756 
+757         \textcolor{keywordflow}{return} ret
+758 
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_a8e4f0338eabca2c723b6cf4148dec7a7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_af64d278fc0d7f4161dd13abf005ce8c8}\label{classmodki17_1_1modKI17__photometry_af64d278fc0d7f4161dd13abf005ce8c8}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!\+\_\+separation\+\_\+pc@{\+\_\+separation\+\_\+pc}}
+\index{\+\_\+separation\+\_\+pc@{\+\_\+separation\+\_\+pc}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{\+\_\+separation\+\_\+pc()}{\_separation\_pc()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+photometry.\+\_\+separation\+\_\+pc (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sc,  }\item[{}]{dra0,  }\item[{}]{dde0 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 660 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+660     \textcolor{keyword}{def }\_separation\_pc(self,sc,dra0,dde0):
+661         center = SkyCoord(ra=self.center0.ra+dra0*u.deg,dec=self.center0.dec+dde0*u.deg,distance=self.
+      center0.distance)
+662         \textcolor{keywordflow}{return} self.center0.distance.pc*np.sin(sc.separation(center).rad)
+663     
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_af64d278fc0d7f4161dd13abf005ce8c8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_a7038c9a4666ac8568838f51f9a4d9c21}\label{classmodki17_1_1modKI17__photometry_a7038c9a4666ac8568838f51f9a4d9c21}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!beta@{beta}}
+\index{beta@{beta}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{beta()}{beta()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+photometry.\+beta (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 657 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+657     \textcolor{keyword}{def }beta(self):
+658         \textcolor{keywordflow}{return} 1/log(len(self.obs\_data))
+659         
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_a7038c9a4666ac8568838f51f9a4d9c21_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_a9686c3f863cf13041edca94fbf62a157}\label{classmodki17_1_1modKI17__photometry_a9686c3f863cf13041edca94fbf62a157}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!lnpost@{lnpost}}
+\index{lnpost@{lnpost}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{lnpost()}{lnpost()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+photometry.\+lnpost (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{prms }\end{DoxyParamCaption})}
+
+
+
+Definition at line 673 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+673     \textcolor{keyword}{def }lnpost(self,prms):
+674         \textcolor{keywordflow}{if} self.lnprior(*prms) == -inf:
+675             \textcolor{keywordflow}{return} -inf
+676         \textcolor{keywordflow}{else}:
+677             \textcolor{keywordflow}{return} self.loglikeli(*prms)
+678     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_a9686c3f863cf13041edca94fbf62a157_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_ad1288aa45a1823113ff486133a5f7fa9}\label{classmodki17_1_1modKI17__photometry_ad1288aa45a1823113ff486133a5f7fa9}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!lnposterior\+\_\+general@{lnposterior\+\_\+general}}
+\index{lnposterior\+\_\+general@{lnposterior\+\_\+general}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{lnposterior\+\_\+general()}{lnposterior\_general()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+photometry.\+lnposterior\+\_\+general (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{params }\end{DoxyParamCaption})}
+
+
+
+Definition at line 759 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+759     \textcolor{keyword}{def }lnposterior\_general(self,params):
+760         lnp = self.lnprior(*params)
+761         \textcolor{keywordflow}{if} lnp > -inf:
+762             lnl = self.loglikeli(*params) 
+763             \textcolor{comment}{#print((self.beta*lnl+lnp)/lnl)}
+764             \textcolor{keywordflow}{return} (self.beta*lnl+lnp, lnl)
+765         \textcolor{keywordflow}{else}:
+766             \textcolor{keywordflow}{return} (-inf, nan)
+767 \end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_ad1288aa45a1823113ff486133a5f7fa9_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_a857286f3245038e653c739b35c4988e8}\label{classmodki17_1_1modKI17__photometry_a857286f3245038e653c739b35c4988e8}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!lnprior@{lnprior}}
+\index{lnprior@{lnprior}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{lnprior()}{lnprior()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+photometry.\+lnprior (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{re,  }\item[{}]{odds,  }\item[{}]{dra0,  }\item[{}]{dde0 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 684 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+684     \textcolor{keyword}{def }lnprior(self,re,odds,dra0,dde0):
+685         \textcolor{keywordflow}{if} re<0 \textcolor{keywordflow}{or} odds<0 \textcolor{keywordflow}{or} np.abs(dra0)>1 \textcolor{keywordflow}{or} np.abs(dde0)>1:
+686             \textcolor{keywordflow}{return} -inf
+687         \textcolor{keywordflow}{else}:
+688             \textcolor{keywordflow}{return} 0
+689     
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_a857286f3245038e653c739b35c4988e8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_a2d4b3707792c8c224068ad6715d42545}\label{classmodki17_1_1modKI17__photometry_a2d4b3707792c8c224068ad6715d42545}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!logfs@{logfs}}
+\index{logfs@{logfs}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{logfs()}{logfs()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+photometry.\+logfs (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{re,  }\item[{}]{odds,  }\item[{}]{dra0,  }\item[{}]{dde0,  }\item[{}]{Rs = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return f_mem and f_fg
+\end{DoxyVerb}
+ 
+
+Definition at line 690 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+690     \textcolor{keyword}{def }logfs(self,re,odds,dra0,dde0,Rs=None):
+691         \textcolor{stringliteral}{'''}
+692 \textcolor{stringliteral}{        Return f\_mem and f\_fg}
+693 \textcolor{stringliteral}{        '''}
+694         mem,fg = self.mem,self.fg
+695         mem.update(\{\textcolor{stringliteral}{"re\_pc"}:re\})
+696         ref\_R = self.mem.half\_light\_radius() \textcolor{comment}{# 1.67834699001666*re for sersic model}
+697         
+698         \textcolor{comment}{# C1 and C0 are the normalization factor of the member and foreground distribution.}
+699         \textcolor{comment}{# For general area case, which is given by}
+700         \textcolor{comment}{# \(\backslash\)int\_Omega d\(\backslash\)Omega ~ Omega * (mean of p(R\_i), where R\_i denotes each samplinig points) }
+701         \textcolor{comment}{#C0 = mem.density\_2d\_trunc()}
+702         \textcolor{comment}{#logC0 = log(C0)}
+703         \textcolor{comment}{#C1\_0 = 1 / np.mean(mem.density\_2d(Rs\_rand)) # C1/C0}
+704         \textcolor{comment}{#logC1\_0 = -(logsumexp(mem.logdensity\_2d(Rs\_rand)) - log(len(Rs\_rand)))}
+705         \textcolor{comment}{#C1\_0 = exp(logC1\_0)}
+706         \textcolor{comment}{#C1\_0 = 1 / self.mem.cdf\_R(self.R\_RoI) / Omega}
+707         \textcolor{comment}{# C1 = 1 / Omega / self.center0.distance.pc**2 / (np.mean(mem.density\_2d(\_Rs)))}
+708         \textcolor{comment}{#C1 = C1\_0 * C0}
+709         \textcolor{comment}{#C1 = 1 / self.mem.cdf\_R(self.R\_RoI)}
+710         \textcolor{comment}{#logC1 = logC1\_0 + logC0}
+711         \textcolor{comment}{#s = C0/(sigmafg*mem.density\_2d(self.Rs)*C1 + C0)}
+712         \textcolor{comment}{#s = C0/(sigmafg*mem.density\_2d(self.Rs)*C1)}
+713         \textcolor{comment}{#s = 1/(1+ 1/odds * exp(logC1\_0+mem.logdensity\_2d(ref\_R)))}
+714         s = 1/(1+ 1/odds * mem.density\_2d\_truncated(ref\_R,self.R\_RoI)/fg.density\_2d\_truncated(ref\_R,self.
+      R\_RoI))
+715         \textcolor{comment}{#print("mem.density2d:",mem.density\_2d(ref\_R))}
+716         \textcolor{comment}{#print("mem.mean\_density2d:",mem.mean\_density\_2d(self.R\_RoI))}
+717         
+718         \_Rs = (self.Rs(dra0,dde0) \textcolor{keywordflow}{if} Rs \textcolor{keywordflow}{is} \textcolor{keywordtype}{None} \textcolor{keywordflow}{else} Rs)
+719         \textcolor{comment}{#ret = log(C0) + log(s*C1\_0*mem.density\_2d(Rs)+(1-s))}
+720         logfmem = log(mem.density\_2d\_truncated(\_Rs,self.R\_RoI))\textcolor{comment}{#logC1+mem.logdensity\_2d(\_Rs)}
+721         logffg  = log( fg.density\_2d\_truncated(\_Rs,self.R\_RoI))\textcolor{comment}{#logC0*np.ones(shape=\_Rs.shape)}
+722         logfs = array([logfmem,logffg])
+723         ss = array([s,(1-s)])
+724         \textcolor{comment}{#print(logfmem.shape,logffg.shape,logfs.shape)}
+725         logftot = logsumexp(a=np.transpose(logfs),b=ss,axis=1) \textcolor{comment}{# Note: (stars,components)*(components,),
+       summed along with components axis }
+726         
+727         \textcolor{keywordflow}{return} (logfmem,logffg,logftot,s)
+728     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_a2d4b3707792c8c224068ad6715d42545_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_a2d4b3707792c8c224068ad6715d42545_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_a1c7a3d4028e066698b0b379ba46f61d6}\label{classmodki17_1_1modKI17__photometry_a1c7a3d4028e066698b0b379ba46f61d6}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!loglikeli@{loglikeli}}
+\index{loglikeli@{loglikeli}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{loglikeli()}{loglikeli()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+photometry.\+loglikeli (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{re,  }\item[{}]{odds,  }\item[{}]{dra0,  }\item[{}]{dde0 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 679 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+679     \textcolor{keyword}{def }loglikeli(self,re,odds,dra0,dde0):
+680         \textcolor{comment}{#return np.sum(self.loglikelis(re,odds,dra0,dde0))}
+681         logfmem,logffg,logftot,s = self.logfs(re,odds,dra0,dde0)
+682         \textcolor{keywordflow}{return} np.sum(logftot)
+683     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_a1c7a3d4028e066698b0b379ba46f61d6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_a1c7a3d4028e066698b0b379ba46f61d6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_ae1dc87c123abbd71228d68b964469937}\label{classmodki17_1_1modKI17__photometry_ae1dc87c123abbd71228d68b964469937}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!mem\+\_\+cdf@{mem\+\_\+cdf}}
+\index{mem\+\_\+cdf@{mem\+\_\+cdf}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{mem\+\_\+cdf()}{mem\_cdf()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+photometry.\+mem\+\_\+cdf (\begin{DoxyParamCaption}\item[{}]{R,  }\item[{}]{dra0,  }\item[{}]{dde0 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 729 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+729     \textcolor{keyword}{def }mem\_cdf(R,dra0,dde0):
+730         R\_photo = 0
+731         \textcolor{keywordflow}{pass}
+732     
+\end{DoxyCode}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_aebe66d2f7557c9143c8d636468400837}\label{classmodki17_1_1modKI17__photometry_aebe66d2f7557c9143c8d636468400837}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!Rs@{Rs}}
+\index{Rs@{Rs}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{Rs()}{Rs()}}
+{\footnotesize\ttfamily def modki17.\+mod\+K\+I17\+\_\+photometry.\+Rs (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{dra0,  }\item[{}]{dde0 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 664 of file modki17.\+py.
+
+
+\begin{DoxyCode}
+664     \textcolor{keyword}{def }\hyperlink{namespacedsph__model_af25a421d0de32d247b1aa0e8cf4894e3}{Rs}(self,dra0,dde0):
+665         \textcolor{keywordflow}{return} self.\_separation\_pc(sc=self.obs\_data,dra0=dra0,dde0=dde0)
+666     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_aebe66d2f7557c9143c8d636468400837_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/db2/classmodki17_1_1modKI17__photometry_aebe66d2f7557c9143c8d636468400837_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_a5af79ede8fed3e9d7b3ba809c84a06e1}\label{classmodki17_1_1modKI17__photometry_a5af79ede8fed3e9d7b3ba809c84a06e1}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!center0@{center0}}
+\index{center0@{center0}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{center0}{center0}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+photometry.\+center0}
+
+
+
+Definition at line 640 of file modki17.\+py.
+
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_ab5d7bda77297a71c86ac83b9159167bf}\label{classmodki17_1_1modKI17__photometry_ab5d7bda77297a71c86ac83b9159167bf}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!fg@{fg}}
+\index{fg@{fg}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{fg}{fg}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+photometry.\+fg}
+
+
+
+Definition at line 649 of file modki17.\+py.
+
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_a335237630ae300e82ccf6fd17be75070}\label{classmodki17_1_1modKI17__photometry_a335237630ae300e82ccf6fd17be75070}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!mem@{mem}}
+\index{mem@{mem}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{mem}{mem}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+photometry.\+mem}
+
+
+
+Definition at line 644 of file modki17.\+py.
+
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_a78af1109146376d0e7e3310d2e49e957}\label{classmodki17_1_1modKI17__photometry_a78af1109146376d0e7e3310d2e49e957}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!obs\+\_\+data@{obs\+\_\+data}}
+\index{obs\+\_\+data@{obs\+\_\+data}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{obs\+\_\+data}{obs\_data}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+photometry.\+obs\+\_\+data}
+
+
+
+Definition at line 639 of file modki17.\+py.
+
+\mbox{\Hypertarget{classmodki17_1_1modKI17__photometry_ad5606769c34da346fe8bc9d8d79ed0e5}\label{classmodki17_1_1modKI17__photometry_ad5606769c34da346fe8bc9d8d79ed0e5}} 
+\index{modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}!R\+\_\+\+RoI@{R\+\_\+\+RoI}}
+\index{R\+\_\+\+RoI@{R\+\_\+\+RoI}!modki17\+::mod\+K\+I17\+\_\+photometry@{modki17\+::mod\+K\+I17\+\_\+photometry}}
+\subsubsection{\texorpdfstring{R\+\_\+\+RoI}{R\_RoI}}
+{\footnotesize\ttfamily modki17.\+mod\+K\+I17\+\_\+photometry.\+R\+\_\+\+RoI}
+
+
+
+Definition at line 641 of file modki17.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{modki17_8py}{modki17.\+py}\end{DoxyCompactItemize}

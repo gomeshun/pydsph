@@ -1,0 +1,277 @@
+\hypertarget{classdsph__model_1_1plummer__model}{}\section{dsph\+\_\+model.\+plummer\+\_\+model Class Reference}
+\label{classdsph__model_1_1plummer__model}\index{dsph\+\_\+model.\+plummer\+\_\+model@{dsph\+\_\+model.\+plummer\+\_\+model}}
+
+
+Inheritance diagram for dsph\+\_\+model.\+plummer\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{d8/d28/classdsph__model_1_1plummer__model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for dsph\+\_\+model.\+plummer\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{d2/dbe/classdsph__model_1_1plummer__model__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdsph__model_1_1plummer__model_af63912fdaa4af84219a46210ffd8ab92}{density\+\_\+2d} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1plummer__model_a5e62170fd4065bdc0bab2b032c8c9fa6}{logdensity\+\_\+2d} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1plummer__model_a73d9b4b17be695ccf81f2259c06e9aa4}{density\+\_\+2d\+\_\+normalized\+\_\+re} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1plummer__model_ab60395efc8859c48ca5643e54f7e65be}{density\+\_\+3d} (self, r\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1plummer__model_a15987917b4f24a022349526405c49a81}{cdf\+\_\+R} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1plummer__model_a24b8450cd00f5306673580e428a85886}{mean\+\_\+density\+\_\+2d} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1plummer__model_a17a85f2954201bcef154bbc65c7794fc}{half\+\_\+light\+\_\+radius} (self)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classdsph__model_1_1plummer__model_a16dcc9b3cd8290aa250867b0efce5e89}{name} = \char`\"{}Plummer \hyperlink{classdsph__model_1_1model}{model}\char`\"{}
+\item 
+list \hyperlink{classdsph__model_1_1plummer__model_a6b8e4509e346d34d25831534486047fe}{required\+\_\+params\+\_\+name} = \mbox{[}\textquotesingle{}re\+\_\+pc\textquotesingle{},\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdsph__model_1_1plummer__model_adabdd3103020e64743568b23f2fe1131}{\+\_\+half\+\_\+light\+\_\+radius} (self, re\+\_\+pc)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 97 of file dsph\+\_\+model.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1plummer__model_adabdd3103020e64743568b23f2fe1131}\label{classdsph__model_1_1plummer__model_adabdd3103020e64743568b23f2fe1131}} 
+\index{dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}!\+\_\+half\+\_\+light\+\_\+radius@{\+\_\+half\+\_\+light\+\_\+radius}}
+\index{\+\_\+half\+\_\+light\+\_\+radius@{\+\_\+half\+\_\+light\+\_\+radius}!dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}}
+\subsubsection{\texorpdfstring{\+\_\+half\+\_\+light\+\_\+radius()}{\_half\_light\_radius()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+plummer\+\_\+model.\+\_\+half\+\_\+light\+\_\+radius (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{re\+\_\+pc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyVerb}Half-light-raduis means that the radius in which the half of all stars are include
+\end{DoxyVerb}
+ 
+
+Definition at line 128 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+128     \textcolor{keyword}{def }\_half\_light\_radius(self,re\_pc):
+129         \textcolor{stringliteral}{'''}
+130 \textcolor{stringliteral}{        Half-light-raduis means that the radius in which the half of all stars are include}
+131 \textcolor{stringliteral}{        '''}
+132         \textcolor{keywordflow}{return} re\_pc
+133       
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/d46/classdsph__model_1_1plummer__model_adabdd3103020e64743568b23f2fe1131_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1plummer__model_a15987917b4f24a022349526405c49a81}\label{classdsph__model_1_1plummer__model_a15987917b4f24a022349526405c49a81}} 
+\index{dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}!cdf\+\_\+R@{cdf\+\_\+R}}
+\index{cdf\+\_\+R@{cdf\+\_\+R}!dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}}
+\subsubsection{\texorpdfstring{cdf\+\_\+\+R()}{cdf\_R()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+plummer\+\_\+model.\+cdf\+\_\+R (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}cdf_R(R) = \int_0^R \dd{R'} 2\pi R' \Sigma(R')
+\end{DoxyVerb}
+ 
+
+Definition at line 113 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+113     \textcolor{keyword}{def }cdf\_R(self,R\_pc):
+114         \textcolor{stringliteral}{'''}
+115 \textcolor{stringliteral}{        cdf\_R(R) = \(\backslash\)int\_0^R \(\backslash\)dd\{R'\} 2\(\backslash\)pi R' \(\backslash\)Sigma(R')}
+116 \textcolor{stringliteral}{        '''}
+117         re\_pc= self.params.re\_pc
+118         \textcolor{keywordflow}{return} 1/(1+(re\_pc/R\_pc)**2)
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/d46/classdsph__model_1_1plummer__model_a15987917b4f24a022349526405c49a81_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1plummer__model_af63912fdaa4af84219a46210ffd8ab92}\label{classdsph__model_1_1plummer__model_af63912fdaa4af84219a46210ffd8ab92}} 
+\index{dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}!density\+\_\+2d@{density\+\_\+2d}}
+\index{density\+\_\+2d@{density\+\_\+2d}!dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}}
+\subsubsection{\texorpdfstring{density\+\_\+2d()}{density\_2d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+plummer\+\_\+model.\+density\+\_\+2d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 100 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+100     \textcolor{keyword}{def }density\_2d(self,R\_pc):
+101         re\_pc= self.params.re\_pc
+102         \textcolor{keywordflow}{return} 1/(1+(R\_pc/re\_pc)**2)**2 /np.pi/re\_pc**2
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/d46/classdsph__model_1_1plummer__model_af63912fdaa4af84219a46210ffd8ab92_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1plummer__model_a73d9b4b17be695ccf81f2259c06e9aa4}\label{classdsph__model_1_1plummer__model_a73d9b4b17be695ccf81f2259c06e9aa4}} 
+\index{dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}!density\+\_\+2d\+\_\+normalized\+\_\+re@{density\+\_\+2d\+\_\+normalized\+\_\+re}}
+\index{density\+\_\+2d\+\_\+normalized\+\_\+re@{density\+\_\+2d\+\_\+normalized\+\_\+re}!dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}}
+\subsubsection{\texorpdfstring{density\+\_\+2d\+\_\+normalized\+\_\+re()}{density\_2d\_normalized\_re()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+plummer\+\_\+model.\+density\+\_\+2d\+\_\+normalized\+\_\+re (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 106 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+106     \textcolor{keyword}{def }density\_2d\_normalized\_re(self,R\_pc):
+107         re\_pc= self.params.re\_pc
+108         \textcolor{keywordflow}{return} 4/(1+(R\_pc/re\_pc)**2)**2
+109       
+\end{DoxyCode}
+\mbox{\Hypertarget{classdsph__model_1_1plummer__model_ab60395efc8859c48ca5643e54f7e65be}\label{classdsph__model_1_1plummer__model_ab60395efc8859c48ca5643e54f7e65be}} 
+\index{dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}!density\+\_\+3d@{density\+\_\+3d}}
+\index{density\+\_\+3d@{density\+\_\+3d}!dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}}
+\subsubsection{\texorpdfstring{density\+\_\+3d()}{density\_3d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+plummer\+\_\+model.\+density\+\_\+3d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{r\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 110 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+110     \textcolor{keyword}{def }density\_3d(self,r\_pc):
+111         re\_pc= self.params.re\_pc
+112         \textcolor{keywordflow}{return} (3/4/np.pi/re\_pc**3)/np.sqrt(1+(r\_pc/re\_pc)**2)**5
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{d4/d46/classdsph__model_1_1plummer__model_ab60395efc8859c48ca5643e54f7e65be_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1plummer__model_a17a85f2954201bcef154bbc65c7794fc}\label{classdsph__model_1_1plummer__model_a17a85f2954201bcef154bbc65c7794fc}} 
+\index{dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}!half\+\_\+light\+\_\+radius@{half\+\_\+light\+\_\+radius}}
+\index{half\+\_\+light\+\_\+radius@{half\+\_\+light\+\_\+radius}!dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}}
+\subsubsection{\texorpdfstring{half\+\_\+light\+\_\+radius()}{half\_light\_radius()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+plummer\+\_\+model.\+half\+\_\+light\+\_\+radius (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Half-light-raduis means that the radius in which the half of all stars are include
+\end{DoxyVerb}
+ 
+
+Definition at line 134 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+134     \textcolor{keyword}{def }half\_light\_radius(self):
+135         \textcolor{stringliteral}{'''}
+136 \textcolor{stringliteral}{        Half-light-raduis means that the radius in which the half of all stars are include}
+137 \textcolor{stringliteral}{        '''}
+138         \textcolor{keywordflow}{return} self.\_half\_light\_radius(self.params.re\_pc)
+139 
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/d46/classdsph__model_1_1plummer__model_a17a85f2954201bcef154bbc65c7794fc_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1plummer__model_a5e62170fd4065bdc0bab2b032c8c9fa6}\label{classdsph__model_1_1plummer__model_a5e62170fd4065bdc0bab2b032c8c9fa6}} 
+\index{dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}!logdensity\+\_\+2d@{logdensity\+\_\+2d}}
+\index{logdensity\+\_\+2d@{logdensity\+\_\+2d}!dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}}
+\subsubsection{\texorpdfstring{logdensity\+\_\+2d()}{logdensity\_2d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+plummer\+\_\+model.\+logdensity\+\_\+2d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 103 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+103     \textcolor{keyword}{def }logdensity\_2d(self,R\_pc):
+104         re\_pc= self.params.re\_pc
+105         \textcolor{keywordflow}{return} -np.log1p((R\_pc/re\_pc)**2)*2 -log(np.pi) -log(re\_pc)*2
+\end{DoxyCode}
+\mbox{\Hypertarget{classdsph__model_1_1plummer__model_a24b8450cd00f5306673580e428a85886}\label{classdsph__model_1_1plummer__model_a24b8450cd00f5306673580e428a85886}} 
+\index{dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}!mean\+\_\+density\+\_\+2d@{mean\+\_\+density\+\_\+2d}}
+\index{mean\+\_\+density\+\_\+2d@{mean\+\_\+density\+\_\+2d}!dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}}
+\subsubsection{\texorpdfstring{mean\+\_\+density\+\_\+2d()}{mean\_density\_2d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+plummer\+\_\+model.\+mean\+\_\+density\+\_\+2d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}return the mean density_2d in R < R_pc with the weight 2*pi*R
+mean_density_2d = \frac{\int_\RoIR \dd{R} 2\pi R \Sigma(R)}{\int_\RoIR \dd{R} 2\pi R}
+    = \frac{cdf_R(R)}{\pi R^2}
+\end{DoxyVerb}
+ 
+
+Definition at line 119 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+119     \textcolor{keyword}{def }mean\_density\_2d(self,R\_pc):
+120         \textcolor{stringliteral}{'''}
+121 \textcolor{stringliteral}{        return the mean density\_2d in R < R\_pc with the weight 2*pi*R}
+122 \textcolor{stringliteral}{        mean\_density\_2d = \(\backslash\)frac\{\(\backslash\)int\_\(\backslash\)RoIR \(\backslash\)dd\{R\} 2\(\backslash\)pi R \(\backslash\)Sigma(R)\}\{\(\backslash\)int\_\(\backslash\)RoIR \(\backslash\)dd\{R\} 2\(\backslash\)pi R\}}
+123 \textcolor{stringliteral}{            = \(\backslash\)frac\{cdf\_R(R)\}\{\(\backslash\)pi R^2\}}
+124 \textcolor{stringliteral}{        '''}
+125         re\_pc= self.params.re\_pc
+126         \textcolor{keywordflow}{return} 1/pi/(R\_pc**2+re\_pc**2)
+127     
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1plummer__model_a16dcc9b3cd8290aa250867b0efce5e89}\label{classdsph__model_1_1plummer__model_a16dcc9b3cd8290aa250867b0efce5e89}} 
+\index{dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}!name@{name}}
+\index{name@{name}!dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string dsph\+\_\+model.\+plummer\+\_\+model.\+name = \char`\"{}Plummer \hyperlink{classdsph__model_1_1model}{model}\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 98 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{classdsph__model_1_1plummer__model_a6b8e4509e346d34d25831534486047fe}\label{classdsph__model_1_1plummer__model_a6b8e4509e346d34d25831534486047fe}} 
+\index{dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}!required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}}
+\index{required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}!dsph\+\_\+model\+::plummer\+\_\+model@{dsph\+\_\+model\+::plummer\+\_\+model}}
+\subsubsection{\texorpdfstring{required\+\_\+params\+\_\+name}{required\_params\_name}}
+{\footnotesize\ttfamily list dsph\+\_\+model.\+plummer\+\_\+model.\+required\+\_\+params\+\_\+name = \mbox{[}\textquotesingle{}re\+\_\+pc\textquotesingle{},\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 99 of file dsph\+\_\+model.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{dsph__model_8py}{dsph\+\_\+model.\+py}\end{DoxyCompactItemize}

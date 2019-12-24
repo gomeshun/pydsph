@@ -1,0 +1,173 @@
+{\bfseries Mem\+FG} is a module written in Python, which allows us to
+
+
+\begin{DoxyItemize}
+\item define user-\/custom models of dwarf spheroidal galaxies (d\+Sphs),
+\item evaluate, test, and compare d\+Sph models,
+\item search the parameter region of a given d\+Sph,
+\item estimate J-\/factor P\+D\+Fs or confidencial intervals.
+\end{DoxyItemize}
+
+{\bfseries Mem\+FG} module is implemented to satisfy that
+
+
+\begin{DoxyItemize}
+\item d\+Sph models can be defined by using a specific model format in Mem\+FG,
+\item all of the output files yielded by Mem\+FG have a user-\/friendly and easily-\/reuseable format,
+\item statistical frameworks can be swicthed between such as frequentist statistics or Bayesian statistics.
+\item sampling algorithm can be switched among several M\+C\+MC or nested samplers.
+\end{DoxyItemize}
+
+\section*{Todo}
+
+\subsection*{{\ttfamily Parameter} class?}
+
+
+\begin{DoxyItemize}
+\item Usually, a likelihood function has many parameters (more than 10). Let us consider that we pass these parameters to the likelihood as\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}
+likelihood(p0,p1,p2,p3,p4,p5,...)
+\end{DoxyCode}
+
+
+This may cause some bugs such that
+
+
+\begin{DoxyCode}
+likelihood(p0,!p2,!p3,!p1,p4,...)
+\end{DoxyCode}
+
+
+Of cource, we can avoid such bugs by taking very careful to the order of the arguments. However, if we can just call the likelihood as\+:
+
+
+\begin{DoxyCode}
+likelihood(ps)
+\end{DoxyCode}
+
+
+this helps us to coding very quickly. In order to achieve this feature, we should define a format of the order of the arguments {\ttfamily ps}. We should take care that the {\ttfamily emcee.\+Ensemble\+Sampler} is defined as\+:
+
+\begin{quote}
+{\ttfamily emcee.\+Ensemble\+Sampler(nwalkers, dim, lnpostfn, a=2.\+0, args=\mbox{[}\mbox{]}, kwargs=\{\},...)} \end{quote}
+
+
+where
+
+\begin{quote}
+{\ttfamily lnpostfn}\+: A function that takes a {\bfseries vector} ({\bfseries numpy.\+array}) in the parameter space as input and returns the natural logarithm of the posterior probability for that position. \end{quote}
+
+
+Moreover, we should also take care that the computational cost of the likelihood function should be small.
+
+一番実装が簡単なのは、\+Arrayをそのまま使ってしまうこと。例えば\+Likelihoodの中で、 p0,p1,p2, ... = ps とか展開して、それぞれのpiはこういう意味だから...とか考えながら、適宜\+Likelihoodの中で使う。 しかしこれは非常に危ない（取り違えが起きる可能性ありまくる）。 順番がめちゃめちゃにならないようにどっかでパラメータの順番を明示的に指定してあげて、 「この変数はこのパラメータ、この変数はこのパラメータ」と教えてあげたいのだが、 それをやると結局そこに問題を押し付けただけになる（そこで間違えたらどうする？）。 例えば間違えないように、 velocity = p\mbox{[}\char`\"{}velocity\char`\"{}\mbox{]}, position = p\mbox{[}\char`\"{}position\char`\"{}\mbox{]}, みたいな代入をしてもいいけれど、これだとなんか関数を定義するたびに頭で毎回こういうことをしないといけなくなる。 これはいちいち時間を食うし（dict型ならそんなでもない）、冗長である（これはそう）。 かといって、関数の引数にデデンと全部書いてしまうと、それこそ20個近い変数を全部書くことになって、可視性が悪い。
+
+Likelihood、というか継承・複合しまくったモデルのパラメータが肥大する理由は、各々のモデルの持っているパラメータが全部一つにまとまってしまうから。 しかし実際はパラメータは各々のモデルに\+Boundされた概念である。なので、それごとに分けてしまえばそれほど数は大きくならない（はず）。
+
+Hence, in order to achieve this feature, we separate the definition of likelihood from the implementation of likelihood. In a definition step,
+
+
+\begin{DoxyCode}
+def likelihood(Parameters params):
+    (some computation)
+    return ret
+\end{DoxyCode}
+
+
+Then, Model class understand this likelihood function as
+
+
+\begin{DoxyCode}
+def likelihood(np.array ps)
+    ...
+\end{DoxyCode}
+
+
+Is is possible???
+
+\subsection*{Implementation}
+
+To achieve the demands mentioned above, Mem\+FG has the following classes\+:
+
+
+\begin{DoxyItemize}
+\item class {\ttfamily Model}\+: define all physical or statistical models in Mem\+FG.
+\begin{DoxyItemize}
+\item {\ttfamily Model} has {\ttfamily parameters}.
+\begin{DoxyItemize}
+\item {\ttfamily parameters} is a {\ttfamily list} of {\ttfamily Parameter}s.
+\end{DoxyItemize}
+\item {\ttfamily Model} has {\ttfamily submodels}.
+\begin{DoxyItemize}
+\item {\ttfamily submodels} is a {\ttfamily list} of {\ttfamily Model}s.
+\end{DoxyItemize}
+\item {\ttfamily Model} has {\ttfamily all\+\_\+parameters}. {\ttfamily all\+\_\+parameters} is a list of {\ttfamily Parameter}s which a {\ttfamily Model} of submodels` has.
+\item {\ttfamily Model} has some {\ttfamily function}s.
+\begin{DoxyItemize}
+\item {\ttfamily function} has a {\ttfamily body}.
+\item {\ttfamily function} has a {\ttfamily args}.
+\begin{DoxyItemize}
+\item {\ttfamily args} is some {\ttfamily names} of {\ttfamily parameters}.
+\end{DoxyItemize}
+\item {\ttfamily function} can {\ttfamily check\+\_\+args}\+: {\ttfamily check\+\_\+args(params)}\+:
+\begin{DoxyItemize}
+\item params\+: a instance of {\ttfamily Parameters}
+\end{DoxyItemize}
+\item {\ttfamily function} can {\ttfamily \+\_\+\+\_\+call\+\_\+\+\_\+}\+: {\ttfamily \+\_\+\+\_\+call\+\_\+\+\_\+(params)}\+:
+\begin{DoxyItemize}
+\item params\+: a instance of {\ttfamily Parameters}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item $\ast$ class {\ttfamily Parameters}\+: ??? (Is it actually required?)
+\begin{DoxyItemize}
+\item {\ttfamily Parameters} is a {\ttfamily list}.　??? (or has a {\ttfamily list} or {\ttfamily dict} of {\ttfamily Parameters}???)
+\item {\ttfamily Parameters} has a {\ttfamily names}.
+\item {\ttfamily Parameters} has a {\ttfamily values}.
+\item {\ttfamily Parameters} can {\ttfamily assign\+\_\+values}.
+\item {\ttfamily Parameters} can {\ttfamily clear\+\_\+values}.
+\end{DoxyItemize}
+\item class {\ttfamily Parameter}\+:
+\begin{DoxyItemize}
+\item {\ttfamily Parameter} has {\ttfamily name}.
+\item $\ast$ {\ttfamily Parameter} has {\ttfamily unit}.
+\item {\ttfamily Parameter} has {\ttfamily value}.
+\item {\ttfamily Parameter} can {\ttfamily clear\+\_\+value}
+\item {\ttfamily Parameter} can {\ttfamily assign\+\_\+value}
+\item $\ast$ {\ttfamily Parameter} can {\ttfamily convert\+\_\+unit}
+\end{DoxyItemize}
+\item class {\ttfamily D\+M\+Model}\+: define dark matter density profile.
+\begin{DoxyItemize}
+\item {\ttfamily D\+M\+Model} is a {\ttfamily Model}.
+\item {\ttfamily D\+M\+Model} has {\ttfamily enclosure\+\_\+mass}.
+\item {\ttfamily D\+M\+Model} has {\ttfamily density\+\_\+profile}.
+\end{DoxyItemize}
+\item class {\ttfamily Stellar\+Model}\+: define stellar models of d\+S\+Phs.
+\begin{DoxyItemize}
+\item {\ttfamily Stellar\+Model} is a {\ttfamily Model}.
+\item {\ttfamily Stellar\+Model} has
+\end{DoxyItemize}
+\item class {\ttfamily Plummer\+Model}\+: define the Plummer model.
+\begin{DoxyItemize}
+\item {\ttfamily Plummer\+Model} has a {\ttfamily list} of {\ttfamily Parameter}\+: {\ttfamily r\+\_\+half}
+\end{DoxyItemize}
+\item class {\ttfamily d\+Sph\+Model}\+: define d\+Sph models.
+\begin{DoxyItemize}
+\item {\ttfamily d\+Sph\+Model} is a {\ttfamily Model}.
+\item {\ttfamily d\+Sph\+Model} has {\ttfamily stellar\+\_\+model} and {\ttfamily dm\+\_\+model}.
+\begin{DoxyItemize}
+\item {\ttfamily stellar\+\_\+model} is a {\ttfamily Stellar\+Model}.
+\item {\ttfamily dm\+\_\+model} is a {\ttfamily D\+M\+Model}.
+\end{DoxyItemize}
+\item {\ttfamily Model} can {\ttfamily fit} {\ttfamily Observed\+Data},
+\item {\ttfamily Model} can {\ttfamily evaluate\+\_\+loglikelihood} based on {\ttfamily Observed\+Data},
+\end{DoxyItemize}
+\item ``
+\item 
+\item 
+\end{DoxyItemize}
+
+\section*{}

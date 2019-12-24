@@ -1,0 +1,14 @@
+<map id="mcgenerator.MCgenerator.to_DataFrame" name="mcgenerator.MCgenerator.to_DataFrame">
+<area shape="rect" id="node2" href="$d3/dad/classmcgenerator_1_1MCgenerator.html#a242f49dce70773d317ffde2988c92c66" title="mcgenerator.MCgenerator.\l__repr__" alt="" coords="266,123,443,164"/>
+<area shape="rect" id="node3" href="$d3/dad/classmcgenerator_1_1MCgenerator.html#a660b1c6c2600d3cefc77690838c755b5" title="mcgenerator.MCgenerator.generate" alt="" coords="241,189,468,215"/>
+<area shape="rect" id="node5" href="$d3/dad/classmcgenerator_1_1MCgenerator.html#adfd3a69e271b805a3fa48d6b3f14b0f5" title="mcgenerator.MCgenerator.to_csv" alt="" coords="247,243,463,270"/>
+<area shape="rect" id="node4" href="$d3/dad/classmcgenerator_1_1MCgenerator.html#ad6c5b6846464112f7ade3d6ca197e6d2" title="mcgenerator.MCgenerator.generate\l_tuned" alt="" coords="516,177,743,219"/>
+<area shape="rect" id="node6" href="$d3/d8a/classsampler_1_1Sampler.html#a9403aa08f08af30f703b7b507431d7a9" title="parameter sampler ######## " alt="" coords="546,243,713,270"/>
+<area shape="rect" id="node9" href="$d3/d8a/classsampler_1_1Sampler.html#ab35f387d6b11e001d006731559e09f56" title="sampler.Sampler.run_mcmc" alt="" coords="1223,294,1408,321"/>
+<area shape="rect" id="node7" href="$d3/d8a/classsampler_1_1Sampler.html#a0520c9a624d5abc9edd3e379d1b66021" title="sampler.Sampler.burnin" alt="" coords="791,218,949,245"/>
+<area shape="rect" id="node8" href="$d3/d8a/classsampler_1_1Sampler.html#ad7ddd812810028fad49c18ba7270f23f" title="sampler.Sampler.find_map" alt="" coords="997,269,1175,295"/>
+<area shape="rect" id="node10" href="$d3/d8a/classsampler_1_1Sampler.html#a93e39e8143affeb3572fdf024bf2d12b" title="sampler.Sampler.run\l_mcmc_epoch" alt="" coords="1244,160,1387,201"/>
+<area shape="rect" id="node11" href="$d3/d8a/classsampler_1_1Sampler.html#ad07e2a415fe1c3890c6f6efcfe7515db" title="WBIC sampler ########. " alt="" coords="795,101,945,143"/>
+<area shape="rect" id="node12" href="$d3/d8a/classsampler_1_1Sampler.html#aa26f751fdfe25f8b8fcc450d09ace641" title="sampler.Sampler.wbic\l_run_mcmc" alt="" coords="1011,36,1161,77"/>
+<area shape="rect" id="node13" href="$d3/d8a/classsampler_1_1Sampler.html#a5e76a78ad9e222e49f77a4d2e6c23c04" title="sampler.Sampler.wbic\l_run_mcmc_epoch" alt="" coords="1011,101,1161,143"/>
+</map>

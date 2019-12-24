@@ -1,0 +1,163 @@
+\hypertarget{namespaceplot__setup}{}\section{plot\+\_\+setup Namespace Reference}
+\label{namespaceplot__setup}\index{plot\+\_\+setup@{plot\+\_\+setup}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceplot__setup_ae1d4aed021e4401e81d9dd0d242c7e2b}{scatter3D} (self, x, y, z, args)
+\item 
+def \hyperlink{namespaceplot__setup_a436a0609e4c2316379efdf45718260cb}{scatter\+\_\+matrix} (self, bins=32, fontsize=8)
+\item 
+def \hyperlink{namespaceplot__setup_a626de41aaef50f238db0fdd3d2f6ae4f}{mypairplot}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+dictionary \hyperlink{namespaceplot__setup_a8623d9c662ed254a9fdbb579db7c57c2}{args\+\_\+pairplot} = \{\char`\"{}plot\+\_\+kws\char`\"{}\+:\{\char`\"{}s\char`\"{}\+:8,\char`\"{}marker\char`\"{}\+:\char`\"{}o\char`\"{}\},\char`\"{}diag\+\_\+kws\char`\"{}\+:\{\char`\"{}bins\char`\"{}\+:32,\char`\"{}histtype\char`\"{}\+:\char`\"{}stepfilled\char`\"{},\char`\"{}alpha\char`\"{}\+:0.\+3\}\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceplot__setup_a626de41aaef50f238db0fdd3d2f6ae4f}\label{namespaceplot__setup_a626de41aaef50f238db0fdd3d2f6ae4f}} 
+\index{plot\+\_\+setup@{plot\+\_\+setup}!mypairplot@{mypairplot}}
+\index{mypairplot@{mypairplot}!plot\+\_\+setup@{plot\+\_\+setup}}
+\subsubsection{\texorpdfstring{mypairplot()}{mypairplot()}}
+{\footnotesize\ttfamily def plot\+\_\+setup.\+mypairplot (\begin{DoxyParamCaption}\item[{}]{mcchain,  }\item[{}]{scatter\+\_\+kws = {\ttfamily \{\char`\"{}s\char`\"{}\+:1},  }\item[{}]{marker }\end{DoxyParamCaption})}
+
+
+
+Definition at line 95 of file plot\+\_\+setup.\+py.
+
+
+\begin{DoxyCode}
+95     scatter\_kws=\{\textcolor{stringliteral}{"s"}:1,\textcolor{stringliteral}{"marker"}:\textcolor{stringliteral}{"o"},\textcolor{stringliteral}{"alpha"}:0.1\},
+96     kde\_kws=\{\textcolor{stringliteral}{"shade"}:\textcolor{keyword}{True},\textcolor{stringliteral}{"shade\_lowest"}:\textcolor{keyword}{False},\textcolor{stringliteral}{"cmap"}:\textcolor{stringliteral}{"jet"}\},
+97     hist\_kws=\{\textcolor{stringliteral}{"bins"}:32,\textcolor{stringliteral}{"histtype"}:\textcolor{stringliteral}{"stepfilled"},\textcolor{stringliteral}{"alpha"}:0.3\},
+98     **kws):
+99     
+100     print(\textcolor{stringliteral}{"Note: The following warnings occur, but no problem.\(\backslash\)nUserWarning: The following kwargs were not
+       used by contour: 'label', 'color' "})
+101     g = sns.PairGrid(mcchain,**kws)
+102     g = g.map\_upper(plt.scatter,**scatter\_kws)
+103     g = g.map\_lower(sns.kdeplot,**kde\_kws)
+104     g = g.map\_diag(plt.hist, **hist\_kws)
+105     \textcolor{keywordflow}{return} g
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaceplot__setup_ae1d4aed021e4401e81d9dd0d242c7e2b}\label{namespaceplot__setup_ae1d4aed021e4401e81d9dd0d242c7e2b}} 
+\index{plot\+\_\+setup@{plot\+\_\+setup}!scatter3D@{scatter3D}}
+\index{scatter3D@{scatter3D}!plot\+\_\+setup@{plot\+\_\+setup}}
+\subsubsection{\texorpdfstring{scatter3\+D()}{scatter3D()}}
+{\footnotesize\ttfamily def plot\+\_\+setup.\+scatter3D (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z,  }\item[{}]{args }\end{DoxyParamCaption})}
+
+
+
+Definition at line 6 of file plot\+\_\+setup.\+py.
+
+
+\begin{DoxyCode}
+6 \textcolor{keyword}{def }\hyperlink{namespaceplot__setup_ae1d4aed021e4401e81d9dd0d242c7e2b}{scatter3D}(self,x,y,z,**args):
+7     df=self
+8     fig = plt.figure()
+9     ax = fig.add\_subplot(111,projection=\textcolor{stringliteral}{'3d'})
+10     ax.scatter3D(df[x],df[y],df[z],**args)
+11     ax.set\_xlabel(df[x].name)
+12     ax.set\_ylabel(df[y].name)
+13     ax.set\_zlabel(df[z].name)
+14     \textcolor{keywordflow}{return} ax
+15 
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaceplot__setup_a436a0609e4c2316379efdf45718260cb}\label{namespaceplot__setup_a436a0609e4c2316379efdf45718260cb}} 
+\index{plot\+\_\+setup@{plot\+\_\+setup}!scatter\+\_\+matrix@{scatter\+\_\+matrix}}
+\index{scatter\+\_\+matrix@{scatter\+\_\+matrix}!plot\+\_\+setup@{plot\+\_\+setup}}
+\subsubsection{\texorpdfstring{scatter\+\_\+matrix()}{scatter\_matrix()}}
+{\footnotesize\ttfamily def plot\+\_\+setup.\+scatter\+\_\+matrix (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{bins = {\ttfamily 32},  }\item[{}]{fontsize = {\ttfamily 8} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 16 of file plot\+\_\+setup.\+py.
+
+
+\begin{DoxyCode}
+16 \textcolor{keyword}{def }\hyperlink{namespaceplot__setup_a436a0609e4c2316379efdf45718260cb}{scatter\_matrix}(self,*,bins=32,fontsize=8):
+17     \textcolor{keyword}{from} matplotlib.colors \textcolor{keyword}{import} LogNorm
+18     df = self
+19     fig = plt.figure()
+20     fig.subplots\_adjust(wspace=0,hspace=0)
+21     
+22     num\_param = len(df.columns)
+23     counts\_max = 0
+24 
+25     hists = []
+26     \textcolor{keywordflow}{for} i\_hist \textcolor{keywordflow}{in} np.arange(num\_param):
+27         tmp\_hist = fig.add\_subplot(num\_param,num\_param,i\_hist+1)
+28         tmp\_hist.minorticks\_on()
+29         hists.append(tmp\_hist)
+30         tmp\_hist.set\_title(df.columns[i\_hist],fontsize=fontsize)
+31         \textcolor{comment}{#print(df[df.columns[i\_hist]])}
+32         counts,bins,patches = tmp\_hist.hist(df[df.columns[i\_hist]],bins=bins,histtype=\textcolor{stringliteral}{'step'})
+33         \textcolor{comment}{#print('params\_upper\_plot[i\_hist]:',params\_upper\_plot[i\_hist],type(params\_upper\_plot[i\_hist]))}
+34         \textcolor{comment}{#print(params\_name[i\_hist])}
+35         \textcolor{comment}{#if not (np.isnan(params\_lower\_plot[i\_hist]) or np.isnan(params\_upper\_plot[i\_hist])):}
+36         \textcolor{comment}{#    print(params\_lower\_plot[i\_hist],':',params\_upper\_plot[i\_hist])}
+37         \textcolor{comment}{#   tmp\_hist.set\_xlim(left=params\_lower\_plot[i\_hist],right=params\_upper\_plot[i\_hist])}
+38         tmp\_hist.tick\_params(which=\textcolor{stringliteral}{'both'},direction=\textcolor{stringliteral}{'in'},right=\textcolor{keyword}{True})
+39     
+40         counts\_max = max(counts\_max,np.max(counts))
+41 \textcolor{comment}{#[axis.set\_ylim(bottom=0,top=counts\_max*1.1) for axis in hists ]}
+42 \textcolor{comment}{#[axis.set\_yticklabels([]) for  axis in hists[1:]]}
+43     
+44    
+45     axes\_scatter = []
+46     \textcolor{keywordflow}{for} param\_i \textcolor{keywordflow}{in} np.arange(num\_param-1): \textcolor{comment}{# \{0,1,2,...,num-2\}, indicate the x\_axis of the figures}
+47         \textcolor{keywordflow}{for} param\_j \textcolor{keywordflow}{in} np.arange(param\_i+1,num\_param): \textcolor{comment}{# \{i+1, i+2, ..., n-1\}, indicate the y\_axis of the
+       figures }
+48     \textcolor{comment}{# (i,j) = n*j+i (+1), where 0<=i,j<=n-1, where the last '+1' is required to shift to actual posision.}
+49     \textcolor{comment}{# We want to start from the bottom raw. The bottom raw of i-th column is (n-1)-i.}
+50     \textcolor{comment}{# Then move to above figure. The amount of shift is j-(i+1) because j=\{i+1,i+2,...,n-1\}}
+51     \textcolor{comment}{# Condequently, the the vertical axis indicater j' = ((n-1)-i) - (j-(i+1)) = n-2*i+j-2}
+52     \textcolor{comment}{# Therefore the actual position is (i',j'), where i' = i.}
+53             pos = num\_param*(num\_param-param\_j)+param\_i+1
+54             axes\_scatter.append(fig.add\_subplot(num\_param,num\_param,pos))
+55             present\_axis = axes\_scatter[-1]
+56             present\_axis.minorticks\_on()
+57             present\_axis.tick\_params(which=\textcolor{stringliteral}{'both'},direction=\textcolor{stringliteral}{'in'},right=\textcolor{keyword}{True},top=\textcolor{keyword}{True})
+58         
+59             hist\_tmp = axes\_scatter[-1].hist2d(df[df.columns[param\_i]],df[df.columns[param\_j]],normed=\textcolor{keyword}{True},
+      bins=bins,norm=LogNorm())
+60             
+61             \textcolor{comment}{#if not (np.isnan(params\_lower\_plot[param\_i]) or np.isnan(params\_upper\_plot[param\_i])):}
+62             \textcolor{comment}{#    #print(param\_i,':xlim->',params\_lower\_plot[param\_i],':',params\_upper\_plot[param\_i])}
+63             \textcolor{comment}{#    present\_axis.set\_xlim(left=params\_lower\_plot[param\_i],right=params\_upper\_plot[param\_i])}
+64             \textcolor{comment}{#if not (np.isnan(params\_lower\_plot[param\_j]) or np.isnan(params\_upper\_plot[param\_j])):}
+65             \textcolor{comment}{#    #print(param\_j,':ylim->',params\_lower\_plot[param\_j],':',params\_upper\_plot[param\_j])}
+66             \textcolor{comment}{#    present\_axis.set\_ylim(bottom=params\_lower\_plot[param\_j],top=params\_upper\_plot[param\_j])}
+67             
+68             \textcolor{keywordflow}{if} param\_j != param\_i+1:
+69                 present\_axis.set\_xticklabels([],fontsize=fontsize)
+70             hists.append(hist\_tmp) \textcolor{comment}{# for colorbar, but...}
+71             \textcolor{keywordflow}{if} param\_i==0:
+72                 \textcolor{comment}{#present\_axis.set\_ylabel(params\_name[param\_j],rotation='horizontal')}
+73                 \textcolor{comment}{#present\_axis.set\_ylabel(params\_name[param\_j])}
+74                 present\_axis.set\_ylabel(df.columns[param\_j],rotation=70.,fontsize=fontsize)
+75             \textcolor{keywordflow}{else}:
+76                 present\_axis.set\_yticklabels([],fontsize=fontsize)
+77     \textcolor{keywordflow}{return} fig
+78 
+79 
+80 pd.DataFrame.plot\_scatter3D = scatter3D
+81 pd.DataFrame.plot\_scatter\_matrix = scatter\_matrix
+82 
+83 \textcolor{comment}{# seaborn}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceplot__setup_a8623d9c662ed254a9fdbb579db7c57c2}\label{namespaceplot__setup_a8623d9c662ed254a9fdbb579db7c57c2}} 
+\index{plot\+\_\+setup@{plot\+\_\+setup}!args\+\_\+pairplot@{args\+\_\+pairplot}}
+\index{args\+\_\+pairplot@{args\+\_\+pairplot}!plot\+\_\+setup@{plot\+\_\+setup}}
+\subsubsection{\texorpdfstring{args\+\_\+pairplot}{args\_pairplot}}
+{\footnotesize\ttfamily dictionary plot\+\_\+setup.\+args\+\_\+pairplot = \{\char`\"{}plot\+\_\+kws\char`\"{}\+:\{\char`\"{}s\char`\"{}\+:8,\char`\"{}marker\char`\"{}\+:\char`\"{}o\char`\"{}\},\char`\"{}diag\+\_\+kws\char`\"{}\+:\{\char`\"{}bins\char`\"{}\+:32,\char`\"{}histtype\char`\"{}\+:\char`\"{}stepfilled\char`\"{},\char`\"{}alpha\char`\"{}\+:0.\+3\}\}}
+
+
+
+Definition at line 91 of file plot\+\_\+setup.\+py.
+

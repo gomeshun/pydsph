@@ -1,0 +1,174 @@
+\hypertarget{classdsphdata_1_1dSphData}{}\section{dsphdata.\+d\+Sph\+Data Class Reference}
+\label{classdsphdata_1_1dSphData}\index{dsphdata.\+d\+Sph\+Data@{dsphdata.\+d\+Sph\+Data}}
+
+
+Collaboration diagram for dsphdata.\+d\+Sph\+Data\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{da/d49/classdsphdata_1_1dSphData__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdsphdata_1_1dSphData_afcd54ca5255be74de80578f5962daba8}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, fname\+\_\+photo=None, fname\+\_\+spec=None, idx\+\_\+photo=None, idx\+\_\+spec=None)
+\item 
+def \hyperlink{classdsphdata_1_1dSphData_a582365655d5493e34b14c2697e79c4fe}{load\+\_\+csv} (self, name, fname, index\+\_\+col=None, cut=None, ra\+\_\+idx=\char`\"{}ra\char`\"{}, dec\+\_\+idx=\char`\"{}dec\char`\"{}, radial\+\_\+velocity\+\_\+idx=None, radial\+\_\+velocity\+\_\+err\+\_\+idx=None)
+\item 
+def \hyperlink{classdsphdata_1_1dSphData_a5384bafd3c725eb6c324664c7b47eae1}{to\+\_\+sc} (self, which)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classdsphdata_1_1dSphData_a1ebfbfbd27ed84f68b401606530c35ef}{idx\+\_\+photo\+\_\+default} = dict(index\+\_\+col=0,cut=\char`\"{}in\+\_\+cmdcut\char`\"{},ra\+\_\+idx=\char`\"{}ra\+Mean\char`\"{},dec\+\_\+idx=\char`\"{}dec\+Mean\char`\"{})
+\item 
+\hyperlink{classdsphdata_1_1dSphData_aaebb5308a014e2064f325f1897ae366a}{idx\+\_\+spec\+\_\+default} = dict(index\+\_\+col=0,cut=\char`\"{}in\+\_\+cmdcut\char`\"{},ra\+\_\+idx=\char`\"{}ra\char`\"{}, dec\+\_\+idx=\char`\"{}dec\char`\"{},radial\+\_\+velocity\+\_\+idx=\char`\"{}v\+\_\+helio\char`\"{},radial\+\_\+velocity\+\_\+err\+\_\+idx=\char`\"{}err\+\_\+v\+\_\+helio\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}data class of the observed data of dSph.
+
+attributes:
+    - \end{DoxyVerb}
+ 
+
+Definition at line 38 of file dsphdata.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classdsphdata_1_1dSphData_afcd54ca5255be74de80578f5962daba8}\label{classdsphdata_1_1dSphData_afcd54ca5255be74de80578f5962daba8}} 
+\index{dsphdata\+::d\+Sph\+Data@{dsphdata\+::d\+Sph\+Data}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!dsphdata\+::d\+Sph\+Data@{dsphdata\+::d\+Sph\+Data}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def dsphdata.\+d\+Sph\+Data.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{fname\+\_\+photo = {\ttfamily None},  }\item[{}]{fname\+\_\+spec = {\ttfamily None},  }\item[{}]{idx\+\_\+photo = {\ttfamily None},  }\item[{}]{idx\+\_\+spec = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}initialize a sampler instance.
+
+input:
+    - dsph_name(str)   : dwarf spheroidal name listed in "Nearbygalaxies.dat".
+    - fname_photo(str) : file name of photometry data
+    - fname_spec(str)  : file name of spectroscopy data
+    - idx_photo,idx_spec(dict) : dictionary of argument passed to "self.load_file".
+\end{DoxyVerb}
+ 
+
+Definition at line 51 of file dsphdata.\+py.
+
+
+\begin{DoxyCode}
+51                  idx\_photo=\textcolor{keywordtype}{None},idx\_spec=\textcolor{keywordtype}{None}):
+52         \textcolor{stringliteral}{'''}
+53 \textcolor{stringliteral}{        initialize a sampler instance.}
+54 \textcolor{stringliteral}{        }
+55 \textcolor{stringliteral}{        input:}
+56 \textcolor{stringliteral}{            - dsph\_name(str)   : dwarf spheroidal name listed in "Nearbygalaxies.dat".}
+57 \textcolor{stringliteral}{            - fname\_photo(str) : file name of photometry data}
+58 \textcolor{stringliteral}{            - fname\_spec(str)  : file name of spectroscopy data}
+59 \textcolor{stringliteral}{            - idx\_photo,idx\_spec(dict) : dictionary of argument passed to "self.load\_file".}
+60 \textcolor{stringliteral}{        '''}
+61         idx\_photo = dSphData.idx\_photo\_default \textcolor{keywordflow}{if} idx\_photo \textcolor{keywordflow}{is} \textcolor{keywordtype}{None} \textcolor{keywordflow}{else} idx\_photo
+62         idx\_spec = dSphData.idx\_spec\_default \textcolor{keywordflow}{if} idx\_spec \textcolor{keywordflow}{is} \textcolor{keywordtype}{None} \textcolor{keywordflow}{else} idx\_spec
+63 
+64         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} fname\_photo \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}:
+65             self.load\_csv(\textcolor{stringliteral}{"photo"},fname\_photo,**idx\_photo)
+66         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not}  fname\_spec \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}:
+67             self.load\_csv(\textcolor{stringliteral}{"spec"}, fname\_spec, **idx\_spec)
+68         
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/dbc/classdsphdata_1_1dSphData_afcd54ca5255be74de80578f5962daba8_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classdsphdata_1_1dSphData_a582365655d5493e34b14c2697e79c4fe}\label{classdsphdata_1_1dSphData_a582365655d5493e34b14c2697e79c4fe}} 
+\index{dsphdata\+::d\+Sph\+Data@{dsphdata\+::d\+Sph\+Data}!load\+\_\+csv@{load\+\_\+csv}}
+\index{load\+\_\+csv@{load\+\_\+csv}!dsphdata\+::d\+Sph\+Data@{dsphdata\+::d\+Sph\+Data}}
+\subsubsection{\texorpdfstring{load\+\_\+csv()}{load\_csv()}}
+{\footnotesize\ttfamily def dsphdata.\+d\+Sph\+Data.\+load\+\_\+csv (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{name,  }\item[{}]{fname,  }\item[{}]{index\+\_\+col = {\ttfamily None},  }\item[{}]{cut = {\ttfamily None},  }\item[{}]{ra\+\_\+idx = {\ttfamily \char`\"{}ra\char`\"{}},  }\item[{}]{dec\+\_\+idx = {\ttfamily \char`\"{}dec\char`\"{}},  }\item[{}]{radial\+\_\+velocity\+\_\+idx = {\ttfamily None},  }\item[{}]{radial\+\_\+velocity\+\_\+err\+\_\+idx = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 72 of file dsphdata.\+py.
+
+
+\begin{DoxyCode}
+72                 ):
+73         df\_tot = pd.read\_csv(fname,index\_col=index\_col)  \textcolor{comment}{# before cut}
+74         df = df\_tot \textcolor{keywordflow}{if} (cut \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{else} df\_tot[df\_tot[cut]].reset\_index(drop=\textcolor{keyword}{True})  \textcolor{comment}{# after cut}
+75         
+76         \textcolor{comment}{# prepare args of SkyCoord}
+77         sc\_kwargs = dict(ra=df[ra\_idx].values*u.deg, dec=df[dec\_idx].values*u.deg)
+78         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} radial\_velocity\_idx \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}:
+79             sc\_kwargs[\textcolor{stringliteral}{"radial\_velocity"}] = df[radial\_velocity\_idx].values*u.km/u.s
+80         sc = SkyCoord(**sc\_kwargs)
+81         
+82         \textcolor{comment}{# set radial\_velocity\_err to sc if specified}
+83         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} radial\_velocity\_err\_idx \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}:
+84             sc.radial\_velocity\_err = df[radial\_velocity\_err\_idx].values*u.km/u.s
+85             print(\textcolor{stringliteral}{"radial velocity err loaded."})
+86             
+87         setattr(self,\textcolor{stringliteral}{"df\_"}+name,df)
+88         setattr(self,\textcolor{stringliteral}{"sc\_"}+name,sc)
+89         \textcolor{comment}{#setattr(self,"sep\_"+name,self.dsph\_prop\_sc.separation(sc))}
+90 
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/dbc/classdsphdata_1_1dSphData_a582365655d5493e34b14c2697e79c4fe_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsphdata_1_1dSphData_a5384bafd3c725eb6c324664c7b47eae1}\label{classdsphdata_1_1dSphData_a5384bafd3c725eb6c324664c7b47eae1}} 
+\index{dsphdata\+::d\+Sph\+Data@{dsphdata\+::d\+Sph\+Data}!to\+\_\+sc@{to\+\_\+sc}}
+\index{to\+\_\+sc@{to\+\_\+sc}!dsphdata\+::d\+Sph\+Data@{dsphdata\+::d\+Sph\+Data}}
+\subsubsection{\texorpdfstring{to\+\_\+sc()}{to\_sc()}}
+{\footnotesize\ttfamily def dsphdata.\+d\+Sph\+Data.\+to\+\_\+sc (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{which }\end{DoxyParamCaption})}
+
+
+
+Definition at line 91 of file dsphdata.\+py.
+
+
+\begin{DoxyCode}
+91     \textcolor{keyword}{def }to\_sc(self,which):
+92         \textcolor{keywordflow}{return} copy(getattr(self,\textcolor{stringliteral}{"sc\_"}+which))
+93         
+94         
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classdsphdata_1_1dSphData_a1ebfbfbd27ed84f68b401606530c35ef}\label{classdsphdata_1_1dSphData_a1ebfbfbd27ed84f68b401606530c35ef}} 
+\index{dsphdata\+::d\+Sph\+Data@{dsphdata\+::d\+Sph\+Data}!idx\+\_\+photo\+\_\+default@{idx\+\_\+photo\+\_\+default}}
+\index{idx\+\_\+photo\+\_\+default@{idx\+\_\+photo\+\_\+default}!dsphdata\+::d\+Sph\+Data@{dsphdata\+::d\+Sph\+Data}}
+\subsubsection{\texorpdfstring{idx\+\_\+photo\+\_\+default}{idx\_photo\_default}}
+{\footnotesize\ttfamily dsphdata.\+d\+Sph\+Data.\+idx\+\_\+photo\+\_\+default = dict(index\+\_\+col=0,cut=\char`\"{}in\+\_\+cmdcut\char`\"{},ra\+\_\+idx=\char`\"{}ra\+Mean\char`\"{},dec\+\_\+idx=\char`\"{}dec\+Mean\char`\"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 46 of file dsphdata.\+py.
+
+\mbox{\Hypertarget{classdsphdata_1_1dSphData_aaebb5308a014e2064f325f1897ae366a}\label{classdsphdata_1_1dSphData_aaebb5308a014e2064f325f1897ae366a}} 
+\index{dsphdata\+::d\+Sph\+Data@{dsphdata\+::d\+Sph\+Data}!idx\+\_\+spec\+\_\+default@{idx\+\_\+spec\+\_\+default}}
+\index{idx\+\_\+spec\+\_\+default@{idx\+\_\+spec\+\_\+default}!dsphdata\+::d\+Sph\+Data@{dsphdata\+::d\+Sph\+Data}}
+\subsubsection{\texorpdfstring{idx\+\_\+spec\+\_\+default}{idx\_spec\_default}}
+{\footnotesize\ttfamily dsphdata.\+d\+Sph\+Data.\+idx\+\_\+spec\+\_\+default = dict(index\+\_\+col=0,cut=\char`\"{}in\+\_\+cmdcut\char`\"{},ra\+\_\+idx=\char`\"{}ra\char`\"{}, dec\+\_\+idx=\char`\"{}dec\char`\"{},radial\+\_\+velocity\+\_\+idx=\char`\"{}v\+\_\+helio\char`\"{},radial\+\_\+velocity\+\_\+err\+\_\+idx=\char`\"{}err\+\_\+v\+\_\+helio\char`\"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 47 of file dsphdata.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{dsphdata_8py}{dsphdata.\+py}\end{DoxyCompactItemize}

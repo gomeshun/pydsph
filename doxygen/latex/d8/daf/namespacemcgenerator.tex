@@ -1,0 +1,133 @@
+\hypertarget{namespacemcgenerator}{}\section{mcgenerator Namespace Reference}
+\label{namespacemcgenerator}\index{mcgenerator@{mcgenerator}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classmcgenerator_1_1MCgenerator}{M\+Cgenerator}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacemcgenerator_a8f55af530516085f0a5169e130a9b35b}{metropolis\+\_\+generator} (num\+\_\+iter, logpdf\+\_\+func, args\+\_\+logpdf, logpdf\+\_\+value, dargs\+\_\+logpdf, push\+\_\+time=10, proposal\+\_\+dist=\char`\"{}normal\char`\"{}, print\+\_\+func=print)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{namespacemcgenerator_a23bb8cafe013a76952e0a2e881d28c5a}{logpdf} = lambda x\+: -\/x$\ast$x/2
+\item 
+\hyperlink{namespacemcgenerator_aa96e25cd8bcb93136f1b355b2b9fefa8}{gen} = \hyperlink{classmcgenerator_1_1MCgenerator}{M\+Cgenerator}(\hyperlink{namespacemcgenerator_a23bb8cafe013a76952e0a2e881d28c5a}{logpdf},args\+\_\+logpdf\+\_\+init=\{\char`\"{}x\char`\"{}\+:0\},dargs\+\_\+logpdf=\{\char`\"{}x\char`\"{}\+:10\})
+\item 
+\hyperlink{namespacemcgenerator_a3b26217311f64965e346b0ce0e83680b}{bins}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacemcgenerator_a8f55af530516085f0a5169e130a9b35b}\label{namespacemcgenerator_a8f55af530516085f0a5169e130a9b35b}} 
+\index{mcgenerator@{mcgenerator}!metropolis\+\_\+generator@{metropolis\+\_\+generator}}
+\index{metropolis\+\_\+generator@{metropolis\+\_\+generator}!mcgenerator@{mcgenerator}}
+\subsubsection{\texorpdfstring{metropolis\+\_\+generator()}{metropolis\_generator()}}
+{\footnotesize\ttfamily def mcgenerator.\+metropolis\+\_\+generator (\begin{DoxyParamCaption}\item[{}]{num\+\_\+iter,  }\item[{}]{logpdf\+\_\+func,  }\item[{}]{args\+\_\+logpdf,  }\item[{}]{logpdf\+\_\+value,  }\item[{}]{dargs\+\_\+logpdf,  }\item[{}]{push\+\_\+time = {\ttfamily 10},  }\item[{}]{proposal\+\_\+dist = {\ttfamily \char`\"{}normal\char`\"{}},  }\item[{}]{print\+\_\+func = {\ttfamily print} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}E#xplanation: calculate next logpdf by metropolis algorithm
+arguments:
+    logpdf_value = logpdf_func(**args_logpdf)
+    args_logpdf,dargs_logpdf: pd.Series, same index
+\end{DoxyVerb}
+ 
+
+Definition at line 7 of file mcgenerator.\+py.
+
+
+\begin{DoxyCode}
+7 \textcolor{keyword}{def }\hyperlink{namespacemcgenerator_a8f55af530516085f0a5169e130a9b35b}{metropolis\_generator}(
+      num\_iter,logpdf\_func,args\_logpdf,logpdf\_value,dargs\_logpdf,push\_time=10,proposal\_dist="normal",print\_func=print):
+8     \textcolor{stringliteral}{'''}
+9 \textcolor{stringliteral}{    E#xplanation: calculate next logpdf by metropolis algorithm}
+10 \textcolor{stringliteral}{    arguments:}
+11 \textcolor{stringliteral}{        logpdf\_value = logpdf\_func(**args\_logpdf)}
+12 \textcolor{stringliteral}{        args\_logpdf,dargs\_logpdf: pd.Series, same index}
+13 \textcolor{stringliteral}{    '''}
+14     proposal\_dist\_dic = \{\textcolor{stringliteral}{"normal"}:np.random.normal,\textcolor{stringliteral}{"multivariate\_normal"}:np.random.multivariate\_normal\}
+15     proposal\_dist\_func = proposal\_dist\_dic[proposal\_dist]
+16     
+17     \textcolor{comment}{# initialization}
+18     \_args\_logpdf = deepcopy(args\_logpdf)
+19     \_logpdf\_value = logpdf\_value
+20     \_num\_iter = 0
+21     t = time.time()
+22     num\_accepted = 0
+23 
+24     \textcolor{keywordflow}{while} \_num\_iter<num\_iter:
+25         args\_logpdf\_candidate = pd.Series(
+26             data = proposal\_dist\_func(\_args\_logpdf,dargs\_logpdf),
+27             index = \_args\_logpdf.index
+28             )
+29         logpdf\_value\_candidate = logpdf\_func(**args\_logpdf\_candidate)
+30         
+31         acceptance\_rate = np.exp(logpdf\_value\_candidate-\_logpdf\_value)
+32         
+33         \textcolor{keywordflow}{if} np.isnan(acceptance\_rate):
+34             mes = \textcolor{stringliteral}{"NaN in acceptance rate calculation at "} + str(\_num\_iter) + \textcolor{stringliteral}{"th calculation \(\backslash\)n"}
+35             mes += str(\_logpdf\_value) + \textcolor{stringliteral}{' -> '} + str(logpdf\_value\_candidate) + \textcolor{stringliteral}{'\(\backslash\)n'}
+36             mes += \textcolor{stringliteral}{"args\_logpdf:\(\backslash\)n"} + str(\_args\_logpdf) + \textcolor{stringliteral}{'\(\backslash\)n'}
+37             mes += \textcolor{stringliteral}{"args\_logpdf\_candidate:\(\backslash\)n"} + str(args\_logpdf\_candidate)
+38             \textcolor{keywordflow}{raise} TypeError(mes)
+39         
+40         \textcolor{keywordflow}{if} np.random.rand() < acceptance\_rate: \textcolor{comment}{# accepted}
+41             \textcolor{keywordflow}{yield} \{\textcolor{stringliteral}{"args\_logpdf"}:args\_logpdf\_candidate,\textcolor{stringliteral}{"logpdf\_value"}:logpdf\_value\_candidate\}
+42             \_args\_logpdf = args\_logpdf\_candidate
+43             \_logpdf\_value = logpdf\_value\_candidate
+44             \_num\_iter += 1
+45             num\_accepted += 1
+46         \textcolor{keywordflow}{else}:
+47             \textcolor{keywordflow}{yield} \{\textcolor{stringliteral}{"args\_logpdf"}:\_args\_logpdf,\textcolor{stringliteral}{"logpdf\_value"}:\_logpdf\_value\}
+48             \_num\_iter += 1
+49         
+50         \textcolor{comment}{# for next iteration}
+51         dt = time.time() - t
+52         \textcolor{keywordflow}{if} dt > push\_time:
+53             print(format(\_num\_iter/num\_iter,\textcolor{stringliteral}{".3%"})+\textcolor{stringliteral}{" completed... acceptance rate: "}+ format(num\_accepted/
+      \_num\_iter,\textcolor{stringliteral}{'.2%'}))
+54             t = time.time()
+55 
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/daf/namespacemcgenerator_a8f55af530516085f0a5169e130a9b35b_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacemcgenerator_a3b26217311f64965e346b0ce0e83680b}\label{namespacemcgenerator_a3b26217311f64965e346b0ce0e83680b}} 
+\index{mcgenerator@{mcgenerator}!bins@{bins}}
+\index{bins@{bins}!mcgenerator@{mcgenerator}}
+\subsubsection{\texorpdfstring{bins}{bins}}
+{\footnotesize\ttfamily mcgenerator.\+bins}
+
+
+
+Definition at line 233 of file mcgenerator.\+py.
+
+\mbox{\Hypertarget{namespacemcgenerator_aa96e25cd8bcb93136f1b355b2b9fefa8}\label{namespacemcgenerator_aa96e25cd8bcb93136f1b355b2b9fefa8}} 
+\index{mcgenerator@{mcgenerator}!gen@{gen}}
+\index{gen@{gen}!mcgenerator@{mcgenerator}}
+\subsubsection{\texorpdfstring{gen}{gen}}
+{\footnotesize\ttfamily mcgenerator.\+gen = \hyperlink{classmcgenerator_1_1MCgenerator}{M\+Cgenerator}(\hyperlink{namespacemcgenerator_a23bb8cafe013a76952e0a2e881d28c5a}{logpdf},args\+\_\+logpdf\+\_\+init=\{\char`\"{}x\char`\"{}\+:0\},dargs\+\_\+logpdf=\{\char`\"{}x\char`\"{}\+:10\})}
+
+
+
+Definition at line 228 of file mcgenerator.\+py.
+
+\mbox{\Hypertarget{namespacemcgenerator_a23bb8cafe013a76952e0a2e881d28c5a}\label{namespacemcgenerator_a23bb8cafe013a76952e0a2e881d28c5a}} 
+\index{mcgenerator@{mcgenerator}!logpdf@{logpdf}}
+\index{logpdf@{logpdf}!mcgenerator@{mcgenerator}}
+\subsubsection{\texorpdfstring{logpdf}{logpdf}}
+{\footnotesize\ttfamily int mcgenerator.\+logpdf = lambda x\+: -\/x$\ast$x/2}
+
+
+
+Definition at line 227 of file mcgenerator.\+py.
+

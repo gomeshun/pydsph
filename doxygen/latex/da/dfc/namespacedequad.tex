@@ -1,0 +1,307 @@
+\hypertarget{namespacedequad}{}\section{dequad Namespace Reference}
+\label{namespacedequad}\index{dequad@{dequad}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacedequad_a0774348e796cb0945f2e0b0a7fa1c1e9}{generate\+\_\+x\+\_\+w} (a, b, width, mN, pN, xp=np)
+\item 
+def \hyperlink{namespacedequad_a312cb2f278bec2760a7cb9a17bf3928f}{dequad} (func, a, b, width=5e-\/3, p\+N=1000, m\+N=1000, axis=\+None, kind=\char`\"{}linear\char`\"{}, dtype=float64, show\+\_\+fig=\+False, show\+\_\+integrand\+\_\+array=\+False, ignore\+\_\+nan=\+False, xp=np)
+\item 
+def \hyperlink{namespacedequad_a2654bb61f33ab8685320882396c81ae0}{dequad\+\_\+hinf} (func, a, width=5e-\/3, p\+N=1000, m\+N=1000, axis=\+None, kind=\char`\"{}linear\char`\"{}, dtype=float64, show\+\_\+fig=\+False, show\+\_\+integrand\+\_\+array=\+True)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespacedequad_a19fc97d6e01fffb74ca81c02a51d86c0}{D\+E\+B\+UG} = False
+\item 
+\hyperlink{namespacedequad_a7f2d7b33e38c6d5249b152740f656344}{B\+U\+F\+\_\+\+D\+E\+B\+UG} = None
+\item 
+\hyperlink{namespacedequad_aecd7501e851b01ca793cb5b896fa5141}{maxsize}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacedequad_a312cb2f278bec2760a7cb9a17bf3928f}\label{namespacedequad_a312cb2f278bec2760a7cb9a17bf3928f}} 
+\index{dequad@{dequad}!dequad@{dequad}}
+\index{dequad@{dequad}!dequad@{dequad}}
+\subsubsection{\texorpdfstring{dequad()}{dequad()}}
+{\footnotesize\ttfamily def dequad.\+dequad (\begin{DoxyParamCaption}\item[{}]{func,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{width = {\ttfamily 5e-\/3},  }\item[{}]{pN = {\ttfamily 1000},  }\item[{}]{mN = {\ttfamily 1000},  }\item[{}]{axis = {\ttfamily None},  }\item[{}]{kind = {\ttfamily \char`\"{}linear\char`\"{}},  }\item[{}]{dtype = {\ttfamily float64},  }\item[{}]{show\+\_\+fig = {\ttfamily False},  }\item[{}]{show\+\_\+integrand\+\_\+array = {\ttfamily False},  }\item[{}]{ignore\+\_\+nan = {\ttfamily False},  }\item[{}]{xp = {\ttfamily np} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}func: func(ndarray_in) = ndarray_out
+axis: define the axis of ndarray_out to use integrate.
+
+Note: If "func" is like func: array(n,) -> array(m,n),
+          f(x) * w ~ (m,n) * (n,) ~ (m,n) * (1,n)
+      then works well (axis should set as axis=1). 
+\end{DoxyVerb}
+ 
+
+Definition at line 36 of file dequad.\+py.
+
+
+\begin{DoxyCode}
+36 \textcolor{keyword}{def }\hyperlink{namespacedequad_a312cb2f278bec2760a7cb9a17bf3928f}{dequad}(
+      func,a,b,width=5e-3,pN=1000,mN=1000,axis=None,kind="linear",dtype=float64,show\_fig=False,show\_integrand\_array=False,ignore\_nan=False,xp=np):
+37     \textcolor{stringliteral}{'''}
+38 \textcolor{stringliteral}{    func: func(ndarray\_in) = ndarray\_out}
+39 \textcolor{stringliteral}{    axis: define the axis of ndarray\_out to use integrate.}
+40 \textcolor{stringliteral}{    }
+41 \textcolor{stringliteral}{    Note: If "func" is like func: array(n,) -> array(m,n),}
+42 \textcolor{stringliteral}{              f(x) * w ~ (m,n) * (n,) ~ (m,n) * (1,n)}
+43 \textcolor{stringliteral}{          then works well (axis should set as axis=1). }
+44 \textcolor{stringliteral}{    '''}
+45     \textcolor{keywordflow}{if} kind == \textcolor{stringliteral}{"linear"}:
+46         \textcolor{comment}{#print(a,b,width,mN,pN)}
+47         \textcolor{comment}{#print(generate\_x\_w(a,b,width,mN,pN,xp=np))}
+48         xs,ws = \hyperlink{namespacedequad_a0774348e796cb0945f2e0b0a7fa1c1e9}{generate\_x\_w}(a,b,width,mN,pN,xp)
+49         wsfs = ws*func(xs)
+50         isnan = xp.isnan(wsfs)
+51         isinf = xp.isinf(wsfs)
+52         wsfs[isnan | isinf] = 0
+53         
+54         print(wsfs[wsfs!=0]) \textcolor{keywordflow}{if} DEBUG \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}
+55         
+56         \textcolor{keywordflow}{if} np.any(isnan) \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} ignore\_nan:
+57             \textcolor{keywordflow}{raise} TypeError(\textcolor{stringliteral}{"dequad\_hinf: wsfs is nan! \{\}"}.format(wsfs))
+58         \textcolor{keywordflow}{if} show\_fig:
+59             \textcolor{keywordflow}{if} len(wsfs.shape)>1:
+60                 np.set\_printoptions(threshold=20)
+61                 display(wsfs) \textcolor{keywordflow}{if} show\_integrand\_array \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}
+62                 plt.plot(width*xp.arange(-mN,pN),wsfs.T)
+63                 plt.legend(wsfs.sum(axis=axis))
+64             \textcolor{keywordflow}{else}:
+65                 plt.plot(ts,wsfs)
+66         \textcolor{keywordflow}{return} (wsfs).sum(axis=axis)
+67     \textcolor{keywordflow}{elif} kind == \textcolor{stringliteral}{"log"}:
+68         \textcolor{stringliteral}{"""}
+69 \textcolor{stringliteral}{        R = \(\backslash\)sum\_\{i=mN\}^\{pN\} w\_i * f(x\_i)}
+70 \textcolor{stringliteral}{        """}
+71         ts = width*arange(-mN,pN)
+72         xs = exp(sinh(ts)*pi/2) + a
+73         logwsp = log(width *pi/2) + ts + pi/2*sinh(ts)
+74         logwsm = log(width *pi/2) - ts + pi/2*sinh(ts)
+75         logfs = func(xs)
+76         wsfs = (exp(logwsp*logfs)+exp(logwsm*logfs))/2
+77         wsfs[isnan(wsfs) | isinf(wsfs)] = 0
+78         \textcolor{keywordflow}{return} (wsfs).sum(axis=axis)
+79 
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=311pt]{da/dfc/namespacedequad_a312cb2f278bec2760a7cb9a17bf3928f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedequad_a2654bb61f33ab8685320882396c81ae0}\label{namespacedequad_a2654bb61f33ab8685320882396c81ae0}} 
+\index{dequad@{dequad}!dequad\+\_\+hinf@{dequad\+\_\+hinf}}
+\index{dequad\+\_\+hinf@{dequad\+\_\+hinf}!dequad@{dequad}}
+\subsubsection{\texorpdfstring{dequad\+\_\+hinf()}{dequad\_hinf()}}
+{\footnotesize\ttfamily def dequad.\+dequad\+\_\+hinf (\begin{DoxyParamCaption}\item[{}]{func,  }\item[{}]{a,  }\item[{}]{width = {\ttfamily 5e-\/3},  }\item[{}]{pN = {\ttfamily 1000},  }\item[{}]{mN = {\ttfamily 1000},  }\item[{}]{axis = {\ttfamily None},  }\item[{}]{kind = {\ttfamily \char`\"{}linear\char`\"{}},  }\item[{}]{dtype = {\ttfamily float64},  }\item[{}]{show\+\_\+fig = {\ttfamily False},  }\item[{}]{show\+\_\+integrand\+\_\+array = {\ttfamily True} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}func: func(ndarray_in) = ndarray_out
+axis: define the axis of ndarray_out to use integrate.
+
+Note: If "func" is like func: array(n,) -> array(m,n),
+          f(x) * w ~ (m,n) * (n,) ~ (m,n) * (1,n)
+      then works well (axis should set as axis=1). 
+\end{DoxyVerb}
+ 
+
+Definition at line 80 of file dequad.\+py.
+
+
+\begin{DoxyCode}
+80 \textcolor{keyword}{def }\hyperlink{namespacedequad_a2654bb61f33ab8685320882396c81ae0}{dequad\_hinf}(
+      func,a,width=5e-3,pN=1000,mN=1000,axis=None,kind="linear",dtype=float64,show\_fig=False,show\_integrand\_array=True):
+81     \textcolor{stringliteral}{'''}
+82 \textcolor{stringliteral}{    func: func(ndarray\_in) = ndarray\_out}
+83 \textcolor{stringliteral}{    axis: define the axis of ndarray\_out to use integrate.}
+84 \textcolor{stringliteral}{    }
+85 \textcolor{stringliteral}{    Note: If "func" is like func: array(n,) -> array(m,n),}
+86 \textcolor{stringliteral}{              f(x) * w ~ (m,n) * (n,) ~ (m,n) * (1,n)}
+87 \textcolor{stringliteral}{          then works well (axis should set as axis=1). }
+88 \textcolor{stringliteral}{    '''}
+89     \textcolor{keywordflow}{if} kind == \textcolor{stringliteral}{"linear"}:
+90         xs,ws = \hyperlink{namespacedequad_a0774348e796cb0945f2e0b0a7fa1c1e9}{generate\_x\_w}(a,np.inf,width,mN,pN,xp=np)
+91         wsfs = ws*func(xs)
+92         isnan = np.isnan(wsfs)
+93         isinf = np.isinf(wsfs)
+94         wsfs[isnan | isinf] = 0
+95         
+96         print(wsfs[wsfs!=0]) \textcolor{keywordflow}{if} DEBUG \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}
+97         
+98         \textcolor{keywordflow}{if} np.any(isnan):
+99             \textcolor{keywordflow}{raise} TypeError(\textcolor{stringliteral}{"dequad\_hinf: wsfs is nan! \{\}"}.format(wsfs))
+100         \textcolor{keywordflow}{if} show\_fig:
+101             \textcolor{keywordflow}{if} len(wsfs.shape)>1:
+102                 np.set\_printoptions(threshold=20)
+103                 display(wsfs) \textcolor{keywordflow}{if} show\_integrand\_array \textcolor{keywordflow}{else} \textcolor{keywordtype}{None}
+104                 plt.plot(width*np.arange(-mN,pN),*wsfs,label=(wsfs).sum(axis=axis))
+105                 plt.legend()
+106             \textcolor{keywordflow}{else}:
+107                 plt.plot(ts,wsfs)
+108         \textcolor{keywordflow}{return} (wsfs).sum(axis=axis)
+109     \textcolor{keywordflow}{elif} kind == \textcolor{stringliteral}{"log"}:
+110         \textcolor{stringliteral}{"""}
+111 \textcolor{stringliteral}{        R = \(\backslash\)sum\_\{i=mN\}^\{pN\} w\_i * f(x\_i)}
+112 \textcolor{stringliteral}{        """}
+113         ts = width*arange(-mN,pN)
+114         xs = exp(sinh(ts)*pi/2) + a
+115         logwsp = log(width *pi/2) + ts + pi/2*sinh(ts)
+116         logwsm = log(width *pi/2) - ts + pi/2*sinh(ts)
+117         logfs = func(xs)
+118         wsfs = (exp(logwsp*logfs)+exp(logwsm*logfs))/2
+119         wsfs[isnan(wsfs) | isinf(wsfs)] = 0
+120         \textcolor{keywordflow}{return} (wsfs).sum(axis=axis)
+121 
+122 \textcolor{stringliteral}{"""}
+123 \textcolor{stringliteral}{def dequad\_hinf\_cupysum(func,a,width=5e-3,pN=1000,mN=1000,axis=None,kind="linear"
+      ,dtype=float64,show\_fig=False,show\_integrand\_array=True,xp=np):}
+124 \textcolor{stringliteral}{    '''}
+125 \textcolor{stringliteral}{    func: func(ndarray\_in) = ndarray\_out}
+126 \textcolor{stringliteral}{    axis: define the axis of ndarray\_out to use integrate.}
+127 \textcolor{stringliteral}{    }
+128 \textcolor{stringliteral}{    Note: If "func" is like func: array(n,) -> array(m,n),}
+129 \textcolor{stringliteral}{              f(x) * w ~ (m,n) * (n,) ~ (m,n) * (1,n)}
+130 \textcolor{stringliteral}{          then works well (axis should set as axis=1). }
+131 \textcolor{stringliteral}{    '''}
+132 \textcolor{stringliteral}{    }
+133 \textcolor{stringliteral}{    stream = cupy.cuda.Stream.null}
+134 \textcolor{stringliteral}{    start = stream.record()}
+135 \textcolor{stringliteral}{    }
+136 \textcolor{stringliteral}{    if kind == "linear":}
+137 \textcolor{stringliteral}{        xs,ws = generate\_x\_w(a,width,mN,pN,xp)}
+138 \textcolor{stringliteral}{        wsfs = cp.asarray(ws)*cp.asarray(func(xs))}
+139 \textcolor{stringliteral}{        isnan = xp.isnan(wsfs)}
+140 \textcolor{stringliteral}{        isinf = xp.isinf(wsfs)}
+141 \textcolor{stringliteral}{        wsfs[isnan | isinf] = 0}
+142 \textcolor{stringliteral}{        }
+143 \textcolor{stringliteral}{        print(wsfs[wsfs!=0]) if DEBUG else None}
+144 \textcolor{stringliteral}{        }
+145 \textcolor{stringliteral}{        if xp.any(isnan):}
+146 \textcolor{stringliteral}{            raise TypeError("dequad\_hinf: wsfs is nan! \{\}".format(wsfs))}
+147 \textcolor{stringliteral}{        if show\_fig:}
+148 \textcolor{stringliteral}{            if len(wsfs.shape)>1:}
+149 \textcolor{stringliteral}{                np.set\_printoptions(threshold=20)}
+150 \textcolor{stringliteral}{                display(wsfs) if show\_integrand\_array else None}
+151 \textcolor{stringliteral}{                plt.plot(ts,*wsfs,label=(wsfs).sum(axis=axis))}
+152 \textcolor{stringliteral}{                plt.legend()}
+153 \textcolor{stringliteral}{            else:}
+154 \textcolor{stringliteral}{                plt.plot(ts,wsfs)}
+155 \textcolor{stringliteral}{}
+156 \textcolor{stringliteral}{        end = stream.record()}
+157 \textcolor{stringliteral}{        end.synchronize()}
+158 \textcolor{stringliteral}{        elapsed = cupy.cuda.get\_elapsed\_time(start, end)}
+159 \textcolor{stringliteral}{        #print(elapsed)}
+160 \textcolor{stringliteral}{                }
+161 \textcolor{stringliteral}{        return (wsfs).sum(axis=axis)}
+162 \textcolor{stringliteral}{    elif kind == "log":}
+163 \textcolor{stringliteral}{        '''}
+164 \textcolor{stringliteral}{        R = \(\backslash\)sum\_\{i=mN\}^\{pN\} w\_i * f(x\_i)}
+165 \textcolor{stringliteral}{        '''}
+166 \textcolor{stringliteral}{        ts = width*arange(-mN,pN)}
+167 \textcolor{stringliteral}{        xs = exp(sinh(ts)*pi/2) + a}
+168 \textcolor{stringliteral}{        logwsp = log(width *pi/2) + ts + pi/2*sinh(ts)}
+169 \textcolor{stringliteral}{        logwsm = log(width *pi/2) - ts + pi/2*sinh(ts)}
+170 \textcolor{stringliteral}{        logfs = func(xs)}
+171 \textcolor{stringliteral}{        wsfs = (exp(logwsp*logfs)+exp(logwsm*logfs))/2}
+172 \textcolor{stringliteral}{        wsfs[isnan(wsfs) | isinf(wsfs)] = 0}
+173 \textcolor{stringliteral}{        return (wsfs).sum(axis=axis)}
+174 \textcolor{stringliteral}{"""}
+175 \end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{da/dfc/namespacedequad_a2654bb61f33ab8685320882396c81ae0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{da/dfc/namespacedequad_a2654bb61f33ab8685320882396c81ae0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedequad_a0774348e796cb0945f2e0b0a7fa1c1e9}\label{namespacedequad_a0774348e796cb0945f2e0b0a7fa1c1e9}} 
+\index{dequad@{dequad}!generate\+\_\+x\+\_\+w@{generate\+\_\+x\+\_\+w}}
+\index{generate\+\_\+x\+\_\+w@{generate\+\_\+x\+\_\+w}!dequad@{dequad}}
+\subsubsection{\texorpdfstring{generate\+\_\+x\+\_\+w()}{generate\_x\_w()}}
+{\footnotesize\ttfamily def dequad.\+generate\+\_\+x\+\_\+w (\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{width,  }\item[{}]{mN,  }\item[{}]{pN,  }\item[{}]{xp = {\ttfamily np} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}x = phi(t)
+w = phi'(t)
+\end{DoxyVerb}
+ 
+
+Definition at line 11 of file dequad.\+py.
+
+
+\begin{DoxyCode}
+11 \textcolor{keyword}{def }\hyperlink{namespacedequad_a0774348e796cb0945f2e0b0a7fa1c1e9}{generate\_x\_w}(a,b,width,mN,pN,xp=np):
+12     \textcolor{stringliteral}{'''}
+13 \textcolor{stringliteral}{    x = phi(t)}
+14 \textcolor{stringliteral}{    w = phi'(t)}
+15 \textcolor{stringliteral}{    '''}
+16     \textcolor{comment}{#print("generate\_x\_w in",a,b,width,mN,pN)}
+17     pi2 = xp.pi/2
+18     ts = width*xp.arange(-mN,pN)\textcolor{comment}{#.astype(dtype)}
+19     \textcolor{keywordflow}{if} np.all(\textcolor{keywordflow}{not} np.isinf(a)) \textcolor{keywordflow}{and} np.all(np.isinf(b)):
+20         ps = pi2*xp.sinh(ts)
+21         xs = xp.exp(ps) + a
+22         ws = width *pi2 *xp.cosh(ts)*xp.exp(ps)    
+23         
+24     \textcolor{keywordflow}{elif} np.all(np.isinf(a)) \textcolor{keywordflow}{and} np.all(np.isinf(b)):
+25         ps = pi2*xp.sinh(ts)
+26         xs = xp.sinh(ps)
+27         ws = width *pi2 *xp.cosh(ts)*xp.cosh(ps)  
+28         
+29     \textcolor{keywordflow}{elif} np.all(\textcolor{keywordflow}{not} np.isinf(a)) \textcolor{keywordflow}{and} np.all(\textcolor{keywordflow}{not} np.isinf(b)):
+30         ps = pi2*xp.sinh(ts)
+31         xs = (b-a)/2*xp.tanh(ps) + (a+b)/2
+32         ws = width * (b-a)/2 *pi2 *xp.cosh(ts)/(xp.cosh(ps)**2)
+33         
+34     \textcolor{keywordflow}{return} xs,ws
+35 
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{da/dfc/namespacedequad_a0774348e796cb0945f2e0b0a7fa1c1e9_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacedequad_a7f2d7b33e38c6d5249b152740f656344}\label{namespacedequad_a7f2d7b33e38c6d5249b152740f656344}} 
+\index{dequad@{dequad}!B\+U\+F\+\_\+\+D\+E\+B\+UG@{B\+U\+F\+\_\+\+D\+E\+B\+UG}}
+\index{B\+U\+F\+\_\+\+D\+E\+B\+UG@{B\+U\+F\+\_\+\+D\+E\+B\+UG}!dequad@{dequad}}
+\subsubsection{\texorpdfstring{B\+U\+F\+\_\+\+D\+E\+B\+UG}{BUF\_DEBUG}}
+{\footnotesize\ttfamily dequad.\+B\+U\+F\+\_\+\+D\+E\+B\+UG = None}
+
+
+
+Definition at line 8 of file dequad.\+py.
+
+\mbox{\Hypertarget{namespacedequad_a19fc97d6e01fffb74ca81c02a51d86c0}\label{namespacedequad_a19fc97d6e01fffb74ca81c02a51d86c0}} 
+\index{dequad@{dequad}!D\+E\+B\+UG@{D\+E\+B\+UG}}
+\index{D\+E\+B\+UG@{D\+E\+B\+UG}!dequad@{dequad}}
+\subsubsection{\texorpdfstring{D\+E\+B\+UG}{DEBUG}}
+{\footnotesize\ttfamily bool dequad.\+D\+E\+B\+UG = False}
+
+
+
+Definition at line 7 of file dequad.\+py.
+
+\mbox{\Hypertarget{namespacedequad_aecd7501e851b01ca793cb5b896fa5141}\label{namespacedequad_aecd7501e851b01ca793cb5b896fa5141}} 
+\index{dequad@{dequad}!maxsize@{maxsize}}
+\index{maxsize@{maxsize}!dequad@{dequad}}
+\subsubsection{\texorpdfstring{maxsize}{maxsize}}
+{\footnotesize\ttfamily dequad.\+maxsize}
+
+
+
+Definition at line 10 of file dequad.\+py.
+

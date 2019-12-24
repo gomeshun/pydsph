@@ -1,0 +1,295 @@
+\hypertarget{namespacecoord}{}\section{coord Namespace Reference}
+\label{namespacecoord}\index{coord@{coord}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacecoord_a46aebc3089e078f4597812fecdd0975f}{projected\+\_\+distance} (dist, ra\+\_\+center, de\+\_\+center, \hyperlink{namespacecoord_a9e8cb473ba5d9c7398020447b51174e0}{ra}, \hyperlink{namespacecoord_a8dcc8c73e25f42279ad5b38825c9b285}{de}, dtype=\char`\"{}rad\char`\"{})
+\item 
+def \hyperlink{namespacecoord_a6cca1fe4ad65d56023a02550cbba8ce8}{projected\+\_\+distance\+\_\+simple} (dist, ra\+\_\+center, de\+\_\+center, \hyperlink{namespacecoord_a9e8cb473ba5d9c7398020447b51174e0}{ra}, \hyperlink{namespacecoord_a8dcc8c73e25f42279ad5b38825c9b285}{de}, dtype=\char`\"{}rad\char`\"{})
+\item 
+def \hyperlink{namespacecoord_a04a9b47f67924315930327ed806ee648}{projected\+\_\+angle} (ra\+\_\+center, de\+\_\+center, \hyperlink{namespacecoord_a9e8cb473ba5d9c7398020447b51174e0}{ra}, \hyperlink{namespacecoord_a8dcc8c73e25f42279ad5b38825c9b285}{de}, dtype=\char`\"{}rad\char`\"{})
+\item 
+def \hyperlink{namespacecoord_a07f644bbf8451a0560cf4b4966049ab0}{hms\+\_\+to\+\_\+h} (h, m, s)
+\item 
+def \hyperlink{namespacecoord_ac3ec31a56901971ab03a578d64030901}{hms\+\_\+to\+\_\+deg} (h, m, s)
+\item 
+def \hyperlink{namespacecoord_af5e3e51606e1533306ebbad1e67d0b17}{dms\+\_\+to\+\_\+deg} (d, m, s)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+dictionary \hyperlink{namespacecoord_a87ee5c40fe361f2c1bfbea4ed5086028}{args} = \{\textquotesingle{}ra\+\_\+center\textquotesingle{}\+:0,\textquotesingle{}de\+\_\+center\textquotesingle{}\+:np.\+pi/2-\/0.\+5\}
+\item 
+tuple \hyperlink{namespacecoord_a9e8cb473ba5d9c7398020447b51174e0}{ra} = (np.\+arange(-\/np.\+pi,np.\+pi,0.\+01) + \hyperlink{namespacecoord_a87ee5c40fe361f2c1bfbea4ed5086028}{args}\mbox{[}\textquotesingle{}ra\+\_\+center\textquotesingle{}\mbox{]})
+\item 
+tuple \hyperlink{namespacecoord_a8dcc8c73e25f42279ad5b38825c9b285}{de} = (np.\+arange(-\/np.\+pi,np.\+pi,0.\+01) + \hyperlink{namespacecoord_a87ee5c40fe361f2c1bfbea4ed5086028}{args}\mbox{[}\textquotesingle{}de\+\_\+center\textquotesingle{}\mbox{]})
+\item 
+\hyperlink{namespacecoord_a5462056be5c33668cdc23bd703b745c5}{ras}
+\item 
+\hyperlink{namespacecoord_ae502575d54f9026dd1c6b0118fc65c63}{des}
+\item 
+def \hyperlink{namespacecoord_a2314e07f943e13a24947dced6bee4b64}{dists} = \hyperlink{namespacecoord_a46aebc3089e078f4597812fecdd0975f}{projected\+\_\+distance}(1,\hyperlink{namespacecoord_a9e8cb473ba5d9c7398020447b51174e0}{ra}=\hyperlink{namespacecoord_a5462056be5c33668cdc23bd703b745c5}{ras},\hyperlink{namespacecoord_a8dcc8c73e25f42279ad5b38825c9b285}{de}=\hyperlink{namespacecoord_ae502575d54f9026dd1c6b0118fc65c63}{des},$\ast$$\ast$\hyperlink{namespacecoord_a87ee5c40fe361f2c1bfbea4ed5086028}{args})
+\item 
+\hyperlink{namespacecoord_abd9b02ef552306f922eb3b6d0be56c34}{fig} = plt.\+figure()
+\item 
+\hyperlink{namespacecoord_a9aa399b274864850fc9b9569a1256848}{ax} = fig.\+add\+\_\+subplot(111,projection=\textquotesingle{}3d\textquotesingle{})
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacecoord_af5e3e51606e1533306ebbad1e67d0b17}\label{namespacecoord_af5e3e51606e1533306ebbad1e67d0b17}} 
+\index{coord@{coord}!dms\+\_\+to\+\_\+deg@{dms\+\_\+to\+\_\+deg}}
+\index{dms\+\_\+to\+\_\+deg@{dms\+\_\+to\+\_\+deg}!coord@{coord}}
+\subsubsection{\texorpdfstring{dms\+\_\+to\+\_\+deg()}{dms\_to\_deg()}}
+{\footnotesize\ttfamily def coord.\+dms\+\_\+to\+\_\+deg (\begin{DoxyParamCaption}\item[{}]{d,  }\item[{}]{m,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}return deg from input (d,m,s).  
+
+Note: 1.0/d is positive for positive d, negative for negative d,
+      +inf for +0.0 and -inf for -0.0 (IEEE754)
+\end{DoxyVerb}
+ 
+
+Definition at line 49 of file coord.\+py.
+
+
+\begin{DoxyCode}
+49 \textcolor{keyword}{def }\hyperlink{namespacecoord_af5e3e51606e1533306ebbad1e67d0b17}{dms\_to\_deg}(d,m,s):
+50     \textcolor{stringliteral}{'''}
+51 \textcolor{stringliteral}{    return deg from input (d,m,s).  }
+52 \textcolor{stringliteral}{    }
+53 \textcolor{stringliteral}{    Note: 1.0/d is positive for positive d, negative for negative d,}
+54 \textcolor{stringliteral}{          +inf for +0.0 and -inf for -0.0 (IEEE754)}
+55 \textcolor{stringliteral}{    '''}
+56     sign = np.sign(np.array(1.0)/d)
+57     \textcolor{keywordflow}{return} sign*(np.fabs(d)+m/60.+s/3600.)
+58 
+59 
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacecoord_ac3ec31a56901971ab03a578d64030901}\label{namespacecoord_ac3ec31a56901971ab03a578d64030901}} 
+\index{coord@{coord}!hms\+\_\+to\+\_\+deg@{hms\+\_\+to\+\_\+deg}}
+\index{hms\+\_\+to\+\_\+deg@{hms\+\_\+to\+\_\+deg}!coord@{coord}}
+\subsubsection{\texorpdfstring{hms\+\_\+to\+\_\+deg()}{hms\_to\_deg()}}
+{\footnotesize\ttfamily def coord.\+hms\+\_\+to\+\_\+deg (\begin{DoxyParamCaption}\item[{}]{h,  }\item[{}]{m,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+
+
+Definition at line 46 of file coord.\+py.
+
+
+\begin{DoxyCode}
+46 \textcolor{keyword}{def }\hyperlink{namespacecoord_ac3ec31a56901971ab03a578d64030901}{hms\_to\_deg}(h,m,s):
+47     \textcolor{keywordflow}{return} (h+m/60.+s/3600.)*15
+48 
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacecoord_a07f644bbf8451a0560cf4b4966049ab0}\label{namespacecoord_a07f644bbf8451a0560cf4b4966049ab0}} 
+\index{coord@{coord}!hms\+\_\+to\+\_\+h@{hms\+\_\+to\+\_\+h}}
+\index{hms\+\_\+to\+\_\+h@{hms\+\_\+to\+\_\+h}!coord@{coord}}
+\subsubsection{\texorpdfstring{hms\+\_\+to\+\_\+h()}{hms\_to\_h()}}
+{\footnotesize\ttfamily def coord.\+hms\+\_\+to\+\_\+h (\begin{DoxyParamCaption}\item[{}]{h,  }\item[{}]{m,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+
+
+Definition at line 43 of file coord.\+py.
+
+
+\begin{DoxyCode}
+43 \textcolor{keyword}{def }\hyperlink{namespacecoord_a07f644bbf8451a0560cf4b4966049ab0}{hms\_to\_h}(h,m,s):
+44     \textcolor{keywordflow}{return} h+m/60.+s/3600.
+45 
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacecoord_a04a9b47f67924315930327ed806ee648}\label{namespacecoord_a04a9b47f67924315930327ed806ee648}} 
+\index{coord@{coord}!projected\+\_\+angle@{projected\+\_\+angle}}
+\index{projected\+\_\+angle@{projected\+\_\+angle}!coord@{coord}}
+\subsubsection{\texorpdfstring{projected\+\_\+angle()}{projected\_angle()}}
+{\footnotesize\ttfamily def coord.\+projected\+\_\+angle (\begin{DoxyParamCaption}\item[{}]{ra\+\_\+center,  }\item[{}]{de\+\_\+center,  }\item[{}]{ra,  }\item[{}]{de,  }\item[{}]{dtype = {\ttfamily \char`\"{}rad\char`\"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}args:
+    ra_center,de_center,ra,de: radian unit
+note:
+    calculate the projected distance from the center position:
+    dist = dist*sin(theta),
+    cos_theta = c(de_center)*c(de)*(c(ra-ra_center))+s(de_center)*s(de)
+\end{DoxyVerb}
+ 
+
+Definition at line 30 of file coord.\+py.
+
+
+\begin{DoxyCode}
+30 \textcolor{keyword}{def }\hyperlink{namespacecoord_a04a9b47f67924315930327ed806ee648}{projected\_angle}(ra\_center,de\_center,ra,de,dtype="rad"):
+31     \textcolor{stringliteral}{'''}
+32 \textcolor{stringliteral}{    args:}
+33 \textcolor{stringliteral}{        ra\_center,de\_center,ra,de: radian unit}
+34 \textcolor{stringliteral}{    note:}
+35 \textcolor{stringliteral}{        calculate the projected distance from the center position:}
+36 \textcolor{stringliteral}{        dist = dist*sin(theta),}
+37 \textcolor{stringliteral}{        cos\_theta = c(de\_center)*c(de)*(c(ra-ra\_center))+s(de\_center)*s(de)}
+38 \textcolor{stringliteral}{    '''}
+39     t,t\_inv = (np.deg2rad,np.rad2deg) \textcolor{keywordflow}{if} dtype == \textcolor{stringliteral}{"deg"} \textcolor{keywordflow}{else} (\textcolor{keyword}{lambda} x:x,\textcolor{keyword}{lambda} x:x)
+40     cos\_theta = c(t(de\_center))*c(t(de))*(c(t(ra-ra\_center)))+s(t(de\_center))*s(t(de))
+41     \textcolor{keywordflow}{return} t\_inv(np.arccos(cos\_theta))
+42 
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/df4/namespacecoord_a04a9b47f67924315930327ed806ee648_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacecoord_a46aebc3089e078f4597812fecdd0975f}\label{namespacecoord_a46aebc3089e078f4597812fecdd0975f}} 
+\index{coord@{coord}!projected\+\_\+distance@{projected\+\_\+distance}}
+\index{projected\+\_\+distance@{projected\+\_\+distance}!coord@{coord}}
+\subsubsection{\texorpdfstring{projected\+\_\+distance()}{projected\_distance()}}
+{\footnotesize\ttfamily def coord.\+projected\+\_\+distance (\begin{DoxyParamCaption}\item[{}]{dist,  }\item[{}]{ra\+\_\+center,  }\item[{}]{de\+\_\+center,  }\item[{}]{ra,  }\item[{}]{de,  }\item[{}]{dtype = {\ttfamily \char`\"{}rad\char`\"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}args:
+    ra_center,de_center,ra,de: radian unit
+note:
+    calculate the projected distance from the center position:
+    dist = dist*sin(theta),
+    cos_theta = c(de_center)*c(de)*(c(ra-ra_center))+s(de_center)*s(de)
+\end{DoxyVerb}
+ 
+
+Definition at line 5 of file coord.\+py.
+
+
+\begin{DoxyCode}
+5 \textcolor{keyword}{def }\hyperlink{namespacecoord_a46aebc3089e078f4597812fecdd0975f}{projected\_distance}(dist,ra\_center,de\_center,ra,de,dtype="rad"):
+6     \textcolor{stringliteral}{'''}
+7 \textcolor{stringliteral}{    args:}
+8 \textcolor{stringliteral}{        ra\_center,de\_center,ra,de: radian unit}
+9 \textcolor{stringliteral}{    note:}
+10 \textcolor{stringliteral}{        calculate the projected distance from the center position:}
+11 \textcolor{stringliteral}{        dist = dist*sin(theta),}
+12 \textcolor{stringliteral}{        cos\_theta = c(de\_center)*c(de)*(c(ra-ra\_center))+s(de\_center)*s(de)}
+13 \textcolor{stringliteral}{    '''}
+14     t = np.deg2rad \textcolor{keywordflow}{if} dtype == \textcolor{stringliteral}{"deg"} \textcolor{keywordflow}{else} \textcolor{keyword}{lambda} x:x
+15     cos\_theta = c(t(de\_center))*c(t(de))*(c(t(ra-ra\_center)))+s(t(de\_center))*s(t(de))
+16     \textcolor{keywordflow}{return} dist*np.sqrt(1-cos\_theta*cos\_theta)
+17 
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/df4/namespacecoord_a46aebc3089e078f4597812fecdd0975f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacecoord_a6cca1fe4ad65d56023a02550cbba8ce8}\label{namespacecoord_a6cca1fe4ad65d56023a02550cbba8ce8}} 
+\index{coord@{coord}!projected\+\_\+distance\+\_\+simple@{projected\+\_\+distance\+\_\+simple}}
+\index{projected\+\_\+distance\+\_\+simple@{projected\+\_\+distance\+\_\+simple}!coord@{coord}}
+\subsubsection{\texorpdfstring{projected\+\_\+distance\+\_\+simple()}{projected\_distance\_simple()}}
+{\footnotesize\ttfamily def coord.\+projected\+\_\+distance\+\_\+simple (\begin{DoxyParamCaption}\item[{}]{dist,  }\item[{}]{ra\+\_\+center,  }\item[{}]{de\+\_\+center,  }\item[{}]{ra,  }\item[{}]{de,  }\item[{}]{dtype = {\ttfamily \char`\"{}rad\char`\"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}args:
+    ra_center,de_center,ra,de: radian unit
+note:
+    calculate the projected distance from the center position:
+    dist = dist*sin(theta),
+    cos_theta = c(de_center)*c(de)*(c(ra-ra_center))+s(de_center)*s(de)
+\end{DoxyVerb}
+ 
+
+Definition at line 18 of file coord.\+py.
+
+
+\begin{DoxyCode}
+18 \textcolor{keyword}{def }\hyperlink{namespacecoord_a6cca1fe4ad65d56023a02550cbba8ce8}{projected\_distance\_simple}(dist,ra\_center,de\_center,ra,de,dtype="rad"):
+19     \textcolor{stringliteral}{'''}
+20 \textcolor{stringliteral}{    args:}
+21 \textcolor{stringliteral}{        ra\_center,de\_center,ra,de: radian unit}
+22 \textcolor{stringliteral}{    note:}
+23 \textcolor{stringliteral}{        calculate the projected distance from the center position:}
+24 \textcolor{stringliteral}{        dist = dist*sin(theta),}
+25 \textcolor{stringliteral}{        cos\_theta = c(de\_center)*c(de)*(c(ra-ra\_center))+s(de\_center)*s(de)}
+26 \textcolor{stringliteral}{    '''}
+27     t = np.deg2rad \textcolor{keywordflow}{if} dtype == \textcolor{stringliteral}{"deg"} \textcolor{keywordflow}{else} \textcolor{keyword}{lambda} x:x
+28     \textcolor{keywordflow}{return} dist*np.sqrt( (c(t(de\_center))*t(ra-ra\_center))**2 + (t(de-de\_center))**2 )
+29 
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacecoord_a87ee5c40fe361f2c1bfbea4ed5086028}\label{namespacecoord_a87ee5c40fe361f2c1bfbea4ed5086028}} 
+\index{coord@{coord}!args@{args}}
+\index{args@{args}!coord@{coord}}
+\subsubsection{\texorpdfstring{args}{args}}
+{\footnotesize\ttfamily dictionary coord.\+args = \{\textquotesingle{}ra\+\_\+center\textquotesingle{}\+:0,\textquotesingle{}de\+\_\+center\textquotesingle{}\+:np.\+pi/2-\/0.\+5\}}
+
+
+
+Definition at line 64 of file coord.\+py.
+
+\mbox{\Hypertarget{namespacecoord_a9aa399b274864850fc9b9569a1256848}\label{namespacecoord_a9aa399b274864850fc9b9569a1256848}} 
+\index{coord@{coord}!ax@{ax}}
+\index{ax@{ax}!coord@{coord}}
+\subsubsection{\texorpdfstring{ax}{ax}}
+{\footnotesize\ttfamily coord.\+ax = fig.\+add\+\_\+subplot(111,projection=\textquotesingle{}3d\textquotesingle{})}
+
+
+
+Definition at line 71 of file coord.\+py.
+
+\mbox{\Hypertarget{namespacecoord_a8dcc8c73e25f42279ad5b38825c9b285}\label{namespacecoord_a8dcc8c73e25f42279ad5b38825c9b285}} 
+\index{coord@{coord}!de@{de}}
+\index{de@{de}!coord@{coord}}
+\subsubsection{\texorpdfstring{de}{de}}
+{\footnotesize\ttfamily tuple coord.\+de = (np.\+arange(-\/np.\+pi,np.\+pi,0.\+01) + \hyperlink{namespacecoord_a87ee5c40fe361f2c1bfbea4ed5086028}{args}\mbox{[}\textquotesingle{}de\+\_\+center\textquotesingle{}\mbox{]})}
+
+
+
+Definition at line 66 of file coord.\+py.
+
+\mbox{\Hypertarget{namespacecoord_ae502575d54f9026dd1c6b0118fc65c63}\label{namespacecoord_ae502575d54f9026dd1c6b0118fc65c63}} 
+\index{coord@{coord}!des@{des}}
+\index{des@{des}!coord@{coord}}
+\subsubsection{\texorpdfstring{des}{des}}
+{\footnotesize\ttfamily coord.\+des}
+
+
+
+Definition at line 67 of file coord.\+py.
+
+\mbox{\Hypertarget{namespacecoord_a2314e07f943e13a24947dced6bee4b64}\label{namespacecoord_a2314e07f943e13a24947dced6bee4b64}} 
+\index{coord@{coord}!dists@{dists}}
+\index{dists@{dists}!coord@{coord}}
+\subsubsection{\texorpdfstring{dists}{dists}}
+{\footnotesize\ttfamily def coord.\+dists = \hyperlink{namespacecoord_a46aebc3089e078f4597812fecdd0975f}{projected\+\_\+distance}(1,\hyperlink{namespacecoord_a9e8cb473ba5d9c7398020447b51174e0}{ra}=\hyperlink{namespacecoord_a5462056be5c33668cdc23bd703b745c5}{ras},\hyperlink{namespacecoord_a8dcc8c73e25f42279ad5b38825c9b285}{de}=\hyperlink{namespacecoord_ae502575d54f9026dd1c6b0118fc65c63}{des},$\ast$$\ast$\hyperlink{namespacecoord_a87ee5c40fe361f2c1bfbea4ed5086028}{args})}
+
+
+
+Definition at line 68 of file coord.\+py.
+
+\mbox{\Hypertarget{namespacecoord_abd9b02ef552306f922eb3b6d0be56c34}\label{namespacecoord_abd9b02ef552306f922eb3b6d0be56c34}} 
+\index{coord@{coord}!fig@{fig}}
+\index{fig@{fig}!coord@{coord}}
+\subsubsection{\texorpdfstring{fig}{fig}}
+{\footnotesize\ttfamily coord.\+fig = plt.\+figure()}
+
+
+
+Definition at line 70 of file coord.\+py.
+
+\mbox{\Hypertarget{namespacecoord_a9e8cb473ba5d9c7398020447b51174e0}\label{namespacecoord_a9e8cb473ba5d9c7398020447b51174e0}} 
+\index{coord@{coord}!ra@{ra}}
+\index{ra@{ra}!coord@{coord}}
+\subsubsection{\texorpdfstring{ra}{ra}}
+{\footnotesize\ttfamily tuple coord.\+ra = (np.\+arange(-\/np.\+pi,np.\+pi,0.\+01) + \hyperlink{namespacecoord_a87ee5c40fe361f2c1bfbea4ed5086028}{args}\mbox{[}\textquotesingle{}ra\+\_\+center\textquotesingle{}\mbox{]})}
+
+
+
+Definition at line 65 of file coord.\+py.
+
+\mbox{\Hypertarget{namespacecoord_a5462056be5c33668cdc23bd703b745c5}\label{namespacecoord_a5462056be5c33668cdc23bd703b745c5}} 
+\index{coord@{coord}!ras@{ras}}
+\index{ras@{ras}!coord@{coord}}
+\subsubsection{\texorpdfstring{ras}{ras}}
+{\footnotesize\ttfamily coord.\+ras}
+
+
+
+Definition at line 67 of file coord.\+py.
+

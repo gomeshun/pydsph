@@ -1,0 +1,118 @@
+\hypertarget{classdsph__model_1_1uniform2d__model}{}\section{dsph\+\_\+model.\+uniform2d\+\_\+model Class Reference}
+\label{classdsph__model_1_1uniform2d__model}\index{dsph\+\_\+model.\+uniform2d\+\_\+model@{dsph\+\_\+model.\+uniform2d\+\_\+model}}
+
+
+Inheritance diagram for dsph\+\_\+model.\+uniform2d\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{d2/dd9/classdsph__model_1_1uniform2d__model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for dsph\+\_\+model.\+uniform2d\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{da/d4e/classdsph__model_1_1uniform2d__model__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdsph__model_1_1uniform2d__model_aff33b4418158947e106a097c3a58a67e}{density\+\_\+2d} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1uniform2d__model_a2c038957a1031356eb5e011a8644df2d}{cdf\+\_\+R} (self, R\+\_\+pc)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classdsph__model_1_1uniform2d__model_a6675f4914587aa9b7e3dcc30fe717b20}{name} = \char`\"{}uniform \hyperlink{classdsph__model_1_1model}{model}\char`\"{}
+\item 
+list \hyperlink{classdsph__model_1_1uniform2d__model_aa29df7124c2edd32617deddca0271eb7}{required\+\_\+params\+\_\+name} = \mbox{[}\textquotesingle{}Rmax\+\_\+pc\textquotesingle{},\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 219 of file dsph\+\_\+model.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1uniform2d__model_a2c038957a1031356eb5e011a8644df2d}\label{classdsph__model_1_1uniform2d__model_a2c038957a1031356eb5e011a8644df2d}} 
+\index{dsph\+\_\+model\+::uniform2d\+\_\+model@{dsph\+\_\+model\+::uniform2d\+\_\+model}!cdf\+\_\+R@{cdf\+\_\+R}}
+\index{cdf\+\_\+R@{cdf\+\_\+R}!dsph\+\_\+model\+::uniform2d\+\_\+model@{dsph\+\_\+model\+::uniform2d\+\_\+model}}
+\subsubsection{\texorpdfstring{cdf\+\_\+\+R()}{cdf\_R()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+uniform2d\+\_\+model.\+cdf\+\_\+R (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 224 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+224     \textcolor{keyword}{def }cdf\_R(self,R\_pc):
+225         \textcolor{keywordflow}{return} (R\_pc/self.params.Rmax\_pc)**2    
+226 
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/daa/classdsph__model_1_1uniform2d__model_a2c038957a1031356eb5e011a8644df2d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1uniform2d__model_aff33b4418158947e106a097c3a58a67e}\label{classdsph__model_1_1uniform2d__model_aff33b4418158947e106a097c3a58a67e}} 
+\index{dsph\+\_\+model\+::uniform2d\+\_\+model@{dsph\+\_\+model\+::uniform2d\+\_\+model}!density\+\_\+2d@{density\+\_\+2d}}
+\index{density\+\_\+2d@{density\+\_\+2d}!dsph\+\_\+model\+::uniform2d\+\_\+model@{dsph\+\_\+model\+::uniform2d\+\_\+model}}
+\subsubsection{\texorpdfstring{density\+\_\+2d()}{density\_2d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+uniform2d\+\_\+model.\+density\+\_\+2d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 222 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+222     \textcolor{keyword}{def }density\_2d(self,R\_pc):
+223         \textcolor{keywordflow}{return} 1./(pi*self.params.Rmax\_pc**2)*np.ones\_like(R\_pc)
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/daa/classdsph__model_1_1uniform2d__model_aff33b4418158947e106a097c3a58a67e_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1uniform2d__model_a6675f4914587aa9b7e3dcc30fe717b20}\label{classdsph__model_1_1uniform2d__model_a6675f4914587aa9b7e3dcc30fe717b20}} 
+\index{dsph\+\_\+model\+::uniform2d\+\_\+model@{dsph\+\_\+model\+::uniform2d\+\_\+model}!name@{name}}
+\index{name@{name}!dsph\+\_\+model\+::uniform2d\+\_\+model@{dsph\+\_\+model\+::uniform2d\+\_\+model}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string dsph\+\_\+model.\+uniform2d\+\_\+model.\+name = \char`\"{}uniform \hyperlink{classdsph__model_1_1model}{model}\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 220 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{classdsph__model_1_1uniform2d__model_aa29df7124c2edd32617deddca0271eb7}\label{classdsph__model_1_1uniform2d__model_aa29df7124c2edd32617deddca0271eb7}} 
+\index{dsph\+\_\+model\+::uniform2d\+\_\+model@{dsph\+\_\+model\+::uniform2d\+\_\+model}!required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}}
+\index{required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}!dsph\+\_\+model\+::uniform2d\+\_\+model@{dsph\+\_\+model\+::uniform2d\+\_\+model}}
+\subsubsection{\texorpdfstring{required\+\_\+params\+\_\+name}{required\_params\_name}}
+{\footnotesize\ttfamily list dsph\+\_\+model.\+uniform2d\+\_\+model.\+required\+\_\+params\+\_\+name = \mbox{[}\textquotesingle{}Rmax\+\_\+pc\textquotesingle{},\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 221 of file dsph\+\_\+model.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{dsph__model_8py}{dsph\+\_\+model.\+py}\end{DoxyCompactItemize}

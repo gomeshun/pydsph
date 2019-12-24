@@ -1,0 +1,4 @@
+<map id="dsph_model.exp2d_model" name="dsph_model.exp2d_model">
+<area shape="rect" id="node2" href="$d0/db5/classdsph__model_1_1stellar__model.html" title="{dsph_model.stellar\l_model\n|+ name\l|+ density()\l+ density_2d_truncated()\l}" alt="" coords="29,263,196,369"/>
+<area shape="rect" id="node3" href="$d3/da3/classdsph__model_1_1model.html" title="{dsph_model.model\n|+ params\l+ required_params_name\l+ submodels\l+ required_models\l+ name\l|+ __init__()\l+ __repr__()\l+ show_params()\l+ show_required_params_name()\l+ is_required_params_name()\l+ update()\l}" alt="" coords="5,5,220,215"/>
+</map>

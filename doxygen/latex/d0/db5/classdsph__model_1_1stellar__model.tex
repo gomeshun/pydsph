@@ -1,0 +1,117 @@
+\hypertarget{classdsph__model_1_1stellar__model}{}\section{dsph\+\_\+model.\+stellar\+\_\+model Class Reference}
+\label{classdsph__model_1_1stellar__model}\index{dsph\+\_\+model.\+stellar\+\_\+model@{dsph\+\_\+model.\+stellar\+\_\+model}}
+
+
+Inheritance diagram for dsph\+\_\+model.\+stellar\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d98/classdsph__model_1_1stellar__model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for dsph\+\_\+model.\+stellar\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{d0/df8/classdsph__model_1_1stellar__model__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdsph__model_1_1stellar__model_a9a444748be87bd42c8a6e0c4e6b6de43}{density} (self, distance\+\_\+from\+\_\+center, dimension)
+\item 
+def \hyperlink{classdsph__model_1_1stellar__model_acde2267ff0b15d0177b5eef57fd006ed}{density\+\_\+2d\+\_\+truncated} (self, R\+\_\+pc, \hyperlink{namespacedsph__model_a03ec56ecf56f64e59a6be020a76a36f1}{R\+\_\+trunc\+\_\+pc})
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classdsph__model_1_1stellar__model_a96f64415fa962d0eda886a7ec575b2b3}{name} = \char`\"{}stellar \hyperlink{classdsph__model_1_1model}{model}\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 82 of file dsph\+\_\+model.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1stellar__model_a9a444748be87bd42c8a6e0c4e6b6de43}\label{classdsph__model_1_1stellar__model_a9a444748be87bd42c8a6e0c4e6b6de43}} 
+\index{dsph\+\_\+model\+::stellar\+\_\+model@{dsph\+\_\+model\+::stellar\+\_\+model}!density@{density}}
+\index{density@{density}!dsph\+\_\+model\+::stellar\+\_\+model@{dsph\+\_\+model\+::stellar\+\_\+model}}
+\subsubsection{\texorpdfstring{density()}{density()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+stellar\+\_\+model.\+density (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{distance\+\_\+from\+\_\+center,  }\item[{}]{dimension }\end{DoxyParamCaption})}
+
+
+
+Definition at line 84 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+84     \textcolor{keyword}{def }density(self,distance\_from\_center,dimension):
+85         \textcolor{keywordflow}{if} dimension == \textcolor{stringliteral}{"2d"}:
+86             \textcolor{keywordflow}{return} self.density\_2d(distance\_from\_center)
+87         \textcolor{keywordflow}{elif} dimension == \textcolor{stringliteral}{"3d"}:
+88             \textcolor{keywordflow}{return} self.density\_3d(distance\_from\_center)
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/db5/classdsph__model_1_1stellar__model_a9a444748be87bd42c8a6e0c4e6b6de43_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1stellar__model_acde2267ff0b15d0177b5eef57fd006ed}\label{classdsph__model_1_1stellar__model_acde2267ff0b15d0177b5eef57fd006ed}} 
+\index{dsph\+\_\+model\+::stellar\+\_\+model@{dsph\+\_\+model\+::stellar\+\_\+model}!density\+\_\+2d\+\_\+truncated@{density\+\_\+2d\+\_\+truncated}}
+\index{density\+\_\+2d\+\_\+truncated@{density\+\_\+2d\+\_\+truncated}!dsph\+\_\+model\+::stellar\+\_\+model@{dsph\+\_\+model\+::stellar\+\_\+model}}
+\subsubsection{\texorpdfstring{density\+\_\+2d\+\_\+truncated()}{density\_2d\_truncated()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+stellar\+\_\+model.\+density\+\_\+2d\+\_\+truncated (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc,  }\item[{}]{R\+\_\+trunc\+\_\+pc }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Truncated 2D density. Note that
+    \int_0^{R_trunc} 2\pi R density_2d_truncated(R,R_trunc) = 1 .
+\end{DoxyVerb}
+ 
+
+Definition at line 89 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+89     \textcolor{keyword}{def }density\_2d\_truncated(self,R\_pc,R\_trunc\_pc):
+90         \textcolor{stringliteral}{"""}
+91 \textcolor{stringliteral}{        Truncated 2D density. Note that}
+92 \textcolor{stringliteral}{            \(\backslash\)int\_0^\{R\_trunc\} 2\(\backslash\)pi R density\_2d\_truncated(R,R\_trunc) = 1 .}
+93 \textcolor{stringliteral}{        """}
+94         \textcolor{keywordflow}{return} self.density\_2d(R\_pc)/self.cdf\_R(R\_trunc\_pc)
+95 
+96 
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/db5/classdsph__model_1_1stellar__model_acde2267ff0b15d0177b5eef57fd006ed_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1stellar__model_a96f64415fa962d0eda886a7ec575b2b3}\label{classdsph__model_1_1stellar__model_a96f64415fa962d0eda886a7ec575b2b3}} 
+\index{dsph\+\_\+model\+::stellar\+\_\+model@{dsph\+\_\+model\+::stellar\+\_\+model}!name@{name}}
+\index{name@{name}!dsph\+\_\+model\+::stellar\+\_\+model@{dsph\+\_\+model\+::stellar\+\_\+model}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string dsph\+\_\+model.\+stellar\+\_\+model.\+name = \char`\"{}stellar \hyperlink{classdsph__model_1_1model}{model}\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 83 of file dsph\+\_\+model.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{dsph__model_8py}{dsph\+\_\+model.\+py}\end{DoxyCompactItemize}

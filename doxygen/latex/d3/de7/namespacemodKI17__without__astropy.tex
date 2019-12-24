@@ -1,0 +1,121 @@
+\hypertarget{namespacemodKI17__without__astropy}{}\section{mod\+K\+I17\+\_\+without\+\_\+astropy Namespace Reference}
+\label{namespacemodKI17__without__astropy}\index{mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classmodKI17__without__astropy_1_1modKI17}{mod\+K\+I17}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacemodKI17__without__astropy_a80eeeb18d69cff2fde94fdb26c7c0089}{is\+\_\+positive} (args)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespacemodKI17__without__astropy_a9926562322307b1c395c77276b16cb19}{D\+E\+B\+UG} = False
+\item 
+\hyperlink{namespacemodKI17__without__astropy_a8ee9b076d16981905ef56923bfe9754b}{d\+Sph\+\_\+property} = pd.\+read\+\_\+csv(\char`\"{}d\+Sph\+\_\+property.\+csv\char`\"{},index\+\_\+col=0)
+\item 
+\hyperlink{namespacemodKI17__without__astropy_a8c61ead2c1a6eb4bd90d556559426eeb}{dsph\+\_\+prop} = d\+Sph\+\_\+property.\+loc\mbox{[}\char`\"{}Sculptor\char`\"{}\mbox{]}
+\item 
+\hyperlink{namespacemodKI17__without__astropy_a111dd482ab93c59e7e699c09461774bf}{R\+A0} = dsph\+\_\+prop.\+R\+Adeg
+\item 
+\hyperlink{namespacemodKI17__without__astropy_a20c59be5b70f1194d0996e8582c47eba}{D\+E0} = dsph\+\_\+prop.\+D\+Edeg
+\item 
+\hyperlink{namespacemodKI17__without__astropy_a94a8ea6dca3b1f107734b2a0312c5087}{D\+I\+ST} = dsph\+\_\+prop.\+D\+I\+ST
+\item 
+\hyperlink{namespacemodKI17__without__astropy_a891a5d443d2d4949f4d6fc6121650b81}{err\+\_\+\+D\+I\+ST} = dsph\+\_\+prop.\+err\+\_\+\+D\+I\+ST
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacemodKI17__without__astropy_a80eeeb18d69cff2fde94fdb26c7c0089}\label{namespacemodKI17__without__astropy_a80eeeb18d69cff2fde94fdb26c7c0089}} 
+\index{mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}!is\+\_\+positive@{is\+\_\+positive}}
+\index{is\+\_\+positive@{is\+\_\+positive}!mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}}
+\subsubsection{\texorpdfstring{is\+\_\+positive()}{is\_positive()}}
+{\footnotesize\ttfamily def mod\+K\+I17\+\_\+without\+\_\+astropy.\+is\+\_\+positive (\begin{DoxyParamCaption}\item[{}]{args }\end{DoxyParamCaption})}
+
+
+
+Definition at line 18 of file mod\+K\+I17\+\_\+without\+\_\+astropy.\+py.
+
+
+\begin{DoxyCode}
+18 \textcolor{keyword}{def }\hyperlink{namespacemodKI17__without__astropy_a80eeeb18d69cff2fde94fdb26c7c0089}{is\_positive}(*args):
+19     \textcolor{keywordflow}{return} np.array(args)>0
+20 
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacemodKI17__without__astropy_a20c59be5b70f1194d0996e8582c47eba}\label{namespacemodKI17__without__astropy_a20c59be5b70f1194d0996e8582c47eba}} 
+\index{mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}!D\+E0@{D\+E0}}
+\index{D\+E0@{D\+E0}!mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}}
+\subsubsection{\texorpdfstring{D\+E0}{DE0}}
+{\footnotesize\ttfamily mod\+K\+I17\+\_\+without\+\_\+astropy.\+D\+E0 = dsph\+\_\+prop.\+D\+Edeg}
+
+
+
+Definition at line 13 of file mod\+K\+I17\+\_\+without\+\_\+astropy.\+py.
+
+\mbox{\Hypertarget{namespacemodKI17__without__astropy_a9926562322307b1c395c77276b16cb19}\label{namespacemodKI17__without__astropy_a9926562322307b1c395c77276b16cb19}} 
+\index{mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}!D\+E\+B\+UG@{D\+E\+B\+UG}}
+\index{D\+E\+B\+UG@{D\+E\+B\+UG}!mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}}
+\subsubsection{\texorpdfstring{D\+E\+B\+UG}{DEBUG}}
+{\footnotesize\ttfamily bool mod\+K\+I17\+\_\+without\+\_\+astropy.\+D\+E\+B\+UG = False}
+
+
+
+Definition at line 8 of file mod\+K\+I17\+\_\+without\+\_\+astropy.\+py.
+
+\mbox{\Hypertarget{namespacemodKI17__without__astropy_a94a8ea6dca3b1f107734b2a0312c5087}\label{namespacemodKI17__without__astropy_a94a8ea6dca3b1f107734b2a0312c5087}} 
+\index{mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}!D\+I\+ST@{D\+I\+ST}}
+\index{D\+I\+ST@{D\+I\+ST}!mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}}
+\subsubsection{\texorpdfstring{D\+I\+ST}{DIST}}
+{\footnotesize\ttfamily mod\+K\+I17\+\_\+without\+\_\+astropy.\+D\+I\+ST = dsph\+\_\+prop.\+D\+I\+ST}
+
+
+
+Definition at line 14 of file mod\+K\+I17\+\_\+without\+\_\+astropy.\+py.
+
+\mbox{\Hypertarget{namespacemodKI17__without__astropy_a8c61ead2c1a6eb4bd90d556559426eeb}\label{namespacemodKI17__without__astropy_a8c61ead2c1a6eb4bd90d556559426eeb}} 
+\index{mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}!dsph\+\_\+prop@{dsph\+\_\+prop}}
+\index{dsph\+\_\+prop@{dsph\+\_\+prop}!mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}}
+\subsubsection{\texorpdfstring{dsph\+\_\+prop}{dsph\_prop}}
+{\footnotesize\ttfamily mod\+K\+I17\+\_\+without\+\_\+astropy.\+dsph\+\_\+prop = d\+Sph\+\_\+property.\+loc\mbox{[}\char`\"{}Sculptor\char`\"{}\mbox{]}}
+
+
+
+Definition at line 11 of file mod\+K\+I17\+\_\+without\+\_\+astropy.\+py.
+
+\mbox{\Hypertarget{namespacemodKI17__without__astropy_a8ee9b076d16981905ef56923bfe9754b}\label{namespacemodKI17__without__astropy_a8ee9b076d16981905ef56923bfe9754b}} 
+\index{mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}!d\+Sph\+\_\+property@{d\+Sph\+\_\+property}}
+\index{d\+Sph\+\_\+property@{d\+Sph\+\_\+property}!mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}}
+\subsubsection{\texorpdfstring{d\+Sph\+\_\+property}{dSph\_property}}
+{\footnotesize\ttfamily mod\+K\+I17\+\_\+without\+\_\+astropy.\+d\+Sph\+\_\+property = pd.\+read\+\_\+csv(\char`\"{}d\+Sph\+\_\+property.\+csv\char`\"{},index\+\_\+col=0)}
+
+
+
+Definition at line 10 of file mod\+K\+I17\+\_\+without\+\_\+astropy.\+py.
+
+\mbox{\Hypertarget{namespacemodKI17__without__astropy_a891a5d443d2d4949f4d6fc6121650b81}\label{namespacemodKI17__without__astropy_a891a5d443d2d4949f4d6fc6121650b81}} 
+\index{mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}!err\+\_\+\+D\+I\+ST@{err\+\_\+\+D\+I\+ST}}
+\index{err\+\_\+\+D\+I\+ST@{err\+\_\+\+D\+I\+ST}!mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}}
+\subsubsection{\texorpdfstring{err\+\_\+\+D\+I\+ST}{err\_DIST}}
+{\footnotesize\ttfamily mod\+K\+I17\+\_\+without\+\_\+astropy.\+err\+\_\+\+D\+I\+ST = dsph\+\_\+prop.\+err\+\_\+\+D\+I\+ST}
+
+
+
+Definition at line 15 of file mod\+K\+I17\+\_\+without\+\_\+astropy.\+py.
+
+\mbox{\Hypertarget{namespacemodKI17__without__astropy_a111dd482ab93c59e7e699c09461774bf}\label{namespacemodKI17__without__astropy_a111dd482ab93c59e7e699c09461774bf}} 
+\index{mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}!R\+A0@{R\+A0}}
+\index{R\+A0@{R\+A0}!mod\+K\+I17\+\_\+without\+\_\+astropy@{mod\+K\+I17\+\_\+without\+\_\+astropy}}
+\subsubsection{\texorpdfstring{R\+A0}{RA0}}
+{\footnotesize\ttfamily mod\+K\+I17\+\_\+without\+\_\+astropy.\+R\+A0 = dsph\+\_\+prop.\+R\+Adeg}
+
+
+
+Definition at line 12 of file mod\+K\+I17\+\_\+without\+\_\+astropy.\+py.
+

@@ -1,0 +1,5 @@
+<map id="sampler.Sampler.burnin" name="sampler.Sampler.burnin">
+<area shape="rect" id="node2" href="$d3/d8a/classsampler_1_1Sampler.html#ad7ddd812810028fad49c18ba7270f23f" title="sampler.Sampler.find_map" alt="" coords="212,45,389,72"/>
+<area shape="rect" id="node3" href="$d3/d8a/classsampler_1_1Sampler.html#ab35f387d6b11e001d006731559e09f56" title="sampler.Sampler.run_mcmc" alt="" coords="437,5,623,32"/>
+<area shape="rect" id="node4" href="$d3/d8a/classsampler_1_1Sampler.html#a93e39e8143affeb3572fdf024bf2d12b" title="sampler.Sampler.run\l_mcmc_epoch" alt="" coords="459,67,601,109"/>
+</map>

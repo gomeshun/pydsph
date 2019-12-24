@@ -1,0 +1,6 @@
+<map id="dsph_model.sersic_model.cdf_R" name="dsph_model.sersic_model.cdf_R">
+<area shape="rect" id="node2" href="$d0/db5/classdsph__model_1_1stellar__model.html#acde2267ff0b15d0177b5eef57fd006ed" title="dsph_model.stellar\l_model.density_2d_truncated" alt="" coords="274,5,466,47"/>
+<area shape="rect" id="node3" href="$d0/de9/classdsph__model_1_1sersic__model.html#a52fb76f30a58833cc14b3c9878ac9b56" title="dsph_model.sersic_model.mean\l_density_2d" alt="" coords="265,71,475,112"/>
+<area shape="rect" id="node4" href="$df/d3d/classdsph__model_1_1exp2d__model.html#af2224092e988940539b872a4fe0afa38" title="dsph_model.exp2d_model.mean\l_density_2d" alt="" coords="265,136,475,177"/>
+<area shape="rect" id="node5" href="$dc/d37/classdsph__model_1_1exp3d__model.html#a0dae92e16b158e09e47517706236f83d" title="dsph_model.exp3d_model.mean\l_density_2d" alt="" coords="265,201,475,243"/>
+</map>

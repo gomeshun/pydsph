@@ -1,0 +1,41 @@
+\hypertarget{coord_8py}{}\section{memfg/coord.py File Reference}
+\label{coord_8py}\index{memfg/coord.\+py@{memfg/coord.\+py}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacecoord}{coord}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacecoord_a46aebc3089e078f4597812fecdd0975f}{coord.\+projected\+\_\+distance} (dist, ra\+\_\+center, de\+\_\+center, ra, de, dtype=\char`\"{}rad\char`\"{})
+\item 
+def \hyperlink{namespacecoord_a6cca1fe4ad65d56023a02550cbba8ce8}{coord.\+projected\+\_\+distance\+\_\+simple} (dist, ra\+\_\+center, de\+\_\+center, ra, de, dtype=\char`\"{}rad\char`\"{})
+\item 
+def \hyperlink{namespacecoord_a04a9b47f67924315930327ed806ee648}{coord.\+projected\+\_\+angle} (ra\+\_\+center, de\+\_\+center, ra, de, dtype=\char`\"{}rad\char`\"{})
+\item 
+def \hyperlink{namespacecoord_a07f644bbf8451a0560cf4b4966049ab0}{coord.\+hms\+\_\+to\+\_\+h} (h, m, s)
+\item 
+def \hyperlink{namespacecoord_ac3ec31a56901971ab03a578d64030901}{coord.\+hms\+\_\+to\+\_\+deg} (h, m, s)
+\item 
+def \hyperlink{namespacecoord_af5e3e51606e1533306ebbad1e67d0b17}{coord.\+dms\+\_\+to\+\_\+deg} (d, m, s)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+dictionary \hyperlink{namespacecoord_a87ee5c40fe361f2c1bfbea4ed5086028}{coord.\+args} = \{\textquotesingle{}ra\+\_\+center\textquotesingle{}\+:0,\textquotesingle{}de\+\_\+center\textquotesingle{}\+:np.\+pi/2-\/0.\+5\}
+\item 
+tuple \hyperlink{namespacecoord_a9e8cb473ba5d9c7398020447b51174e0}{coord.\+ra} = (np.\+arange(-\/np.\+pi,np.\+pi,0.\+01) + args\mbox{[}\textquotesingle{}ra\+\_\+center\textquotesingle{}\mbox{]})
+\item 
+tuple \hyperlink{namespacecoord_a8dcc8c73e25f42279ad5b38825c9b285}{coord.\+de} = (np.\+arange(-\/np.\+pi,np.\+pi,0.\+01) + args\mbox{[}\textquotesingle{}de\+\_\+center\textquotesingle{}\mbox{]})
+\item 
+\hyperlink{namespacecoord_a5462056be5c33668cdc23bd703b745c5}{coord.\+ras}
+\item 
+\hyperlink{namespacecoord_ae502575d54f9026dd1c6b0118fc65c63}{coord.\+des}
+\item 
+def \hyperlink{namespacecoord_a2314e07f943e13a24947dced6bee4b64}{coord.\+dists} = projected\+\_\+distance(1,ra=ras,de=des,$\ast$$\ast$args)
+\item 
+\hyperlink{namespacecoord_abd9b02ef552306f922eb3b6d0be56c34}{coord.\+fig} = plt.\+figure()
+\item 
+\hyperlink{namespacecoord_a9aa399b274864850fc9b9569a1256848}{coord.\+ax} = fig.\+add\+\_\+subplot(111,projection=\textquotesingle{}3d\textquotesingle{})
+\end{DoxyCompactItemize}

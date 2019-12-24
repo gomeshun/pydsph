@@ -1,0 +1,875 @@
+\hypertarget{classdsph__model_1_1dSph__model}{}\section{dsph\+\_\+model.\+d\+Sph\+\_\+model Class Reference}
+\label{classdsph__model_1_1dSph__model}\index{dsph\+\_\+model.\+d\+Sph\+\_\+model@{dsph\+\_\+model.\+d\+Sph\+\_\+model}}
+
+
+Inheritance diagram for dsph\+\_\+model.\+d\+Sph\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{d5/d96/classdsph__model_1_1dSph__model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for dsph\+\_\+model.\+d\+Sph\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{d6/d29/classdsph__model_1_1dSph__model__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a5e0091742da19919dc6c085a806ad6e0}{mykernel\+\_\+over\+\_\+u} (self, u, out=\char`\"{}linear\char`\"{})
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a1c6185c02a3f58951b7ed9b75a348f49}{sigmar2} (self, r\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a9db5b642eb5007933136db35b3acf84a}{naive\+\_\+sigmalos2} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a97bf665bdc2ff464da2c685f6f182088}{integrand\+\_\+sigmalos2} (self, c, arg\+\_\+\+R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a5df6fa479eb9092d850da8779073eed5}{integrand\+\_\+sigmalos2\+\_\+using\+\_\+mykernel} (self, u, arg\+\_\+\+R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a14692f81c0bffc790d5daf7f4e6464c1}{sigmalos2\+\_\+scaler\+\_\+using\+\_\+mykernel} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a87273cf6ad641b1d12f9b236821807c6}{sigmalos2\+\_\+dequad} (self, R\+\_\+pc, dtype=np.\+float64)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a5b73e854e8ac1b1c6a467498cd181e7a}{sigmalos\+\_\+dequad} (self, R\+\_\+pc, show\+\_\+fig=False, dtype=np.\+float64, ignore\+\_\+nan=False)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a4d9e1c397b4ae379c680bc7453845781}{downsampling} (self, array, downsampling\+\_\+rate=0.\+5)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_aa362ce682d90de77e755374efa153cf7}{downsamplings} (self, array, downsampling\+\_\+rate=0.\+5, iteration=1)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a0046cd7677792835d8cfafe83dbe276c}{sigmalos\+\_\+dequad\+\_\+interp1d\+\_\+downsampled} (self, R\+\_\+pc, downsampling\+\_\+rate=0.\+6, iteration=5, kind=\char`\"{}cubic\char`\"{}, offset=5, sep\+\_\+offset=1, points=\mbox{[}25., show\+\_\+fig=False, dtype=np.\+float64, ignore\+\_\+nan=True)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a05b988f7553121226a4d08369c44b4fa}{sigmalos2\+\_\+scaler} (self, R\+\_\+pc, using\+\_\+mykernel=False)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a5170edb309402dc101ea76871645e65f}{sigmalos2\+\_\+vector} (self, Rs\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a00cd796cf178fe8b3435e941976e8f27}{sigmalos2\+\_\+vector\+\_\+using\+\_\+mykernel} (self, Rs\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a0f0607e3d81520eb0c4c8b79dd871f0e}{sigmalos2\+\_\+multi\+\_\+using\+\_\+mykernel} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a7b94850b439fe4afc431cfffa185d415}{sigmalos2} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a4e062f0ac546057c1109fd47ec39ed90}{sigmalos2\+\_\+using\+\_\+mykernel} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_ad105b90e1827d25804eb3d7a3ba96f28}{sigmalos\+\_\+interp1d} (self, R\+\_\+pc, dR=1, d\+Rtrunc=10, step\+\_\+around\+\_\+\+Rtrunc=10, step\+\_\+outer=8, step\+\_\+center=4, kind=\char`\"{}cubic\char`\"{})
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a239ec859750c30fe31b6c19e94cd2e33}{sigmalos\+\_\+interp1d\+\_\+dequad} (self, R\+\_\+pc, dR=1, d\+Rtrunc=10, step\+\_\+around\+\_\+\+Rtrunc=10, step\+\_\+outer=20, step\+\_\+center=4, kind=\char`\"{}cubic\char`\"{})
+\item 
+def \hyperlink{classdsph__model_1_1dSph__model_a855543fee6bd37d3b2e185c2b9dee49e}{sigmalos2\+\_\+interp1d} (self, R\+\_\+pc, step\+\_\+center=10, dR=1, d\+Rtrunc=10, step\+\_\+around\+\_\+\+Rtrunc=10, step\+\_\+before\+\_\+\+Rtrunc=8, step\+\_\+outer=8, step\+\_\+inner=16, kind=\char`\"{}cubic\char`\"{})
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classdsph__model_1_1dSph__model_a44e4805fa7304536056b19bd361c3d37}{name} = \textquotesingle{}\hyperlink{classdsph__model_1_1dSph__model}{d\+Sph\+\_\+model}\textquotesingle{}
+\item 
+list \hyperlink{classdsph__model_1_1dSph__model_a74f031f3929b9123b00121c1b02b8b71}{required\+\_\+params\+\_\+name} = \mbox{[}\textquotesingle{}anib\textquotesingle{}\mbox{]}
+\item 
+list \hyperlink{classdsph__model_1_1dSph__model_a7795b8e9d3d0dbf3cd5a4d618c30a6c0}{required\+\_\+models} = \mbox{[}\hyperlink{classdsph__model_1_1stellar__model}{stellar\+\_\+model},\hyperlink{classdsph__model_1_1DM__model}{D\+M\+\_\+model}\mbox{]}
+\item 
+\hyperlink{classdsph__model_1_1dSph__model_ab09f579bff6269075f5956a1c0a88bdc}{ncpu} = multi.\+cpu\+\_\+count()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 271 of file dsph\+\_\+model.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a4d9e1c397b4ae379c680bc7453845781}\label{classdsph__model_1_1dSph__model_a4d9e1c397b4ae379c680bc7453845781}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!downsampling@{downsampling}}
+\index{downsampling@{downsampling}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{downsampling()}{downsampling()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+downsampling (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{array,  }\item[{}]{downsampling\+\_\+rate = {\ttfamily 0.5} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}downsampling too dense ones.
+\end{DoxyVerb}
+ 
+
+Definition at line 379 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+379     \textcolor{keyword}{def }downsampling(self,array,downsampling\_rate=0.5):
+380         \textcolor{stringliteral}{'''}
+381 \textcolor{stringliteral}{        downsampling too dense ones.}
+382 \textcolor{stringliteral}{        '''}
+383         ordered\_array = sort(array)
+384         arg\_ordered\_array = argsort(array)
+385         diff = ordered\_array[1:] - ordered\_array[:-1]
+386         arg\_arg\_ordered\_array = argsort(diff)[int(downsampling\_rate*len(array)):] \textcolor{comment}{# ordering by diff and
+       extract not too dense ones}
+387         \textcolor{comment}{#display(pd.DataFrame(\{"arg\_ordered\_array":arg\_ordered\_array,"array":array\}))}
+388         \textcolor{comment}{#display(pd.DataFrame(\{"arg\_arg\_ordered\_array":arg\_arg\_ordered\_array\}))}
+389         \textcolor{keywordflow}{return} array[arg\_ordered\_array[arg\_arg\_ordered\_array]]
+390     
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a4d9e1c397b4ae379c680bc7453845781_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_aa362ce682d90de77e755374efa153cf7}\label{classdsph__model_1_1dSph__model_aa362ce682d90de77e755374efa153cf7}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!downsamplings@{downsamplings}}
+\index{downsamplings@{downsamplings}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{downsamplings()}{downsamplings()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+downsamplings (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{array,  }\item[{}]{downsampling\+\_\+rate = {\ttfamily 0.5},  }\item[{}]{iteration = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 391 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+391     \textcolor{keyword}{def }downsamplings(self,array,downsampling\_rate=0.5,iteration=1):
+392         ret = array
+393         func = self.downsampling
+394         \textcolor{comment}{#print("print array")}
+395         \textcolor{comment}{#display(ret)}
+396         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(iteration):
+397             \textcolor{comment}{#print("print return i:\{\}".format(i))}
+398             ret = func(ret,downsampling\_rate)
+399             \textcolor{comment}{#display(ret)}
+400         \textcolor{keywordflow}{return} ret
+401     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_aa362ce682d90de77e755374efa153cf7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_aa362ce682d90de77e755374efa153cf7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a97bf665bdc2ff464da2c685f6f182088}\label{classdsph__model_1_1dSph__model_a97bf665bdc2ff464da2c685f6f182088}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!integrand\+\_\+sigmalos2@{integrand\+\_\+sigmalos2}}
+\index{integrand\+\_\+sigmalos2@{integrand\+\_\+sigmalos2}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{integrand\+\_\+sigmalos2()}{integrand\_sigmalos2()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+integrand\+\_\+sigmalos2 (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{c,  }\item[{}]{arg\+\_\+\+R\+\_\+pc }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}integrand of sigmalos2 at R = R_pc.
+c is a variable of integration, related to u (=r/R) as u = 1/c.
+domain: 0 < c < 1, OR 1 < u < oo.
+The variable c has the mean of cos(\theta), where \theta is the angle of the popsition of integration
+on the LINE-of-sight. (integration on los)
+\end{DoxyVerb}
+ 
+
+Definition at line 315 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+315     \textcolor{keyword}{def }integrand\_sigmalos2(self,c,arg\_R\_pc):
+316         \textcolor{stringliteral}{'''}
+317 \textcolor{stringliteral}{        integrand of sigmalos2 at R = R\_pc.}
+318 \textcolor{stringliteral}{        c is a variable of integration, related to u (=r/R) as u = 1/c.}
+319 \textcolor{stringliteral}{        domain: 0 < c < 1, OR 1 < u < oo.}
+320 \textcolor{stringliteral}{        The variable c has the mean of cos(\(\backslash\)theta), where \(\backslash\)theta is the angle of the popsition of
+       integration}
+321 \textcolor{stringliteral}{        on the LINE-of-sight. (integration on los)}
+322 \textcolor{stringliteral}{        '''}
+323         params\_dSph,params\_stellar,params\_DM = self.params,self.submodels[\textcolor{stringliteral}{"stellar\_model"}].params,self.
+      submodels[\textcolor{stringliteral}{"DM\_model"}].params
+324         anib = params\_dSph.anib
+325         \textcolor{comment}{#print(params\_dSph,params\_stellar,params\_DM)}
+326         rhos\_Msunpc3,rs\_pc,a,b,g = [params\_DM[key] \textcolor{keywordflow}{for} key \textcolor{keywordflow}{in} (\textcolor{stringliteral}{'rhos\_Msunpc3'},\textcolor{stringliteral}{'rs\_pc'},\textcolor{stringliteral}{'a'},\textcolor{stringliteral}{'b'},\textcolor{stringliteral}{'g'})]
+327         re\_pc = params\_stellar.re\_pc
+328         u2 = 1./c/c
+329         
+332         \textcolor{keywordflow}{return} sqrt(u2-1)*((1.5-anib)*u2*hyp2f1(1.0,1.5-anib,1.5,1-u2)-0.5) * self.submodels[\textcolor{stringliteral}{"stellar\_model
+      "}].density\_3d(arg\_R\_pc/c)*GMsun\_m3s2*self.submodels[\textcolor{stringliteral}{"DM\_model"}].enclosure\_mass(arg\_R\_pc/c)/parsec \textcolor{comment}{# NOTE:
+       without u^-2 !! 1/parsec because we divide it by Sigmaast [pc^-2] so convert one of [m] -> [pc]  }
+333     
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a97bf665bdc2ff464da2c685f6f182088_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a5df6fa479eb9092d850da8779073eed5}\label{classdsph__model_1_1dSph__model_a5df6fa479eb9092d850da8779073eed5}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!integrand\+\_\+sigmalos2\+\_\+using\+\_\+mykernel@{integrand\+\_\+sigmalos2\+\_\+using\+\_\+mykernel}}
+\index{integrand\+\_\+sigmalos2\+\_\+using\+\_\+mykernel@{integrand\+\_\+sigmalos2\+\_\+using\+\_\+mykernel}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{integrand\+\_\+sigmalos2\+\_\+using\+\_\+mykernel()}{integrand\_sigmalos2\_using\_mykernel()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+integrand\+\_\+sigmalos2\+\_\+using\+\_\+mykernel (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{u,  }\item[{}]{arg\+\_\+\+R\+\_\+pc }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}integrand of sigmalos2 at R = R_pc.
+u is a variable of integration, u=r/R.
+Domain: 1 < u < oo.
+\end{DoxyVerb}
+ 
+
+Definition at line 334 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+334     \textcolor{keyword}{def }integrand\_sigmalos2\_using\_mykernel(self,u,arg\_R\_pc):
+335         \textcolor{stringliteral}{'''}
+336 \textcolor{stringliteral}{        integrand of sigmalos2 at R = R\_pc.}
+337 \textcolor{stringliteral}{        u is a variable of integration, u=r/R.}
+338 \textcolor{stringliteral}{        Domain: 1 < u < oo.}
+339 \textcolor{stringliteral}{        '''}
+340         stellar\_model,DM\_model = self.submodels[\textcolor{stringliteral}{"stellar\_model"}],self.submodels[\textcolor{stringliteral}{"DM\_model"}]
+341         u2,r = u**2,arg\_R\_pc*u
+342         \textcolor{comment}{# Note that parsec = parsec/m.}
+343         \textcolor{comment}{# If you convert m -> pc,      ... var[m] * [1 pc/ parsec m] = var/parsec[pc].}
+344         \textcolor{comment}{#                pc^1 -> m^pc, ... var[pc^1] * parsec(=[pc/m]) = var[m^-1]}
+345         \textcolor{comment}{# Here var[m^3 pc^-1 s^-2] /parsec[m/pc] * 1e-6[km^2/m^2] = var[km^2/s^2]}
+346         \textcolor{keywordflow}{return} 2 * self.mykernel\_over\_u(u) *  stellar\_model.density\_3d(r)/stellar\_model.density\_2d(arg\_R\_pc
+      )*GMsun\_m3s2 * DM\_model.enclosure\_mass(r) / parsec * 1e-6
+347 
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a5df6fa479eb9092d850da8779073eed5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a5df6fa479eb9092d850da8779073eed5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a5e0091742da19919dc6c085a806ad6e0}\label{classdsph__model_1_1dSph__model_a5e0091742da19919dc6c085a806ad6e0}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!mykernel\+\_\+over\+\_\+u@{mykernel\+\_\+over\+\_\+u}}
+\index{mykernel\+\_\+over\+\_\+u@{mykernel\+\_\+over\+\_\+u}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{mykernel\+\_\+over\+\_\+u()}{mykernel\_over\_u()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+mykernel\+\_\+over\+\_\+u (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{u,  }\item[{}]{out = {\ttfamily \char`\"{}linear\char`\"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}My kernel over u. Using 2F1.Using this kernel over u K(u)/u, sigmalos2 is given by
+    sigmalos2(R) = 2 * \int_1^oo du \Sigma_\ast(uR)/\nu_\ast(R) * GM(uR) * K(u)/u.
+    
+Descriptions:
+    args: u = r_integrated/R, 1<u<oo
+\end{DoxyVerb}
+ 
+
+Definition at line 284 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+284     \textcolor{keyword}{def }mykernel\_over\_u(self,u,out="linear"):
+285         \textcolor{stringliteral}{'''}
+286 \textcolor{stringliteral}{        My kernel over u. Using 2F1.Using this kernel over u K(u)/u, sigmalos2 is given by}
+287 \textcolor{stringliteral}{            sigmalos2(R) = 2 * \(\backslash\)int\_1^oo du \(\backslash\)Sigma\_\(\backslash\)ast(uR)/\(\backslash\)nu\_\(\backslash\)ast(R) * GM(uR) * K(u)/u.}
+288 \textcolor{stringliteral}{            }
+289 \textcolor{stringliteral}{        Descriptions:}
+290 \textcolor{stringliteral}{            args: u = r\_integrated/R, 1<u<oo}
+291 \textcolor{stringliteral}{        '''}
+292         anib = self.params.anib
+293         u2 = u**2
+294         \textcolor{keywordflow}{if} out==\textcolor{stringliteral}{"linear"}:
+295             \textcolor{keywordflow}{return} 1/u * sqrt(1-1/u2)*((1.5-anib)*u2*hyp2f1(1.0,1.5-anib,1.5,1-u2)-0.5)
+296         \textcolor{keywordflow}{elif} out==\textcolor{stringliteral}{"log"}:
+297             \textcolor{keywordflow}{return} -log(u) + log(1-1/u2)/2 + log((1.5-anib)*u2*hyp2f1(1.0,1.5-anib,1.5,1-u2)-0.5)
+298 
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a5e0091742da19919dc6c085a806ad6e0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a9db5b642eb5007933136db35b3acf84a}\label{classdsph__model_1_1dSph__model_a9db5b642eb5007933136db35b3acf84a}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!naive\+\_\+sigmalos2@{naive\+\_\+sigmalos2}}
+\index{naive\+\_\+sigmalos2@{naive\+\_\+sigmalos2}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{naive\+\_\+sigmalos2()}{naive\_sigmalos2()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+naive\+\_\+sigmalos2 (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 306 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+306     \textcolor{keyword}{def }naive\_sigmalos2(self,R\_pc):
+307         RELERROR\_INTEG = 1e-6
+308         anib = self.params.anib
+309         integrand = \textcolor{keyword}{lambda} r: (1-anib*(R\_pc/r)**2)*self.submodels[\textcolor{stringliteral}{"stellar\_model"}].density\_3d(r)*self.
+      sigmar2(r)/np.sqrt(1-(R\_pc/r)**2)
+310         rs\_interp = np.logspace(-2,6,51)
+311         integrand\_interp = interp1d(rs\_interp,[integrand(r) \textcolor{keywordflow}{for} r \textcolor{keywordflow}{in} rs\_interp],kind=\textcolor{stringliteral}{"quadratic"}) 
+312         integ, abserr = integrate.quad(integrand\_interp,R\_pc,np.inf)
+313         \textcolor{keywordflow}{return} 2*integ/self.submodels[\textcolor{stringliteral}{"stellar\_model"}].density\_2d(R\_pc)
+314     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a9db5b642eb5007933136db35b3acf84a_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a7b94850b439fe4afc431cfffa185d415}\label{classdsph__model_1_1dSph__model_a7b94850b439fe4afc431cfffa185d415}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos2@{sigmalos2}}
+\index{sigmalos2@{sigmalos2}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos2()}{sigmalos2()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos2 (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 439 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+439     \textcolor{keyword}{def }sigmalos2(self,R\_pc):
+440         \textcolor{keywordflow}{return} (self.sigmalos2\_scaler(R\_pc) \textcolor{keywordflow}{if} len(R\_pc)==1 \textcolor{keywordflow}{else} self.sigmalos2\_vector(R\_pc))
+441     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a7b94850b439fe4afc431cfffa185d415_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a87273cf6ad641b1d12f9b236821807c6}\label{classdsph__model_1_1dSph__model_a87273cf6ad641b1d12f9b236821807c6}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos2\+\_\+dequad@{sigmalos2\+\_\+dequad}}
+\index{sigmalos2\+\_\+dequad@{sigmalos2\+\_\+dequad}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos2\+\_\+dequad()}{sigmalos2\_dequad()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos2\+\_\+dequad (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc,  }\item[{}]{dtype = {\ttfamily np.float64} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 362 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+362     \textcolor{keyword}{def }sigmalos2\_dequad(self,R\_pc,dtype=np.float64):
+363         \textcolor{keyword}{def }func(u):
+364             u\_ = np.array(u)[np.newaxis,:]
+365             R\_pc\_ = np.array(R\_pc)[:,np.newaxis]
+366             \textcolor{keywordflow}{return} self.integrand\_sigmalos2\_using\_mykernel(u\_,R\_pc\_)
+367         ret = \hyperlink{namespacedequad_a2654bb61f33ab8685320882396c81ae0}{dequad\_hinf}(func,1,axis=1,width=5e-3,pN=1000,mN=1000,dtype=np.dtype,show\_fig=
+      show\_fig)
+368         \textcolor{keywordflow}{if} np.any(isnan(ret)):
+369             \textcolor{keywordflow}{raise} TypeError(\textcolor{stringliteral}{"nan! \{\}"}.format(ret))
+370         \textcolor{keywordflow}{return} ret
+371     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a87273cf6ad641b1d12f9b236821807c6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a87273cf6ad641b1d12f9b236821807c6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a855543fee6bd37d3b2e185c2b9dee49e}\label{classdsph__model_1_1dSph__model_a855543fee6bd37d3b2e185c2b9dee49e}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos2\+\_\+interp1d@{sigmalos2\+\_\+interp1d}}
+\index{sigmalos2\+\_\+interp1d@{sigmalos2\+\_\+interp1d}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos2\+\_\+interp1d()}{sigmalos2\_interp1d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos2\+\_\+interp1d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc,  }\item[{}]{step\+\_\+center = {\ttfamily 10},  }\item[{}]{dR = {\ttfamily 1},  }\item[{}]{d\+Rtrunc = {\ttfamily 10},  }\item[{}]{step\+\_\+around\+\_\+\+Rtrunc = {\ttfamily 10},  }\item[{}]{step\+\_\+before\+\_\+\+Rtrunc = {\ttfamily 8},  }\item[{}]{step\+\_\+outer = {\ttfamily 8},  }\item[{}]{step\+\_\+inner = {\ttfamily 16},  }\item[{}]{kind = {\ttfamily \char`\"{}cubic\char`\"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}inner part has large error, so more refine interp
+\end{DoxyVerb}
+ 
+
+Definition at line 489 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+489     \textcolor{keyword}{def }sigmalos2\_interp1d(
+      self,R\_pc,step\_center=10,dR=1,dRtrunc=10,step\_around\_Rtrunc=10,step\_before\_Rtrunc=8,step\_outer=8,step\_inner=16,kind="cubic"):
+490         \textcolor{stringliteral}{'''}
+491 \textcolor{stringliteral}{        inner part has large error, so more refine interp}
+492 \textcolor{stringliteral}{        '''}
+493         re = self.submodels[\textcolor{stringliteral}{"stellar\_model"}].params.re\_pc
+494         Rtrunc = self.submodels[\textcolor{stringliteral}{"DM\_model"}].params.R\_trunc\_pc
+495         n = len(R\_pc)
+496         R\_pc\_sorted\_ = np.sort(R\_pc)
+497         R\_pc\_around\_Rtrunc = np.sort(R\_pc\_sorted\_[np.argsort(np.abs(R\_pc\_sorted\_-Rtrunc))[:
+      step\_around\_Rtrunc]])
+498         Rmin,Rmax = R\_pc\_sorted\_[0],R\_pc\_sorted\_[-1]
+499         \textcolor{comment}{#R\_pc\_lo\_ = np.linspace(Rmin*0.5,Rmin*1.5,int((n*0.2)/step))}
+500         \textcolor{comment}{#R\_pc\_lo\_ = R\_pc\_sorted\_[:int(n*0.05)]}
+501         \textcolor{comment}{#R\_pc\_hi\_ = np.linspace(R\_pc\_lo\_[-1]+0.1,Rmax*1.1,int(n/step))}
+502         \textcolor{comment}{#R\_pc\_ = np.hstack((R\_pc\_lo\_,R\_pc\_hi\_))}
+503         R\_pc\_zero = R\_pc\_sorted\_[:step\_center]
+504         R\_pc\_lo\_ = np.linspace(R\_pc\_sorted\_[step\_center],R\_pc\_sorted\_[R\_pc\_sorted\_<re][-1],step\_inner)
+505         R\_pc\_hi\_ = np.linspace(re,Rmax,step\_outer)
+506         R\_pc\_ = np.sort(np.unique(np.concatenate((R\_pc\_zero,R\_pc\_lo\_,R\_pc\_around\_Rtrunc,R\_pc\_hi\_),axis=\textcolor{keywordtype}{None}
+      )))
+507         \textcolor{comment}{#R\_pc\_ = np.linspace(Rmin,Rmax,int(n/step))}
+508         sigmalos2\_ = self.sigmalos2\_multi\_using\_mykernel(R\_pc\_)
+509         interpd\_func = interp1d(R\_pc\_, sigmalos2\_,kind=kind)
+510         \textcolor{keywordflow}{return} interpd\_func(R\_pc) \textcolor{comment}{# here R\_pc is original, so return unsorted results}
+511         
+512 
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a855543fee6bd37d3b2e185c2b9dee49e_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a0f0607e3d81520eb0c4c8b79dd871f0e}\label{classdsph__model_1_1dSph__model_a0f0607e3d81520eb0c4c8b79dd871f0e}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos2\+\_\+multi\+\_\+using\+\_\+mykernel@{sigmalos2\+\_\+multi\+\_\+using\+\_\+mykernel}}
+\index{sigmalos2\+\_\+multi\+\_\+using\+\_\+mykernel@{sigmalos2\+\_\+multi\+\_\+using\+\_\+mykernel}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos2\+\_\+multi\+\_\+using\+\_\+mykernel()}{sigmalos2\_multi\_using\_mykernel()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos2\+\_\+multi\+\_\+using\+\_\+mykernel (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 431 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+431     \textcolor{keyword}{def }sigmalos2\_multi\_using\_mykernel(self,R\_pc):
+432         p = Pool(self.ncpu)
+433         R\_pc\_splited = np.array\_split(R\_pc,self.ncpu)
+434         \textcolor{comment}{#args = [(Rs,anib,rhos\_Msunpc3,rs\_pc,a,b,g,re\_pc) for Rs in R\_pc\_v\_splited]}
+435         ret = p.map(self.sigmalos2\_vector\_using\_mykernel,R\_pc\_splited)
+436         p.close()
+437         \textcolor{keywordflow}{return} np.concatenate(ret)
+438 
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a0f0607e3d81520eb0c4c8b79dd871f0e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a0f0607e3d81520eb0c4c8b79dd871f0e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a05b988f7553121226a4d08369c44b4fa}\label{classdsph__model_1_1dSph__model_a05b988f7553121226a4d08369c44b4fa}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos2\+\_\+scaler@{sigmalos2\+\_\+scaler}}
+\index{sigmalos2\+\_\+scaler@{sigmalos2\+\_\+scaler}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos2\+\_\+scaler()}{sigmalos2\_scaler()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos2\+\_\+scaler (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc,  }\item[{}]{using\+\_\+mykernel = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 411 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+411     \textcolor{keyword}{def }sigmalos2\_scaler(self,R\_pc,using\_mykernel=False): \textcolor{comment}{# sigmalos2[km^2 s^-2] }
+412         params\_dSph,params\_stellar,params\_DM = self.params,self.submodels[\textcolor{stringliteral}{"stellar\_model"}].params,self.
+      submodels[\textcolor{stringliteral}{"DM\_model"}].params
+413         anib = params\_dSph.anib
+414         \textcolor{comment}{#print(params\_dSph,params\_stellar,params\_DM)}
+415         rhos\_Msunpc3,rs\_pc,a,b,g = [params\_DM[key] \textcolor{keywordflow}{for} key \textcolor{keywordflow}{in} (\textcolor{stringliteral}{'rhos\_Msunpc3'},\textcolor{stringliteral}{'rs\_pc'},\textcolor{stringliteral}{'a'},\textcolor{stringliteral}{'b'},\textcolor{stringliteral}{'g'})]
+416         re\_pc = params\_stellar.re\_pc
+417 
+418         RELERR\_INTEG = 1e-6
+419         \textcolor{comment}{#print("R\_pc:",R\_pc)}
+420         integ, abserr =  integrate.quad(self.integrand\_sigmalos2, 0,1, args=(R\_pc,),points=(0.5,0.9,0.99,0.
+      999,0.9999,0.99999))
+421         \textcolor{keywordflow}{return} 2*integ/self.submodels[\textcolor{stringliteral}{"stellar\_model"}].density\_2d(R\_pc)*1e-6
+422     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a05b988f7553121226a4d08369c44b4fa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a05b988f7553121226a4d08369c44b4fa_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a14692f81c0bffc790d5daf7f4e6464c1}\label{classdsph__model_1_1dSph__model_a14692f81c0bffc790d5daf7f4e6464c1}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos2\+\_\+scaler\+\_\+using\+\_\+mykernel@{sigmalos2\+\_\+scaler\+\_\+using\+\_\+mykernel}}
+\index{sigmalos2\+\_\+scaler\+\_\+using\+\_\+mykernel@{sigmalos2\+\_\+scaler\+\_\+using\+\_\+mykernel}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos2\+\_\+scaler\+\_\+using\+\_\+mykernel()}{sigmalos2\_scaler\_using\_mykernel()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos2\+\_\+scaler\+\_\+using\+\_\+mykernel (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}sigmalos2[km^2 s^-2].
+\end{DoxyVerb}
+ 
+
+Definition at line 348 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+348     \textcolor{keyword}{def }sigmalos2\_scaler\_using\_mykernel(self,R\_pc):
+349         \textcolor{stringliteral}{'''}
+350 \textcolor{stringliteral}{        sigmalos2[km^2 s^-2].}
+351 \textcolor{stringliteral}{        '''}
+352         u\_trunc = self.submodels[\textcolor{stringliteral}{"DM\_model"}].params.R\_trunc\_pc/R\_pc
+353         u\_max = 10 * u\_trunc
+354         u\_re = self.submodels[\textcolor{stringliteral}{"stellar\_model"}].params.re\_pc/R\_pc
+355 
+356         \textcolor{comment}{# outer region is almost 0, so divede the region for good point -> u\_max}
+357         
+358         RELERR\_INTEG = 1e-6
+359         integ, abserr =  integrate.quad(self.integrand\_sigmalos2\_using\_mykernel, 1,u\_max, args=(R\_pc,),
+      points=(1.001,max(u\_re,1.08),2.71,u\_trunc))
+360         \textcolor{keywordflow}{return} integ
+361     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a14692f81c0bffc790d5daf7f4e6464c1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a14692f81c0bffc790d5daf7f4e6464c1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a4e062f0ac546057c1109fd47ec39ed90}\label{classdsph__model_1_1dSph__model_a4e062f0ac546057c1109fd47ec39ed90}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos2\+\_\+using\+\_\+mykernel@{sigmalos2\+\_\+using\+\_\+mykernel}}
+\index{sigmalos2\+\_\+using\+\_\+mykernel@{sigmalos2\+\_\+using\+\_\+mykernel}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos2\+\_\+using\+\_\+mykernel()}{sigmalos2\_using\_mykernel()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos2\+\_\+using\+\_\+mykernel (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 442 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+442     \textcolor{keyword}{def }sigmalos2\_using\_mykernel(self,R\_pc):
+443         \textcolor{keywordflow}{return} (self.sigmalos2\_scaler\_uging\_mykernel(R\_pc) \textcolor{keywordflow}{if} len(R\_pc)==1 \textcolor{keywordflow}{else} self.
+      sigmalos2\_vector\_using\_mykernel(R\_pc))
+444     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a4e062f0ac546057c1109fd47ec39ed90_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a5170edb309402dc101ea76871645e65f}\label{classdsph__model_1_1dSph__model_a5170edb309402dc101ea76871645e65f}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos2\+\_\+vector@{sigmalos2\+\_\+vector}}
+\index{sigmalos2\+\_\+vector@{sigmalos2\+\_\+vector}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos2\+\_\+vector()}{sigmalos2\_vector()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos2\+\_\+vector (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rs\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 423 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+423     \textcolor{keyword}{def }sigmalos2\_vector(self,Rs\_pc):
+424         sigmalos2\_scaler = self.sigmalos2\_scaler
+425         \textcolor{keywordflow}{return} [sigmalos2\_scaler(R\_pc) \textcolor{keywordflow}{for} R\_pc \textcolor{keywordflow}{in} Rs\_pc]
+426     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a5170edb309402dc101ea76871645e65f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a5170edb309402dc101ea76871645e65f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a00cd796cf178fe8b3435e941976e8f27}\label{classdsph__model_1_1dSph__model_a00cd796cf178fe8b3435e941976e8f27}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos2\+\_\+vector\+\_\+using\+\_\+mykernel@{sigmalos2\+\_\+vector\+\_\+using\+\_\+mykernel}}
+\index{sigmalos2\+\_\+vector\+\_\+using\+\_\+mykernel@{sigmalos2\+\_\+vector\+\_\+using\+\_\+mykernel}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos2\+\_\+vector\+\_\+using\+\_\+mykernel()}{sigmalos2\_vector\_using\_mykernel()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos2\+\_\+vector\+\_\+using\+\_\+mykernel (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rs\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 427 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+427     \textcolor{keyword}{def }sigmalos2\_vector\_using\_mykernel(self,Rs\_pc):
+428         sigmalos2\_scaler = self.sigmalos2\_scaler\_using\_mykernel
+429         \textcolor{keywordflow}{return} [sigmalos2\_scaler(R\_pc) \textcolor{keywordflow}{for} R\_pc \textcolor{keywordflow}{in} Rs\_pc]
+430     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a00cd796cf178fe8b3435e941976e8f27_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a00cd796cf178fe8b3435e941976e8f27_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a5b73e854e8ac1b1c6a467498cd181e7a}\label{classdsph__model_1_1dSph__model_a5b73e854e8ac1b1c6a467498cd181e7a}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos\+\_\+dequad@{sigmalos\+\_\+dequad}}
+\index{sigmalos\+\_\+dequad@{sigmalos\+\_\+dequad}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos\+\_\+dequad()}{sigmalos\_dequad()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos\+\_\+dequad (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc,  }\item[{}]{show\+\_\+fig = {\ttfamily False},  }\item[{}]{dtype = {\ttfamily np.float64},  }\item[{}]{ignore\+\_\+nan = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 372 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+372     \textcolor{keyword}{def }sigmalos\_dequad(self,R\_pc,show\_fig=False,dtype=np.float64,ignore\_nan=False):
+373         \textcolor{keyword}{def }func(u):
+374             u\_ = np.array(u)[np.newaxis,:]
+375             R\_pc\_ = np.array(R\_pc)[:,np.newaxis]
+376             \textcolor{keywordflow}{return} self.integrand\_sigmalos2\_using\_mykernel(u\_,R\_pc\_)
+377         \textcolor{keywordflow}{return} np.sqrt(\hyperlink{namespacedequad}{dequad}(func,1,inf,axis=1,width=5e-3,pN=1000,mN=1000,dtype=dtype,show\_fig=
+      show\_fig,ignore\_nan=ignore\_nan))
+378     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a5b73e854e8ac1b1c6a467498cd181e7a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a5b73e854e8ac1b1c6a467498cd181e7a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a0046cd7677792835d8cfafe83dbe276c}\label{classdsph__model_1_1dSph__model_a0046cd7677792835d8cfafe83dbe276c}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos\+\_\+dequad\+\_\+interp1d\+\_\+downsampled@{sigmalos\+\_\+dequad\+\_\+interp1d\+\_\+downsampled}}
+\index{sigmalos\+\_\+dequad\+\_\+interp1d\+\_\+downsampled@{sigmalos\+\_\+dequad\+\_\+interp1d\+\_\+downsampled}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos\+\_\+dequad\+\_\+interp1d\+\_\+downsampled()}{sigmalos\_dequad\_interp1d\_downsampled()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos\+\_\+dequad\+\_\+interp1d\+\_\+downsampled (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc,  }\item[{}]{downsampling\+\_\+rate = {\ttfamily 0.6},  }\item[{}]{iteration = {\ttfamily 5},  }\item[{}]{kind = {\ttfamily \char`\"{}cubic\char`\"{}},  }\item[{}]{offset = {\ttfamily 5},  }\item[{}]{sep\+\_\+offset = {\ttfamily 1},  }\item[{}]{points = {\ttfamily \mbox{[}25.},  }\item[{}]{show\+\_\+fig = {\ttfamily False},  }\item[{}]{dtype = {\ttfamily np.float64},  }\item[{}]{ignore\+\_\+nan = {\ttfamily True} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 402 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+402     \textcolor{keyword}{def }sigmalos\_dequad\_interp1d\_downsampled(
+      self,R\_pc,downsampling\_rate=0.6,iteration=5,kind="cubic",offset
+      =5,sep\_offset=1,points=[25.,50.,100.,191.,400.,1950.,2000.,2050.],show\_fig=False,dtype=np.float64,ignore\_nan=True):
+403         R\_pc\_sorted = sort(R\_pc)
+404         R\_pc\_downsampled = np.unique(np.concatenate([self.downsamplings(R\_pc,iteration=iteration),
+      R\_pc\_sorted[:offset:sep\_offset],R\_pc\_sorted[-offset::sep\_offset],points]))
+405         sigmalos\_ = self.sigmalos\_dequad(R\_pc\_downsampled,show\_fig=show\_fig,dtype=dtype,ignore\_nan=
+      ignore\_nan)
+406         interpd\_func = interp1d(R\_pc\_downsampled, sigmalos\_,kind=kind)
+407         \textcolor{comment}{#interpd\_func = Akima1DInterpolator(R\_pc\_downsampled, sigmalos\_)}
+408         \textcolor{keywordflow}{return} interpd\_func(R\_pc) \textcolor{comment}{# here R\_pc is original, so return unsorted results}
+409         
+410     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a0046cd7677792835d8cfafe83dbe276c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_ad105b90e1827d25804eb3d7a3ba96f28}\label{classdsph__model_1_1dSph__model_ad105b90e1827d25804eb3d7a3ba96f28}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos\+\_\+interp1d@{sigmalos\+\_\+interp1d}}
+\index{sigmalos\+\_\+interp1d@{sigmalos\+\_\+interp1d}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos\+\_\+interp1d()}{sigmalos\_interp1d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos\+\_\+interp1d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc,  }\item[{}]{dR = {\ttfamily 1},  }\item[{}]{d\+Rtrunc = {\ttfamily 10},  }\item[{}]{step\+\_\+around\+\_\+\+Rtrunc = {\ttfamily 10},  }\item[{}]{step\+\_\+outer = {\ttfamily 8},  }\item[{}]{step\+\_\+center = {\ttfamily 4},  }\item[{}]{kind = {\ttfamily \char`\"{}cubic\char`\"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}inner part has large error, so more refine interp
+\end{DoxyVerb}
+ 
+
+Definition at line 445 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+445     \textcolor{keyword}{def }sigmalos\_interp1d(
+      self,R\_pc,dR=1,dRtrunc=10,step\_around\_Rtrunc=10,step\_outer=8,step\_center=4,kind="cubic"):
+446         \textcolor{stringliteral}{'''}
+447 \textcolor{stringliteral}{        inner part has large error, so more refine interp}
+448 \textcolor{stringliteral}{        '''}
+449         re = self.submodels[\textcolor{stringliteral}{"stellar\_model"}].params.re\_pc
+450         Rtrunc = self.submodels[\textcolor{stringliteral}{"DM\_model"}].params.R\_trunc\_pc
+451         n = len(R\_pc)
+452         R\_pc\_sorted\_ = np.sort(R\_pc)
+453         R\_pc\_around\_Rtrunc = np.sort(R\_pc\_sorted\_[np.argsort(np.abs(R\_pc\_sorted\_-Rtrunc))[:
+      step\_around\_Rtrunc]])
+454         Rmin,Rmax = R\_pc\_sorted\_[0],R\_pc\_sorted\_[-1]
+455         \textcolor{comment}{#R\_pc\_lo\_ = np.linspace(Rmin*0.5,Rmin*1.5,int((n*0.2)/step))}
+456         \textcolor{comment}{#R\_pc\_lo\_ = R\_pc\_sorted\_[:int(n*0.05)]}
+457         \textcolor{comment}{#R\_pc\_hi\_ = np.linspace(R\_pc\_lo\_[-1]+0.1,Rmax*1.1,int(n/step))}
+458         \textcolor{comment}{#R\_pc\_ = np.hstack((R\_pc\_lo\_,R\_pc\_hi\_))}
+459         R\_pc\_zero = R\_pc\_sorted\_[:step\_center]
+460         R\_pc\_hi\_ = np.logspace(np.log10(R\_pc\_sorted\_[step\_center]),np.log10(Rmax)+1e-8,step\_outer)
+461         R\_pc\_ = np.sort(np.unique(np.concatenate((R\_pc\_zero,R\_pc\_around\_Rtrunc,R\_pc\_hi\_),axis=\textcolor{keywordtype}{None})))
+462         \textcolor{comment}{#R\_pc\_ = np.linspace(Rmin,Rmax,int(n/step))}
+463         sigmalos2\_ = self.sigmalos2\_multi\_using\_mykernel(R\_pc\_)
+464         interpd\_func = interp1d(R\_pc\_, sqrt(sigmalos2\_),kind=kind)
+465         \textcolor{keywordflow}{return} interpd\_func(R\_pc) \textcolor{comment}{# here R\_pc is original, so return unsorted results}
+466     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_ad105b90e1827d25804eb3d7a3ba96f28_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a239ec859750c30fe31b6c19e94cd2e33}\label{classdsph__model_1_1dSph__model_a239ec859750c30fe31b6c19e94cd2e33}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmalos\+\_\+interp1d\+\_\+dequad@{sigmalos\+\_\+interp1d\+\_\+dequad}}
+\index{sigmalos\+\_\+interp1d\+\_\+dequad@{sigmalos\+\_\+interp1d\+\_\+dequad}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmalos\+\_\+interp1d\+\_\+dequad()}{sigmalos\_interp1d\_dequad()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmalos\+\_\+interp1d\+\_\+dequad (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc,  }\item[{}]{dR = {\ttfamily 1},  }\item[{}]{d\+Rtrunc = {\ttfamily 10},  }\item[{}]{step\+\_\+around\+\_\+\+Rtrunc = {\ttfamily 10},  }\item[{}]{step\+\_\+outer = {\ttfamily 20},  }\item[{}]{step\+\_\+center = {\ttfamily 4},  }\item[{}]{kind = {\ttfamily \char`\"{}cubic\char`\"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}inner part has large error, so more refine interp
+\end{DoxyVerb}
+ 
+
+Definition at line 467 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+467     \textcolor{keyword}{def }sigmalos\_interp1d\_dequad(
+      self,R\_pc,dR=1,dRtrunc=10,step\_around\_Rtrunc=10,step\_outer=20,step\_center=4,kind="cubic"):
+468         \textcolor{stringliteral}{'''}
+469 \textcolor{stringliteral}{        inner part has large error, so more refine interp}
+470 \textcolor{stringliteral}{        '''}
+471         re = self.submodels[\textcolor{stringliteral}{"stellar\_model"}].params.re\_pc
+472         Rtrunc = self.submodels[\textcolor{stringliteral}{"DM\_model"}].params.R\_trunc\_pc
+473         n = len(R\_pc)
+474         R\_pc\_sorted\_ = np.sort(R\_pc)
+475         R\_pc\_around\_Rtrunc = np.sort(R\_pc\_sorted\_[np.argsort(np.abs(R\_pc\_sorted\_-Rtrunc))[:
+      step\_around\_Rtrunc]])
+476         Rmin,Rmax = R\_pc\_sorted\_[0],R\_pc\_sorted\_[-1]
+477         \textcolor{comment}{#R\_pc\_lo\_ = np.linspace(Rmin*0.5,Rmin*1.5,int((n*0.2)/step))}
+478         \textcolor{comment}{#R\_pc\_lo\_ = R\_pc\_sorted\_[:int(n*0.05)]}
+479         \textcolor{comment}{#R\_pc\_hi\_ = np.linspace(R\_pc\_lo\_[-1]+0.1,Rmax*1.1,int(n/step))}
+480         \textcolor{comment}{#R\_pc\_ = np.hstack((R\_pc\_lo\_,R\_pc\_hi\_))}
+481         R\_pc\_zero = R\_pc\_sorted\_[:step\_center]
+482         R\_pc\_hi\_ = np.logspace(np.log10(R\_pc\_sorted\_[step\_center]),np.log10(Rmax)+1e-8,step\_outer)
+483         R\_pc\_ = np.sort(np.unique(np.concatenate((R\_pc\_zero,R\_pc\_around\_Rtrunc,R\_pc\_hi\_),axis=\textcolor{keywordtype}{None})))
+484         \textcolor{comment}{#R\_pc\_ = np.linspace(Rmin,Rmax,int(n/step))}
+485         sigmalos2\_ = self.sigmalos2\_dequad(R\_pc\_)
+486         interpd\_func = interp1d(R\_pc\_, sqrt(sigmalos2\_),kind=kind)
+487         \textcolor{keywordflow}{return} interpd\_func(R\_pc) \textcolor{comment}{# here R\_pc is original, so return unsorted results}
+488     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a239ec859750c30fe31b6c19e94cd2e33_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a1c6185c02a3f58951b7ed9b75a348f49}\label{classdsph__model_1_1dSph__model_a1c6185c02a3f58951b7ed9b75a348f49}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!sigmar2@{sigmar2}}
+\index{sigmar2@{sigmar2}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{sigmar2()}{sigmar2()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+d\+Sph\+\_\+model.\+sigmar2 (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{r\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 299 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+299     \textcolor{keyword}{def }sigmar2(self,r\_pc):
+300         RELERROR\_INTEG = 1e-6
+301         anib = self.params.anib
+302         integrand = \textcolor{keyword}{lambda} r,r1: self.submodels[\textcolor{stringliteral}{"stellar\_model"}].density\_3d(r)*np.power(r/r1,-2*anib)*
+      GMsun\_m3s2*self.submodels[\textcolor{stringliteral}{"DM\_model"}].enclosure\_mass(r)/r**2/self.submodels[\textcolor{stringliteral}{"stellar\_model"}].density\_3d(r\_pc)*1e-
+      6/parsec
+303         integ, abserr = integrate.quad(integrand,r\_pc,np.inf,args=(r\_pc,))
+304         \textcolor{keywordflow}{return} integ
+305     
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d25/classdsph__model_1_1dSph__model_a1c6185c02a3f58951b7ed9b75a348f49_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a44e4805fa7304536056b19bd361c3d37}\label{classdsph__model_1_1dSph__model_a44e4805fa7304536056b19bd361c3d37}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!name@{name}}
+\index{name@{name}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string dsph\+\_\+model.\+d\+Sph\+\_\+model.\+name = \textquotesingle{}\hyperlink{classdsph__model_1_1dSph__model}{d\+Sph\+\_\+model}\textquotesingle{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 272 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_ab09f579bff6269075f5956a1c0a88bdc}\label{classdsph__model_1_1dSph__model_ab09f579bff6269075f5956a1c0a88bdc}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!ncpu@{ncpu}}
+\index{ncpu@{ncpu}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{ncpu}{ncpu}}
+{\footnotesize\ttfamily dsph\+\_\+model.\+d\+Sph\+\_\+model.\+ncpu = multi.\+cpu\+\_\+count()\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 275 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a7795b8e9d3d0dbf3cd5a4d618c30a6c0}\label{classdsph__model_1_1dSph__model_a7795b8e9d3d0dbf3cd5a4d618c30a6c0}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!required\+\_\+models@{required\+\_\+models}}
+\index{required\+\_\+models@{required\+\_\+models}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{required\+\_\+models}{required\_models}}
+{\footnotesize\ttfamily list dsph\+\_\+model.\+d\+Sph\+\_\+model.\+required\+\_\+models = \mbox{[}\hyperlink{classdsph__model_1_1stellar__model}{stellar\+\_\+model},\hyperlink{classdsph__model_1_1DM__model}{D\+M\+\_\+model}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 274 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{classdsph__model_1_1dSph__model_a74f031f3929b9123b00121c1b02b8b71}\label{classdsph__model_1_1dSph__model_a74f031f3929b9123b00121c1b02b8b71}} 
+\index{dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}!required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}}
+\index{required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}!dsph\+\_\+model\+::d\+Sph\+\_\+model@{dsph\+\_\+model\+::d\+Sph\+\_\+model}}
+\subsubsection{\texorpdfstring{required\+\_\+params\+\_\+name}{required\_params\_name}}
+{\footnotesize\ttfamily list dsph\+\_\+model.\+d\+Sph\+\_\+model.\+required\+\_\+params\+\_\+name = \mbox{[}\textquotesingle{}anib\textquotesingle{}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 273 of file dsph\+\_\+model.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{dsph__model_8py}{dsph\+\_\+model.\+py}\end{DoxyCompactItemize}

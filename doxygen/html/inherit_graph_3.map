@@ -1,0 +1,12 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$d3/da3/classdsph__model_1_1model.html" title="dsph_model.model" alt="" coords="5,69,136,96"/>
+<area shape="rect" id="node2" href="$dd/d4d/classdsph__model_1_1DM__model.html" title="dsph_model.DM_model" alt="" coords="189,12,347,39"/>
+<area shape="rect" id="node4" href="$d0/d25/classdsph__model_1_1dSph__model.html" title="dsph_model.dSph_model" alt="" coords="184,69,352,96"/>
+<area shape="rect" id="node5" href="$d0/db5/classdsph__model_1_1stellar__model.html" title="dsph_model.stellar\l_model" alt="" coords="203,133,333,174"/>
+<area shape="rect" id="node3" href="$d5/d96/classdsph__model_1_1NFW__model.html" title="dsph_model.NFW_model" alt="" coords="402,5,571,32"/>
+<area shape="rect" id="node6" href="$df/d3d/classdsph__model_1_1exp2d__model.html" title="dsph_model.exp2d_model" alt="" coords="400,56,573,83"/>
+<area shape="rect" id="node7" href="$dc/d37/classdsph__model_1_1exp3d__model.html" title="dsph_model.exp3d_model" alt="" coords="400,107,573,133"/>
+<area shape="rect" id="node8" href="$d4/d46/classdsph__model_1_1plummer__model.html" title="dsph_model.plummer\l_model" alt="" coords="413,158,560,199"/>
+<area shape="rect" id="node9" href="$d0/de9/classdsph__model_1_1sersic__model.html" title="dsph_model.sersic_model" alt="" coords="400,224,573,251"/>
+<area shape="rect" id="node10" href="$de/daa/classdsph__model_1_1uniform2d__model.html" title="dsph_model.uniform2d\l_model" alt="" coords="410,275,563,317"/>
+</map>

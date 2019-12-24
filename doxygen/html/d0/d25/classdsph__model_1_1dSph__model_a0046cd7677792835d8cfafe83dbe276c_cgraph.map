@@ -1,0 +1,7 @@
+<map id="dsph_model.dSph_model.sigmalos_dequad_interp1d_downsampled" name="dsph_model.dSph_model.sigmalos_dequad_interp1d_downsampled">
+<area shape="rect" id="node2" href="$d0/d25/classdsph__model_1_1dSph__model.html#aa362ce682d90de77e755374efa153cf7" title="dsph_model.dSph_model.downsamplings" alt="" coords="277,5,540,32"/>
+<area shape="rect" id="node4" href="$d0/d25/classdsph__model_1_1dSph__model.html#a5b73e854e8ac1b1c6a467498cd181e7a" title="dsph_model.dSph_model.sigmalos\l_dequad" alt="" coords="297,57,521,98"/>
+<area shape="rect" id="node3" href="$d0/d25/classdsph__model_1_1dSph__model.html#a4d9e1c397b4ae379c680bc7453845781" title="dsph_model.dSph_model.downsampling" alt="" coords="588,5,843,32"/>
+<area shape="rect" id="node5" href="$d0/d25/classdsph__model_1_1dSph__model.html#a5df6fa479eb9092d850da8779073eed5" title="dsph_model.dSph_model.integrand\l_sigmalos2_using_mykernel" alt="" coords="603,57,828,98"/>
+<area shape="rect" id="node6" href="$d0/d25/classdsph__model_1_1dSph__model.html#a5e0091742da19919dc6c085a806ad6e0" title="dsph_model.dSph_model.mykernel\l_over_u" alt="" coords="891,57,1116,98"/>
+</map>

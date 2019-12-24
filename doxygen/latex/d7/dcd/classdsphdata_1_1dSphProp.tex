@@ -1,0 +1,150 @@
+\hypertarget{classdsphdata_1_1dSphProp}{}\section{dsphdata.\+d\+Sph\+Prop Class Reference}
+\label{classdsphdata_1_1dSphProp}\index{dsphdata.\+d\+Sph\+Prop@{dsphdata.\+d\+Sph\+Prop}}
+
+
+Collaboration diagram for dsphdata.\+d\+Sph\+Prop\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{d4/d30/classdsphdata_1_1dSphProp__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdsphdata_1_1dSphProp_ae1a65e0fa31a216d8682f7b0c82a17bc}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, dsph\+\_\+name, ra=None, dec=None, distance=None, distance\+\_\+err=None, verbose=True)
+\item 
+def \hyperlink{classdsphdata_1_1dSphProp_a137f39efeed4c5ac45617e401d500a12}{load\+\_\+dsph\+\_\+property} (self, dsph\+\_\+name, ra=None, dec=None, distance=None, distance\+\_\+err=None, verbose=True)
+\item 
+def \hyperlink{classdsphdata_1_1dSphProp_a4a025a2eaf8f2a3c24f0cb78e82c046a}{to\+\_\+sc} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classdsphdata_1_1dSphProp_aabd823cddc1788bdec1832e66b561fed}{dsph\+\_\+prop}
+\item 
+\hyperlink{classdsphdata_1_1dSphProp_aeccdbe40f92c40609af736edef043363}{dsph\+\_\+prop\+\_\+sc}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}initialize a sampler instance.
+
+input:
+    - dsph_name(str)   : dwarf spheroidal name listed in "Nearbygalaxies.dat".
+\end{DoxyVerb}
+ 
+
+Definition at line 8 of file dsphdata.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classdsphdata_1_1dSphProp_ae1a65e0fa31a216d8682f7b0c82a17bc}\label{classdsphdata_1_1dSphProp_ae1a65e0fa31a216d8682f7b0c82a17bc}} 
+\index{dsphdata\+::d\+Sph\+Prop@{dsphdata\+::d\+Sph\+Prop}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!dsphdata\+::d\+Sph\+Prop@{dsphdata\+::d\+Sph\+Prop}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def dsphdata.\+d\+Sph\+Prop.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{dsph\+\_\+name,  }\item[{}]{ra = {\ttfamily None},  }\item[{}]{dec = {\ttfamily None},  }\item[{}]{distance = {\ttfamily None},  }\item[{}]{distance\+\_\+err = {\ttfamily None},  }\item[{}]{verbose = {\ttfamily True} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 15 of file dsphdata.\+py.
+
+
+\begin{DoxyCode}
+15     \textcolor{keyword}{def }\hyperlink{classsampler_1_1Sampler_a0ebbb93e5c948bc426658cbdc92bfd12}{\_\_init\_\_}(self,dsph\_name,ra=None,dec=None,distance=None,distance\_err=None,verbose=True):    
+          
+16         \textcolor{comment}{#self.dsph\_prop = None}
+17         self.load\_dsph\_property(dsph\_name,ra,dec,distance,distance\_err,verbose)
+18         
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{d7/dcd/classdsphdata_1_1dSphProp_ae1a65e0fa31a216d8682f7b0c82a17bc_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classdsphdata_1_1dSphProp_a137f39efeed4c5ac45617e401d500a12}\label{classdsphdata_1_1dSphProp_a137f39efeed4c5ac45617e401d500a12}} 
+\index{dsphdata\+::d\+Sph\+Prop@{dsphdata\+::d\+Sph\+Prop}!load\+\_\+dsph\+\_\+property@{load\+\_\+dsph\+\_\+property}}
+\index{load\+\_\+dsph\+\_\+property@{load\+\_\+dsph\+\_\+property}!dsphdata\+::d\+Sph\+Prop@{dsphdata\+::d\+Sph\+Prop}}
+\subsubsection{\texorpdfstring{load\+\_\+dsph\+\_\+property()}{load\_dsph\_property()}}
+{\footnotesize\ttfamily def dsphdata.\+d\+Sph\+Prop.\+load\+\_\+dsph\+\_\+property (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{dsph\+\_\+name,  }\item[{}]{ra = {\ttfamily None},  }\item[{}]{dec = {\ttfamily None},  }\item[{}]{distance = {\ttfamily None},  }\item[{}]{distance\+\_\+err = {\ttfamily None},  }\item[{}]{verbose = {\ttfamily True} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 19 of file dsphdata.\+py.
+
+
+\begin{DoxyCode}
+19     \textcolor{keyword}{def }load\_dsph\_property(self,dsph\_name,ra=None,dec=None,distance=None,distance\_err=None,verbose=True):
+20         dsph\_prop = ascii.read(\textcolor{stringliteral}{"NearbyGalaxies.dat"}).to\_pandas().set\_index(\textcolor{stringliteral}{"GalaxyName"}).loc[dsph\_name]
+21         self.dsph\_prop = dsph\_prop
+22         \_ra  = \textcolor{stringliteral}{"\{\}h\{\}m\{\}s"}.format(dsph\_prop.RAh,dsph\_prop.RAm,dsph\_prop.RAs) \textcolor{keywordflow}{if} (ra  \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{else} ra
+23         \_dec = \textcolor{stringliteral}{"\{\}d\{\}m\{\}s"}.format(dsph\_prop.DEd,dsph\_prop.DEm,dsph\_prop.DEs) \textcolor{keywordflow}{if} (dec \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{else} dec
+24         \_distance = Distance(distmod=dsph\_prop[\textcolor{stringliteral}{"(m-M)o"}]).pc \textcolor{keywordflow}{if} (distance \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}) \textcolor{keywordflow}{else} distance
+25         self.dsph\_prop\_sc = SkyCoord(ra=\_ra,dec=\_dec,distance=\_distance*u.pc)
+26         
+27         \textcolor{keywordflow}{if} verbose:
+28             print(self.dsph\_prop\_sc)
+29         
+30         \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} distance\_err \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}:
+31             self.dsph\_prop\_sc.distance\_err = distance\_err
+32             print(\textcolor{stringliteral}{"distance\_err = \{\}"}.format(distance\_err))
+33         
+34         
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{d7/dcd/classdsphdata_1_1dSphProp_a137f39efeed4c5ac45617e401d500a12_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsphdata_1_1dSphProp_a4a025a2eaf8f2a3c24f0cb78e82c046a}\label{classdsphdata_1_1dSphProp_a4a025a2eaf8f2a3c24f0cb78e82c046a}} 
+\index{dsphdata\+::d\+Sph\+Prop@{dsphdata\+::d\+Sph\+Prop}!to\+\_\+sc@{to\+\_\+sc}}
+\index{to\+\_\+sc@{to\+\_\+sc}!dsphdata\+::d\+Sph\+Prop@{dsphdata\+::d\+Sph\+Prop}}
+\subsubsection{\texorpdfstring{to\+\_\+sc()}{to\_sc()}}
+{\footnotesize\ttfamily def dsphdata.\+d\+Sph\+Prop.\+to\+\_\+sc (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 35 of file dsphdata.\+py.
+
+
+\begin{DoxyCode}
+35     \textcolor{keyword}{def }to\_sc(self):
+36         \textcolor{keywordflow}{return} copy(self.dsph\_prop\_sc)
+37 
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classdsphdata_1_1dSphProp_aabd823cddc1788bdec1832e66b561fed}\label{classdsphdata_1_1dSphProp_aabd823cddc1788bdec1832e66b561fed}} 
+\index{dsphdata\+::d\+Sph\+Prop@{dsphdata\+::d\+Sph\+Prop}!dsph\+\_\+prop@{dsph\+\_\+prop}}
+\index{dsph\+\_\+prop@{dsph\+\_\+prop}!dsphdata\+::d\+Sph\+Prop@{dsphdata\+::d\+Sph\+Prop}}
+\subsubsection{\texorpdfstring{dsph\+\_\+prop}{dsph\_prop}}
+{\footnotesize\ttfamily dsphdata.\+d\+Sph\+Prop.\+dsph\+\_\+prop}
+
+
+
+Definition at line 21 of file dsphdata.\+py.
+
+\mbox{\Hypertarget{classdsphdata_1_1dSphProp_aeccdbe40f92c40609af736edef043363}\label{classdsphdata_1_1dSphProp_aeccdbe40f92c40609af736edef043363}} 
+\index{dsphdata\+::d\+Sph\+Prop@{dsphdata\+::d\+Sph\+Prop}!dsph\+\_\+prop\+\_\+sc@{dsph\+\_\+prop\+\_\+sc}}
+\index{dsph\+\_\+prop\+\_\+sc@{dsph\+\_\+prop\+\_\+sc}!dsphdata\+::d\+Sph\+Prop@{dsphdata\+::d\+Sph\+Prop}}
+\subsubsection{\texorpdfstring{dsph\+\_\+prop\+\_\+sc}{dsph\_prop\_sc}}
+{\footnotesize\ttfamily dsphdata.\+d\+Sph\+Prop.\+dsph\+\_\+prop\+\_\+sc}
+
+
+
+Definition at line 25 of file dsphdata.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{dsphdata_8py}{dsphdata.\+py}\end{DoxyCompactItemize}

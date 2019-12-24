@@ -1,0 +1,4 @@
+<map id="dsph_model.DM_model" name="dsph_model.DM_model">
+<area shape="rect" id="node3" href="$d5/d96/classdsph__model_1_1NFW__model.html" title="{dsph_model.NFW_model\n|+ name\l+ required_params_name\l|+ mass_density_3d()\l+ enclosure_mass()\l+ enclosure_mass_truncated()\l}" alt="" coords="13,388,212,509"/>
+<area shape="rect" id="node2" href="$d3/da3/classdsph__model_1_1model.html" title="{dsph_model.model\n|+ params\l+ required_params_name\l+ submodels\l+ required_models\l+ name\l|+ __init__()\l+ __repr__()\l+ show_params()\l+ show_required_params_name()\l+ is_required_params_name()\l+ update()\l}" alt="" coords="5,5,220,215"/>
+</map>

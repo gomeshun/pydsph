@@ -1,0 +1,245 @@
+\hypertarget{classdsph__model_1_1exp2d__model}{}\section{dsph\+\_\+model.\+exp2d\+\_\+model Class Reference}
+\label{classdsph__model_1_1exp2d__model}\index{dsph\+\_\+model.\+exp2d\+\_\+model@{dsph\+\_\+model.\+exp2d\+\_\+model}}
+
+
+Inheritance diagram for dsph\+\_\+model.\+exp2d\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{d0/db2/classdsph__model_1_1exp2d__model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for dsph\+\_\+model.\+exp2d\+\_\+model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{db/d2e/classdsph__model_1_1exp2d__model__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdsph__model_1_1exp2d__model_a41d0f3f53b8a31f9b64c71c733e7718e}{density\+\_\+2d} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1exp2d__model_a1652d2c72ea1f7da120a2334985a0386}{logdensity\+\_\+2d} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1exp2d__model_a6736a23153473de1a3cba39c569f0aab}{density\+\_\+3d} (self, r\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1exp2d__model_a3a8c90e796e589216687bbe3cf4e42c5}{cdf\+\_\+R} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1exp2d__model_af2224092e988940539b872a4fe0afa38}{mean\+\_\+density\+\_\+2d} (self, R\+\_\+pc)
+\item 
+def \hyperlink{classdsph__model_1_1exp2d__model_a477eaae9bad0731911aabdad810c06ee}{half\+\_\+light\+\_\+radius} (self)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classdsph__model_1_1exp2d__model_a172eee0bbbeb483d5253ec3b426e92e7}{name} = \char`\"{}exp2d \hyperlink{classdsph__model_1_1model}{model}\char`\"{}
+\item 
+list \hyperlink{classdsph__model_1_1exp2d__model_a13fbfe2cc261b70c40dc6635f409f837}{required\+\_\+params\+\_\+name} = \mbox{[}\textquotesingle{}re\+\_\+pc\textquotesingle{},\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdsph__model_1_1exp2d__model_a8dc3dcfaa3f876ecf299acece3f6d518}{\+\_\+half\+\_\+light\+\_\+radius} (self, re\+\_\+pc)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 170 of file dsph\+\_\+model.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1exp2d__model_a8dc3dcfaa3f876ecf299acece3f6d518}\label{classdsph__model_1_1exp2d__model_a8dc3dcfaa3f876ecf299acece3f6d518}} 
+\index{dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}!\+\_\+half\+\_\+light\+\_\+radius@{\+\_\+half\+\_\+light\+\_\+radius}}
+\index{\+\_\+half\+\_\+light\+\_\+radius@{\+\_\+half\+\_\+light\+\_\+radius}!dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}}
+\subsubsection{\texorpdfstring{\+\_\+half\+\_\+light\+\_\+radius()}{\_half\_light\_radius()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+exp2d\+\_\+model.\+\_\+half\+\_\+light\+\_\+radius (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{re\+\_\+pc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 192 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+192     \textcolor{keyword}{def }\_half\_light\_radius(self,re\_pc):
+193         \textcolor{keywordflow}{return} 1.67834699001666*re\_pc
+194     
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/d3d/classdsph__model_1_1exp2d__model_a8dc3dcfaa3f876ecf299acece3f6d518_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1exp2d__model_a3a8c90e796e589216687bbe3cf4e42c5}\label{classdsph__model_1_1exp2d__model_a3a8c90e796e589216687bbe3cf4e42c5}} 
+\index{dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}!cdf\+\_\+R@{cdf\+\_\+R}}
+\index{cdf\+\_\+R@{cdf\+\_\+R}!dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}}
+\subsubsection{\texorpdfstring{cdf\+\_\+\+R()}{cdf\_R()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+exp2d\+\_\+model.\+cdf\+\_\+R (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}cdf_R(R) = \int_0^R \dd{R'} 2\pi R' \Sigma(R')
+\end{DoxyVerb}
+ 
+
+Definition at line 182 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+182     \textcolor{keyword}{def }cdf\_R(self,R\_pc):
+183         \textcolor{stringliteral}{'''}
+184 \textcolor{stringliteral}{        cdf\_R(R) = \(\backslash\)int\_0^R \(\backslash\)dd\{R'\} 2\(\backslash\)pi R' \(\backslash\)Sigma(R')}
+185 \textcolor{stringliteral}{        '''}
+186         re\_pc = self.params.re\_pc
+187         \textcolor{keywordflow}{return} 1. - exp(-R\_pc/re\_pc)*(1+R\_pc/re\_pc)
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/d3d/classdsph__model_1_1exp2d__model_a3a8c90e796e589216687bbe3cf4e42c5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1exp2d__model_a41d0f3f53b8a31f9b64c71c733e7718e}\label{classdsph__model_1_1exp2d__model_a41d0f3f53b8a31f9b64c71c733e7718e}} 
+\index{dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}!density\+\_\+2d@{density\+\_\+2d}}
+\index{density\+\_\+2d@{density\+\_\+2d}!dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}}
+\subsubsection{\texorpdfstring{density\+\_\+2d()}{density\_2d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+exp2d\+\_\+model.\+density\+\_\+2d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 173 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+173     \textcolor{keyword}{def }density\_2d(self,R\_pc):
+174         re\_pc = self.params.re\_pc
+175         \textcolor{keywordflow}{return} (1./2/pi/re\_pc**2)*exp(-R\_pc/re\_pc) 
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/d3d/classdsph__model_1_1exp2d__model_a41d0f3f53b8a31f9b64c71c733e7718e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1exp2d__model_a6736a23153473de1a3cba39c569f0aab}\label{classdsph__model_1_1exp2d__model_a6736a23153473de1a3cba39c569f0aab}} 
+\index{dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}!density\+\_\+3d@{density\+\_\+3d}}
+\index{density\+\_\+3d@{density\+\_\+3d}!dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}}
+\subsubsection{\texorpdfstring{density\+\_\+3d()}{density\_3d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+exp2d\+\_\+model.\+density\+\_\+3d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{r\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 179 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+179     \textcolor{keyword}{def }density\_3d(self,r\_pc):
+180         re\_pc = self.params.re\_pc
+181         \textcolor{keywordflow}{return} (1./2/pi**2/re\_pc**3)*k0(r\_pc/re\_pc)
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/d3d/classdsph__model_1_1exp2d__model_a6736a23153473de1a3cba39c569f0aab_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1exp2d__model_a477eaae9bad0731911aabdad810c06ee}\label{classdsph__model_1_1exp2d__model_a477eaae9bad0731911aabdad810c06ee}} 
+\index{dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}!half\+\_\+light\+\_\+radius@{half\+\_\+light\+\_\+radius}}
+\index{half\+\_\+light\+\_\+radius@{half\+\_\+light\+\_\+radius}!dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}}
+\subsubsection{\texorpdfstring{half\+\_\+light\+\_\+radius()}{half\_light\_radius()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+exp2d\+\_\+model.\+half\+\_\+light\+\_\+radius (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 195 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+195     \textcolor{keyword}{def }half\_light\_radius(self):
+196         \textcolor{keywordflow}{return} self.\_half\_light\_radius(self.params.re\_pc)
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/d3d/classdsph__model_1_1exp2d__model_a477eaae9bad0731911aabdad810c06ee_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classdsph__model_1_1exp2d__model_a1652d2c72ea1f7da120a2334985a0386}\label{classdsph__model_1_1exp2d__model_a1652d2c72ea1f7da120a2334985a0386}} 
+\index{dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}!logdensity\+\_\+2d@{logdensity\+\_\+2d}}
+\index{logdensity\+\_\+2d@{logdensity\+\_\+2d}!dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}}
+\subsubsection{\texorpdfstring{logdensity\+\_\+2d()}{logdensity\_2d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+exp2d\+\_\+model.\+logdensity\+\_\+2d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 176 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+176     \textcolor{keyword}{def }logdensity\_2d(self,R\_pc):
+177         re\_pc = self.params.re\_pc
+178         \textcolor{keywordflow}{return} log(1./2/pi) -log(re\_pc)*2 +(-R\_pc/re\_pc) 
+\end{DoxyCode}
+\mbox{\Hypertarget{classdsph__model_1_1exp2d__model_af2224092e988940539b872a4fe0afa38}\label{classdsph__model_1_1exp2d__model_af2224092e988940539b872a4fe0afa38}} 
+\index{dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}!mean\+\_\+density\+\_\+2d@{mean\+\_\+density\+\_\+2d}}
+\index{mean\+\_\+density\+\_\+2d@{mean\+\_\+density\+\_\+2d}!dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}}
+\subsubsection{\texorpdfstring{mean\+\_\+density\+\_\+2d()}{mean\_density\_2d()}}
+{\footnotesize\ttfamily def dsph\+\_\+model.\+exp2d\+\_\+model.\+mean\+\_\+density\+\_\+2d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{R\+\_\+pc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 188 of file dsph\+\_\+model.\+py.
+
+
+\begin{DoxyCode}
+188     \textcolor{keyword}{def }mean\_density\_2d(self,R\_pc):
+189         re\_pc = self.params.re\_pc
+190         \textcolor{keywordflow}{return} self.cdf\_R(R\_pc)/pi/R\_pc**2
+191     
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/d3d/classdsph__model_1_1exp2d__model_af2224092e988940539b872a4fe0afa38_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classdsph__model_1_1exp2d__model_a172eee0bbbeb483d5253ec3b426e92e7}\label{classdsph__model_1_1exp2d__model_a172eee0bbbeb483d5253ec3b426e92e7}} 
+\index{dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}!name@{name}}
+\index{name@{name}!dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string dsph\+\_\+model.\+exp2d\+\_\+model.\+name = \char`\"{}exp2d \hyperlink{classdsph__model_1_1model}{model}\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 171 of file dsph\+\_\+model.\+py.
+
+\mbox{\Hypertarget{classdsph__model_1_1exp2d__model_a13fbfe2cc261b70c40dc6635f409f837}\label{classdsph__model_1_1exp2d__model_a13fbfe2cc261b70c40dc6635f409f837}} 
+\index{dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}!required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}}
+\index{required\+\_\+params\+\_\+name@{required\+\_\+params\+\_\+name}!dsph\+\_\+model\+::exp2d\+\_\+model@{dsph\+\_\+model\+::exp2d\+\_\+model}}
+\subsubsection{\texorpdfstring{required\+\_\+params\+\_\+name}{required\_params\_name}}
+{\footnotesize\ttfamily list dsph\+\_\+model.\+exp2d\+\_\+model.\+required\+\_\+params\+\_\+name = \mbox{[}\textquotesingle{}re\+\_\+pc\textquotesingle{},\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 172 of file dsph\+\_\+model.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+memfg/\hyperlink{dsph__model_8py}{dsph\+\_\+model.\+py}\end{DoxyCompactItemize}
