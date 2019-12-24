@@ -91,6 +91,9 @@
   a,b,g = self.split_params(p0,["a","b","z"])
   みたいな書き方をさせよう。あるいは、デコレータを定義して、ナマの形の関数を変更しよう。
   
+  あれ、ていうか、よく考えるとパラメータに値をAssignする必要はないような？？
+  なぜなら、なんかモデルを評価するときにもⅮるにパラメータをassignしているわけではない
+  
   Hence, in order to achieve this feature, we separate the definition of likelihood from the implementation of likelihood.
   In a definition step, 
   
@@ -133,6 +136,7 @@ To achieve the demands mentioned above, MemFG has the following classes:
             - params: a instance of `Parameters`
         - `function` can `__call__`: `__call__(params)`:
             - params: a instance of `Parameters`
+                - during the calculation, parameters of Model 
     
     - `Model` can `split_params`: `split_params(params)`
     
@@ -153,6 +157,8 @@ To achieve the demands mentioned above, MemFG has the following classes:
         - `unit` is a `string` or a `list` of `string`
     - `Parameter` has `value`.
         - `value` is a `double` or a `list` of `double`
+    - `Parameter` has `sub_params`.
+        - `sub_params` is a list of `Parameter`s.
     - `Parameter` can `clear_value`.
     - `Parameter` can `assign_value`.
     - * `Parameter` can `convert_unit`.
@@ -160,6 +166,7 @@ To achieve the demands mentioned above, MemFG has the following classes:
     - `Parameter` has `dim`.
     - `Parameter` can `__len__``
     - `Parameter` can `__or__` or `|`.
+    - `Parameter` can `add` other parameters into `self.sub_params`.
 
 - class `DMModel`: define dark matter density profile.
     - `DMModel` is a `Model`.
