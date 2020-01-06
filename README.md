@@ -91,9 +91,197 @@
   a,b,g = self.split_params(p0,["a","b","z"])
   みたいな書き方をさせよう。あるいは、デコレータを定義して、ナマの形の関数を変更しよう。
   
-  あれ、ていうか、よく考えるとパラメータに値をAssignする必要はないような？？
-  なぜなら、なんかモデルを評価するときにもⅮるにパラメータをassignしているわけではない
+  バグが起きそうな原因というのは、手でパラメータの順番を陽に・陰に
+  指定してしまうこと。これをなくすには、辞書でパラメータを指定するようにすればいい。
+  ただし、Likelihoodの評価の時にだけは順序が関係してくる。
+  そのため、Likelihoodの引数の順序は特定の規則に従って勝手に決まるようにして、順番が現れないようにすればよい。
   
+  あれ、ていうか、よく考えるとパラメータに値をAssignする必要はないような？？
+  なぜなら、なんかモデルを評価するときにモデルにパラメータをassignしているわけではない...
+  
+  なにかモデルを評価するときには、パラメータ空間上の特定の点に対してLikelihoodの値を評価する、ということをやる。その意味では、パラメータはむしろ一般のclassとして定義すべきであるきがする。その意味だと、Modelはパラメータ空間を持ち、パラメータ空間の特定の一点でモデルを評価する、ということになる。クラスがクラスを持つ、とはどういうことか？？？
+  
+  今まで考えていたのはむしろ「パラメータはspecified/unspecifiedという属性を持つ」ということ。こっちのがわかりやすい気がする。
+  で、モデルの評価について考えると、
+  モデルはパラメータを持つ。
+  モデルは、SpecifiedなParameterを持っているとき、Likelihoodの評価ができる。
+      モデルがSpecifiedされているとは、モデルのパラメータがすべてSpecifiedされてることである。
+      モデルは、複モデルを持つ。
+      モデルがSpecifiedされているとき、複モデルもすべてSpecifiedである。
+      モデルがSpecifiedされているとは、モデルパラメータが値を持つことである。
+      モデルが値を持つとき、複モデルも値を持つ。
+  モデルを評価するとは、
+      Specifiedなパラメータの値に基づき、Likelihood(values)を求めること。
+      Specifiedされていないときは、エラーになる。
+      
+    あるいは、関数の評価をするときには必ず値をassignするようにして、関数内部ではself.parameter["name_of_parmaeter"]という風に呼ぶようにするのでいいかもしれない。
+    これだと、どの関数がどの変数に依存しているのかわかりづらいという欠点があるが…
+    
+    変数を明示するには、変数を引数に書いとくのが良い。
+    そこで、
+    func_test(x,a,b,c)
+    みたいな関数を定義したとき、自動で
+    test(x,p)
+    みたいな関数を再定義してくれるようにしたい。        
+        param_names = ["a","b"]
+        
+        def func_test(x,b,a):
+    これならわざわざ最初に変数を自分で定義しなおす必要はない。
+    この関数は上のレイヤーのモデルから簡単に呼び出せる。
+    
+    。。。いや、待てよ？関数の引数は必ずしも全部のパラメータを尽くすわけではないから、
+    都合よく変数を抽出する必要がある。これはちょっとめんどくさい…
+    …やっぱり、最初にモデルの変数をAssignするようにしてしまおう。
+    
+    ...しかしこれも問題がある。最初にモデルのパラメータ全部をAssignしてしまうと、
+    下のモデルの関数を呼び出すときに再度Assignが発生する気がする…
+    
+    これは使う関数を分ければよい。モデルの定義に使う関数と、実際の評価に使う関数を分ける:
+    
+        定義に使う関数　`func_f`:
+            ```python:
+            def func_f(self,x,a,b,Parameter_Model1,Parameter_Model2):
+                ...
+                self.Model1.func_f1(x,*Paramster_Model1)
+            ...
+                
+        呼び出し方　f(x):この時、パラメータは事前にAssignされる。
+        
+     …これもなんか問題があるな…
+     例えばLikelihoodとかは（例えばというかこれが主目的なのだが）
+     likelihood(*p) ないし likelhood(p)
+     とかいう形で呼び出す（ようなものを定義しないとMCMCで使えない）。
+     ここでpはFlatな配列になっている。
+     このLikelihoodの定義中で呼び出すモデルの関数は、pを引数にとらないといけない。
+     （あるいは、Likelihoodの評価前に事前にAssignを行っておく。）
+     定義を書くときには、モデルの関数のP依存性は…書きたい？？
+     よく考えると、一個下のモデルの関数を何かしらで呼び出すことはある。
+     たとえば、Likelihoodはdsphのモデルの関数sigmalosを呼び出すので、
+     こいつにはどうにかしてpの情報のうちdsphモデルに相当する分をあげないといけない。
+     
+     方針としては、パラメータを引数に持つような関数は事前にモデルにAssignをしてから使うようにする、というのがあげられるが、これだとモデルを上に登って行ったとき二重Assignの問題が常にある。
+     
+     ちゃんと考えるために、良さげな候補となる関数の書き方をいくつかにグループ分けする：
+     
+     1. func_raw(x,y,a,b,Parameter_Model1,Parameter_Model2)
+     1. func_flat(x,p)
+     1. func_using_assigned_parameter(x)
+         
+     それぞれ、内部をどういう風に記述したらいいか考えてみると、
+     
+     ```
+     def func_raw(self,x,y,a,b,Parameter_Model1,Parameter_Model2):
+         (... some calculation with a,b... )
+         func_Model1_flat(x,Parameter_Model1)
+     ```
+     
+     ```
+     def func_flat(self,x,p):  # likelihoodはどうにかしてこの形式のものを用意する必要がある
+         a,b,Parameter_Model1,Parameter_Model2 = self.split_param(p)
+         (... some calculation with a,b... )
+         func_Model1_flat(x,Parameter_Model1)
+         
+     # Usage:
+     func_flat(x,p)
+     ```
+     
+     ```
+     def func_using_assigned_parameter(x):
+         a,b = self.parameter[["a","b"]]  # あるいは直接これを式中で呼び出す
+         func_Model1_using_assigned_parameter(x)  # assignされている値を使う
+         func_Model2_flat(y,self.parameter["Parameter_Model2"])　# 代入をする
+         
+     # Usage:
+     (some assignment procedure before calling)
+     func_using_assigned_parameter(x)
+     ```
+     
+     それぞれメリット・デメリットがある。
+     
+     1. 
+        - ! 変数が明確。
+        - ? Likelihoodの形とずれてるので、少しだけ変更が必要。
+        - ? 上下のモデル全部含めて全部raw形式ではかけない（内部でflat形式を呼んでいるので）
+     1. 
+        - ! Likelihoodの形とあっているので、そのまま使える。
+        - ? 内部でパラメータの展開が必要。
+     1. 
+        - ! いちいち内部で下のモデルのパラメータを気にする必要がない。
+        - ? 実行前に事前にAssignが必要。
+        - ? 関数が何に依存してるのかがパット見でいまいちわかりにくい。
+           - てかこれって結局最初に自分のパラメータだけは展開がいるんじゃね？
+           
+     それぞれの関数はwrapperを作ることで行き来ができるから、
+     一番**表記上**望ましいものを採用するべき。
+     
+     表記上望ましいのはraw形式なので、これを採用することにする。
+     rawからflatへの行き来は、ラッパを作ることにする。
+     
+     func_と定義された関数は、自動的にflat形式の関数に展開することにする。
+     どうするか…
+     
+     flat な変数を受けてrawの変数に展開するには、
+     一旦モデルのパラメータとしてAsssignしているとこだけ取り出すか、
+     ダイレクトに配列をそのまま分けるやり方がある。
+     
+     モデルのパラメータとしてAssignするのは…？
+     もし何かモデルがパラメータの実現値を持っているなら合理的な気がするけど、
+     まだ値がわからん段階で何か値をAssignするというのは違う気がする。
+     
+     モデルのパラメータじゃなくてAssignするのはよさそう。
+     つまり一時的にパラメータのインスタンスを作成して、
+     そこに値をAssignし、そこから値を読み出す。
+     …めんどくせえなこれ…これってしかもわざわざインスタンスを生成しているので遅そう。
+     （一方で実際にモデルが何かの値を持っているということもありそうだから、
+     これはこれとして別に実装するのがよさそう。）
+     
+     一方、ダイレクトに分けるのは簡単で、既に実装済みである。
+     （Assignのやり方と比較して気になるのは、パラメータを分割するときのコスト。
+     そんなでもないか？？？→そんなでもなさそう。）
+     単にLikelihoodを評価するだけなら、これでよい。
+     
+     クラスメソッドとして定義するのが良いであろう。
+     なぜなら別に特定のインスタンスによっているわけではないから。
+     ただしStaticmethodだとおかしなことになる（submodelによるので）。
+     
+     どの関数を直して、どの関数を直さないかはどうやって判別するか。
+     デコレータを使ってしまうのが良いだろう。
+     
+     ```python:
+     @deco
+     func(cls,x,a,b,c):
+        pass
+     ```
+     
+     とかやると、勝手にこの関数を変換し、クラスメソッドとして登録する用にしたい。
+     問題なのは、変更した後の名前。func -> func_flatten でいいか。
+     …いいか？冗長でない？
+     むしろ変更する前の関数を何か別の名前にするか…どっちがいいかな…
+     呼ばれ方を上のリストを元に考えると、
+     元の関数を `_func` としてしまい、新しい関数を`func`にするのが良さそう。
+     
+     そのためには…
+     
+     デコレータめんどくさそうなので、従来の方式で行く（astropyもこういう理由なのか？）。
+     
+     やりたいことは、
+     
+     - クラスから呼び出されたら、与えられた値を使って評価する。
+     
+     
+     デコレータにするためには、どうしてもパラメータの情報がいる。頭に渡すことにしてもいいが：
+     
+     ```python
+     @deco(parameter)
+     ```
+     
+     冗長でない？？？
+     そうでもないか。これでどのパラメータがpackされるかがわかりやすくなるかな？
+     自分以外のパラメータをPackしてしまう危険もあるが…まあ大丈夫だろう。
+     後は、継承とかしたときに大丈夫か…
+     継承してパラメータを増やしたりされた時、デコレータがおかしくならないか？
+     ともかくやってみる。
+     
   Hence, in order to achieve this feature, we separate the definition of likelihood from the implementation of likelihood.
   In a definition step, 
   
@@ -191,4 +379,14 @@ To achieve the demands mentioned above, MemFG has the following classes:
 - 
 - 
 
-# 
+# Note
+
+Some usual frameworks:
+
+- A `Dog` has a `tail`.
+    - An instance of `Dog` class has an attribute `tail`
+- The `Dog` has a `binomen`.
+    - The `Dog` class has an attribute `binomen`.
+- A `Dog` is an `Animal`.
+    - An instance of the `Dog` class is also an instance of the `Animal` class.
+
