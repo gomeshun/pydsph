@@ -424,8 +424,8 @@ class modKI17:
         return ret
 
 
-	def _lnlikeli(self,p):
-		return np.sum(self._lnlikelis(p))
+    def _lnlikeli(self,p):
+        return np.sum(self._lnlikelis(p))
 
     
     def weighted_distribution_functions(self,p):
