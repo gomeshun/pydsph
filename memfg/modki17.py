@@ -391,7 +391,7 @@ class modKI17:
         return array([*_sfg_raw, 1 - np.sum(_sfg_raw)])
     
     
-    def _lnlikeli(self,p): 
+    def _lnlikelis(self,p): 
         '''
         return log-likelihood value.
         
@@ -419,9 +419,13 @@ class modKI17:
             print("fmem:{}".format(fmem))
             print("s*fmem+(1-s)*ffg:{}".format(s_R*fmem+(1-s_R)*ffg))
         
-        ret = np.sum(logsumexp(a=logfs,b=ss,axis=0)) # note that logsumexp must be used to aviod over/underflow of the likelihood
+        ret = logsumexp(a=logfs,b=ss,axis=0) # note that logsumexp must be used to aviod over/underflow of the likelihood
         
         return ret
+
+
+	def _lnlikeli(self,p):
+		return np.sum(self._lnlikelis(p))
 
     
     def weighted_distribution_functions(self,p):
