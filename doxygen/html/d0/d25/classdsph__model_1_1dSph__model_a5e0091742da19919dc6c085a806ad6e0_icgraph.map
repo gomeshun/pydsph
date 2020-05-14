@@ -1,13 +1,11 @@
 <map id="dsph_model.dSph_model.mykernel_over_u" name="dsph_model.dSph_model.mykernel_over_u">
-<area shape="rect" id="node2" href="$d0/d25/classdsph__model_1_1dSph__model.html#a5df6fa479eb9092d850da8779073eed5" title="dsph_model.dSph_model.integrand\l_sigmalos2_using_mykernel" alt="" coords="279,135,504,176"/>
+<area shape="rect" id="node2" href="$d0/d25/classdsph__model_1_1dSph__model.html#a5df6fa479eb9092d850da8779073eed5" title="dsph_model.dSph_model.integrand\l_sigmalos2_using_mykernel" alt="" coords="279,103,504,144"/>
 <area shape="rect" id="node3" href="$d0/d25/classdsph__model_1_1dSph__model.html#a14692f81c0bffc790d5daf7f4e6464c1" title="dsph_model.dSph_model.sigmalos2\l_scaler_using_mykernel" alt="" coords="552,69,783,111"/>
 <area shape="rect" id="node9" href="$d0/d25/classdsph__model_1_1dSph__model.html#a87273cf6ad641b1d12f9b236821807c6" title="dsph_model.dSph_model.sigmalos2\l_dequad" alt="" coords="552,135,783,176"/>
-<area shape="rect" id="node11" href="$d0/d25/classdsph__model_1_1dSph__model.html#a5b73e854e8ac1b1c6a467498cd181e7a" title="dsph_model.dSph_model.sigmalos\l_dequad" alt="" coords="555,200,779,241"/>
 <area shape="rect" id="node4" href="$d0/d25/classdsph__model_1_1dSph__model.html#a00cd796cf178fe8b3435e941976e8f27" title="dsph_model.dSph_model.sigmalos2\l_vector_using_mykernel" alt="" coords="831,69,1061,111"/>
 <area shape="rect" id="node5" href="$d0/d25/classdsph__model_1_1dSph__model.html#a0f0607e3d81520eb0c4c8b79dd871f0e" title="dsph_model.dSph_model.sigmalos2\l_multi_using_mykernel" alt="" coords="1109,37,1340,79"/>
 <area shape="rect" id="node8" href="$d0/d25/classdsph__model_1_1dSph__model.html#a4e062f0ac546057c1109fd47ec39ed90" title="dsph_model.dSph_model.sigmalos2\l_using_mykernel" alt="" coords="1109,103,1340,144"/>
 <area shape="rect" id="node6" href="$d0/d25/classdsph__model_1_1dSph__model.html#ad105b90e1827d25804eb3d7a3ba96f28" title="dsph_model.dSph_model.sigmalos\l_interp1d" alt="" coords="1391,5,1615,47"/>
 <area shape="rect" id="node7" href="$d0/d25/classdsph__model_1_1dSph__model.html#a855543fee6bd37d3b2e185c2b9dee49e" title="dsph_model.dSph_model.sigmalos2\l_interp1d" alt="" coords="1388,71,1619,112"/>
 <area shape="rect" id="node10" href="$d0/d25/classdsph__model_1_1dSph__model.html#a239ec859750c30fe31b6c19e94cd2e33" title="dsph_model.dSph_model.sigmalos\l_interp1d_dequad" alt="" coords="834,135,1058,176"/>
-<area shape="rect" id="node12" href="$d0/d25/classdsph__model_1_1dSph__model.html#a0046cd7677792835d8cfafe83dbe276c" title="dsph_model.dSph_model.sigmalos\l_dequad_interp1d_downsampled" alt="" coords="834,200,1058,241"/>
 </map>
