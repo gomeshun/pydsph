@@ -327,7 +327,7 @@ class modKI17:
             return (-inf, nan)
     
 
-    def _lnfmems(self,p,with_Rs=False,with_s_R=False):
+    def _lnfmems(self,p,vs=None,vobs_err=None,with_Rs=False,with_s_R=False):
         '''
         p: dict of the parameters
         '''
@@ -335,8 +335,8 @@ class modKI17:
         if DEBUG:
             display("args of loglikeli:",p)
         
-        vs=self.sc_obsdata.radial_velocity.value
-        vobs_err = self.sc_obsdata.radial_velocity_err.value
+        vs = (self.sc_obsdata.radial_velocity.value if vs is None else vs)
+        vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vs) 
         mem,dm= self.dsph.submodels["stellar_model"],self.dsph.submodels["DM_model"]
         
         # update parameters
@@ -365,9 +365,9 @@ class modKI17:
             return ret
     
     
-    def _lnffgs(self,p):
-        vs=self.sc_obsdata.radial_velocity.value
-        vobs_err = self.sc_obsdata.radial_velocity_err.value
+    def _lnffgs(self,p,vs=None,vobs_err=None):
+        vs = (self.sc_obsdata.radial_velocity.value if vs is None else vs)
+        vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vs) 
         
         lnffg = lambda i: norm.logpdf(vs,loc=p["vfg{}".format(i)],scale=sqrt(p["dvfg{}".format(i)]**2+vobs_err**2))
         lnffgs = [lnffg(i) for i in range(self.n_components)]
@@ -391,7 +391,7 @@ class modKI17:
         return array([*_sfg_raw, 1 - np.sum(_sfg_raw)])
     
     
-    def _lnlikelis(self,p): 
+    def _lnlikelis(self,p,vs=None,vobs_err=None): 
         '''
         return log-likelihood value.
         
@@ -402,10 +402,10 @@ class modKI17:
         if DEBUG:
             display("args of loglikeli:",p)
         
-        vs=self.sc_obsdata.radial_velocity.value
-        vobs_err = self.sc_obsdata.radial_velocity_err.value
+        vs = (self.sc_obsdata.radial_velocity.value if vs is None else vs)
+        vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vs) 
         
-        mem = self._lnfmems(p,with_Rs=True,with_s_R=True)
+        mem = self._lnfmems(p,vs,vobs_err,with_Rs=True,with_s_R=True)
         logfmem,Rs,s_R = mem["lnfmems"], mem["Rs"], mem["s_R"]
         logffgs = self._lnffgs(p)
         
