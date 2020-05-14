@@ -407,7 +407,7 @@ class modKI17:
         
         mem = self._lnfmems(p,vs,vobs_err,with_Rs=True,with_s_R=True)
         logfmem,Rs,s_R = mem["lnfmems"], mem["Rs"], mem["s_R"]
-        logffgs = self._lnffgs(p)
+        logffgs = self._lnffgs(p,vs,vobs_err)
         
         logfs = [logfmem,*logffgs]
         
