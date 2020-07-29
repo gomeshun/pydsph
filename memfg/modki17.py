@@ -330,13 +330,19 @@ class modKI17:
     def _lnfmems(self,p,vs=None,vobs_err=None,with_Rs=False,with_s_R=False):
         '''
         p: dict of the parameters
+        
+        Note for numpy broadcasting
+            vs                res            # Note
+            (n_star,)      -> (n_star,)      # sigmalos.shape == Rs.shape == (n_star,)
+            (n_v, 1)       -> (n_v, n_star)  # (n_v, 1     ) * (n_star,) -> (n_v, n_star)
+            (n_v, n_star)  -> (n_v, n_star)  # (n_v, n_star) * (n_star,) -> (n_v, n_star)
         '''
 
         if DEBUG:
             display("args of loglikeli:",p)
         
         vs = (self.sc_obsdata.radial_velocity.value if vs is None else vs)
-        vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vs) 
+        vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vobs_err) 
         mem,dm= self.dsph.submodels["stellar_model"],self.dsph.submodels["DM_model"]
         
         # update parameters
@@ -367,7 +373,7 @@ class modKI17:
     
     def _lnffgs(self,p,vs=None,vobs_err=None):
         vs = (self.sc_obsdata.radial_velocity.value if vs is None else vs)
-        vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vs) 
+        vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vobs_err) 
         
         lnffg = lambda i: norm.logpdf(vs,loc=p["vfg{}".format(i)],scale=sqrt(p["dvfg{}".format(i)]**2+vobs_err**2))
         lnffgs = [lnffg(i) for i in range(self.n_components)]
@@ -396,6 +402,12 @@ class modKI17:
         return log-likelihood value.
         
         p: dict
+        
+        Note for numpy broadcasting
+            vs                res            # Note
+            (n_star,)      -> (n_star,)      # sigmalos.shape == Rs.shape == (n_star,)
+            (n_v, 1)       -> !Error!        # logfmem.shape == (n_v, n_star), while logffgs.shape == (n_components, n_v, 1 )
+            (n_v, n_star)  -> (n_v, n_star)  # (n_v, n_star) * (n_star,) -> (n_v, n_star)
         '''
         # R_trunc_pc is fixed 2000 pc but its not affect to the result (truncation radius is not used in the calculation of sigmalos in "dSph_Model")
 
@@ -403,21 +415,29 @@ class modKI17:
             display("args of loglikeli:",p)
         
         vs = (self.sc_obsdata.radial_velocity.value if vs is None else vs)
-        vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vs) 
+        vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vobs_err) 
         
         mem = self._lnfmems(p,vs,vobs_err,with_Rs=True,with_s_R=True)
         logfmem,Rs,s_R = mem["lnfmems"], mem["Rs"], mem["s_R"]
         logffgs = self._lnffgs(p,vs,vobs_err)
-        
-        logfs = [logfmem,*logffgs]
+
+        logfs = np.array([logfmem,*logffgs])  # logfs.shape == (n_compontnetns+1, res.shape), res.shape[-1] == n_star.
         
         #s_R = 1/(1+ 1/(p["odds"] * mem.density_2d_normalized_re(Rs))) # Not s but s(R)
-        ss = [s_R, *((1-s_R)[np.newaxis,:]*self._sfgs(p)[:,np.newaxis])]
+        ss = np.array([s_R, *((1-s_R)[np.newaxis,:]*self._sfgs(p)[:,np.newaxis])])  # ss.shape == (n_components+1, n_star)
+        if logfs.shape != ss.shape:
+            ss = ss[:,np.newaxis]  # if vs.shape == (n_v, n_star), ss.shape -> (n_components+1, 1, n_star)
         
         if DEBUG:
             display("sigmalos:{}".format(sigmalos))
             print("fmem:{}".format(fmem))
             print("s*fmem+(1-s)*ffg:{}".format(s_R*fmem+(1-s_R)*ffg))
+        
+        #print(np.array(logfs).shape,np.array(ss).shape)
+        #for logf in logfs:
+        #    print("DEBUG:\nlogf:{}".format(logf))
+        #for s in ss:
+        #    print("DEBUG:\ns:{}".format(s))
         
         ret = logsumexp(a=logfs,b=ss,axis=0) # note that logsumexp must be used to aviod over/underflow of the likelihood
         
