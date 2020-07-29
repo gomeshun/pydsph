@@ -491,139 +491,331 @@ class modKI17_1gauss(modKI17):
         ret = np.sum(logsumexp(a=logfs,b=ss,axis=0)) # note that logsumexp must be used to aviod over/underflow of the likelihood
         
         return ret
-    
-    
-    
+
 class modKI17_memonly:
-    def __init__(self,vs,dRAs,dDEs,dsph_name,paramlims_fname,beta=1):
-        """
-        vs: velosity data
-        dRAs, dDEs: position data
-        RA0,DE0: adhoc central position of dSph 
-        paramlims_fname: filename of prior configuration
-        """
-        self.params_name = ["re","dra0","dde0","log10_rs_pc","log10_rhos_Msunpc3","a","b","g","mlog10_1manib","vmem","dist"]
-        self.prior_lim = pd.read_csv(paramlims_fname,index_col=0).loc[self.params_name]
-        
-        #for val in vs,dRAs,dDEs:
-        #    if isinstance(val,pd.DataFrame):
-        #        val = val.values
-        self.vs = vs
-        self.dRAs,self.dDEs = dRAs,dDEs
-        
-        # read property
-        self.RA0,self.DE0 = dSph_property.loc[dsph_name][["RAdeg","DEdeg"]]
-        self.DIST,self.err_DIST = dSph_property.loc[dsph_name][["DIST","err_DIST"]]
+    '''
+    interface for the likelihood calculation.
+    
+    
+    Avalable methods:
+    
+        - __init__(sc_obsdata,sc_center0,paramlims_fname,prior_norm_fname):
+            initialize the interface.
+            
+        - lnpost(params):
+            return the log-posterior value for a given array of parameters.
 
-        self.R_RoI = np.max(self.separation_pc(0,0,self.DIST)) # use Rs.max as the RoI
-        self.beta = beta
+    
+    NOTE:
+        - The order of the parameters are based on paramlims ("paramlims_fname").
+        - This is a interface, so we cannot ascess the internal function
+          (internal functions are prefixed by "_".)
+        - The internal arguments of this class are "dict",
+          simpler object in python than pd.Series.
+    '''
+    
+    ######## initialization ########
+    def __init__(self,sc_obsdata,sc_center0,model,paramlims_fname,prior_norm_fname):
+        """
+        initialize the properties of a modKI17 instance.
+        
+        parameters:
+            - sc_obsdata:
+                SkyCoord of observed data
+            - sc_center0: 
+                SkyCoord of ad hoc center of dSph
+            - paramlims_fname
+                Filename of prior configuration. File format: 
+                    $     ,prms_min,prms_max
+                    $ (p0),(p0_min),(p0_max)
+                    $ (p1),(p1_loc),(p1_max)
+                    $ ...
+            - prior_norm_fname
+                Filename of prior configuration. File format: 
+                    $   ,loc   ,scale
+                    $ p0,p0_loc,p0_scale
+                    $ p1,p1_loc,p1_scale
+                    $ ...
+        """
+        self.init_prior(paramlims_fname,prior_norm_fname)
+        
+        # initialize the param_names. 
+        # Hereafter param_names becomes the basis of the parameter ordering.
+        self.param_names = self.prior_lim.index
+        print("order of parameters:\n",self.param_names)
+        
+        self.init_data(sc_obsdata)
+        self.init_center0(sc_center0)
+        
+        self.R_RoI = np.max(self.separation_pc(0,0,sc_center0.distance)) # use Rs.max as the RoI
+        self.beta = 1/log(len(self.sc_obsdata))
+        
         #print(Rs.describe())
-        print("beta: {}".format(self.beta)) if beta != 1 else None
-        mem = plummer_model(re_pc=nan)
-        dm = NFW_model(
-            a=nan,b=nan,g=nan,
-            rhos_Msunpc3=nan,rs_pc=nan,
-            R_trunc_pc=nan
-        )
-        self.dsph = dsph_model(anib=nan,submodels_dict={"stellar_model":mem,"DM_model":dm},show_init=True)
+        #print("beta: {}".format(self.beta)) if beta != 1 else None
         
-        #self.fg = dsph_model.uniform2d_model(Rmax_pc=self.R_RoI,show_init=True)
+        self.init_model(model)
+    
+    
+    def init_prior(self,paramlims_fname,prior_norm_fname):
+        # set the support of parameter
+        self.prior_lim = pd.read_csv(paramlims_fname,index_col=0)
+        self.prior_lim_param_names = self.prior_lim.index
+        
+        # set prior_norm of parameter
+        _df_prior_norm = pd.read_csv(prior_norm_fname,index_col=0)
+        self.prior_norm = norm(loc=_df_prior_norm["loc"],scale=_df_prior_norm["scale"])
+        self.prior_norm_param_names = _df_prior_norm.index
+    
+    
+    def init_data(self,sc_obsdata):
+        self.sc_obsdata = sc_obsdata
+        if hasattr(self.sc_obsdata,"radial_velocity_err"):
+            print("sc_obsdata has radial_velocity_err. ",
+                  "Likelihood function is defined with velocity error:",
+                  self.sc_obsdata.radial_velocity_err
+                 )
+        else:
+            self.sc_obsdata.radial_velocity_err = array(0) * u.km/u.second
+        #self.sc_center0 = sc_center0
+    
+    
+    def init_model(self,model):
+        if model == "Plummer":
+            mem = plummer_model(re_pc=nan)
+        elif model == "exp2d":
+            mem = exp2d_model(re_pc=nan)
+        else: 
+            raise TypeError("Undefined stellar model!")
+        dm = NFW_model(
+            a = nan, b = nan, g = nan,
+            rhos_Msunpc3 = nan, rs_pc = nan,
+            R_trunc_pc = nan
+        )
+        self.dsph = dSph_model(anib=nan,submodels_dict={"stellar_model":mem,"DM_model":dm},show_init=True)
 
+    
+    
+    def init_center0(self,center0):
+        self.sc_center0 = center0
+        try:
+            getattr(self.sc_center0,"distance_err")
+        except AttributeError as e: 
+            print(e)
+            raise e
+        
+
+    ######## utils ########
+    @staticmethod
+    def __params_to_series(index,**kwargs):
+        """
+        return the series whose elements are "kwargs" ordered by "index".
+        it is useful to avoid to mistake the order of the parameters
+        """
+        sr = pd.Series(index=index)
+        for key in kwargs:
+            sr[key] = kwargs[key]
+            #display(sr)
+        display("params_to_ser",sr) if DEBUG else None
+        return sr
+    
+    
+    @staticmethod
+    def __params_to_array(index,**kwargs):
+        """
+        return the series whoes elements are "kwargs" ordered by "index".
+        it is useful to avoid to mistake the order of the parameters
+        """
+        ret = modKI17.params_to_series(index=index,**kwargs).values
+        display("params_to_arr",ret) if DEBUG else None
+        return ret
+    
+    
+    @staticmethod
+    def __array_to_series(index,params):
+        ret = pd.Series(params,index=index)
+        display("array_to_ser",ret) if DEBUG else None
+        return ret
+    
+    
+    @staticmethod
+    def array_to_dict(index,params):
+        '''
+        convert a parameter array to dict form, whose keys are based on "index".
+        '''
+        if len(index) != len(params):
+            raise TypeError("mismatch of parameter length!\n\
+                             \tindex:{}\n\tparams:{}".format(index,params))
+        return {key:val for key,val in zip(index,params)}
+    
+    
+    @staticmethod
+    def dict_to_array(params):
+        '''
+        convert a parameter dict to numpy array form.
+        '''
+        return array(list(params.values()))
+    
+    
+    ######## utils ########
+    def sc_center(self,dra0,dde0,dist):
+        return SkyCoord(
+            ra=self.sc_center0.ra+dra0*u.deg,
+            dec=self.sc_center0.dec+dde0*u.deg,
+            distance=dist*u.pc)
+
+    
     def separation_pc(self,dra0,dde0,dist):
-        return coord.projected_distance(
-            dist=dist,
-            ra_center = self.RA0+dra0,
-            de_center = self.DE0+dde0,
-            ra = self.RA0+self.dRAs,
-            de = self.DE0+self.dDEs,
-            dtype="deg")
+        c = self.sc_center(dra0,dde0,dist)
+        return c.distance.value*np.sin(self.sc_obsdata.separation(c).rad)
+    
+    
+    ######## statistics ########
+    def is_parameters_in_domain(self,p):
+        """
+        check the parameters are in valid domain.
+        
+        params: dict
+        """
+        p_in = self.dict_to_array(p)
+        p_lo, p_hi = self.prior_lim.prms_min.values, self.prior_lim.prms_max.values
+        if DEBUG:
+            print(p_lo,p_in,p_hi)
+        is_in_minmax = np.all((p_lo < p_in) & (p_in < p_hi))
+        #is_ordered = prms_df.inprms.vfg0 < prms_df.inprms.vfg1
+        
+        if DEBUG:
+            display("is_in_minmax",(p_lo < p_in) & (p_in < p_hi),"is_ordered",is_ordered)
+        return is_in_minmax
 
-    def lnprior(self,**prms):
-        if not self.is_parameters_in_domain(**prms):
-            display("out ouf dom:",self.is_parameters_in_domain(**prms)) if DEBUG else None
+    
+    def _lnprior(self,p):
+        '''
+        p: dict of parameters
+        '''
+        if not self.is_parameters_in_domain(p):
+            if DEBUG:
+                display("out ouf dom:",self.is_parameters_in_domain(p))
             return -inf
         else:
-            #G_re = norm.pdf(re,loc=191,scale=5.7)
-            #G_odds = norm.pdf(odds,loc=8.794,scale=0.5107)
-            #G_dra0 = norm.pdf(dra0,loc=4.212e-3,scale=7.052e-3)
-            #G_dde0 = norm.pdf(dde0,loc=-1.991e-3,scale=3.302e-3)
-            G_dist = norm.pdf(prms["dist"],loc=self.DIST,scale=self.err_DIST)
-        
-            return np.sum(log([G_dist,1]))
+            # extract prior parameters
+            args_prior = array([p[p_name] for p_name in self.prior_norm_param_names]) 
+            logGs = self.prior_norm.logpdf(args_prior)
+            #logGs = []
+            #logGs.append(norm.logpdf(re,  loc=191,      scale=5.7)     )
+            #logGs.append(norm.logpdf(odds,loc=8.794,    scale=0.5107)  )
+            #logGs.append(norm.logpdf(dra0,loc=4.212e-3, scale=7.052e-3))
+            #logGs.append(norm.logpdf(dde0,loc=-1.991e-3,scale=3.302e-3))
+            #logGs.append(norm.logpdf(dist,loc=self.sc_center0.distance,scale=self.sc_center0.distance_err))
+            return np.sum(logGs)
 
-    def __call__(self,**args):
-        ret = self.lnprior(**args)
+        
+#    def __call__(self,**args):
+#        '''
+#        return the log-posterior value for a given dictionarry of the parameters.
+#        '''
+#        params = self.params_to_array(index=self.param_names,**args)
+#        ret = self.lnprior(params)
+#        if ret == -inf:
+#            return ret
+#        else:
+#            return ret + np.sum(self.lnlikeli(params)) 
+    
+    
+    def _lnpost(self,p):
+        '''
+        p: dict
+        '''
+        ret = self._lnprior(p)
         if ret == -inf:
             return ret
         else:
-            return ret + np.sum(self.lnlikelis(**args)) 
+            return ret + np.sum(self._lnlikeli(p)) 
         
-    def lnprob(self,params):
-        prms = {key:val for key,val in zip(self.params_name,params)}
-        return self.__call__(**prms)
+        
+    def lnpost(self,params):
+        '''
+        return the log-posterior value for a given parameter array.
+        
+        params: array of parameters
+        '''
+        p = self.array_to_dict(index=self.param_names,params=params)
+        return self._lnpost(p)
     
-    def is_parameters_in_domain(self,**prms):
-        """
-        check the parameters are in valid domain.
-        """
-        prms_df = pd.DataFrame({**self.prior_lim,"inprms":prms})
-        display(prms_df) if DEBUG else None
-        is_in_minmax = np.all((prms_df.prms_min < prms_df.inprms) & (prms_df.inprms < prms_df.prms_max))
-        #is_ordered = prms_df.inprms.vfg0 < prms_df.inprms.vfg1
-        display("is_in_minmax",(prms_df.prms_min < prms_df.inprms) & (prms_df.inprms < prms_df.prms_max)) if DEBUG else None
-        return is_in_minmax
-    """
-    def is_parameters_in_domain(self,re,odds,dra0,dde0,
-            log10_rs_pc,log10_rhos_Msunpc3,a,b,g,
-            mlog10_1manib,
-            vmem,vfg0,vfg1,dvfg0,dvfg1, sfg0):
-        is_positive_ = np.all(is_positive(re,odds,dvfg0,dvfg1))
-        is_vfg_ordered_ = vfg0 < vfg1
-        is_ffg_normalized_ = 0<sfg0<1
-        is_in_domain_ = -1<mlog10_1manib<1 and -4<log10_rhos_Msunpc3<4 and 0<log10_rs_pc<5 and 0.5<a<3 and 3<b<10 and 0<g<1.2
-        return (is_positive_ and is_vfg_ordered_ and is_ffg_normalized_ and is_in_domain_)
-    """
     
-    def lnlikelis(
-        self,re,dra0,dde0,
-            log10_rs_pc,log10_rhos_Msunpc3,a,b,g,
-            mlog10_1manib,
-            vmem, dist
-    ): # R_trunc_pc is fixed 2000 pc
-        prms = pd.Series(locals()).drop("self")
-        display("args of loglikeli:",prms) if DEBUG else None
+    def lnposterior_general(self,p):
+        lnp = self._lnprior(p)
+        if lnp > -inf:
+            lnl = self._lnlikeli(p) 
+            return (self.beta*lnl+lnp, lnl)
+        else:
+            return (-inf, nan)
+    
+
+    def _lnfmems(self,p,vs=None,vobs_err=None,with_Rs=False,with_s_R=False):
+        '''
+        p: dict of the parameters
+        '''
+
+        if DEBUG:
+            display("args of loglikeli:",p)
         
-        vs=self.vs
-        mem,dm = self.dsph.submodels["stellar_model"],self.dsph.submodels["DM_model"]
+        vs = (self.sc_obsdata.radial_velocity.value if vs is None else vs)
+        vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vs) 
+        mem,dm= self.dsph.submodels["stellar_model"],self.dsph.submodels["DM_model"]
         
-        #update parameters
-        mem.update({"re_pc":re*(dist/self.DIST)}) # Note that re_pc given by the stelar fit is just the angle (re_rad), not re_pc !!!
-        dm.update({"rs_pc":power(10,log10_rs_pc),"rhos_Msunpc3":power(10,log10_rhos_Msunpc3),"a":a,"b":b,"g":g})
-        self.dsph.update({"anib":1-power(10,-mlog10_1manib)})
+        # update parameters
+        # Note that re_pc given by the stelar fit is just the angle (re_rad), not re_pc !!!
+        mem.update({"re_pc":p["re_pc"]*(p["dist"]/self.sc_center0.distance.value)}) 
+        dm.update({"rs_pc":pow10(p["log10_rs_pc"]),"rhos_Msunpc3":pow10(p["log10_rhos_Msunpc3"]),
+                   "a":p["a"],"b":p["b"],"g":p["g"]})
+        self.dsph.update({"anib":1-pow10(-p["mlog10_1manib"])})
         ref_R = mem.half_light_radius() # 1.67834699001666*re
         
-        Rs = self.separation_pc(dra0,dde0,dist) # here 
+        Rs = self.separation_pc(p["dra0"],p["dde0"],p["dist"]) # here 
         
-        #s = 1/(1+ 1/(odds * mem.density_2d_normalized_re(Rs)))
-        sigmalos = self.dsph.sigmalos_dequad(Rs)
-        if np.any(np.isnan(sigmalos)):
-            raise TypeError("sigmalos is nan! {}".format(sigmalos))
+        sigmalos = self.dsph.sigmalos_dequad_interp1d_downsampled(Rs,iteration=3)
         #sigmalos = self.dsph.sigmalos_dequad(Rs)
-        #sfg1 = 1-sfg0
         
-        fmem = norm.pdf(vs,loc=vmem,scale=sigmalos)
+        ret = norm.logpdf(vs,loc=p["vmem"],scale=sqrt(sigmalos**2+vobs_err**2))
         
-        #ffg0 = sfg0 * norm.pdf(vs,loc=vfg0,scale=dvfg0)
-        #ffg1 = sfg1 * norm.pdf(vs,loc=vfg1,scale=dvfg1)
-        #ffg = ffg0+ffg1
+        if (not with_Rs) and (not with_s_R):
+            return ret
+        else:
+            ret = {"lnfmems":ret}
+            if with_Rs:
+                ret["Rs"] = Rs
+            if with_s_R:
+                ret["s_R"] = 1/(1+ 1/(p["odds"] * mem.density_2d_normalized_re(Rs))) # Not s but s(R)
+            return ret
+    
+    
+    def _lnlikelis(self,p,vs=None,vobs_err=None): 
+        '''
+        return log-likelihood value.
         
-        display("sigmalos:{}".format(sigmalos)) if DEBUG else None
-        print("fmem:{}".format(fmem)) if DEBUG else None
-        #print("s*fmem+(1-s)*ffg:{}".format(s*fmem+(1-s)*ffg)) if DEBUG else None
-        #ret = log(s*fmem+(1-s)*ffg)
-        ret = log(fmem)
+        p: dict
+        '''
+        # R_trunc_pc is fixed 2000 pc but its not affect to the result (truncation radius is not used in the calculation of sigmalos in "dSph_Model")
+
+        if DEBUG:
+            display("args of loglikeli:",p)
         
-        return self.beta * ret
+        vs = (self.sc_obsdata.radial_velocity.value if vs is None else vs)
+        vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vs) 
+        
+        logfmem = self._lnfmems(p,vs,vobs_err)
+        
+        
+        ret = logfmem # note that logsumexp must be used to aviod over/underflow of the likelihood
+        
+        return ret
+
+
+    def _lnlikeli(self,p):
+        return np.sum(self._lnlikelis(p))
+
+
+
  
 class modKI17_photometry:
     def __init__(self,data,center0,
