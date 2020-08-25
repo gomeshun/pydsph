@@ -57,7 +57,7 @@ class Osipkov_Merritt_Model(Anisotropy_Model):
         return (u2+u2_a)*(u2_a+0.5)/(u*(u2_a+1)**1.5) * np.arctan(np.sqrt((u2-1)/(u2_a+1))) - np.sqrt(1-1/u2)/2/(u2_a+1)
 
     
-class Baes_Anisotopy_Model(Anisotropy_Model):
+class Baes_Anisotropy_Model(Anisotropy_Model):
     name = "Baes_Anisotropy_Model"
     required_params_name = ["beta_0", "beta_inf","r_a","eta"]
     

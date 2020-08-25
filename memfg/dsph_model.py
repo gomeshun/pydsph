@@ -97,9 +97,12 @@ class stellar_model(model):
 class plummer_model(stellar_model):
     name = "Plummer model"
     required_params_name = ['re_pc',]
+    
     def density_2d(self,R_pc):
         re_pc= self.params.re_pc
         return 1/(1+(R_pc/re_pc)**2)**2 /np.pi/re_pc**2
+    
+    
     def logdensity_2d(self,R_pc):
         re_pc= self.params.re_pc
         return -np.log1p((R_pc/re_pc)**2)*2 -log(np.pi) -log(re_pc)*2
@@ -110,6 +113,8 @@ class plummer_model(stellar_model):
     def density_3d(self,r_pc):
         re_pc= self.params.re_pc
         return (3/4/np.pi/re_pc**3)/np.sqrt(1+(r_pc/re_pc)**2)**5
+    
+    
     def cdf_R(self,R_pc):
         '''
         cdf_R(R) = \int_0^R \dd{R'} 2\pi R' \Sigma(R')
