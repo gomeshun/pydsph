@@ -1,2 +1,2 @@
-# MemFG
-MemFG likelihood analysis
+# pydsph
+pydsph likelihood analysis
