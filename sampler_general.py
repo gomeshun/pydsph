@@ -86,7 +86,7 @@ class Sampler:
         if dirname == "":
             self._save(fname_base)
         else:
-            if not os.path.isdir(dirname): os.mkdir(dirname)
+            if not os.path.isdir(dirname): os.makedirs(dirname, exist_ok=True)
             self._save(fname_base)   
         
         
