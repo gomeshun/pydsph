@@ -60,7 +60,11 @@ def generate_x_w(a,b,n,xp=np):
         
     return xs,ws
 
-def dequad(func,a,b,n,axis=None,xp=np,replace_inf_to_zero=False,replace_nan_to_zero=False):
+
+def dequad(func,a,b,n,
+           axis=None,xp=np,
+           replace_inf_to_zero=False,
+           replace_nan_to_zero=False):
     '''
     func: func(ndarray_in) = ndarray_out
     axis: define the axis of ndarray_out to use integrate.

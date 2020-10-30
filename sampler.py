@@ -41,8 +41,8 @@ class Sampler:
         nwalkers = self.n_param * 2 if (nwalkers is None) else nwalkers 
         self.pos0 = np.random.uniform(low=self.init_low,high=self.init_high,size=(nwalkers,self.n_param))
         self.sampler = MyEnsembleSampler(
-            nwalkers=nwalkers, dim=self.n_param,
-            lnpostfn=self.model.lnpost, threads=16)
+            nwalkers=nwalkers, ndim=self.n_param,
+            log_prob_fn=self.model.lnpost, threads=16)
         return self.pos0
     
     def wbic_init_sampler(self,nwalkers=None):
@@ -52,8 +52,8 @@ class Sampler:
         nwalkers = self.n_param * 2 if (nwalkers is None) else nwalkers 
         self.wbic_pos0 = np.random.uniform(low=self.init_low,high=self.init_high,size=(nwalkers,self.n_param))
         self.wbic_sampler = MyEnsembleSampler(
-            nwalkers=nwalkers, dim=self.n_param,
-            lnpostfn=self.model.lnposterior_general, threads=16)
+            nwalkers=nwalkers, ndim=self.n_param,
+            log_prob_fn=self.model.lnposterior_general, threads=16)
         return self.wbic_pos0
     
     def prepare_csv(self,fname):

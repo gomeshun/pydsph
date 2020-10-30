@@ -9,7 +9,7 @@ if sys.version_info.minor < 7:
     from collections import OrderedDict as dict
 
 from . import mcgenerator, coord
-from .dsph_model import dSph_model, plummer_model, exp2d_model, NFW_model, uniform2d_model
+from .dsph_model import DSphModel, PlummerModel, Exp2dModel, NFWModel, Uniform2dModel
 from numpy import array,power,sqrt,log,exp,sin, nan, inf
 from scipy.special import logsumexp
 from scipy.stats import norm
@@ -130,18 +130,18 @@ class modKI17:
     
     def init_model(self,model):
         if model == "Plummer":
-            mem = plummer_model(re_pc=nan)
+            mem = PlummerModel(re_pc=nan)
         elif model == "exp2d":
-            mem = exp2d_model(re_pc=nan)
+            mem = Exp2dModel(re_pc=nan)
         else: 
             raise TypeError("Undefined stellar model!")
-        dm = NFW_model(
+        dm = NFWModel(
             a = nan, b = nan, g = nan,
             rhos_Msunpc3 = nan, rs_pc = nan,
             R_trunc_pc = nan
         )
-        self.dsph = dSph_model(anib=nan,submodels_dict={"stellar_model":mem,"DM_model":dm},show_init=True)
-        self.fg = uniform2d_model(Rmax_pc=self.R_RoI,show_init=True)
+        self.dsph = DSphModel(anib=nan,submodels_dict={"stellar_model":mem,"dm_model":dm},show_init=True)
+        self.fg = Uniform2dModel(Rmax_pc=self.R_RoI,show_init=True)
     
     
     def init_center0(self,center0):
@@ -343,7 +343,7 @@ class modKI17:
         
         vs = (self.sc_obsdata.radial_velocity.value if vs is None else vs)
         vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vobs_err) 
-        mem,dm= self.dsph.submodels["stellar_model"],self.dsph.submodels["DM_model"]
+        mem,dm= self.dsph.submodels["stellar_model"],self.dsph.submodels["dm_model"]
         
         # update parameters
         # Note that re_pc given by the stelar fit is just the angle (re_rad), not re_pc !!!
@@ -601,17 +601,17 @@ class modKI17_memonly:
     
     def init_model(self,model):
         if model == "Plummer":
-            mem = plummer_model(re_pc=nan)
+            mem = PlummerModel(re_pc=nan)
         elif model == "exp2d":
-            mem = exp2d_model(re_pc=nan)
+            mem = Exp2dModel(re_pc=nan)
         else: 
             raise TypeError("Undefined stellar model!")
-        dm = NFW_model(
+        dm = NFWModel(
             a = nan, b = nan, g = nan,
             rhos_Msunpc3 = nan, rs_pc = nan,
             R_trunc_pc = nan
         )
-        self.dsph = dSph_model(anib=nan,submodels_dict={"stellar_model":mem,"DM_model":dm},show_init=True)
+        self.dsph = DSphModel(anib=nan,submodels_dict={"stellar_model":mem,"dm_model":dm},show_init=True)
 
     
     
@@ -781,7 +781,7 @@ class modKI17_memonly:
         
         vs = (self.sc_obsdata.radial_velocity.value if vs is None else vs)
         vobs_err = (self.sc_obsdata.radial_velocity_err.value if vobs_err is None else vs) 
-        mem,dm= self.dsph.submodels["stellar_model"],self.dsph.submodels["DM_model"]
+        mem,dm= self.dsph.submodels["stellar_model"],self.dsph.submodels["dm_model"]
         
         # update parameters
         # Note that re_pc given by the stelar fit is just the angle (re_rad), not re_pc !!!
@@ -857,12 +857,12 @@ class modKI17_photometry:
         self.R_RoI = self.center0.distance.pc * sin(center0.separation(data).rad.max())
         
         if model=="Plummer":
-            self.mem = plummer_model(re_pc=200)
+            self.mem = PlummerModel(re_pc=200)
         elif model=="exp2d":
-            self.mem = exp2d_model(re_pc=200)
+            self.mem = Exp2dModel(re_pc=200)
         else: 
             raise TypeError("Undefined stellar model!")
-        self.fg = uniform2d_model(Rmax_pc=self.R_RoI)
+        self.fg = Uniform2dModel(Rmax_pc=self.R_RoI)
         
         #df_sample = pd.read_csv(area_fname)[:nrow]
         #self.sc_sample = SkyCoord(ra=df_sample.ra*u.deg,dec=df_sample.dec*u.deg)

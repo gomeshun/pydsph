@@ -5,6 +5,9 @@ from astropy.coordinates import SkyCoord,Distance
 import astropy.units as u
 from copy import deepcopy as copy
 
+import os
+__filedir__ = os.path.dirname(__file__) + "/"
+
 class dSphProp:
     '''
     initialize a sampler instance.
@@ -17,7 +20,7 @@ class dSphProp:
         self.load_dsph_property(dsph_name,ra,dec,distance,distance_err,verbose)
         
     def load_dsph_property(self,dsph_name,ra=None,dec=None,distance=None,distance_err=None,verbose=True):
-        dsph_prop = ascii.read("NearbyGalaxies.dat").to_pandas().set_index("GalaxyName").loc[dsph_name]
+        dsph_prop = ascii.read(__filedir__+"NearbyGalaxies.dat").to_pandas().set_index("GalaxyName").loc[dsph_name]
         self.dsph_prop = dsph_prop
         _ra  = "{}h{}m{}s".format(dsph_prop.RAh,dsph_prop.RAm,dsph_prop.RAs) if (ra  is None) else ra
         _dec = "{}d{}m{}s".format(dsph_prop.DEd,dsph_prop.DEm,dsph_prop.DEs) if (dec is None) else dec

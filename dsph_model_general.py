@@ -17,17 +17,17 @@ from multiprocessing import Pool
 
 import warnings
 
-from .dsph_model import model, stellar_model, DM_model
+from .dsph_model import Model, StellarModel, DMModel
 
 GMsun_m3s2 = 1.32712440018e20
 
 
-class Anisotropy_Model(model):
-    name = "anisotropy model"
+class AnisotropyModel(Model):
+    name = "AnisotropyModel"
 
     
-class Constant_Anisotropy_Model(Anisotropy_Model):
-    name = "Constant_Anisotropy_Model"
+class ConstantAnisotropyModel(AnisotropyModel):
+    name = "ConstantAnisotropyModel"
     required_params_name = ['beta_ani']
     
     def kernel(self,u,R,**kwargs):
@@ -41,8 +41,8 @@ class Constant_Anisotropy_Model(Anisotropy_Model):
         kernel = sqrt(1-1/u2)*((1.5-b)*u2*hyp2f1(1.0,1.5-b,1.5,1-u2)-0.5)
         return kernel
     
-class Osipkov_Merritt_Model(Anisotropy_Model):
-    name = "Osipkov_Merritt_Model"
+class OsipkovMerrittModel(AnisotropyModel):
+    name = "OsipkovMerrittModel"
     required_params_name = ["r_a"]
     
     def kernel(self,u,R,**kwargs):
@@ -57,8 +57,8 @@ class Osipkov_Merritt_Model(Anisotropy_Model):
         return (u2+u2_a)*(u2_a+0.5)/(u*(u2_a+1)**1.5) * np.arctan(np.sqrt((u2-1)/(u2_a+1))) - np.sqrt(1-1/u2)/2/(u2_a+1)
 
     
-class Baes_Anisotropy_Model(Anisotropy_Model):
-    name = "Baes_Anisotropy_Model"
+class BaesAnisotropyModel(AnisotropyModel):
+    name = "BaesAnisotropyModel"
     required_params_name = ["beta_0", "beta_inf","r_a","eta"]
     
     def beta(self,r):
@@ -111,17 +111,17 @@ class Baes_Anisotropy_Model(Anisotropy_Model):
 
     
     
-class dSph_model(model):
-    name = 'dSph_model'
+class DSphModel(Model):
+    name = 'DSphModel'
     required_params_name = []
-    required_models = [stellar_model,DM_model,Anisotropy_Model]
+    required_models = [StellarModel,DMModel,AnisotropyModel]
     ncpu = multi.cpu_count()
-#    def __init__(self,stellar_model,DM_model,**params_dSph_model):
+#    def __init__(self,stellar_model,DM_model,**params_DSphModel):
 #        """
-#        params_dSph_model: pandas.Series, index = (params_stellar_model,params_DM_model,center_of_dSph)
+#        params_DSphModel: pandas.Series, index = (params_stellar_model,params_DM_model,center_of_dSph)
 #        """
 #        # NOTE IT IS NOT COM{PATIBLE TO THE CODE BELOW!!!
-#        super().__init__(**params_dSph_model)
+#        super().__init__(**params_DSphModel)
 #        self.submodels = (stellar_model,DM_model)
 #        self.name = ' and '.join((model.name for model in self.submodels))
 
@@ -130,7 +130,7 @@ class dSph_model(model):
         RELERROR_INTEG = 1e-6
         density_3d = self.submodels["stellar_model"].density_3d
         enclosure_mass = self.submodels["DM_model"].enclosure_mass
-        f = self.submodels["Anisotropy_Model"].f
+        f = self.submodels["AnisotropyModel"].f
         integrand = lambda r: density_3d(r)*f(r)*GMsun_m3s2*enclosure_mass(r)/r**2/f(r_pc)/density_3d(r_pc)*1e-6/parsec
         integ, abserr = integrate.quad(integrand,r_pc,np.inf)
         return integ
@@ -152,7 +152,7 @@ class dSph_model(model):
         density_3d = self.submodels["stellar_model"].density_3d
         density_2d = self.submodels["stellar_model"].density_2d
         enclosure_mass = self.submodels["DM_model"].enclosure_mass
-        kernel = self.submodels["Anisotropy_Model"].kernel
+        kernel = self.submodels["AnisotropyModel"].kernel
         r = R_pc*u
         # Note that parsec = parsec/m.
         # If you convert m -> pc,      ... var[m] * [1 pc/ parsec m] = var/parsec[pc].
