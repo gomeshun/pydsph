@@ -133,9 +133,21 @@ class Analyzer:
             self.load_pickle(*args,**kwargs)
         elif loadtype == "npy": 
             self.load_npy_files(*args,**kwargs)
+            
+        elif loadtype == "sampler":
+            self.load_sampler(*args,**kwargs)
         else:
             raise RuntimeError("invalid loadtype")
 
+    
+    def load_sampler(self,sampler,keys,n_skipinit=0,n_sep=1,ignore_inf=True,**kwargs):
+        self.keys =keys
+        self._chain = sampler.get_chain()
+        self._lnprobability = sampler.get_log_prob()
+        self._lnlike = sampler.get_blobs()
+        self.n_skipinit = n_skipinit
+        self.n_sep = n_sep
+        self.ignore_inf = ignore_inf
     
     def load_pickle(self,fname,keys,n_skipinit=0,n_sep=1,ignore_inf=True,**kwargs):
         sampler = load_sampler(fname)
@@ -202,6 +214,7 @@ class Analyzer:
         ax[self.ndim].set_ylabel("lnprob")
         ax[self.ndim+1].plot(self.lnlike,**kwargs) # [nwalkers,nsample,ndim]
         ax[self.ndim+1].set_ylabel("lnlike")
+        return fig,ax
         
     
     def plot_lnprob_chain(self,kwargs_subplots={},**kwargs):
