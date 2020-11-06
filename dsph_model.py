@@ -4,6 +4,7 @@ import multiprocessing as multi
 
 from .dequad import dequad
 
+import os
 from numpy import array,pi,sqrt,exp,power,log,log10,log1p,cos,tan,sin, sort,argsort, inf, isnan
 from scipy.stats import norm
 from scipy.special import k0, betainc, beta, hyp2f1, erf, gamma, gammainc
@@ -151,8 +152,18 @@ class PlummerModel(StellarModel):
 class SersicModel(StellarModel):
     name = "SersicModel"
     required_params_name = ['re_pc','n']
-    def b(self,n):
+    
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        df = pd.read_csv(f"{os.path.dirname(__file__)}/sersic_log10n_log10bn.csv")
+        self._b_interp = interp1d(df["log10n"].values,df["log10bn"].values,"cubic",assume_sorted=True)
+    
+    def b_approx(self,n):
         return 2*n - 0.324
+    
+    def b(self,n):
+        return 10**self._b_interp(log10(n))
+    
     def norm(self):
         n = self.params.n
         return pi*self.params.re_pc**2 *power(self.b(n),-2*n) * gamma(2*n+1)
