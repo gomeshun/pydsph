@@ -43,20 +43,21 @@ class Model:
             self.name = ': ' + ' and '.join((model.name for model in self.submodels.values()))
         if show_init:
             print("initialized:")
-            print(self.show_params("all"))
+            print(self.params_all)
 
     def __repr__(self):
-        ret = self.name + ":\n" + self.show_params().__repr__()
+        ret = self.name + ":\n" + self.params_all.__repr__()
         #if len(self.submodels) > 0:
         #    ret += '\n'
         #    for model in self.submodels.values():
         #        ret += model.__repr__() + '\n'
         return ret
-
-    def show_params(self,models='all'):
+    
+    @property
+    def params_all(self):
         ret = self.params
-        if self.submodels != {} and models=='all':
-            ret = pd.concat([model.show_params('all') for model in self.submodels.values()])
+        if self.submodels != {}:
+            ret = pd.concat([model.params_all for model in self.submodels.values()])
         return ret
 
     def show_required_params_name(self,models='all'):
@@ -111,6 +112,7 @@ class PlummerModel(StellarModel):
     def logdensity_2d(self,R_pc):
         re_pc= self.params.re_pc
         return -np.log1p((R_pc/re_pc)**2)*2 -log(np.pi) -log(re_pc)*2
+    
     def density_2d_normalized_re(self,R_pc):
         re_pc= self.params.re_pc
         return 4/(1+(R_pc/re_pc)**2)**2
@@ -126,6 +128,7 @@ class PlummerModel(StellarModel):
         '''
         re_pc= self.params.re_pc
         return 1/(1+(re_pc/R_pc)**2)
+    
     def mean_density_2d(self,R_pc):
         '''
         return the mean density_2d in R < R_pc with the weight 2*pi*R
@@ -155,29 +158,53 @@ class SersicModel(StellarModel):
     
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
-        df = pd.read_csv(f"{os.path.dirname(__file__)}/sersic_log10n_log10bn.csv")
+        dirname = os.path.dirname(__file__)
+        df = pd.read_csv(f"{dirname}/sersic_log10n_log10bn.csv")
         self._b_interp = interp1d(df["log10n"].values,df["log10bn"].values,"cubic",assume_sorted=True)
+        self.coeff = pd.read_csv(f"{dirname}/coeff_dens_mod.csv",comment="#",delim_whitespace=True,header=None).values
     
-    def b_approx(self,n):
+    @property
+    def b_approx(self):
+        n = self.params.n
         return 2*n - 0.324
     
-    def b(self,n):
+    @property
+    def b_CB(self):
+        # approximation by Eq.(18) of Ciotti and Bertin (1999), [arXiv:astro-ph/9911078]
+        # It is valid for n > 0.5.
+        n = self.params.n
+        return 2*n - 1/3 + 4/(405*n) + 46/(25515*n**2) + 131/(1148175*n**3) - 2194697/(
+ 30690717750*n**4)
+    
+    @property
+    def b(self):
+        n = self.params.n
         return 10**self._b_interp(log10(n))
     
+    @property
     def norm(self):
         n = self.params.n
-        return pi*self.params.re_pc**2 *power(self.b(n),-2*n) * gamma(2*n+1)
+        return pi*self.params.re_pc**2 *power(self.b,-2*n) * gamma(2*n+1)
+    
     def density_2d(self,R_pc):
         re_pc= self.params.re_pc
         n = self.params.n
-        return exp(-self.b(n)*power(R_pc/self.params.re_pc,1/n))/self.norm()
+        return exp(-self.b*power(R_pc/self.params.re_pc,1/n))/self.norm
+    
+    def density_2d_normalized_re(self,R_pc):
+        re_pc= self.params.re_pc
+        n = self.params.n
+        return exp(-self.b*(power(R_pc/self.params.re_pc,1/n)-1))
+    
+    
     def cdf_R(self,R_pc):
         '''
         cdf_R(R) = \int_0^R \dd{R'} 2\pi R' \Sigma(R')
         '''
         re_pc= self.params.re_pc
         n = self.params.n
-        return gammainc(2*n,self.b(n)*power(R_pc/re_pc,1/n)) - gammainc(2*n,0)
+        return gammainc(2*n,self.b*power(R_pc/re_pc,1/n)) # - gammainc(2*n,0)
+        
     def mean_density_2d(self,R_pc):
         '''
         return the mean density_2d in R < R_pc with the weight 2*pi*R
@@ -185,6 +212,30 @@ class SersicModel(StellarModel):
             = \frac{cdf_R(R)}{\pi R^2}
         '''
         return self.cdf_R(R_pc)/pi/R_pc**2
+    
+    @property
+    def p_LGM(self):
+        n = self.params.n
+        return 1 - 0.6097/n + 0.05463/n**2
+    
+    @property
+    def norm_3d(self):
+        Rhalf = self.params.re_pc
+        n = self.params.n
+        b = self.b_CB
+        p = self.p_LGM
+        ind = (3-p)*n
+        return 4 * pi * Rhalf**3 * n * gamma(ind) / b**ind
+    
+    def density_3d_LGM(self,r_pc):
+        p = self.p_LGM
+        n = self.params.n
+        b = self.b_CB
+        x = (r_pc/self.params.re_pc)
+        return x**-p * exp(-b * x**(1/n)) / self.norm_3d
+    
+    def density_3d(self,r_pc):
+        pass
     
     def half_light_radius(self):
         return self.params.re_pc
@@ -194,27 +245,38 @@ class SersicModel(StellarModel):
 class Exp2dModel(StellarModel):
     name = "Exp2dModel"
     required_params_name = ['re_pc',]
+    
+    @property
+    def R_exp_pc(self):
+        return self.params.re_pc/1.67834699001666
+    
     def density_2d(self,R_pc):
-        re_pc = self.params.re_pc
+        re_pc = self.R_exp_pc
         return (1./2/pi/re_pc**2)*exp(-R_pc/re_pc) 
+    
     def logdensity_2d(self,R_pc):
-        re_pc = self.params.re_pc
+        re_pc = self.R_exp_pc
         return log(1./2/pi) -log(re_pc)*2 +(-R_pc/re_pc) 
+    
     def density_3d(self,r_pc):
-        re_pc = self.params.re_pc
+        re_pc = self.R_exp_pc
         return (1./2/pi**2/re_pc**3)*k0(r_pc/re_pc)
+    
     def cdf_R(self,R_pc):
         '''
         cdf_R(R) = \int_0^R \dd{R'} 2\pi R' \Sigma(R')
         '''
-        re_pc = self.params.re_pc
+        re_pc = self.R_exp_pc
         return 1. - exp(-R_pc/re_pc)*(1+R_pc/re_pc)
+    
     def mean_density_2d(self,R_pc):
-        re_pc = self.params.re_pc
+        re_pc = self.R_exp_pc
         return self.cdf_R(R_pc)/pi/R_pc**2
     
     def _half_light_radius(self,re_pc):
-        return 1.67834699001666*re_pc
+        return 1.67834699001666*self.R_exp_pc
+    
+
     
     def half_light_radius(self):
         return self._half_light_radius(self.params.re_pc)
