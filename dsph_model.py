@@ -362,6 +362,40 @@ class NFWModel(DMModel):
         #ret[is_outof_Rtrunc] = (4.*pi*rs_pc**3*rhos_Msunpc3/a)*beta(argbeta0,argbeta1)*betainc(argbeta0,argbeta1,x_truncd/(1+x_truncd))
         return is_in_Rtrunc * (4.*pi*rs_pc**3*rhos_Msunpc3/a)*beta(argbeta0,argbeta1)*betainc(argbeta0,argbeta1,x/(1+x)) + is_outof_Rtrunc * (4.*pi*rs_pc**3*rhos_Msunpc3/a)*beta(argbeta0,argbeta1)*betainc(argbeta0,argbeta1,x_truncd/(1+x_truncd))
         
+        
+
+class TruncatedNFWModel(DMModel):
+    name = "NFW Model"
+    required_params_name = ['rs_pc','rhos_Msunpc3','a','b','g','r_t_pc']
+    
+    #def __init__(self,params):
+    #    super().__init__(params)
+    #    if set(self.params.index) != set(NFW_params_name):
+    #        raise TypeError('NFWModel has the paramsters: '+str(NFW_params_name))
+
+    def mass_density_3d(self,r_pc):
+        rs_pc, rhos_Msunpc3,a,b,g = self.params.rs_pc, self.params.rhos_Msunpc3, self.params.a, self.params.b,self.params.g
+        x = r_pc/rs_pc
+        return rhos_Msunpc3*power(x,-g)*power(1+power(x,a),-(b-g)/a)
+        
+    def enclosure_mass(self,r_pc):
+        #ret = (array(r_pc.shape) if len(r_pc)>1 else 0)
+        rs_pc, rhos_Msunpc3,a,b,g = self.params.rs_pc, self.params.rhos_Msunpc3, self.params.a, self.params.b,self.params.g
+        r_t_pc = self.params.r_t_pc
+        
+        r_pc_trunc = r_pc.copy()
+        r_pc_trunc[r_pc > r_t_pc] = r_t_pc
+        
+        x = power(r_pc_trunc/rs_pc,a)
+        argbeta0 = (3-g)/a
+        argbeta1 = (b-3)/a
+        
+        #ret[is_in_Rtrunc] = (4.*pi*rs_pc**3*rhos_Msunpc3/a)*beta(argbeta0,argbeta1)*betainc(argbeta0,argbeta1,x/(1+x))
+        #ret[is_outof_Rtrunc] = (4.*pi*rs_pc**3*rhos_Msunpc3/a)*beta(argbeta0,argbeta1)*betainc(argbeta0,argbeta1,x_truncd/(1+x_truncd))
+        return (4.*pi*rs_pc**3 * rhos_Msunpc3/a) * beta(argbeta0,argbeta1) * betainc(argbeta0,argbeta1,x/(1+x))
+        
+        
+
 class DSphModel(Model):
     name = 'DSphModel'
     required_params_name = ['anib']
