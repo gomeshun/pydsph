@@ -398,7 +398,7 @@ class TruncatedNFWModel(DMModel):
 
 class DSphModel(Model):
     name = 'DSphModel'
-    required_params_name = ['anib']
+    required_params_name = ['vmem_kms','anib']
     required_models = [StellarModel,DMModel]
     ncpu = multi.cpu_count()
 #    def __init__(self,StellarModel,DMModel,**params_DSphModel):
