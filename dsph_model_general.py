@@ -113,7 +113,7 @@ class BaesAnisotropyModel(AnisotropyModel):
     
 class DSphModel(Model):
     name = 'DSphModel'
-    required_params_name = []
+    required_params_name = ["vmem_kms"]
     required_models = [StellarModel,DMModel,AnisotropyModel]
     ncpu = multi.cpu_count()
 #    def __init__(self,stellar_model,DM_model,**params_DSphModel):
@@ -181,4 +181,8 @@ class DSphModel(Model):
         return np.sqrt(self.sigmalos2_dequad(R_pc,n,n_kernel,ignore_RuntimeWarning))
 
     
-    
+    def lnlikes_gaussian(self,R_pc,vlos_kms,e_vlos_kms,**kwargs):
+        s2 = self.sigmalos2_dequad(R,**kwargs)
+        if e_vlos_kms:
+            s2 += e_vlos**2
+        return norm.logpdf(R_pc,loc=self.params.vmem_kms,scale=np.sqrt(s2))
