@@ -22,8 +22,10 @@ R_trunc_pc = 1866.
 
 class Model:
     #params, required_params_name = pd.Series(), ['',]
-    '''
-    params, required_prams_name is undefined; must be defined in child class
+    '''base class of model objects.
+    
+    Note: "self.params" and "self.required_prams_name" are undefined.
+          They must be defined in child class.
     '''
     def __init__(self,show_init=False,submodels_dict={},**params):
         self.params = pd.Series(params)
@@ -70,6 +72,8 @@ class Model:
         return [ (p in self.required_params_name) for p in params_name_candidates ]
 
     def update(self,new_params_dict=None,target='all',**kwargs):
+        """update model parameters recurrently.
+        """
         new_params = pd.Series(new_params_dict) if type(new_params_dict)==dict else None
         if new_params is None:
             new_params = pd.Series(kwargs)
@@ -85,6 +89,8 @@ class Model:
             
 
 class StellarModel(Model):
+    """Base class of StellarModel objects.
+    """
     name = "stellar Model"
     def density(self,distance_from_center,dimension):
         if dimension == "2d":
@@ -97,6 +103,14 @@ class StellarModel(Model):
             \int_0^{R_trunc} 2\pi R density_2d_truncated(R,R_trunc) = 1 .
         """
         return self.density_2d(R_pc)/self.cdf_R(R_trunc_pc)
+    
+    @abstractmethod
+    def density_2d(self,R_pc):
+        pass
+    
+    @abstractmethod
+    def density_3d(self,r_pc):
+        pass
 
     
 
@@ -243,6 +257,8 @@ class SersicModel(StellarModel):
     
     
 class Exp2dModel(StellarModel):
+    """Stellar model whose 2D (projected, surface) density is given by the exponential model.
+    """
     name = "Exp2dModel"
     required_params_name = ['re_pc',]
     
@@ -284,6 +300,8 @@ class Exp2dModel(StellarModel):
     
     
 class Exp3dModel(StellarModel):
+    """Stellar model whose 3D (deprojected) density is given by the exponential model.
+    """
     name = "Exp3dModel"
     required_params_name = ['re_pc',]
     def density_2d(self,R_pc):
@@ -318,6 +336,10 @@ class Uniform2dModel(StellarModel):
     
 class DMModel(Model):
     name = "DM Model"
+    
+    @abstractmethod
+    def mass_density_3d(self,r_pc):
+        pass
 
         
 
@@ -325,18 +347,12 @@ class ZhaoModel(DMModel):
     name = "Zhao Model"
     required_params_name = ['rs_pc','rhos_Msunpc3','a','b','g','r_t_pc']
     
-    #def __init__(self,params):
-    #    super().__init__(params)
-    #    if set(self.params.index) != set(NFW_params_name):
-    #        raise TypeError('NFWModel has the paramsters: '+str(NFW_params_name))
-
     def mass_density_3d(self,r_pc):
         rs_pc, rhos_Msunpc3,a,b,g = self.params.rs_pc, self.params.rhos_Msunpc3, self.params.a, self.params.b,self.params.g
         x = r_pc/rs_pc
         return rhos_Msunpc3*power(x,-g)*power(1+power(x,a),-(b-g)/a)
         
     def enclosure_mass(self,r_pc):
-        #ret = (array(r_pc.shape) if len(r_pc)>1 else 0)
         rs_pc, rhos_Msunpc3,a,b,g = self.params.rs_pc, self.params.rhos_Msunpc3, self.params.a, self.params.b,self.params.g
         r_t_pc = self.params.r_t_pc
         
@@ -348,10 +364,34 @@ class ZhaoModel(DMModel):
         argbeta0 = (3-g)/a
         argbeta1 = (b-3)/a
         
-        #ret[is_in_Rtrunc] = (4.*pi*rs_pc**3*rhos_Msunpc3/a)*beta(argbeta0,argbeta1)*betainc(argbeta0,argbeta1,x/(1+x))
-        #ret[is_outof_Rtrunc] = (4.*pi*rs_pc**3*rhos_Msunpc3/a)*beta(argbeta0,argbeta1)*betainc(argbeta0,argbeta1,x_truncd/(1+x_truncd))
         return (4.*pi*rs_pc**3 * rhos_Msunpc3/a) * beta(argbeta0,argbeta1) * betainc(argbeta0,argbeta1,x/(1+x))
         
+        
+class NFWModel(DMModel):
+    name = "NFW Model"
+    required_params_name = ['rs_pc','rhos_Msunpc3','r_t_pc']
+    
+    
+    def mass_density_3d(self,r_pc):
+        rs_pc, rhos_Msunpc3 = self.params.rs_pc, self.params.rhos_Msunpc3
+        x = r_pc/rs_pc
+        return rhos_Msunpc3/x/(1+x)**2
+        
+    def enclosure_mass(self,r_pc):
+        rs_pc, rhos_Msunpc3 = self.params.rs_pc, self.params.rhos_Msunpc3
+        r_t_pc = self.params.r_t_pc
+        # truncation
+        r_pc_trunc = r_pc.copy()
+        r_pc_trunc[r_pc > r_t_pc] = r_t_pc
+        x = power(r_pc_trunc/rs_pc,a)
+        return (4.*pi*rs_pc**3 * rhos_Msunpc3) * (1/(1+x) + log(1+r))
+    
+    def jfactor_ullio2016(self,roi_pc,dist_pc):
+        rs_pc, rhos_Msunpc3 = self.params.rs_pc, self.params.rhos_Msunpc3
+        r_max_pc = np.min([roi_pc,self.r_t_pc],axis=0)
+        c_max = r_max_pc/rs_pc
+        j = rs_pc**3 * rhos_Msunpc3**2 * (1-1/(1+c_max)**3)/3
+        return j
         
 
 class DSphModel(Model):
