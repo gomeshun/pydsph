@@ -9,15 +9,22 @@ from numpy import array,pi,sqrt,exp,power,log,log10,log1p,cos,tan,sin, sort,args
 from scipy.stats import norm
 from scipy.special import k0, betainc, beta, hyp2f1, erf, gamma, gammainc
 from scipy import integrate
-from scipy.constants import parsec, degree # parsec in meter, degree in radian
+from scipy.constants import parsec, degree, physical_constants # parsec in meter, degree in radian
 from scipy.integrate import quad
 from scipy.interpolate import interp1d,Akima1DInterpolator
 
 from multiprocessing import Pool
+from abc import abstractmethod
 
 GMsun_m3s2 = 1.32712440018e20
 R_trunc_pc = 1866.
 
+kg_eV = 1./physical_constants["electron volt-kilogram relationship"][0]
+im_eV = 1./physical_constants["electron volt-inverse meter relationship"][0]
+solar_mass_kg = 1.9884e30
+C0 = (solar_mass_kg*kg_eV)**2*((1./parsec)*im_eV)**5
+C1 = (1e9)**2 * (1e2*im_eV)**5
+C_J = C0/C1
 
 
 class Model:
@@ -340,6 +347,19 @@ class DMModel(Model):
     @abstractmethod
     def mass_density_3d(self,r_pc):
         pass
+    
+    def log10jfactor_ullio2016_simple(self, dist_pc, roi_deg=0.5):
+        """Calculate J-factor of DM profile using Eq.(B.10) in [arXiv:1603.07721].
+        
+        NOTE: The upper limit of the integral domain of Eq.(B.10) is \mathcal{R} (truncation radius),
+        but it must be typo of R_\mathrm{max} (ROI). 
+        Practically, the uper limit is max(R_\mathrm{max}, \mathcal{R}).
+        """
+        roi_pc = dist*np.deg2rad(roi_deg)
+        func = lambda r: r**2 * self.mass_density_3d(r)**2
+        integ = dequad(func,0,roi_pc)
+        j = 4 * np.pi / D**2 * integ * C_J
+        return np.log10(j)
 
         
 
@@ -386,12 +406,28 @@ class NFWModel(DMModel):
         x = power(r_pc_trunc/rs_pc,a)
         return (4.*pi*rs_pc**3 * rhos_Msunpc3) * (1/(1+x) + log(1+r))
     
-    def jfactor_ullio2016(self,roi_pc,dist_pc):
+    def log10jfactor_ullio2016_simple(self,dist_pc,roi_deg=0.5):
+        roi_pc = dist_pc*np.deg2rad(roi_deg)
         rs_pc, rhos_Msunpc3 = self.params.rs_pc, self.params.rhos_Msunpc3
-        r_max_pc = np.min([roi_pc,self.r_t_pc],axis=0)
+        r_max_pc = np.min([roi_pc,self.params.r_t_pc],axis=0)
         c_max = r_max_pc/rs_pc
-        j = rs_pc**3 * rhos_Msunpc3**2 * (1-1/(1+c_max)**3)/3
-        return j
+        j = C_J * 4 * pi * rs_pc**3 * rhos_Msunpc3**2 / dist_pc**2
+        j *= (1-1/(1+c_max)**3)/3
+        return log10(j)
+    
+    def log10jfactor_evans2016(self,dist_pc,roi_deg=0.5):
+        """J-factor fitting function given by https://arxiv.org/pdf/1604.05599.pdf
+        """
+        func_x = lambda s : (
+            np.arcsech(s)/np.sqrt(1-s**2) if 0<=s<=1 else np.arcsec(s)/np.sqrt(s**2-1)
+        )
+        roi_rad = np.deg2rad(roi_deg)
+        rs_pc, rhos_Msunpc3 = self.params.rs_pc, self.params.rhos_Msunpc3
+        y = dist_pc * roi_rad / rs_pc
+        delta = 1 - y**2
+        j = C_J * pi * rhos_Msunpc3**2 * rs_pc**3 / 3 / dist_pc**2 / delta**4
+        j *= 2*y*(7*y-4*y**3+3*pi*delta**4)+6*(2*delta**6-2*delta**2-y**4)*func_x(y)
+        return log10(j)
         
 
 class DSphModel(Model):
