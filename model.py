@@ -344,23 +344,39 @@ class Uniform2dModel(StellarModel):
 class DMModel(Model):
     name = "DM Model"
     
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.roi_deg_max_warning = 1.0  # maximum angle for evaluating J-factor
+    
     @abstractmethod
     def mass_density_3d(self,r_pc):
         pass
     
-    def log10jfactor_ullio2016_simple(self, dist_pc, roi_deg=0.5):
+    def assert_roi_is_enough_small(self,roi_deg):
+        assert np.all(roi_deg<=self.roi_deg_max_warning)
+    
+    def jfactor_ullio2016_simple(self, dist_pc, roi_deg=0.5):
         """Calculate J-factor of DM profile using Eq.(B.10) in [arXiv:1603.07721].
         
         NOTE: The upper limit of the integral domain of Eq.(B.10) is \mathcal{R} (truncation radius),
         but it must be typo of R_\mathrm{max} (ROI). 
         Practically, the uper limit is max(R_\mathrm{max}, \mathcal{R}).
         """
-        roi_pc = dist*np.deg2rad(roi_deg)
+        self.assert_roi_is_enough_small(roi_deg)
+        roi_pc = dist*np.sin(np.deg2rad(roi_deg))
         func = lambda r: r**2 * self.mass_density_3d(r)**2
         integ = dequad(func,0,roi_pc)
         j = 4 * np.pi / D**2 * integ * C_J
-        return np.log10(j)
-
+        return j
+    
+    def jfactor_ullio2016(self, dist_pc, roi_deg=0.5):
+        """Calculate J-factor of DM profile using Eq.(B.10) in [arXiv:1603.07721].
+        
+        NOTE: The upper limit of the integral domain of Eq.(B.10) is \mathcal{R} (truncation radius),
+        but it must be typo of R_\mathrm{max} (ROI). 
+        Practically, the uper limit is max(R_\mathrm{max}, \mathcal{R}).
+        """
+        pass
         
 
 class ZhaoModel(DMModel):
@@ -391,7 +407,6 @@ class NFWModel(DMModel):
     name = "NFW Model"
     required_params_name = ['rs_pc','rhos_Msunpc3','r_t_pc']
     
-    
     def mass_density_3d(self,r_pc):
         rs_pc, rhos_Msunpc3 = self.params.rs_pc, self.params.rhos_Msunpc3
         x = r_pc/rs_pc
@@ -406,28 +421,48 @@ class NFWModel(DMModel):
         x = power(r_pc_trunc/rs_pc,a)
         return (4.*pi*rs_pc**3 * rhos_Msunpc3) * (1/(1+x) + log(1+r))
     
-    def log10jfactor_ullio2016_simple(self,dist_pc,roi_deg=0.5):
-        roi_pc = dist_pc*np.deg2rad(roi_deg)
+    def jfactor_ullio2016_simple(self,dist_pc,roi_deg=0.5):
+        self.assert_roi_is_enough_small(roi_deg)
+        roi_pc = dist_pc*np.sin(np.deg2rad(roi_deg))
         rs_pc, rhos_Msunpc3 = self.params.rs_pc, self.params.rhos_Msunpc3
-        r_max_pc = np.min([roi_pc,self.params.r_t_pc],axis=0)
+        r_t_pc = self.params.r_t_pc
+        r_max_pc = np.min([roi_pc*np.ones_like(r_t_pc),r_t_pc],axis=0)
         c_max = r_max_pc/rs_pc
         j = C_J * 4 * pi * rs_pc**3 * rhos_Msunpc3**2 / dist_pc**2
         j *= (1-1/(1+c_max)**3)/3
-        return log10(j)
+        return j
     
-    def log10jfactor_evans2016(self,dist_pc,roi_deg=0.5):
+    def jfactor_evans2016(self,dist_pc,roi_deg=0.5):
         """J-factor fitting function given by https://arxiv.org/pdf/1604.05599.pdf
         """
-        func_x = lambda s : (
-            np.arcsech(s)/np.sqrt(1-s**2) if 0<=s<=1 else np.arcsec(s)/np.sqrt(s**2-1)
-        )
-        roi_rad = np.deg2rad(roi_deg)
+        self.assert_roi_is_enough_small(roi_deg)
+        def func_x(s):
+            #print(f"s:{s.values}")
+            s = np.atleast_1d(s)
+            assert np.all(s>=0)
+            ret = np.nan * np.ones_like(s)
+            cond_1 = s<1
+            cond_2 = 1<s
+            cond_3 = s==1
+            ret[cond_1] = np.arccosh(1/s[cond_1])/np.sqrt(1-s[cond_1]**2)
+            ret[cond_2] = np.arccos(1/s[cond_2])/np.sqrt(s[cond_2]**2-1)
+            ret[cond_3] = 1
+            #print(ret)
+            return ret
+        
+        #func_x = lambda s : (
+        #    1/np.arccosh(s)/np.sqrt(1-s**2) if 0<=s<=1 else 1/np.arccos(s)/np.sqrt(s**2-1)
+        #)
+        roi_pc = dist_pc * np.deg2rad(roi_deg)
         rs_pc, rhos_Msunpc3 = self.params.rs_pc, self.params.rhos_Msunpc3
-        y = dist_pc * roi_rad / rs_pc
+        r_t_pc = self.params.r_t_pc
+        r_max_pc = np.min([np.ones_like(r_t_pc)*roi_pc,r_t_pc],axis=0)
+        y =  r_max_pc / rs_pc
         delta = 1 - y**2
-        j = C_J * pi * rhos_Msunpc3**2 * rs_pc**3 / 3 / dist_pc**2 / delta**4
-        j *= 2*y*(7*y-4*y**3+3*pi*delta**4)+6*(2*delta**6-2*delta**2-y**4)*func_x(y)
-        return log10(j)
+        coeff_evans = (2*y*(7*y-4*y**3+3*pi*delta**2) + 6*(2*delta**3-2*delta-y**4)*func_x(y)) / 6 / delta**2
+        coeff_evans[y==1] = np.pi - 38/15
+        j = C_J * 2 * pi * rhos_Msunpc3**2 * rs_pc**3 / dist_pc**2 * coeff_evans
+        return j#np.log10(j)
         
 
 class DSphModel(Model):
