@@ -1,9 +1,7 @@
 import pandas as pd
 import numpy as np
 import multiprocessing as multi
-
-from .dequad import dequad
-
+from copy import copy
 import os
 from numpy import array,pi,sqrt,exp,power,log,log10,log1p,cos,tan,sin, sort,argsort, inf, isnan
 from scipy.stats import norm
@@ -15,6 +13,8 @@ from scipy.interpolate import interp1d,Akima1DInterpolator
 
 from multiprocessing import Pool
 from abc import abstractmethod
+
+from .dequad import dequad
 
 GMsun_m3s2 = 1.32712440018e20
 R_trunc_pc = 1866.
@@ -393,7 +393,7 @@ class ZhaoModel(DMModel):
         r_t_pc = self.params.r_t_pc
         
         # truncation
-        r_pc_trunc = r_pc.copy()
+        r_pc_trunc = copy(r_pc)
         r_pc_trunc[r_pc > r_t_pc] = r_t_pc
         
         x = power(r_pc_trunc/rs_pc,a)
@@ -416,10 +416,13 @@ class NFWModel(DMModel):
         rs_pc, rhos_Msunpc3 = self.params.rs_pc, self.params.rhos_Msunpc3
         r_t_pc = self.params.r_t_pc
         # truncation
-        r_pc_trunc = r_pc.copy()
-        r_pc_trunc[r_pc > r_t_pc] = r_t_pc
-        x = power(r_pc_trunc/rs_pc,a)
-        return (4.*pi*rs_pc**3 * rhos_Msunpc3) * (1/(1+x) + log(1+r))
+        if isinstance(r_pc,np.ndarray):
+            r_pc_trunc = copy(r_pc)
+            r_pc_trunc[r_pc > r_t_pc] = r_t_pc
+        else:
+            r_pc_trunc = min(r_pc,r_t_pc)
+        x = r_pc_trunc/rs_pc
+        return (4.*pi*rs_pc**3 * rhos_Msunpc3) * (1/(1+x) + log(1+x))
     
     def jfactor_ullio2016_simple(self,dist_pc,roi_deg=0.5):
         self.assert_roi_is_enough_small(roi_deg)
@@ -591,6 +594,23 @@ class DSphModel(Model):
 
         log_sigmalos_func = interp1d(R_pc_interp,log(self._sigmalos(R_pc_interp)),kind=kind)
         return exp(log_sigmalos_func(R_pc))
+    
+    
+    def sigmalos2_mean(self,method="dequad"):
+        nu = self.submodels["stellar_model"].density_3d
+        M = self.submodels["dm_model"].enclosure_mass
+        r_t_pc = self.submodels["dm_model"].params.r_t_pc
+        integrand = lambda r: r * nu(r) * M(r)
+        if method == "quad":
+            integ_lo = quad(integrand,0,r_t_pc)
+            integ_hi = quad(integrand,r_t_pc,np.inf)
+            integ = integ_lo[0] + integ_hi[0]
+        elif method == "dequad":
+            integ = dequad(integrand,0,np.inf,128)
+        else:
+            raise RuntimeError(f"method {method} is not implemented")
+        
+        return 4 * np.pi * GMsun_m3s2 * integ / 3 / parsec * 1e-6
 
         
     
