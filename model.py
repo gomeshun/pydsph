@@ -541,11 +541,20 @@ class DSphModel(Model):
         """
         
         def func(u):
-            u_ = np.array(u)[np.newaxis,:]  # axis: 1
-            R_pc_ = np.array(R_pc)[:,np.newaxis]  # axis: 0
+            """integrand.
+            u : integrated variable
+            R_pc : other variable
+            
+            if R_pc has shape (n,m,l,...),
+            R_pc_ = (n,m,l,...)
+            u_ = (n_integ)
+            """
+            R_pc_ = np.array(R_pc)[...,np.newaxis]  # add new axis at last 
+            u_ = np.array(u) # in later calculation, u is broadcasted to the last axis created above
+            
             return self.integrand_sigmalos2(u_,R_pc_)
         
-        ret = dequad(func,1,inf,n=n,axis=1,
+        ret = dequad(func,1,inf,n=n,axis=-1,
                      replace_nan_to_zero=True,
                      replace_inf_to_zero=True)
         
@@ -578,6 +587,12 @@ class DSphModel(Model):
     def sigmalos2(self,R_pc,n=1024,
                   R_pc_interp=None,
                   n_interp=64,R_interp_extention=1.2,kind="cubic"):
+        
+        # For scalar or a few set of R_pc, return exact values _sigmalos
+        if (not isinstance(R_pc,np.ndarray)) or (len(R_pc) < n_interp):
+            return self._sigmalos2(R_pc,n)
+        
+        
         if R_pc_interp is None:
             R_pc_interp = self.generate_R_interp(R_pc,n_interp,R_interp_extention)
         
@@ -589,6 +604,11 @@ class DSphModel(Model):
     def sigmalos(self,R_pc,n=1024,
                  R_pc_interp=None,
                  n_interp=64,R_interp_extention=1.2,kind="cubic"):
+        
+        # For scalar value, return _sigmalos
+        if not isinstance(R_pc,np.ndarray) or (len(R_pc) < n_interp):
+            return np.array(self._sigmalos(R_pc,n))
+        
         if R_pc_interp is None:
             R_pc_interp = self.generate_R_interp(R_pc,n_interp,R_interp_extention)
 
