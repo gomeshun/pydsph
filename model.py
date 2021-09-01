@@ -413,6 +413,7 @@ class NFWModel(DMModel):
         return rhos_Msunpc3/x/(1+x)**2
         
     def enclosure_mass(self,r_pc):
+        threshold = 1e-7  # threshold to avoid underflow
         rs_pc, rhos_Msunpc3 = self.params.rs_pc, self.params.rhos_Msunpc3
         r_t_pc = self.params.r_t_pc
         # truncation
@@ -422,7 +423,15 @@ class NFWModel(DMModel):
         else:
             r_pc_trunc = min(r_pc,r_t_pc)
         x = r_pc_trunc/rs_pc
-        return (4.*pi*rs_pc**3 * rhos_Msunpc3) * (1/(1+x) + log(1+x))
+        ret = np.zeros_like(x)
+        is_small = x > threshold  
+        # NOTE: (1/(1+x)-1 + log(1+x)) = B(2,0,x/(1+x)), 
+        # but scipy.special.betainc and scipy.special.beta are useless because of their diversence.
+        # Therefore we use another expression in the following calculation.
+        # Note that the element specification is relatively slow, thus we calculate all elements first and then modify overflowed ones.
+        ret = (1/(1+x)-1 + log(1+x))  # NOTE:  underflow occurs when x<<1. 
+        ret[is_small] = x[is_small]**2/2  # Series expantion of (1/(1+x)-1 + log(1+x)) up to the second order
+        return (4.*pi*rs_pc**3 * rhos_Msunpc3) * ret 
     
     def jfactor_ullio2016_simple(self,dist_pc,roi_deg=0.5):
         self.assert_roi_is_enough_small(roi_deg)
