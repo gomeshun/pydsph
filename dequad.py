@@ -1,6 +1,7 @@
 from numpy import sinh,cosh,exp,log,pi,arange,isnan,isinf,float64,float128
 from functools import lru_cache
 import numpy as np
+import warnings
 
 DEBUG = False
 BUF_DEBUG = None
@@ -64,7 +65,8 @@ def generate_x_w(a,b,n,xp=np):
 def dequad(func,a,b,n,
            axis=None,xp=np,
            replace_inf_to_zero=False,
-           replace_nan_to_zero=False):
+           replace_nan_to_zero=False,
+           verbose=False):
     '''
     func: func(ndarray_in) = ndarray_out
     axis: define the axis of ndarray_out to use integrate.
@@ -82,11 +84,17 @@ def dequad(func,a,b,n,
      
     if replace_inf_to_zero:
         wsfs[np.isinf(wsfs)] = 0
+    elif np.any(np.isinf(wsfs)):
+        warnings.warn("inf is detected in dequad calculation. Use \"replace_inf_to_zero\" to ignore such elements")
         
     if replace_nan_to_zero:
         wsfs[np.isnan(wsfs)] = 0
+    elif np.any(np.isnan(wsfs)):
+        warnings.warn("nan is detected in dequad calculation. Use \"replace_nan_to_zero\" to ignore such elements")
         
-    #print(wsfs.shape)
+    if verbose:    
+        print(wsfs)
+        
     return (wsfs).sum(axis=axis)
     
 
