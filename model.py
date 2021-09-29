@@ -430,6 +430,7 @@ class NFWModel(DMModel):
         # Therefore we use another expression in the following calculation.
         # Note that the element specification is relatively slow, thus we calculate all elements first and then modify overflowed ones.
         ret = (1/(1+x)-1 + log(1+x))  # NOTE:  underflow occurs when x<<1. 
+        ret = np.array(ret)
         ret[is_small] = x[is_small]**2/2  # Series expantion of (1/(1+x)-1 + log(1+x)) up to the second order
         return (4.*pi*rs_pc**3 * rhos_Msunpc3) * ret 
     
@@ -446,19 +447,21 @@ class NFWModel(DMModel):
     
     def jfactor_evans2016(self,dist_pc,roi_deg=0.5):
         """J-factor fitting function given by https://arxiv.org/pdf/1604.05599.pdf
+        Note that this formula causes the cancelation of significant digits
         """
         self.assert_roi_is_enough_small(roi_deg)
         def func_x(s):
+            epsilon = 1e-8
             #print(f"s:{s.values}")
             s = np.atleast_1d(s)
             assert np.all(s>=0)
             ret = np.nan * np.ones_like(s)
-            cond_1 = s<1
-            cond_2 = 1<s
-            cond_3 = s==1
+            cond_1 = s<1-epsilon
+            cond_2 = 1+epsilon<s
+            cond_3 = np.abs(1-s) <= epsilon
             ret[cond_1] = np.arccosh(1/s[cond_1])/np.sqrt(1-s[cond_1]**2)
             ret[cond_2] = np.arccos(1/s[cond_2])/np.sqrt(s[cond_2]**2-1)
-            ret[cond_3] = 1
+            ret[cond_3] = 1 - (2*(s[cond_3]-1))/3 + 7/15 * (s[cond_3]-1)**2
             #print(ret)
             return ret
         
@@ -472,7 +475,8 @@ class NFWModel(DMModel):
         y =  r_max_pc / rs_pc
         delta = 1 - y**2
         coeff_evans = (2*y*(7*y-4*y**3+3*pi*delta**2) + 6*(2*delta**3-2*delta-y**4)*func_x(y)) / 6 / delta**2
-        coeff_evans[y==1] = np.pi - 38/15
+        epsilon = 1e-8
+        coeff_evans[np.abs(1-y)<epsilon] = (np.pi - 38/15) + (-(64/21) + np.pi)*(y-1)
         j = C_J * 2 * pi * rhos_Msunpc3**2 * rs_pc**3 / dist_pc**2 * coeff_evans
         return j#np.log10(j)
         
@@ -635,7 +639,7 @@ class DSphModel(Model):
             integ_hi = quad(integrand,r_t_pc,np.inf)
             integ = integ_lo[0] + integ_hi[0]
         elif method == "dequad":
-            integ = dequad(integrand,0,np.inf,128)
+            integ = dequad(integrand,0,np.inf,128,replace_nan_to_zero=True)
         else:
             raise RuntimeError(f"method {method} is not implemented")
         
