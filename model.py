@@ -424,7 +424,7 @@ class NFWModel(DMModel):
             r_pc_trunc = min(r_pc,r_t_pc)
         x = r_pc_trunc/rs_pc
         ret = np.zeros_like(x)
-        is_small = x > threshold  
+        is_small = x < threshold  # DEBUG: 2021/10/28
         # NOTE: (1/(1+x)-1 + log(1+x)) = B(2,0,x/(1+x)), 
         # but scipy.special.betainc and scipy.special.beta are useless because of their diversence.
         # Therefore we use another expression in the following calculation.
@@ -629,7 +629,7 @@ class DSphModel(Model):
         return exp(log_sigmalos_func(R_pc))
     
     
-    def sigmalos2_mean(self,method="dequad"):
+    def sigmalos2_mean(self,method="dequad",n_integ=128):
         nu = self.submodels["stellar_model"].density_3d
         M = self.submodels["dm_model"].enclosure_mass
         r_t_pc = self.submodels["dm_model"].params.r_t_pc
@@ -639,13 +639,21 @@ class DSphModel(Model):
             integ_hi = quad(integrand,r_t_pc,np.inf)
             integ = integ_lo[0] + integ_hi[0]
         elif method == "dequad":
-            integ = dequad(integrand,0,np.inf,128,replace_nan_to_zero=True)
+            #integ_lo = dequad(integrand,0,r_t_pc,n_integ,replace_nan_to_zero=True)
+            #integ_hi = dequad(integrand,r_t_pc,np.inf,n_integ,replace_nan_to_zero=True)
+            #integ = integ_lo + integ_hi
+            integ = dequad(integrand,0,np.inf,n_integ,replace_nan_to_zero=True)
         else:
             raise RuntimeError(f"method {method} is not implemented")
         
         return 4 * np.pi * GMsun_m3s2 * integ / 3 / parsec * 1e-6
 
-        
+    
+    def sigmalos2_mean_rough(self,):
+        """rough estiimation of sigmalos2,
+        using the approximation \int dr r^2 nu(r) f(r) \simeq f(re).
+        """
+        pass
     
 
 class KI17_Model:
