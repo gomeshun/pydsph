@@ -441,8 +441,8 @@ class NFWModel(DMModel):
         r_t_pc = self.params.r_t_pc
         r_max_pc = np.min([roi_pc*np.ones_like(r_t_pc),r_t_pc],axis=0)
         c_max = r_max_pc/rs_pc
-        j = C_J * 4 * pi * rs_pc**3 * rhos_Msunpc3**2 / dist_pc**2
-        j *= (1-1/(1+c_max)**3)/3
+        j = C_J * 4 * pi * rs_pc**3 * rhos_Msunpc3**2 / dist_pc**2  # normalization
+        j *= (1-1/(1+c_max)**3)/3 + ((rs_pc/dist_pc)**2 * c_max**3/(1+c_max)**3)/9  # approximation of W(r,0,r) upto second leading order
         return j
     
     def jfactor_evans2016(self,dist_pc,roi_deg=0.5):
